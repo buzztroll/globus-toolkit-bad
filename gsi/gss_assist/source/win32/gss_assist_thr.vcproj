@@ -2,7 +2,7 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="7.00"
-	Name="GSI_gss_assist"
+	Name="GSI_gss_assist_thr"
 	ProjectGUID="{4F439695-80FA-4DDF-8574-3AF6C8C7612F}"
 	Keyword="Win32Proj">
 	<Platforms>
@@ -19,7 +19,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="\include;\include\nonthreaded;\include\openssl"
+				AdditionalIncludeDirectories="\include;\include\threaded;\include\openssl"
 				PreprocessorDefinitions="WIN32;_DEBUG;_LIB"
 				MinimalRebuild="TRUE"
 				ExceptionHandling="FALSE"
@@ -35,7 +35,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="$(OutDir)/libglobus_gss_assist_win32dbg.lib"/>
+				OutputFile="$(OutDir)/libglobus_gss_assist_win32dbgthr.lib"/>
 			<Tool
 				Name="VCMIDLTool"/>
 			<Tool
