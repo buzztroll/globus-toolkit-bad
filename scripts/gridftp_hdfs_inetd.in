@@ -1,4 +1,0 @@
-#!/bin/sh                                                            
-                                                                      
-exec @GLOBUSLOCATION@/sbin/globus-gridftp-server -c @prefix@/share/gridftp_hdfs/gridftp-inetd.conf -dsi hdfs
-
