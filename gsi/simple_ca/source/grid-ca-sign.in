@@ -131,16 +131,7 @@ check_expired() {
 ############################################################
 # main code section
 ############################################################
-if test -z "${GLOBUS_LOCATION}"; then
-    echo ""
-    echo "ERROR: Please set GLOBUS_LOCATION to the" 
-    echo "Globus installation directory before"
-    echo "running this script"
-    echo ""
-    exit 1
-fi
-
-. ${GLOBUS_LOCATION}/libexec/globus-script-initializer
+. ${GLOBUS_LOCATION:-@libexecdir@}${GLOBUS_LOCATION:+/libexec}/globus-script-initializer
 globus_source ${libexecdir}/globus-sh-tools.sh
 
 PROGRAM_NAME=`echo $0 | ${GLOBUS_SH_SED-sed} 's|.*/||g'`
@@ -211,7 +202,7 @@ readCommandLine() {
                 ;;
             -openssl-help)
                 shift;
-		${GLOBUS_LOCATION}/bin/openssl ca -help
+		${bindir}/openssl ca -help
 		exit;
 		;;
 	    *)
@@ -494,7 +485,7 @@ if test ! -f ${GRID_CA_DIR}/cacert.pem; then
 fi
 
 grid_ca_conf=${GRID_CA_DIR}/grid-ca-ssl.conf
-openssl_cmd=${GLOBUS_LOCATION}/bin/openssl
+openssl_cmd=${bindir}/openssl
 
 TMP_REQ_FILE=/tmp/tmp_cert_req.pem.$$
 TMP_CERT_FILE=/tmp/tmp_cert.pem.$$

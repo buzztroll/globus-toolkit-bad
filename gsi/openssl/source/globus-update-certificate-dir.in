@@ -1,14 +1,26 @@
 #! /usr/bin/env perl
 
+BEGIN
+{
+    if (exists $ENV{GLOBUS_LOCATION})
+    {
+        push(@INC, $ENV{GLOBUS_LOCATION}/lib/perl);
+    }
+    else
+    {
+        push(@INC, '@libdir@/perl');
+    }
+}
 use strict;
 use Getopt::Long;
+use Globus::Core::Paths;
 
 my $ca_dir = undef;
 my $help = 0;
 my @ca_dir_options = (
         "$ENV{HOME}/.globus/certificates",
         "/etc/grid-security/certificates",
-        "$ENV{GLOBUS_LOCATION}/share/certificates");
+        "$Globus::Core::Paths::datadir/certificates");
 
 if (exists($ENV{X509_CERT_DIR}))
 {

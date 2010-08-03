@@ -1,6 +1,6 @@
-#! /usr/bin/env perl
+#! /usr/bin/perl
 
-# Copyright 1999-2007 University of Chicago
+# Copyright 1999-2010 University of Chicago
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,27 +16,19 @@
 
 BEGIN
 {
-    use POSIX qw(getcwd);
-
-    if (! exists($ENV{GLOBUS_LOCATION}))
-    {
-        my $p = $0;
-
-        if ($p !~ m/^\//)
-        {
-            $p = getcwd() . '/' . $p;
-        }
-
-        my @p = split(/\//, $p);
-
-        $ENV{GLOBUS_LOCATION} = join('/', @p[0..$#p-2]);
-
-    }
-    push(@INC, "$ENV{GLOBUS_LOCATION}/lib/perl");
-
     if (exists $ENV{GPT_LOCATION})
     {
         push(@INC, "$ENV{GPT_LOCATION}/lib/perl");
+    }
+
+    if (exists $ENV{GLOBUS_LOCATION})
+    {
+        push(@INC, "$ENV{GLOBUS_LOCATION}/lib/perl");
+    }
+    else
+    {
+        push(@INC, '@libdir@/perl');
+
     }
 }
 
@@ -53,21 +45,20 @@ GetOptions('with-openssl=s' => \$openssl,
 my $metadata =
     new Grid::GPT::Setup(package_name => 'globus_openssl_setup');
 
-my $globusdir       = $ENV{GLOBUS_LOCATION};
-my $libexecdir      = "$globusdir/libexec";
-my $setupdir        = "$globusdir/setup/globus";
+my $libexecdir      = $Globus::Core::Paths::libexecdir;
+my $setupdir        = "$Globus::Core::Paths::exec_prefix/setup/globus";
 my $openssl_exec    = '';
 
 chdir $setupdir;
 
-if (! -d "${globusdir}/bin" )
+if (! -d "$Globus::Core::Paths::bindir" )
 {
     mkdir "${globusdir}/bin", 0777;
 }
 
-if (-l "${globusdir}/bin/openssl")
+if (-l "$Globus::Core::Paths::bindir/openssl")
 {
-    unlink "${globusdir}/bin/openssl";
+    unlink "$Globus::Core::Paths::bindir/openssl";
 }
 
 if ($openssl ne '')
@@ -94,9 +85,9 @@ if (! -x $openssl_exec)
     exit 1;
 }
 
-if (! -r "${globusdir}/bin/openssl")
+if (! -r "$Globus::Core::Paths::bindir/openssl")
 {
-    symlink($openssl_exec, "${globusdir}/bin/openssl");
+    symlink($openssl_exec, "$Globus::Core::Paths::bindir/openssl");
 }
 
 $metadata->finish();
