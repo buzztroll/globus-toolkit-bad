@@ -18,7 +18,7 @@
 
 if test -z "$GLOBUS_SH_VARIABLES_SET" ; then
     
-    . ${GLOBUS_LOCATION}/libexec/globus-sh-tools-vars.sh
+    . ${GLOBUS_LOCATION:-@libexecdir@}${GLOBUS_LOCATION:+/libexec}/globus-sh-tools-vars.sh
     
     # export all commands:
 

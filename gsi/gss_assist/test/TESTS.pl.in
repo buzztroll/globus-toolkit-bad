@@ -1,11 +1,22 @@
-#!/usr/bin/env perl
+#!/usr/bin/perl
+
+BEGIN
+{
+    if (exists $ENV{GLOBUS_LOCATION})
+    {
+        push(@INC, "$ENV{GLOBUS_LOCATION}/lib/perl");
+    }
+    else
+    {
+        push(@INC, '@libdir@/perl');
+    }
+}
 
 use strict;
+use warnings;
 use Test::Harness;
 require 5.005;
 use vars qw(@tests);
-
-my $globus_location = $ENV{GLOBUS_LOCATION};
 
 @tests = qw(gss-assist-impexp-test.pl
             gss-assist-auth-test.pl
@@ -13,7 +24,5 @@ my $globus_location = $ENV{GLOBUS_LOCATION};
             gridmap-test.pl
             gridmap-tools-test.pl
             );
-
-push(@INC, $ENV{GLOBUS_LOCATION} . "/lib/perl");
 
 runtests(@tests);

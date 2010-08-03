@@ -17,41 +17,32 @@
 # 
 
 
+BEGIN
+{
+    use Config;
+    if (exists $ENV{GLOBUS_LOCATION})
+    {
+        push(@INC, 
+                $ENV{GLOBUS_LOCATION} . "/lib/perl",
+                $ENV{GLOBUS_LOCATION} . "/lib/perl/$Config{archname}");
+    }
+    if (exists $ENV{GPT_LOCATION})
+    {
+        push(@INC, 
+                $ENV{GPT_LOCATION} . "/lib/perl",
+                $ENV{GPT_LOCATION} . "/lib/perl/$Config{archname}");
+    }
+
+    if ((! exists($ENV{GLOBUS_LOCATION})) && (! exists($ENV{GPT_LOCATION})))
+    {
+        push(@INC, 
+                "@libdir@/perl",
+                "@libdir@/lib/perl/$Config{archname}");
+    }
+}
+
 use strict;
-
-#
-# dig the globus and gpt paths out of the user's environment variables
-#
-
-my $gpt_path = $ENV{GPT_LOCATION};
-my $globus_path = $ENV{GLOBUS_LOCATION};
-my $gpath;
-
-if ( !defined($gpt_path) && !defined($globus_path) )
-{
-    die("ERROR: GPT_LOCATION or GLOBUS_LOCATION needs to be set before running this script");
-}
-
-if ( defined($gpt_path) )
-{
-    $gpath = $gpt_path;
-    if ( ! -d $gpath )
-    {
-        die("ERROR: $gpath doesn't exist!\n");
-    }
-}
-
-if ( !defined($gpath) && defined($globus_path) )
-{
-    $gpath = $globus_path;
-    if ( ! -d $gpath )
-    {
-        die("ERROR: $gpath doesn't exist!\n");
-    }
-}
-
-
-use Config;
+use Globus::Core::Paths;
 use Getopt::Long;
 use Cwd;
 
@@ -60,7 +51,6 @@ use Cwd;
 #
 
 my($environment);
-@INC = ("$gpath/lib/perl", "$gpath/lib/perl/$Config{'archname'}", @INC);
 
 if ( defined eval "require Grid::GPT::V1::Package" )
 {
@@ -128,7 +118,7 @@ if ($environment eq "gpt1")
         $argstring .= "$pkgstr ";
     }
 
-    action("$globus_path/bin/globus-makefile-header.gpt1 $argstring");
+    action("$Globus::Core::Paths::bindir/globus-makefile-header.gpt1 $argstring");
 
     exit;
 }
@@ -240,7 +230,7 @@ sub getDevLines
     # point our installation object at our globus location
     #
 
-    $installation = new Grid::GPT::Installation(pkgdir => "$globus_path/etc/globus_packages");
+    $installation = new Grid::GPT::Installation(pkgdir => "$Globus::Core::Paths::sysconfdir/globus_packages");
     $installation->set_depenv('Build');
 
     #
@@ -314,11 +304,11 @@ sub getDevLines
     #
 
     push(@$header, "GLOBUS_CFLAGS=\"$cflagslist\"");
-    push(@$header, "GLOBUS_INCLUDES=\"-I${globus_path}/include/$flavor $includeslist\"");
+    push(@$header, "GLOBUS_INCLUDES=\"-I$Globus::Core::Paths::includedir/$flavor $includeslist\"");
     push(@$header, "GLOBUS_LIBS=\"$libslist\"");
-    push(@$header, "GLOBUS_LDFLAGS=\"-L${globus_path}/lib\"");
+    push(@$header, "GLOBUS_LDFLAGS=\"-L$Globus::Core::Paths::libdir\"");
     push(@$header, "GLOBUS_PKG_LIBS=\"$pkglibslist $extlibslist\"");
-    push(@$header, "GLOBUS_LIBTOOL=\"$globus_path/sbin/libtool-$flavor\"");
+    push(@$header, "GLOBUS_LIBTOOL=\"$Globus::Core::Paths::sbindir/libtool-$flavor\"");
 }
 
 ### getBuildEnvLines( $header )
@@ -332,7 +322,7 @@ sub getBuildEnvLines
     my($header) = @_;
     my($copy);
 
-    open(IN, "$globus_path/libexec/globus-build-env-$flavor.sh") || die "ERROR: Cannot open $globus_path/libexec/globus-build-env-$flavor.sh!\n$common_error\n";
+    open(IN, "$Globus::Core::Paths::libexecdir/globus-build-env-$flavor.sh") || die "ERROR: Cannot open $Globus::Core::Paths::libexecdir/globus-build-env-$flavor.sh!\n$common_error\n";
 
     while (<IN>)
     { 
@@ -370,7 +360,7 @@ sub getBuildShellTools
     my($header) = @_;
     my($copy);
 
-    open(IN, "$globus_path/libexec/globus-sh-tools-vars.sh") || die "ERROR: Cannot open $globus_path/libexec/globus-sh-tools-vars.sh!\n$common_error\n";
+    open(IN, "$Globus::Core::Paths::libexecdir/globus-sh-tools-vars.sh") || die "ERROR: Cannot open $Globus::Core::Paths::libexecdir/globus-sh-tools-vars.sh!\n$common_error\n";
 
     while (<IN>) 
     {
