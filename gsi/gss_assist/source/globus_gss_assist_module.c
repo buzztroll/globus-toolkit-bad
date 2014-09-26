@@ -107,7 +107,7 @@ int
 globus_l_gsi_gss_assist_deactivate(void)
 {
     static char *                       _function_name_ =
-        "globus_l_gsi_gssapi_deactivate";
+        "globus_l_gsi_gss_assist_deactivate";
     
     GLOBUS_I_GSI_GSS_ASSIST_DEBUG_ENTER;
     
