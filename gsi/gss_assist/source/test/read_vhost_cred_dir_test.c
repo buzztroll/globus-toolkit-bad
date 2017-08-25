@@ -11,6 +11,7 @@ int main(int argc, char *argv[])
     globus_module_activate(GLOBUS_GSI_GSS_ASSIST_MODULE);
     major_status = globus_gss_assist_read_vhost_cred_dir(
             &minor_status,
+            NULL,
             &credentials_array,
             &credentials_array_size);
 

@@ -172,6 +172,7 @@ extern
 OM_uint32
 globus_gss_assist_read_vhost_cred_dir(
     OM_uint32                          *minor_status,
+    const char                         *dir,
     gss_cred_id_t                     **output_credentials_array,
     size_t                             *output_credentials_array_size);
 
