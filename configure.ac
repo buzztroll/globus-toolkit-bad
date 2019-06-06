@@ -16,10 +16,7 @@ m4_define([short_version], [m4_substr(AC_PACKAGE_VERSION, [0],
 AC_PREFIX_DEFAULT([/usr/local/globus-]short_version)
 export GLOBUS_VERSION=$VERSION
 syscmd([./update-dirt.sh])
-syscmd([test -x ./prep-gsissh && sh -x ./prep-gsissh || true])
 syscmd([test -x ./write-globus-version && sh -x ./write-globus-version ]AC_PACKAGE_VERSION)
-m4_include([gsi_openssh/version.m4])
-AC_SUBST([GSI_OPENSSH_VERSION], [gsissh_version])
 AC_CONFIG_AUX_DIR([build-aux])
 AM_INIT_AUTOMAKE([1.11 foreign parallel-tests tar-pax subdir-objects])
 AC_CONFIG_HEADERS([ltdlconfig.h])
@@ -76,11 +73,6 @@ m4_define([TARGETS_MACRO],[
 # GT_PACKAGE(package, subdir, dependencies, bundle, is_xio_driver)
 m4_define([GT_PACKAGE],
 [
-ifelse([$1], [gsi-openssh], [m4_define([pkgver], gsissh_version)], [
-m4_pushdef([AC_INIT],[$]2)dnl
-m4_define([pkgver], m4_normalize(m4_esyscmd(grep AC[_]INIT [$2][/configure.ac])))dnl
-m4_popdef([AC_INIT])dnl
-])
 m4_define([native_name], m4_translit([$1],[_],[-]))
 m4_define([underscored_name], m4_translit([$1],[-],[_]))
 
@@ -217,16 +209,6 @@ GT_PACKAGE([globus_gridftp_server],[gridftp/server/src],
       globus_gridftp_server_control  globus_ftp_control  globus_authz
       globus_usage  globus_gss_assist  globus_gsi_credential ],
     [gridftp])
-GT_PACKAGE([globus_gram_protocol],[gram/protocol/source],
-    [ globus_common globus_io globus_gssapi_gsi globus_gss_assist], [gram5])
-GT_PACKAGE([globus_scheduler_event_generator],
-    [gram/jobmanager/scheduler_event_generator/source],
-    [ globus_common  globus_xio  globus_gram_protocol  globus_xio_gsi_driver],
-    [gram5-server])
-GT_PACKAGE([globus_gram_job_manager_lsf],
-    [gram/jobmanager/lrms/lsf/source],
-    [ globus_common  globus_xio  globus_scheduler_event_generator
-      globus_gram_protocol], [gram5-lsf])
 GT_PACKAGE([globus_gass_transfer],[gass/transfer/source],
     [globus_common globus_gssapi_gsi globus_gss_assist globus_io],
     [ccommonlibs])
@@ -238,42 +220,21 @@ GT_PACKAGE([globus_gass_copy],[gass/copy/source],
     [ globus_common  globus_ftp_client  globus_ftp_control
       globus_gsi_sysconfig  globus_gass_transfer  globus_io  globus_gssapi_gsi
       globus_gssapi_error ], [gridftp])
-GT_PACKAGE([globus_gass_cache],[gass/cache/source],
-    [ globus_common ], [gram5])
-GT_PACKAGE([globus_rsl],[gram/rsl/source], [globus_common], [gram5])
-GT_PACKAGE([globus_gram_job_manager_callout_error],
-        [gram/jobmanager/callout_error],
-        [globus_common], [gram5-server])
 GT_PACKAGE([globus_xio_gridftp_multicast],
         [gridftp/server/multi/source],
         [ globus_xio  globus_ftp_client  globus_xio_gsi_driver ],
         [gridftp])
 GT_PACKAGE([globus_simple_ca],[gsi/simple_ca/source], [], [gsi])
-GT_PACKAGE([globus_gram_job_manager_sge],
-        [gram/jobmanager/lrms/sge/source],
-        [ globus_common  globus_xio  globus_scheduler_event_generator
-          globus_gram_protocol ], [gram5-sge])
-GT_PACKAGE([globus_gram_job_manager_scripts],
-        [gram/jobmanager/scripts], [], [gram5-server])
-GT_PACKAGE([globus_gram_job_manager_slurm],
-        [gram/jobmanager/lrms/slurm/source], [], [gram5-slurm])
 GT_PACKAGE([globus_gridmap_callout_error],
         [gsi/gridmap_callout/error], [globus_common globus_gssapi_error],
         [gsi])
 GT_PACKAGE([globus_gridmap_callout], [gsi/gridmap_callout/source],
     [ globus_common globus_gssapi_gsi globus_gss_assist
       globus_gridmap_callout_error globus_gsi_credential ], [gsi])
-GT_PACKAGE([globus_gass_server_ez],[gass/server_ez/source],
-    [ globus_common  globus_gass_transfer  globus_gssapi_gsi 
-      globus_gss_assist ], [gram5])
 GT_PACKAGE([globus_xio_gridftp_driver],
     [gridftp/gridftp_driver/source],
     [ globus_common  globus_xio  globus_ftp_client  globus_xio_gsi_driver ],
     [gridftp], 1)
-GT_PACKAGE([globus_gram_job_manager_fork],
-    [gram/jobmanager/lrms/fork/source],
-    [ globus_common  globus_xio  globus_scheduler_event_generator
-      globus_gram_protocol ], [gram5-server])
 GT_PACKAGE([globus_gridmap_verify_myproxy_callout],
     [gsi/gridmap_verify_myproxy_callout],
     [ globus_gsi_sysconfig  globus_gssapi_gsi  globus_gss_assist
@@ -283,45 +244,16 @@ GT_PACKAGE([globus_gridmap_eppn_callout], [gsi/gridmap_eppn_callout],
     [ globus_gsi_sysconfig globus_gssapi_gsi globus_gss_assist
       globus_gridmap_callout_error globus_gsi_credential ],
     [gsi])
-GT_PACKAGE([globus_gram_job_manager_condor],
-    [gram/jobmanager/lrms/condor/source], [], [gram5-condor])
 GT_PACKAGE([globus_proxy_utils],[gsi/proxy/proxy_utils/source],
     [ globus_common globus_openssl_module globus_gsi_openssl_error
       globus_gsi_cert_utils globus_gsi_sysconfig globus_gsi_proxy_ssl
       globus_gsi_credential globus_gsi_callback globus_gsi_proxy_core
       globus_gss_assist ], [gsi])
-GT_PACKAGE([globus_gram_client],[gram/client/source], 
-    [ globus_common  globus_gram_protocol  globus_io  globus_rsl
-      globus_gss_assist], [gram5])
 GT_PACKAGE([globus_xioperf],[xio/xioperf/source],
     [ globus_common globus_xio ], [ccommonlibs])
-GT_PACKAGE([globus_gatekeeper],[gram/gatekeeper/source],
-    [ globus_common  globus_gss_assist  globus_gssapi_gsi ], [gram5-server])
-GT_PACKAGE([globus_gass_cache_program],[gass/cache_program/source],
-    [ globus_common  globus_gass_cache  globus_gass_copy  globus_gass_transfer
-      globus_gass_server_ez  globus_gram_client ], [gram5])
-GT_PACKAGE([globus_gram_job_manager_pbs],
-    [gram/jobmanager/lrms/pbs/source],
-    [globus_common globus_scheduler_event_generator], [gram5-pbs])
-GT_PACKAGE([globus_gram_audit],
-    [gram/jobmanager/auditing/source],
-    [], [gram5-auditing])
 GT_PACKAGE([myproxy],[myproxy/source],
     [ globus_common globus_gss_assist globus_gssapi_gsi globus_proxy_utils
       globus_usage ], [myproxy])
-GT_PACKAGE([gsi-openssh], [gsi_openssh/source], 
-    [globus_gss_assist globus_usage], [gsi-openssh])
-GT_PACKAGE([globus_gram_client_tools],[gram/client_tools/source],
-    [ globus_common  globus_gram_client  globus_gram_protocol
-      globus_gass_transfer  globus_gass_server_ez  globus_rsl
-      globus_gss_assist ], [gram5])
-GT_PACKAGE([globus_gram_job_manager],[gram/jobmanager/source],
-    [ globus_common  globus_gsi_credential  globus_gass_cache
-      globus_gass_transfer  globus_gram_protocol  globus_gssapi_gsi
-      globus_gss_assist  globus_gsi_sysconfig  globus_callout  globus_xio
-      globus_xio_popen_driver  globus_rsl
-      globus_gram_job_manager_callout_error globus_scheduler_event_generator
-      globus_usage globus_gram_client_tools], [gram5-server])
 GT_PACKAGE([gridftp_hdfs],[gridftp/hdfs],
     [ globus_gridftp_server ], [gridftp-hdfs])
 
@@ -352,8 +284,6 @@ fi
 dnl This is used by the OSX package generation
 OPENSSL_VERSION=$($PKG_CONFIG --modversion openssl)
 AC_SUBST([OPENSSL_VERSION])
-
-gsi_openssh_can_recurse=yes
 
 dnl 
 if test "$HAVE_LTDL" = 1; then
@@ -462,7 +392,6 @@ fi
 
 final_enabled_bundles=""
 final_enabled_xio_drivers=""
-gsi_openssh_enabled=no
 myproxy_enabled=no
 gridftp_hdfs_enabled=no
 for en_name in ""$enabled_buns; do
@@ -474,9 +403,7 @@ for en_name in ""$enabled_buns; do
         fi
     done
     if test "$skip" = 0; then
-        if test X"$en_name" = X"gsi-openssh"; then
-            gsi_openssh_enabled=yes
-        elif test X"$en_name" = X"myproxy"; then
+        if test X"$en_name" = X"myproxy"; then
             myproxy_enabled=yes
         elif test X"$en_name" = X"gridftp-hdfs"; then
             gridftp_hdfs_enabled=yes
@@ -571,10 +498,6 @@ EOF
     done
     ])
     
-if test "${gsi_openssh_can_recurse}" != yes && \
-   test x"$gsi_openssh_enabled" = x"yes"; then
-    AC_MSG_ERROR([Unable to build with gsi-openssh])
-fi
 AC_SUBST_FILE(MAC_INSTALLER_PKG_REFS)
 AC_SUBST_FILE(MAC_INSTALLER_CHOICE_LINES)
 AC_SUBST_FILE(MAC_INSTALLER_PACKAGE_CHOICES)
@@ -614,11 +537,6 @@ AC_CONFIG_FILES([osx/distribution.xml])
 AC_CONFIG_FILES([osx/scripts/globus_common/postinstall], [chmod a+x osx/scripts/globus_common/postinstall])
 
 AC_CONFIG_SUBDIRS(GT_SUBDIRS_MACRO)
-if test "${gsi_openssh_can_recurse}" = yes; then
-    if test x"$gsi_openssh_enabled" = x"yes"; then
-        AC_CONFIG_SUBDIRS(gsi_openssh/source)
-    fi
-fi
 
 if test x"$gridftp_hdfs_enabled" = x"yes"; then
     AC_CONFIG_SUBDIRS(gridftp/hdfs)
