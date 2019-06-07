@@ -175,9 +175,8 @@ endif
 
 # configuration will work without re-downloading the sources
 dist-hook:
-	$(INSTALL) -p $(srcdir)/packaging/package-output/* $(distdir)/packaging/package-output
 	(if [ ! -d $(distdir)/gridftp/hdfs ]; then cp -pPR $(srcdir)/gridftp/hdfs $(distdir)/gridftp/hdfs; fi )
-	(if [ ! -d $(distdir)/myproxy/source ]; then cp -pPR $(srcdir)/myproxy/source $(distdir)/myproxy/source; fi )
+	(if [ ! -d $(distdir)/myproxy/source ]; then $(MKDIR_P) $(distdir)/myproxy; cp -pPR $(srcdir)/myproxy/source $(distdir)/myproxy/source; fi )
 	
 
 globus_gridftp_server-stamp: $(GT_ENABLED_XIO_DRIVERS)

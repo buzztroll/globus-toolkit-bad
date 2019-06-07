@@ -73,6 +73,9 @@ m4_define([TARGETS_MACRO],[
 # GT_PACKAGE(package, subdir, dependencies, bundle, is_xio_driver)
 m4_define([GT_PACKAGE],
 [
+m4_pushdef([AC_INIT],[$]2)dnl
+m4_define([pkgver], m4_normalize(m4_esyscmd(grep AC[_]INIT [$2][/configure.ac])))dnl
+m4_popdef([AC_INIT])dnl
 m4_define([native_name], m4_translit([$1],[_],[-]))
 m4_define([underscored_name], m4_translit([$1],[-],[_]))
 
