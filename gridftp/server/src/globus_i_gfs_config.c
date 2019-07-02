@@ -1192,7 +1192,10 @@ globus_l_gfs_config_load_config_dir(
                     result = GLOBUS_FAILURE;
                 }
             }
-            result = globus_l_gfs_config_load_envs_from_file(full_path);
+            if(result == GLOBUS_SUCCESS)
+            {
+                result = globus_l_gfs_config_load_envs_from_file(full_path);
+            }
             
             free(entries[i]);
             free(full_path);
