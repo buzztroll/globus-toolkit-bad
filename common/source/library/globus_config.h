@@ -34,7 +34,8 @@
 
 #ifdef _WIN32
     #define TARGET_ARCH_WIN32 1
-    #define WINVER 0x0502
+    #define WINVER 0x0601
+    #define _WIN32_WINNT WINVER
 #endif
 
 #ifdef __MINGW32__

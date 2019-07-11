@@ -1,5 +1,5 @@
 AC_PREREQ([2.60])
-AC_INIT([globus_common], [17.4], [https://github.com/globus/globus-toolkit/issues])
+AC_INIT([globus_common], [17.5], [https://github.com/globus/globus-toolkit/issues])
 AC_CONFIG_MACRO_DIR([m4])
 AC_SUBST([MAJOR_VERSION], [${PACKAGE_VERSION%%.*}])
 AC_SUBST([MINOR_VERSION], [${PACKAGE_VERSION##*.}])
@@ -53,7 +53,7 @@ BUILD_FOR_WINDOWS=no
 case $host in
     *mingw* | *win32*)
         PACKAGE_DEP_LIBS="$PACKAGE_DEP_LIBS -lws2_32 -liphlpapi"
-        PACKAGE_DEP_CFLAGS="-DWINVER=0x0502"
+        PACKAGE_DEP_CFLAGS="-DWINVER=0x0601"
         BUILD_FOR_WINDOWS=yes
         ac_cv_func_gethostname=yes
         ;;
@@ -62,7 +62,7 @@ esac
 gtsave_LIBS="$LIBS"
 gtsave_CPPFLAGS="$CPPFLAGS"
 LIBS="$LIBS $PACKAGE_DEP_LIBS"
-CPPFLAGS="$CPPFLAGS -DWINVER=0x0502"
+CPPFLAGS="$CPPFLAGS -DWINVER=0x0601"
 AC_CHECK_HEADERS([arpa/inet.h])
 AC_CHECK_HEADERS([ifaddrs.h])
 AC_CHECK_HEADERS([net/if_arp.h])

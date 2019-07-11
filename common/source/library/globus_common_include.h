@@ -92,10 +92,6 @@ extern const char * _globus_func_name;
 #include <dirent.h>
 #include <fcntl.h>
 
-#ifdef _WIN32
-extern int inet_pton(int af, const char *src, void *dst);
-#endif /* _WIN32 */
-
 /******************************************************************************
 				 Define macros
 ******************************************************************************/
