@@ -6,7 +6,7 @@ Name:		globus-gridftp-server
 %global apache_license ASL 2.0
 %endif
 %global _name %(tr - _ <<< %{name})
-Version:	12.20
+Version:	12.21
 Release:	1%{?dist}
 Vendor:	Globus Support
 Summary:	Globus Toolkit - Globus GridFTP Server
@@ -242,6 +242,9 @@ fi
 %{_libdir}/pkgconfig/*.pc
 
 %changelog
+* Wed Jul 17 2019 Globus Toolkit <support@globus.org> - 12.21-1
+- fix sharing_groups_allow
+
 * Tue Jul 02 2019 Globus Toolkit <support@globus.org> - 12.20-1
 - exit after warning about invalid config in config.d dir
 

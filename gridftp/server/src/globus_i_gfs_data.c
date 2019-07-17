@@ -3931,7 +3931,7 @@ globus_l_gfs_data_check_sharing_allowed(
         while((ptr = strchr(user, ',')) != NULL && !allowed)
         {
             *ptr = '\0';
-            if(strncmp(match_user, user, strlen(match_user)) == 0)
+            if(strcmp(match_user, user) == 0)
             {
                 allowed = GLOBUS_TRUE;
                 explicitly = GLOBUS_TRUE;
@@ -3940,7 +3940,7 @@ globus_l_gfs_data_check_sharing_allowed(
         }
         if(ptr == NULL && !allowed)
         {
-           if(strncmp(match_user, user, strlen(match_user)) == 0)
+           if(strcmp(match_user, user) == 0)
             {
                 allowed = GLOBUS_TRUE;
                 explicitly = GLOBUS_TRUE;
@@ -3991,6 +3991,7 @@ globus_l_gfs_data_check_sharing_allowed(
      */
     if(group_allow != NULL)
     {
+        allowed = GLOBUS_FALSE;
         group = group_allow;
         while((ptr = strchr(group, ',')) != NULL && !allowed)
         {
