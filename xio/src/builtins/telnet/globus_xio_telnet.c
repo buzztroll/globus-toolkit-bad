@@ -73,12 +73,14 @@ typedef struct globus_l_xio_telnet_handle_s
     globus_bool_t                       finish;
     globus_result_t                     finish_res;
     globus_size_t                       finish_len;
+    globus_bool_t                       allow_binary;
 } globus_l_xio_telnet_handle_t;
 
 typedef struct
 {
     globus_bool_t                       create_buffer_mode;
     globus_bool_t                       force_server;
+    globus_bool_t                       allow_binary;
 } globus_l_xio_telnet_attr_t;
 
 typedef struct globus_l_xio_telnet_q_ent_s
@@ -145,7 +147,7 @@ globus_l_xio_telnet_check_data(
     ndx = 0;
     while(ndx < len && !done)
     {
-        if(handle->last_char == GLOBUS_XIO_TELNET_IAC)
+        if(handle->last_char == GLOBUS_XIO_TELNET_IAC && !handle->allow_binary)
         {
             switch(buffer[ndx])
             {
@@ -173,8 +175,9 @@ globus_l_xio_telnet_check_data(
                 memmove(&buffer[ndx], &buffer[ndx + 1], len - ndx);
             }
         }
-        else if(handle->last_char == GLOBUS_XIO_TELNET_WILL ||
+        else if((handle->last_char == GLOBUS_XIO_TELNET_WILL ||
             handle->last_char == GLOBUS_XIO_TELNET_DO)
+            && !handle->allow_binary)
         {
             if(handle->write_buffer != NULL)
             {
@@ -189,8 +192,8 @@ globus_l_xio_telnet_check_data(
                 memmove(&buffer[ndx], &buffer[ndx + 1], len - ndx);
             }
         }
-        else if(handle->last_char == GLOBUS_XIO_TELNET_WONT ||
-            handle->last_char == GLOBUS_XIO_TELNET_DO)
+        else if((handle->last_char == GLOBUS_XIO_TELNET_WONT ||
+            handle->last_char == GLOBUS_XIO_TELNET_DO) && !handle->allow_binary)
         {
             handle->last_char = buffer[ndx];
             len--;
@@ -234,6 +237,11 @@ globus_l_xio_telnet_check_data(
                 handle->last_char = '\0';
                 done = GLOBUS_TRUE;
             }
+            ndx++;
+        }
+        else if (handle->allow_binary)
+        {
+            handle->last_char = buffer[ndx];
             ndx++;
         }
         else
@@ -461,6 +469,7 @@ globus_l_xio_telnet_attr_copy(
         src_attr = (globus_l_xio_telnet_attr_t *) src_driver_attr;
         dest_attr->create_buffer_mode = src_attr->create_buffer_mode;
         dest_attr->force_server = src_attr->force_server;
+        dest_attr->allow_binary = src_attr->allow_binary;
         
         *out_driver_attr = dest_attr;
     }
@@ -496,6 +505,10 @@ globus_l_xio_telnet_attr_cntl(
 
         case GLOBUS_XIO_TELNET_FORCE_SERVER:
             attr->force_server = va_arg(ap, globus_bool_t);
+            break;
+
+        case GLOBUS_XIO_TELNET_ALLOW_BINARY:
+            attr->allow_binary = va_arg(ap, globus_bool_t);
             break;
 
         default:
@@ -655,6 +668,15 @@ globus_l_xio_telnet_open(
     {       
         handle->client = driver_link ? GLOBUS_FALSE : GLOBUS_TRUE;
     }
+    if (attr != NULL)
+    {
+        handle->allow_binary = attr->allow_binary;
+    }
+    else
+    {
+        handle->allow_binary = GLOBUS_FALSE;
+    }
+
 
     handle->read_buffer_length = GLOBUS_L_XIO_TELNET_DEFAULT_BUFFER_SIZE;
     handle->read_buffer = globus_malloc(handle->read_buffer_length);

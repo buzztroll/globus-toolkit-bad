@@ -2939,6 +2939,15 @@ globus_gridftp_server_control_start(
     {
         goto err;
     }
+    if (i_attr->security & GLOBUS_GRIDFTP_SERVER_LIBRARY_TLS)
+    {
+        res = globus_xio_attr_cntl(xio_attr, globus_l_gsc_telnet_driver,
+                GLOBUS_XIO_TELNET_ALLOW_BINARY, GLOBUS_TRUE);
+        if(res != GLOBUS_SUCCESS)
+        {
+            goto err;
+        }
+    }
 
     if(transport == globus_l_gsc_tcp_driver)
     {
