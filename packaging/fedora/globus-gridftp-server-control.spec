@@ -6,7 +6,7 @@ Name:		globus-gridftp-server-control
 %global apache_license ASL 2.0
 %endif
 %global _name %(tr - _ <<< %{name})
-Version:	7.0
+Version:	7.1
 Release:	1%{?dist}
 Vendor:	Globus Support
 Summary:	Globus Toolkit - Globus GridFTP Server Library
@@ -28,7 +28,7 @@ Requires:	globus-xio-gsi-driver%{?_isa} >= 2
 BuildRequires:	globus-xio-pipe-driver-devel >= 2
 BuildRequires:	globus-common-devel >= 14
 BuildRequires:	globus-xio-gsi-driver-devel >= 2
-BuildRequires:	globus-xio-devel >= 3
+BuildRequires:	globus-xio-devel >= 6
 BuildRequires:	globus-gss-assist-devel >= 8
 %if %{?fedora}%{!?fedora:0} >= 19 || %{?rhel}%{!?rhel:0} >= 7 || %{?suse_version}%{!?suse_version:0} >= 1315
 BuildRequires:  automake >= 1.11
@@ -59,7 +59,7 @@ Requires:	%{mainpkg}%{?_isa} = %{version}-%{release}
 Requires:	globus-xio-pipe-driver-devel%{?_isa} >= 2
 Requires:	globus-common-devel%{?_isa} >= 14
 Requires:	globus-xio-gsi-driver-devel%{?_isa} >= 2
-Requires:	globus-xio-devel%{?_isa} >= 3
+Requires:	globus-xio-devel%{?_isa} >= 6
 Requires:	globus-gssapi-error-devel%{?_isa} >= 4
 Requires:	globus-gss-assist-devel%{?_isa} >= 8
 
@@ -139,6 +139,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/pkgconfig/%{name}.pc
 
 %changelog
+* Tue Jul 30 2019 Globus Toolkit <support@globus.org> - 7.1-1
+- Use allow_binary flag with telnet driver
+
 * Tue Aug 07 2018 Globus Toolkit <support@globus.org> - 7.0-1
 - add support for x.abspath
 

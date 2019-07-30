@@ -8,7 +8,7 @@ Name:		globus-xio
 
 
 %global _name %(tr - _ <<< %{name})
-Version:	5.17
+Version:	6.0
 Release:	1%{?dist}
 Vendor:	        Globus Support
 Summary:	Globus Toolkit - Globus XIO Framework
@@ -169,6 +169,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/*/*
 
 %changelog
+* Tue Jul 30 2019 Globus Toolkit <support@globus.org> - 6.0-1
+- Allow binary through telnet driver
+
 * Fri Mar 09 2018 Globus Toolkit <support@globus.org> - 5.17-1
 - fix udp dual stack sockets when ipv6only is the default
 

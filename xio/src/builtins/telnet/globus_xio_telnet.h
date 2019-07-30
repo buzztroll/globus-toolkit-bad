@@ -31,7 +31,8 @@ extern "C" {
 typedef enum globus_xio_telnet_attr_type_e
 {
     GLOBUS_XIO_TELNET_FORCE_SERVER,
-    GLOBUS_XIO_TELNET_BUFFER
+    GLOBUS_XIO_TELNET_BUFFER,
+    GLOBUS_XIO_TELNET_ALLOW_BINARY,
 } globus_xio_telnet_attr_type_t;
 
 #ifdef __cplusplus

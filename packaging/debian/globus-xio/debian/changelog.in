@@ -1,3 +1,9 @@
+globus-xio (6.0-1+gt6.@distro@) @distro@; urgency=low
+
+  * Allow binary through telnet driver
+
+ -- Globus Toolkit <support@globus.org>  Tue, 30 Jul 2019 18:19:40 +0000
+
 globus-xio (5.17-1+gt6.@distro@) @distro@; urgency=low
 
   * fix udp dual stack sockets when ipv6only is the default
