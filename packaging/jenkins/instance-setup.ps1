@@ -6,6 +6,8 @@ param (
 )
 Start-Transcript -path C:\Windows\Temp\instance-setup.txt
 
+[System.Net.ServicePointManager]::SecurityProtocol= [System.Net.SecurityProtocolType]::Tls12
+
 $password = [Guid]::NewGuid().Guid
 Net user /add jenkins "$password" /yes
 
