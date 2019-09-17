@@ -954,26 +954,20 @@ globus_l_gfs_file_stat(
         
             if(stat(path, &stat_buf) != 0)
             {
-                /* stat() doesn't return a useful error */
-                DWORD                   winerr;
-                char                    winmsg[256];
-                char *                  errmsg;
-
-                winerr = GetLastError();
-                if(!FormatMessageA(
-                    FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS,
-                    NULL, winerr, 0, winmsg, sizeof(winmsg), NULL))
+                /* if stat fails, construct a dummy stat buf for the name.
+                 * further operations on that file will fail, but no need to 
+                 * agressively fail the dir listing.  */
+                stat_buf = (struct stat)
                 {
-                    sprintf(winmsg, "An unknown error occurred in stat().");
-                }
-                errmsg = globus_common_create_string(
-                    "Directory listing failed at file '%s': %s.",
-                    dir_entry->d_name, winmsg);
-                result = GlobusGFSErrorGeneric(errmsg);
-                globus_free(errmsg);
-                globus_free(dir_entry);
-                stat_count = i;
-                goto error_stat2;
+                    .st_mode = S_IRWXU | S_IFREG,
+                    .st_size = 0,
+                    .st_mtime = -1,
+                    .st_atime = -1,
+                    .st_ctime = -1,
+                    .st_dev = 1,
+                    .st_ino = 0,
+                    .st_nlink = 1
+                };
             }
 
             globus_l_gfs_file_copy_stat(

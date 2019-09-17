@@ -1,3 +1,9 @@
+globus-gridftp-server (12.22-1+gt6.@distro@) @distro@; urgency=low
+
+  * win: don't fail dir listing when encountering invalid file
+
+ -- Globus Toolkit <support@globus.org>  Tue, 17 Sep 2019 09:55:25 -0500
+
 globus-gridftp-server (12.21-1+gt6.@distro@) @distro@; urgency=low
 
   * fix sharing_groups_allow
