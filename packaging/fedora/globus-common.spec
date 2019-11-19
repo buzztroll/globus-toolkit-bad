@@ -37,8 +37,8 @@ Obsoletes:	globus-duroc-control
 Provides:	globus-libtool%{?_isa}
 Provides:       globus-common-setup%{?_isa}
 %endif
-Obsoletes:      globus-libtool%{?_isa} < 2
-Obsoletes:      globus-common-setup%{?_isa} < 3
+Obsoletes:      globus-libtool < 2
+Obsoletes:      globus-common-setup < 3
 BuildRequires:	doxygen
 BuildRequires:	graphviz
 %if 0%{?suse_version} == 0
@@ -99,7 +99,7 @@ Requires:	libtool-ltdl-devel
 %endif
 %endif
 %if 0%{?rhel} > 4 || 0%{?rhel} == 0
-Obsoletes:	globus-libtool-devel%{?_isa}
+Obsoletes:	globus-libtool-devel
 %endif
 #		Obsolete dropped packages from Globus Toolkit 4.2.1
 Obsoletes:	globus-core
