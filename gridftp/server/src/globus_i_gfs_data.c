@@ -12189,7 +12189,7 @@ globus_gridftp_server_finished_stat_partial(
                 globus_free(full_path);
             }
             stat_count = pruned_stat_count;
-            if(strcmp(stat_copy[0].name, ".") == 0)
+            if(stat_count && strcmp(stat_copy[0].name, ".") == 0)
             {
                 stat_copy[0].nlink = pruned_stat_count;
             }
@@ -12401,7 +12401,7 @@ globus_gridftp_server_finished_stat(
                 globus_free(full_path);
             }
             stat_count = pruned_stat_count;
-            if(strcmp(stat_copy[0].name, ".") == 0)
+            if (stat_count && strcmp(stat_copy[0].name, ".") == 0)
             {
                 stat_copy[0].nlink = pruned_stat_count;
             }
