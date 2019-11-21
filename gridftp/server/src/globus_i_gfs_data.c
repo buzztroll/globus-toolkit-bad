@@ -10678,6 +10678,54 @@ response_exit:
     GlobusGFSDebugExit();
 }
 
+void
+globus_l_gfs_send_final_markers(
+    globus_l_gfs_data_operation_t *     op)
+{
+    if(op->data_handle->info.mode == 'E' || op->markers)
+    {
+        globus_gfs_event_info_t        event_reply;
+
+        memset(&event_reply, '\0', sizeof(globus_gfs_event_info_t));
+        event_reply.id = op->id;
+        event_reply.recvd_bytes = op->recvd_bytes;
+        op->recvd_bytes = 0;
+        event_reply.recvd_ranges = op->recvd_ranges;
+        event_reply.node_ndx = op->node_ndx;
+        event_reply.node_count = op->data_handle->info.nstreams;
+
+        event_reply.type = GLOBUS_GFS_EVENT_BYTES_RECVD;
+        if(op->event_callback != NULL)
+        {
+            op->event_callback(
+                &event_reply,
+                op->user_arg);
+        }
+        else
+        {
+            globus_gfs_ipc_reply_event(
+                op->ipc_handle,
+                &event_reply);
+        }
+        if (!op->writing)
+        {
+            event_reply.type = GLOBUS_GFS_EVENT_RANGES_RECVD;
+            if(op->event_callback != NULL)
+            {
+                op->event_callback(
+                    &event_reply,
+                    op->user_arg);
+            }
+            else
+            {
+                globus_gfs_ipc_reply_event(
+                    op->ipc_handle,
+                    &event_reply);
+            }
+        }
+    }
+}
+
 static
 void
 globus_l_gfs_data_end_read_kickout(
@@ -10701,7 +10749,6 @@ globus_l_gfs_data_end_read_kickout(
 
     if(op->data_handle->info.mode == 'E' || op->markers)
     {
-        globus_gfs_event_info_t        event_reply;
         unsigned int num_channels;
 
         /* update actual number of streams that connected */
@@ -10711,41 +10758,7 @@ globus_l_gfs_data_end_read_kickout(
             0);
         op->data_handle->info.nstreams = num_channels;
 
-        memset(&event_reply, '\0', sizeof(globus_gfs_event_info_t));
-        event_reply.id = op->id;
-        event_reply.recvd_bytes = op->recvd_bytes;
-        op->recvd_bytes = 0;
-        event_reply.recvd_ranges = op->recvd_ranges;
-        event_reply.node_ndx = op->node_ndx;
-        event_reply.node_count = op->data_handle->info.nstreams;
-
-        event_reply.type = GLOBUS_GFS_EVENT_BYTES_RECVD;
-        if(op->event_callback != NULL)
-        {
-            op->event_callback(
-                &event_reply,
-                op->user_arg);
-        }
-        else
-        {
-            globus_gfs_ipc_reply_event(
-                op->ipc_handle,
-                &event_reply);
-        }
-
-        event_reply.type = GLOBUS_GFS_EVENT_RANGES_RECVD;
-        if(op->event_callback != NULL)
-        {
-            op->event_callback(
-                &event_reply,
-                op->user_arg);
-        }
-        else
-        {
-            globus_gfs_ipc_reply_event(
-                op->ipc_handle,
-                &event_reply);
-        }
+        globus_l_gfs_send_final_markers(op);
     }
     else if(op->event_callback == NULL)
     {
@@ -12796,6 +12809,7 @@ globus_gridftp_server_finished_transfer(
     return;
 
 err_close:
+    globus_l_gfs_send_final_markers(op);
     globus_l_gfs_data_force_close(op);
     op->cached_res = result;
     op->state = GLOBUS_L_GFS_DATA_FINISH_WITH_ERROR;

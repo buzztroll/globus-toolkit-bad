@@ -6,7 +6,7 @@ Name:		globus-gridftp-server
 %global apache_license ASL 2.0
 %endif
 %global _name %(tr - _ <<< %{name})
-Version:	12.22
+Version:	12.23
 Release:	1%{?dist}
 Vendor:	Globus Support
 Summary:	Globus Toolkit - Globus GridFTP Server
@@ -242,6 +242,9 @@ fi
 %{_libdir}/pkgconfig/*.pc
 
 %changelog
+* Thu Nov 21 2019 Globus Toolkit <support@globus.org> - 12.23-1
+- send final performance and restart markers when finishing with error
+
 * Tue Sep 17 2019 Globus Toolkit <support@globus.org> - 12.22-1
 - win: don't fail dir listing when encountering invalid file
 
