@@ -6,7 +6,7 @@ Name:		myproxy-oauth
 %endif
 %global _name %(tr - _ <<< %{name})
 Version:	0.30
-Release:	1%{?dist}
+Release:	2%{?dist}
 Vendor:	Globus Support
 Summary:	MyProxy OAuth Delegation Serice
 
@@ -18,7 +18,7 @@ BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildArch:      noarch
 
-%if %{?fedora}%{!?fedora:0} >= 30
+%if %{?fedora}%{!?fedora:0} >= 30 || %{?rhel}%{!?rhel:0} >= 8
 BuildRequires:	python2
 Requires:	python2-pyOpenSSL
 Requires:       python2-mod_wsgi
@@ -53,7 +53,7 @@ Requires:       python-crypto
 Requires:       python-m2crypto
 %endif
 
-%if %{?fedora}%{!?fedora:0} >= 30
+%if %{?fedora}%{!?fedora:0} >= 30 || %{?rhel}%{!?rhel:0} >= 8
 Requires:       python2-crypto >= 2.2
 %endif
 
@@ -145,7 +145,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_sbindir}/myproxy-oauth-setup
 
 %changelog
-* Fri May 10 2019 Globus Toolkit <support@globus.org> - 0.30-1
+* Fri May 10 2019 Globus Toolkit <support@globus.org> - 0.30-2
 - Explicitly py2
 
 * Mon May 14 2018 Globus Toolkit <support@globus.org> - 0.29-1
