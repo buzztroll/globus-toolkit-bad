@@ -6,8 +6,8 @@ Name:		globus-net-manager
 %global apache_license ASL 2.0
 %endif
 %global _name %(tr - _ <<< %{name})
-Version:	0.18
-Release:	2%{?dist}
+Version:	0.19
+Release:	1%{?dist}
 Vendor:	Globus Support
 Summary:	Globus Toolkit - Net Manager Library
 
@@ -189,6 +189,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man3/*
 
 %changelog
+* Fri Nov 22 2019 Globus Toolkit <support@globus.org> - 0.19-1
+- support el8
+
 * Tue May 01 2018 Globus Toolkit <support@globus.org> - 0.18-2
 - fix pre-connect not using changed remote contact
 
