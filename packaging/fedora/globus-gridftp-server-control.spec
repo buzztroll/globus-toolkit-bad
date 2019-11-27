@@ -56,7 +56,7 @@ Requires:	libglobus_xio_gsi_driver%{?_isa} >= 2
 %package devel
 Summary:	Globus Toolkit - Globus GridFTP Server Library Development Files
 Group:		Development/Libraries
-Requires:	%{mainpkg}%{?_isa} = %{version}-%{release}
+Requires:	%{mainpkg}%{?_isa} = %{epoch}:%{version}-%{release}
 Requires:	globus-xio-pipe-driver-devel%{?_isa} >= 2
 Requires:	globus-common-devel%{?_isa} >= 14
 Requires:	globus-xio-gsi-driver-devel%{?_isa} >= 2

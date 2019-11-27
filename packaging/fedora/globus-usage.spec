@@ -43,7 +43,7 @@ Group:		System Environment/Libraries
 %package devel
 Summary:	Globus Toolkit - Usage Library Development Files
 Group:		Development/Libraries
-Requires:	%{mainpkg}%{?_isa} = %{version}-%{release}
+Requires:	%{mainpkg}%{?_isa} = %{epoch}:%{version}-%{release}
 Requires:	globus-xio-devel%{?_isa} >= 3
 Requires:	globus-common-devel%{?_isa} >= 14
 

@@ -8,7 +8,7 @@ Name:		globus-gsi-credential
 %global _name %(tr - _ <<< %{name})
 Epoch:          1
 Version:	7.14
-Release:	2%{?dist}
+Release:	3%{?dist}
 Vendor:	Globus Support
 Summary:	Globus Toolkit - Globus GSI Credential Library
 
@@ -65,7 +65,7 @@ Group:		System Environment/Libraries
 %package devel
 Summary:	Globus Toolkit - Globus GSI Credential Library Development Files
 Group:		Development/Libraries
-Requires:	%{mainpkg}%{?_isa} = %{version}-%{release}
+Requires:	%{mainpkg}%{?_isa} = %{epoch}:%{version}-%{release}
 Requires:	globus-gsi-callback-devel%{?_isa} >= 4
 Requires:	globus-openssl-module-devel%{?_isa} >= 3
 Requires:	globus-gsi-openssl-error-devel%{?_isa} >= 2
@@ -91,7 +91,7 @@ Group:		Documentation
 %if %{?fedora}%{!?fedora:0} >= 10 || %{?rhel}%{!?rhel:0} >= 6
 BuildArch:	noarch
 %endif
-Requires:	%{mainpkg} = %{version}-%{release}
+Requires:	%{mainpkg} = %{epoch}:%{version}-%{release}
 
 %if %{?suse_version}%{!?suse_version:0} >= 1315
 %description %{?nmainpkg}
@@ -187,7 +187,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man3/*
 
 %changelog
-* Mon Nov 25 2019 Globus Toolkit <support@globus.org> - 7.14-2
+* Wed Nov 27 2019 Globus Toolkit <support@globus.org> - 7.14-3
 - Packaging update to ensure priority of Globus packages
 
 * Wed Nov 08 2017 Globus Toolkit <support@globus.org> - 7.14-1

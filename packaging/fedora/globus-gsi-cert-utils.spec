@@ -8,7 +8,7 @@ Name:		globus-gsi-cert-utils
 %global _name %(tr - _ <<< %{name})
 Epoch:          1
 Version:	9.16
-Release:	2%{?dist}
+Release:	3%{?dist}
 Vendor:	Globus Support
 Summary:	Globus Toolkit - Globus GSI Cert Utils Library
 
@@ -71,7 +71,7 @@ Group:		System Environment/Libraries
 %package progs
 Summary:	Globus Toolkit - Globus GSI Cert Utils Library Programs
 Group:		Applications/Internet
-Requires:	%{mainpkg}%{?_isa} = %{version}-%{release}
+Requires:	%{mainpkg}%{?_isa} = %{epoch}:%{version}-%{release}
 %if %{?rhel}%{!?rhel:0} == 5
 Requires:	openssl101e
 %else
@@ -82,7 +82,7 @@ Requires:	globus-common-progs >= 14
 %package devel
 Summary:	Globus Toolkit - Globus GSI Cert Utils Library Development Files
 Group:		Development/Libraries
-Requires:	%{mainpkg}%{?_isa} = %{version}-%{release}
+Requires:	%{mainpkg}%{?_isa} = %{epoch}:%{version}-%{release}
 Requires:	globus-common-devel%{?_isa} >= 14
 Requires:	globus-openssl-module-devel%{?_isa} >= 3
 Requires:	globus-gsi-openssl-error-devel%{?_isa} >= 2
@@ -105,7 +105,7 @@ Group:		Documentation
 %if %{?fedora}%{!?fedora:0} >= 10 || %{?rhel}%{!?rhel:0} >= 6
 BuildArch:	noarch
 %endif
-Requires:	%{mainpkg} = %{version}-%{release}
+Requires:	%{mainpkg} = %{epoch}:%{version}-%{release}
 
 %if %{?suse_version}%{!?suse_version:0} >= 1315
 %description %{?nmainpkg}
@@ -221,7 +221,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man3/*
 
 %changelog
-* Mon Nov 25 2019 Globus Toolkit <support@globus.org> - 9.16-2
+* Wed Nov 27 2019 Globus Toolkit <support@globus.org> - 9.16-3
 - Packaging update to ensure priority of Globus packages
 
 * Fri Jan 06 2017 Globus Toolkit <support@globus.org> - 9.16-1

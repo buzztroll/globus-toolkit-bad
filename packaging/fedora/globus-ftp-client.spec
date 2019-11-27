@@ -9,7 +9,7 @@ Name:		globus-ftp-client
 %global _name %(tr - _ <<< %{name})
 Epoch:          1
 Version:	8.37
-Release:	2%{?dist}
+Release:	3%{?dist}
 Vendor:	Globus Support
 Summary:	Globus Toolkit - GridFTP Client Library
 
@@ -70,7 +70,7 @@ Group:		System Environment/Libraries
 %package devel
 Summary:	Globus Toolkit - GridFTP Client Library Development Files
 Group:		Development/Libraries
-Requires:	%{mainpkg}%{?_isa} = %{version}-%{release}
+Requires:	%{mainpkg}%{?_isa} = %{epoch}:%{version}-%{release}
 Requires:	globus-xio-popen-driver-devel%{?_isa}
 Requires:	globus-common-devel%{?_isa} >= 15
 Requires:	globus-ftp-control-devel%{?_isa} >= 4
@@ -81,7 +81,7 @@ Group:		Documentation
 %if %{?fedora}%{!?fedora:0} >= 10 || %{?rhel}%{!?rhel:0} >= 6
 BuildArch:	noarch
 %endif
-Requires:	%{mainpkg} = %{version}-%{release}
+Requires:	%{mainpkg} = %{epoch}:%{version}-%{release}
 
 %if %{?suse_version}%{!?suse_version:0} >= 1315
 %description %{?nmainpkg}
@@ -177,7 +177,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man3/*
 
 %changelog
-* Mon Nov 25 2019 Globus Toolkit <support@globus.org> - 8.37-2
+* Wed Nov 27 2019 Globus Toolkit <support@globus.org> - 8.37-3
 - Packaging update to ensure priority of Globus packages
 
 * Fri Aug 24 2018 Globus Toolkit <support@globus.org> - 8.37-1

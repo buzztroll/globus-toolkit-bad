@@ -8,7 +8,7 @@ Name:		globus-gsi-proxy-core
 %global _name %(tr - _ <<< %{name})
 Epoch:          1
 Version:	8.7
-Release:	2%{?dist}
+Release:	3%{?dist}
 Vendor:	Globus Support
 Summary:	Globus Toolkit - Globus GSI Proxy Core Library
 
@@ -67,7 +67,7 @@ Group:		System Environment/Libraries
 %package devel
 Summary:	Globus Toolkit - Globus GSI Proxy Core Library Development Files
 Group:		Development/Libraries
-Requires:	%{mainpkg}%{?_isa} = %{version}-%{release}
+Requires:	%{mainpkg}%{?_isa} = %{epoch}:%{version}-%{release}
 Requires:	globus-gsi-proxy-ssl-devel%{?_isa} >= 4
 Requires:	globus-gsi-credential-devel%{?_isa} >= 5
 Requires:	globus-openssl-module-devel%{?_isa} >= 3
@@ -94,7 +94,7 @@ Group:		Documentation
 %if %{?fedora}%{!?fedora:0} >= 10 || %{?rhel}%{!?rhel:0} >= 6
 BuildArch:	noarch
 %endif
-Requires:	%{mainpkg} = %{version}-%{release}
+Requires:	%{mainpkg} = %{epoch}:%{version}-%{release}
 
 %if %{?suse_version}%{!?suse_version:0} >= 1315
 %description %{?nmainpkg}
@@ -194,7 +194,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man3/*
 
 %changelog
-* Mon Nov 25 2019 Globus Toolkit <support@globus.org> - 8.7-2
+* Wed Nov 27 2019 Globus Toolkit <support@globus.org> - 8.7-3
 - Packaging update to ensure priority of Globus packages
 
 * Fri Aug 24 2018 Globus Toolkit <support@globus.org> - 8.7-1

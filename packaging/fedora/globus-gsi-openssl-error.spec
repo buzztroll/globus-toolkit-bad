@@ -8,7 +8,7 @@ Name:		globus-gsi-openssl-error
 %global _name %(tr - _ <<< %{name})
 Epoch:          1
 Version:	3.8
-Release:	2%{?dist}
+Release:	3%{?dist}
 Vendor:	Globus Support
 Summary:	Globus Toolkit - Globus OpenSSL Error Handling
 
@@ -63,7 +63,7 @@ Group:		System Environment/Libraries
 %package devel
 Summary:	Globus Toolkit - Globus OpenSSL Error Handling Development Files
 Group:		Development/Libraries
-Requires:	%{mainpkg}%{?_isa} = %{version}-%{release}
+Requires:	%{mainpkg}%{?_isa} = %{epoch}:%{version}-%{release}
 Requires:	globus-common-devel%{?_isa} >= 14
 %if %{?suse_version}%{!?suse_version:0} >= 1315
 Requires:  openssl
@@ -84,7 +84,7 @@ Group:		Documentation
 %if %{?fedora}%{!?fedora:0} >= 10 || %{?rhel}%{!?rhel:0} >= 6
 BuildArch:	noarch
 %endif
-Requires:	%{mainpkg} = %{version}-%{release}
+Requires:	%{mainpkg} = %{epoch}:%{version}-%{release}
 
 %if %{?suse_version}%{!?suse_version:0} >= 1315
 %description %{?nmainpkg}
@@ -183,7 +183,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_docdir}/%{name}-%{version}/html/*
 
 %changelog
-* Mon Nov 25 2019 Globus Toolkit <support@globus.org> - 3.8-2
+* Wed Nov 27 2019 Globus Toolkit <support@globus.org> - 3.8-3
 - Packaging update to ensure priority of Globus packages
 
 * Mon Jan 09 2017 Globus Toolkit <support@globus.org> - 3.8-1

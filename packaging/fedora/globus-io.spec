@@ -66,7 +66,7 @@ Group:		System Environment/Libraries
 %package devel
 Summary:	Globus Toolkit - uniform I/O interface Development Files
 Group:		Development/Libraries
-Requires:	%{mainpkg}%{?_isa} = %{version}-%{release}
+Requires:	%{mainpkg}%{?_isa} = %{epoch}:%{version}-%{release}
 Requires:	globus-common-devel%{?_isa} >= 14
 Requires:	globus-xio-gsi-driver-devel%{?_isa} >= 2
 Requires:	globus-gss-assist-devel%{?_isa} >= 8

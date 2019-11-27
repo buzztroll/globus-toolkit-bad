@@ -42,7 +42,7 @@ Group:		System Environment/Libraries
 %package devel
 Summary:	Globus Toolkit - Globus Pipe Driver Development Files
 Group:		Development/Libraries
-Requires:	%{mainpkg}%{?_isa} = %{version}-%{release}
+Requires:	%{mainpkg}%{?_isa} = %{epoch}:%{version}-%{release}
 Requires:	globus-xio-devel%{?_isa} >= 3
 
 %if %{?suse_version}%{!?suse_version:0} >= 1315

@@ -8,7 +8,7 @@ Name:		globus-callout
 %global _name %(tr - _ <<< %{name})
 Epoch:          1
 Version:	3.15
-Release:	4%{?dist}
+Release:	5%{?dist}
 Vendor:	Globus Support
 Summary:	Globus Toolkit - Globus Callout Library
 
@@ -57,7 +57,7 @@ Group:		System Environment/Libraries
 %package devel
 Summary:	Globus Toolkit - Globus Callout Library Development Files
 Group:		Development/Libraries
-Requires:	%{mainpkg}%{?_isa} = %{version}-%{release}
+Requires:	%{mainpkg}%{?_isa} = %{epoch}:%{version}-%{release}
 Requires:	globus-common-devel%{?_isa} >= 15
 
 %package doc
@@ -66,7 +66,7 @@ Group:		Documentation
 %if %{?fedora}%{!?fedora:0} >= 10 || %{?rhel}%{!?rhel:0} >= 6
 BuildArch:	noarch
 %endif
-Requires:	%{mainpkg} = %{version}-%{release}
+Requires:	%{mainpkg} = %{epoch}:%{version}-%{release}
 
 %if %{?suse_version}%{!?suse_version:0} >= 1315
 %description %{?nmainpkg}
@@ -162,7 +162,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man3/*
 
 %changelog
-* Mon Nov 25 2019 Globus Toolkit <support@globus.org> - 3.15-4
+* Wed Nov 27 2019 Globus Toolkit <support@globus.org> - 3.15-5
 - Packaging update to ensure priority of Globus packages
 
 * Thu Sep 08 2016 Globus Toolkit <support@globus.org> - 3.15-3

@@ -8,7 +8,7 @@ Name:		globus-net-manager
 %global _name %(tr - _ <<< %{name})
 Epoch:          1
 Version:	0.19
-Release:	2%{?dist}
+Release:	3%{?dist}
 Vendor:	Globus Support
 Summary:	Globus Toolkit - Net Manager Library
 
@@ -59,14 +59,14 @@ Group:		System Environment/Libraries
 %package devel
 Summary:	Globus Toolkit - Net Manager Library Development Files
 Group:		Development/Libraries
-Requires:	%{mainpkg}%{?_isa} = %{version}-%{release}
+Requires:	%{mainpkg}%{?_isa} = %{epoch}:%{version}-%{release}
 Requires:	globus-common-devel%{?_isa} >= 15.27
 Requires:	globus-xio-devel%{?_isa} >= 5
 
 %package -n %{driver_package}
 Summary:	Globus Toolkit - Net Manager Library XIO Driver
 Group:		System Environment/Libraries
-Requires:	%{mainpkg}%{?_isa} = %{version}-%{release}
+Requires:	%{mainpkg}%{?_isa} = %{epoch}:%{version}-%{release}
 Requires:	globus-common-devel%{?_isa} >= 15.27
 Requires:	globus-xio-devel%{?_isa} >= 5
 Provides:       globus-net-manager-xio-driver
@@ -80,7 +80,7 @@ Group:		Documentation
 %if %{?fedora}%{!?fedora:0} >= 10 || %{?rhel}%{!?rhel:0} >= 6
 BuildArch:	noarch
 %endif
-Requires:	%{mainpkg} = %{version}-%{release}
+Requires:	%{mainpkg} = %{epoch}:%{version}-%{release}
 
 %if %{?suse_version}%{!?suse_version:0} >= 1315
 %description %{?nmainpkg}
@@ -190,7 +190,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man3/*
 
 %changelog
-* Mon Nov 25 2019 Globus Toolkit <support@globus.org> - 0.19-2
+* Wed Nov 27 2019 Globus Toolkit <support@globus.org> - 0.19-3
 - Packaging update to ensure priority of Globus packages
 
 * Fri Nov 22 2019 Globus Toolkit <support@globus.org> - 0.19-1

@@ -79,7 +79,7 @@ Group:		System Environment/Libraries
 %package devel
 Summary:	Globus Toolkit - Globus XIO UDT Driver Development Files
 Group:		Development/Libraries
-Requires:	%{name}%{?_isa} = %{version}-%{release}
+Requires:	%{name}%{?_isa} = %{epoch}:%{version}-%{release}
 Requires:	globus-xio-devel%{?_isa} >= 3
 
 %if %{?suse_version}%{!?suse_version:0} >= 1315

@@ -9,7 +9,7 @@ Name:		globus-gsi-proxy-ssl
 %global _name %(tr - _ <<< %{name})
 Epoch:          1
 Version:	5.10
-Release:	2%{?dist}
+Release:	3%{?dist}
 Vendor:	Globus Support
 Summary:	Globus Toolkit - Globus GSI Proxy SSL Library
 
@@ -69,7 +69,7 @@ Group:		System Environment/Libraries
 %package devel
 Summary:	Globus Toolkit - Globus GSI Proxy SSL Library Development Files
 Group:		Development/Libraries
-Requires:	%{mainpkg}%{?_isa} = %{version}-%{release}
+Requires:	%{mainpkg}%{?_isa} = %{epoch}:%{version}-%{release}
 %if %{?suse_version}%{!?suse_version:0} >= 1315
 Requires:	globus-common-devel%{?_isa} >= 14
 %endif
@@ -92,7 +92,7 @@ Group:		Documentation
 %if %{?fedora}%{!?fedora:0} >= 10 || %{?rhel}%{!?rhel:0} >= 6
 BuildArch:	noarch
 %endif
-Requires:	%{mainpkg} = %{version}-%{release}
+Requires:	%{mainpkg} = %{epoch}:%{version}-%{release}
 
 %if %{?suse_version}%{!?suse_version:0} >= 1315
 %description %{?nmainpkg}
@@ -192,7 +192,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/*/*
 
 %changelog
-* Mon Nov 25 2019 Globus Toolkit <support@globus.org> - 5.10-2
+* Wed Nov 27 2019 Globus Toolkit <support@globus.org> - 5.10-3
 - Packaging update to ensure priority of Globus packages
 
 * Thu Sep 08 2016 Globus Toolkit <support@globus.org> - 5.10-1

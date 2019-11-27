@@ -8,7 +8,7 @@ Name:		globus-gsi-callback
 %global _name %(tr - _ <<< %{name})
 Epoch:          1
 Version:	5.13
-Release:	2%{?dist}
+Release:	3%{?dist}
 Vendor:	Globus Support
 Summary:	Globus Toolkit - Globus GSI Callback Library
 
@@ -64,7 +64,7 @@ Group:		System Environment/Libraries
 %package devel
 Summary:	Globus Toolkit - Globus GSI Callback Library Development Files
 Group:		Development/Libraries
-Requires:	%{mainpkg}%{?_isa} = %{version}-%{release}
+Requires:	%{mainpkg}%{?_isa} = %{epoch}:%{version}-%{release}
 Requires:	globus-openssl-module-devel%{?_isa} >= 3
 Requires:	globus-gsi-openssl-error-devel%{?_isa} >= 2
 Requires:	globus-gsi-cert-utils-devel%{?_isa} >= 8
@@ -77,7 +77,7 @@ Group:		Documentation
 %if %{?fedora}%{!?fedora:0} >= 10 || %{?rhel}%{!?rhel:0} >= 6
 BuildArch:	noarch
 %endif
-Requires:	%{mainpkg} = %{version}-%{release}
+Requires:	%{mainpkg} = %{epoch}:%{version}-%{release}
 
 %if %{?suse_version}%{!?suse_version:0} >= 1315
 %description %{?nmainpkg}
@@ -174,7 +174,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man3/*
 
 %changelog
-* Mon Nov 25 2019 Globus Toolkit <support@globus.org> - 5.13-2
+* Wed Nov 27 2019 Globus Toolkit <support@globus.org> - 5.13-3
 - Packaging update to ensure priority of Globus packages
 
 * Fri Jan 06 2017 Globus Toolkit <support@globus.org> - 5.13-1

@@ -15,7 +15,7 @@ Name:		globus-common
 %global _name %(tr - _ <<< %{name})
 Epoch:          1
 Version:	17.5
-Release:	2%{?dist}
+Release:	4%{?dist}
 Vendor:		Globus Support
 Summary:	Globus Toolkit - Common Library
 
@@ -79,7 +79,7 @@ Group:		System Environment/Libraries
 %package progs
 Summary:	Globus Toolkit - Common Library Programs
 Group:		Applications/Internet
-Requires:	%{mainpkg}%{?_isa} = %{version}-%{release}
+Requires:	%{mainpkg}%{?_isa} = %{epoch}:%{version}-%{release}
 %if 0%{?suse_version} > 0
     %if %{suse_version} < 1140
 Requires:     perl = %{perl_version}
@@ -93,7 +93,7 @@ Requires:	perl(:MODULE_COMPAT_%(eval "`perl -V:version`"; echo $version))
 %package devel
 Summary:	Globus Toolkit - Common Library Development Files
 Group:		Development/Libraries
-Requires:	%{mainpkg}%{?_isa} = %{version}-%{release}
+Requires:	%{mainpkg}%{?_isa} = %{epoch}:%{version}-%{release}
 %if 0%{?suse_version} == 0
 %if 0%{?rhel} > 4 || 0%{?rhel} == 0
 Requires:	libtool-ltdl-devel
@@ -118,7 +118,7 @@ Group:		Documentation
 %if %{?fedora}%{!?fedora:0} >= 10 || %{?rhel}%{!?rhel:0} >= 6
 BuildArch:	noarch
 %endif
-Requires:	%{mainpkg} = %{version}-%{release}
+Requires:	%{mainpkg} = %{epoch}:%{version}-%{release}
 
 %if %{?suse_version}%{!?suse_version:0} >= 1315
 %description %{?nmainpkg}
@@ -253,7 +253,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_docdir}/%{name}-%{version}/html/*
 
 %changelog
-* Mon Nov 25 2019 Globus Toolkit <support@globus.org> - 17.5-2
+* Wed Nov 27 2019 Globus Toolkit <support@globus.org> - 17.5-4
 - Packaging update to ensure priority of Globus packages
 
 * Thu Jul 11 2019 Globus Toolkit <support@globus.org> - 17.5-1

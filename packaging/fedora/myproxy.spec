@@ -15,7 +15,7 @@ Name:           myproxy
 %global _name %(tr - _ <<< %{name})
 Epoch:          1
 Version:	6.1.31
-Release:	1%{?dist}
+Release:	5%{?dist}
 Vendor: Globus Support
 Summary:        Manage X.509 Public Key Infrastructure (PKI) security credentials
 
@@ -60,7 +60,7 @@ BuildRequires:      globus-usage-devel >= 3
 BuildRequires:      globus-gss-assist-devel >= 8
 
 Requires:      globus-proxy-utils >= 5
-Requires:      %{libpkg}%{?_isa} = %{version}-%{release}
+Requires:      %{libpkg}%{?_isa} = %{epoch}:%{version}-%{release}
 %if %{?fedora}%{!?fedora:0} >= 19 || %{?rhel}%{!?rhel:0} >= 7 || %{?suse_version}%{!?suse_version:0} >= 1315
 BuildRequires:  automake >= 1.11
 BuildRequires:  autoconf >= 2.60
@@ -72,7 +72,7 @@ BuildRequires:  krb5-devel
 %endif
 
 Obsoletes:     myproxy-client < 5.1-3
-Provides:      myproxy-client = %{version}-%{release}
+Provides:      myproxy-client = %{version}
 
 %description
 MyProxy is open source software for managing X.509 Public Key Infrastructure 
@@ -97,7 +97,7 @@ trusted CA certificates and Certificate Revocation Lists (CRLs).
 Package %{name}-libs contains runtime libs for MyProxy.
 
 %package devel
-Requires:      %{libpkg}%{?_isa}  = %{version}-%{release}
+Requires:      %{libpkg}%{?_isa}  = %{epoch}:%{version}-%{release}
 Requires:      globus-gss-assist-devel%{?_isa}  > 8
 Requires:      globus-usage-devel%{?_isa} >= 3
 
@@ -116,7 +116,7 @@ Package %{name}-devel contains development files for MyProxy.
 
 %package server
 %if 0%{?suse_version} == 0
-Requires:         %{libpkg}%{?_isa} = %{version}-%{release}
+Requires:         %{libpkg}%{?_isa} = %{epoch}:%{version}-%{release}
 Requires(pre):    shadow-utils
 Requires(post):   chkconfig
 Requires(preun):  chkconfig
@@ -142,13 +142,13 @@ trusted CA certificates and Certificate Revocation Lists (CRLs).
 
 Package %{name}-server contains the MyProxy server.
 
-# Create a sepeate admin clients package since they
+#} Create a sepeate admin clients package since they
 # not needed for normal operation and pull in
 # a load of perl dependencies.
 %package       admin
-Requires:      %{libpkg}%{?_isa} = %{version}-%{release}
-Requires:      myproxy-server = %{version}-%{release}
-Requires:      myproxy = %{version}-%{release}
+Requires:      %{libpkg}%{?_isa} = %{epoch}:%{version}-%{release}
+Requires:      myproxy-server = %{epoch}:%{version}-%{release}
+Requires:      myproxy = %{epoch}:%{version}-%{release}
 Requires:      globus-gsi-cert-utils-progs >= 8
 Summary:       Server for X.509 Public Key Infrastructure (PKI) security credentials 
 Group:         System Environment/Daemons
@@ -164,7 +164,7 @@ trusted CA certificates and Certificate Revocation Lists (CRLs).
 Package %{name}-admin contains the MyProxy server admin commands.
 
 %package doc
-Requires:      myproxy = %{version}-%{release}
+Requires:      myproxy = %{epoch}:%{version}-%{release}
 Summary:       Documentation for X.509 Public Key Infrastructure (PKI) security credentials 
 Group:         Documentation
 
@@ -568,7 +568,7 @@ fi
 %endif
 
 %changelog
-* Mon Nov 25 2019 Globus Toolkit <support@globus.org> - 6.1.31-1
+* Mon Nov 25 2019 Globus Toolkit <support@globus.org> - 6.1.31-5
 - Packaging update to ensure priority of Globus packages
 
 * Fri May 03 2019 Globus Toolkit <support@globus.org> - 6.1.31-4

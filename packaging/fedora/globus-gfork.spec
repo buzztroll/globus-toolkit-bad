@@ -47,12 +47,12 @@ Group:		System Environment/Libraries
 %package progs
 Summary:	Globus Toolkit - GFork Programs
 Group:		Applications/Internet
-Requires:	%{mainpkg}%{?_isa} = %{version}-%{release}
+Requires:	%{mainpkg}%{?_isa} = %{epoch}:%{version}-%{release}
 
 %package devel
 Summary:	Globus Toolkit - GFork Development Files
 Group:		Development/Libraries
-Requires:	%{mainpkg}%{?_isa} = %{version}-%{release}
+Requires:	%{mainpkg}%{?_isa} = %{epoch}:%{version}-%{release}
 Requires:	globus-xio-devel%{?_isa} >= 3
 
 %if %{?suse_version}%{!?suse_version:0} >= 1315

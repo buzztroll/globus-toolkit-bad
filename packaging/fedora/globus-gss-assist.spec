@@ -8,7 +8,7 @@ Name:		globus-gss-assist
 %global _name %(tr - _ <<< %{name})
 Epoch:          1
 Version:	11.2
-Release:	2%{?dist}
+Release:	3%{?dist}
 Vendor:	Globus Support
 Summary:	Globus Toolkit - GSSAPI Assist library
 
@@ -62,13 +62,13 @@ Group:		System Environment/Libraries
 %package progs
 Summary:	Globus Toolkit - GSSAPI Assist library Programs
 Group:		Applications/Internet
-Requires:	%{mainpkg}%{?_isa} = %{version}-%{release}
+Requires:	%{mainpkg}%{?_isa} = %{epoch}:%{version}-%{release}
 Requires:	globus-common-progs >= 14
 
 %package devel
 Summary:	Globus Toolkit - GSSAPI Assist library Development Files
 Group:		Development/Libraries
-Requires:	%{mainpkg}%{?_isa} = %{version}-%{release}
+Requires:	%{mainpkg}%{?_isa} = %{epoch}:%{version}-%{release}
 Requires:	globus-gsi-cert-utils-devel%{?_isa} >= 8
 Requires:	globus-gsi-credential-devel%{?_isa} >= 6
 Requires:	globus-gsi-sysconfig-devel%{?_isa} >= 7
@@ -82,7 +82,7 @@ Group:		Documentation
 %if %{?fedora}%{!?fedora:0} >= 10 || %{?rhel}%{!?rhel:0} >= 6
 BuildArch:	noarch
 %endif
-Requires:	%{mainpkg} = %{version}-%{release}
+Requires:	%{mainpkg} = %{epoch}:%{version}-%{release}
 
 %if %{?suse_version}%{!?suse_version:0} >= 1315
 %description %{?nmainpkg}
@@ -195,7 +195,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man3/*
 
 %changelog
-* Mon Nov 25 2019 Globus Toolkit <support@globus.org> - 11.2-2
+* Wed Nov 27 2019 Globus Toolkit <support@globus.org> - 11.2-3
 - Packaging update to ensure priority of Globus packages
 
 * Fri Aug 24 2018 Globus Toolkit <support@globus.org> - 11.2-1
