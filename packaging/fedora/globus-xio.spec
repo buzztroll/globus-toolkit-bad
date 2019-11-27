@@ -8,15 +8,16 @@ Name:		globus-xio
 
 
 %global _name %(tr - _ <<< %{name})
+Epoch:          1
 Version:	6.0
-Release:	1%{?dist}
+Release:	2%{?dist}
 Vendor:	        Globus Support
 Summary:	Globus Toolkit - Globus XIO Framework
 
 Group:		System Environment/Libraries
 License:	%{apache_license}
-URL:		http://toolkit.globus.org/
-Source:	http://toolkit.globus.org/ftppub/gt6/packages/%{_name}-%{version}.tar.gz
+URL:           https://www.globus.org/
+Source:        https://downloads.globus.org/toolkit/gt6/packages/%{_name}-%{version}.tar.gz
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:	globus-common-devel >= 14
@@ -169,6 +170,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/*/*
 
 %changelog
+* Mon Nov 25 2019 Globus Toolkit <support@globus.org> - 6.0-2
+- Packaging update to ensure priority of Globus packages
+
 * Tue Jul 30 2019 Globus Toolkit <support@globus.org> - 6.0-1
 - Allow binary through telnet driver
 

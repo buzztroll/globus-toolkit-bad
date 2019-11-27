@@ -1,7 +1,7 @@
 Source: myproxy-oauth
 Section: net
 Priority: extra
-Maintainer: Mattias Ellert <mattias.ellert@fysast.uu.se>
+Maintainer: Globus Support <support@globus.org>
 Build-Depends: debhelper (>= 7.0.0), python, lsb-release
 Standards-Version: 3.9.3
 

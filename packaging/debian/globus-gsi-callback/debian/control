@@ -1,12 +1,9 @@
 Source: globus-gsi-callback
 Priority: optional
-Maintainer: Mattias Ellert <mattias.ellert@fysast.uu.se>
+Maintainer: Globus Support <support@globus.org>
 Build-Depends: debhelper (>= 5), autotools-dev, libglobus-openssl-module-dev (>= 3), libglobus-gsi-openssl-error-dev (>= 2), libglobus-gsi-cert-utils-dev (>= 8), libglobus-common-dev (>= 14), libglobus-gsi-sysconfig-dev (>= 5), doxygen (<< 1.6.2-1) | doxygen (>> 1.6.2-1), graphviz, pkg-config
 Standards-Version: 3.9.2
 Section: net
-DM-Upload-Allowed: yes
-Vcs-Browser: http://svn.nordugrid.org/trac/packaging/browser/debian/globus-gsi-callback
-Vcs-Svn: http://svn.nordugrid.org/repos/packaging/debian/globus-gsi-callback
 Homepage: http://www.globus.org/
 
 Package: libglobus-gsi-callback0

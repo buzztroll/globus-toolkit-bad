@@ -1,12 +1,9 @@
 Source: globus-authz-callout-error
 Priority: optional
-Maintainer: Mattias Ellert <mattias.ellert@fysast.uu.se>
+Maintainer: Globus Support <support@globus.org>
 Build-Depends: debhelper (>= 6.0.7~), autotools-dev, libglobus-common-dev (>= 14), doxygen (<< 1.6.2-1) | doxygen (>> 1.6.2-1), graphviz, pkg-config
 Standards-Version: 3.9.2
 Section: net
-DM-Upload-Allowed: yes
-Vcs-Browser: http://svn.nordugrid.org/trac/packaging/browser/debian/globus-authz-callout-error
-Vcs-Svn: http://svn.nordugrid.org/repos/packaging/debian/globus-authz-callout-error
 Homepage: http://www.globus.org/
 
 Package: libglobus-authz-callout-error0

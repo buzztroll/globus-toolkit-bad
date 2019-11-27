@@ -1,6 +1,6 @@
 Name: globus-xio-gridftp-driver
-Maintainer: Mattias Ellert <mattias.ellert@fysast.uu.se>
-Source: http://toolkit.globus.org/ftppub/gt6/packages/globus_xio_gridftp_driver-2.13.tar.gz
+Maintainer: Globus Support <support@globus.org>
+Source: https://downloads.globus.org/toolkit/gt6/packages/globus_xio_gridftp_driver-2.18.tar.gz
 
 
 Upstream-Authors: The Globus Alliance - http://www.globus.org/

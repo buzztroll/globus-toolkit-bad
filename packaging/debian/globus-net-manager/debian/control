@@ -1,12 +1,9 @@
 Source: globus-net-manager
 Priority: optional
-Maintainer: Mattias Ellert <mattias.ellert@fysast.uu.se>
+Maintainer: Globus Support <support@globus.org>
 Build-Depends: debhelper (>= 5), autotools-dev, libglobus-common-dev (>= 15.27), libglobus-xio-dev (>= 5), doxygen (<< 1.6.2-1) | doxygen (>> 1.6.2-1), graphviz, python-dev, libltdl-dev
 Standards-Version: 3.9.0
 Section: net
-DM-Upload-Allowed: yes
-Vcs-Browser: http://svn.nordugrid.org/trac/packaging/browser/debian/globus-net-manager
-Vcs-Svn: http://svn.nordugrid.org/repos/packaging/debian/globus-net-manager
 Homepage: http://www.globus.org/
 
 Package: libglobus-net-manager0

@@ -1,3 +1,9 @@
+globus-gssapi-gsi (1:13.11-2+gt6.@distro@) @distro@; urgency=low
+
+  * Packaging update to ensure priority of Globus packages
+
+ -- Globus Toolkit <support@globus.org>  Mon, 25 Nov 2019 10:41:46 -0600
+
 globus-gssapi-gsi (13.11-1+gt6.@distro@) @distro@; urgency=low
 
   * Fix leaks

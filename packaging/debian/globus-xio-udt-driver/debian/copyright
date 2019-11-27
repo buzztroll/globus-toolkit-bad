@@ -1,6 +1,6 @@
 Name: globus-xio-udt-driver
-Maintainer: Mattias Ellert <mattias.ellert@fysast.uu.se>
-Source: http://toolkit.globus.org/ftppub/gt6/packages/globus_xio_udt_driver-1.17.tar.gz
+Maintainer: Globus Support <support@globus.org>
+Source: https://downloads.globus.org/toolkit/gt6/packages/globus_xio_udt_driver-1.30.tar.gz
 
 
 Upstream-Authors: The Globus Alliance - http://www.globus.org/

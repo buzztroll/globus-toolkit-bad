@@ -7,15 +7,16 @@ Name:		globus-simple-ca
 %else
 %global apache_license ASL 2.0
 %endif
+Epoch:          1
 Version:	4.24
-Release:	4%{?dist}
+Release:	5%{?dist}
 Vendor:	Globus Support
 Summary:	Globus Toolkit - Simple CA
 
 Group:		System Environment/Libraries
 License:	%{apache_license}
-URL:		http://toolkit.globus.org/
-Source:	http://toolkit.globus.org/ftppub/gt6/packages/%{_name}-%{version}.tar.gz
+URL:           https://www.globus.org/
+Source:        https://downloads.globus.org/toolkit/gt6/packages/%{_name}-%{version}.tar.gz
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 %if %{?suse_version}%{!?suse_version:0} >= 1315
@@ -138,6 +139,9 @@ fi
 %{_mandir}/man1/*
 
 %changelog
+* Mon Nov 25 2019 Globus Toolkit <support@globus.org> - 4.24-5
+- Packaging update to ensure priority of Globus packages
+
 * Fri May 12 2017 Globus Toolkit <support@globus.org> - 4.24-4
 - Stop leaving files in /
 

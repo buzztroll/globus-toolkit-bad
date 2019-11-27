@@ -1,3 +1,9 @@
+globus-gridmap-eppn-callout (1:1.14-2+gt6.@distro@) @distro@; urgency=low
+
+  * Packaging update to ensure priority of Globus packages
+
+ -- Globus Toolkit <support@globus.org>  Mon, 25 Nov 2019 10:41:43 -0600
+
 globus-gridmap-eppn-callout (1.14-1+gt6.@distro@) @distro@; urgency=low
 
   * add environment variable GLOBUS_EPPN_KEEP_DOMAIN to return full userid@domain from eppn

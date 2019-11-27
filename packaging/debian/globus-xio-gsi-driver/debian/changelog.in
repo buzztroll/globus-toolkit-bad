@@ -1,3 +1,9 @@
+globus-xio-gsi-driver (1:4.1-2+gt6.@distro@) @distro@; urgency=low
+
+  * Packaging update to ensure priority of Globus packages
+
+ -- Globus Toolkit <support@globus.org>  Mon, 25 Nov 2019 10:41:49 -0600
+
 globus-xio-gsi-driver (4.1-1+gt6.@distro@) @distro@; urgency=low
 
   * Add SNI and ALPN support via cntls

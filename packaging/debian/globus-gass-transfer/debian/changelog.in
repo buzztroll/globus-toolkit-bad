@@ -1,3 +1,9 @@
+globus-gass-transfer (1:8.10-2+gt6.@distro@) @distro@; urgency=low
+
+  * Packaging update to ensure priority of Globus packages
+
+ -- Globus Toolkit <support@globus.org>  Mon, 25 Nov 2019 10:41:41 -0600
+
 globus-gass-transfer (8.10-1+gt6.@distro@) @distro@; urgency=low
 
   * Update bug report URL

@@ -1,12 +1,9 @@
 Source: globus-xio
 Priority: optional
-Maintainer: Mattias Ellert <mattias.ellert@fysast.uu.se>
+Maintainer: Globus Support <support@globus.org>
 Build-Depends: debhelper (>= 5), autotools-dev, quilt, libglobus-common-dev, doxygen (<< 1.6.2-1) | doxygen (>> 1.6.2-1), graphviz, pkg-config, libltdl-dev
 Standards-Version: 3.8.4
 Section: net
-DM-Upload-Allowed: yes
-Vcs-Browser: http://svn.nordugrid.org/trac/packaging/browser/debian/globus-xio
-Vcs-Svn: http://svn.nordugrid.org/repos/packaging/debian/globus-xio
 Homepage: http://www.globus.org/
 
 Package: libglobus-xio0

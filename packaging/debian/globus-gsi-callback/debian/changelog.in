@@ -1,3 +1,9 @@
+globus-gsi-callback (1:5.13-2+gt6.@distro@) @distro@; urgency=low
+
+  * Packaging update to ensure priority of Globus packages
+
+ -- Globus Toolkit <support@globus.org>  Mon, 25 Nov 2019 10:41:44 -0600
+
 globus-gsi-callback (5.13-1+gt6.@distro@) @distro@; urgency=low
 
   * Fix crash with OpenSSL 1.1.0 with a CRL (issue #87), replace some deprecated API calls

@@ -1,10 +1,10 @@
 Name:           globus-toolkit-repo
-Version:        6.0.17
+Version:        6.0.18
 Release:        1
 Summary:        Globus Repository Configuration
 Group:          System Environment/Base
 License:        ASL 2.0
-URL:            http://toolkit.globus.org/toolkit
+URL:           https://www.globus.org/
 Source0:        globus-toolkit-repo_%{version}.tar.xz
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch:      noarch
@@ -61,6 +61,9 @@ case ${osname}:${osver} in
     centos*:7* | sl*:7* | redhat*:7* | springdale*:7*)
         repo=el7
         ;;
+    centos*:8* | redhat*:8* | springdale*:8*)
+        repo=el8
+        ;;
     fedora*:*)
         repo=fedora
         ;;
@@ -112,6 +115,9 @@ case ${osname}:${osver} in
     centos*:7* | sl*:7* | redhat*:7* | springdale*:7*)
         repo=el7
         ;;
+    centos*:8* | redhat*:8* | springdale*:8*)
+        repo=el8
+        ;;
     fedora*:*)
         repo=fedora
         ;;
@@ -142,6 +148,10 @@ fi
 %{_datadir}/globus/repo/*
 
 %changelog
+* Mon Nov 18 2019 Globus Toolkit <support@globus.org> - 6.0.18-1
+- (rpm) add el8
+- (deb) add buster and eoan
+
 * Tue May  7 2019 Globus Toolkit <support@globus.org> - 6.0.17-1
 - (deb) Add packaging pinning to our repo
 

@@ -1,12 +1,9 @@
 Source: globus-gridftp-server-control
 Priority: optional
-Maintainer: Mattias Ellert <mattias.ellert@fysast.uu.se>
+Maintainer: Globus Support <support@globus.org>
 Build-Depends: debhelper (>= 5), autotools-dev, quilt, libglobus-xio-pipe-driver-dev (>= 2), libglobus-common-dev (>= 14), libglobus-xio-gsi-driver-dev (>= 2), libglobus-xio-dev (>= 6), libglobus-gss-assist-dev (>= 8), pkg-config
 Standards-Version: 3.9.0
 Section: net
-DM-Upload-Allowed: yes
-Vcs-Browser: http://svn.nordugrid.org/trac/packaging/browser/debian/globus-gridftp-server-control
-Vcs-Svn: http://svn.nordugrid.org/repos/packaging/debian/globus-gridftp-server-control
 Homepage: http://www.globus.org/
 
 Package: libglobus-gridftp-server-control0

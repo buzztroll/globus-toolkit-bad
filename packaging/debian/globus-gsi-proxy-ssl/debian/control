@@ -1,12 +1,9 @@
 Source: globus-gsi-proxy-ssl
 Priority: optional
-Maintainer: Mattias Ellert <mattias.ellert@fysast.uu.se>
+Maintainer: Globus Support <support@globus.org>
 Build-Depends: debhelper (>= 6.0.7~), autotools-dev, libssl-dev, doxygen (<< 1.6.2-1) | doxygen (>> 1.6.2-1), graphviz
 Standards-Version: 3.9.0
 Section: net
-DM-Upload-Allowed: yes
-Vcs-Browser: http://svn.nordugrid.org/trac/packaging/browser/debian/globus-gsi-proxy-ssl
-Vcs-Svn: http://svn.nordugrid.org/repos/packaging/debian/globus-gsi-proxy-ssl
 Homepage: http://www.globus.org/
 
 Package: libglobus-gsi-proxy-ssl1

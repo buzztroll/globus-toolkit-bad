@@ -6,15 +6,16 @@ Name:		globus-gsi-openssl-error
 %global apache_license ASL 2.0
 %endif
 %global _name %(tr - _ <<< %{name})
+Epoch:          1
 Version:	3.8
-Release:	1%{?dist}
+Release:	2%{?dist}
 Vendor:	Globus Support
 Summary:	Globus Toolkit - Globus OpenSSL Error Handling
 
 Group:		System Environment/Libraries
 License:	%{apache_license}
-URL:		http://toolkit.globus.org/
-Source:	http://toolkit.globus.org/ftppub/gt6/packages/%{_name}-%{version}.tar.gz
+URL:           https://www.globus.org/
+Source:        https://downloads.globus.org/toolkit/gt6/packages/%{_name}-%{version}.tar.gz
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:	globus-common-devel >= 14
@@ -182,6 +183,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_docdir}/%{name}-%{version}/html/*
 
 %changelog
+* Mon Nov 25 2019 Globus Toolkit <support@globus.org> - 3.8-2
+- Packaging update to ensure priority of Globus packages
+
 * Mon Jan 09 2017 Globus Toolkit <support@globus.org> - 3.8-1
 - Alter dependency order to avoid mixing SSL versions
 

@@ -1,12 +1,9 @@
 Source: globus-gsi-cert-utils
 Priority: optional
-Maintainer: Mattias Ellert <mattias.ellert@fysast.uu.se>
+Maintainer: Globus Support <support@globus.org>
 Build-Depends: debhelper (>= 5), autotools-dev, quilt, libglobus-common-dev (>= 14), libglobus-openssl-module-dev (>= 3), libglobus-gsi-openssl-error-dev (>= 2), doxygen (<< 1.6.2-1) | doxygen (>> 1.6.2-1), graphviz, pkg-config, openssl
 Standards-Version: 3.9.2
 Section: net
-DM-Upload-Allowed: yes
-Vcs-Browser: http://svn.nordugrid.org/trac/packaging/browser/debian/globus-gsi-cert-utils
-Vcs-Svn: http://svn.nordugrid.org/repos/packaging/debian/globus-gsi-cert-utils
 Homepage: http://www.globus.org/
 
 Package: libglobus-gsi-cert-utils0

@@ -6,15 +6,16 @@ Name:		globus-gsi-sysconfig
 %global apache_license ASL 2.0
 %endif
 %global _name %(tr - _ <<< %{name})
+Epoch:          1
 Version:	8.1
-Release:	2%{?dist}
+Release:	3%{?dist}
 Vendor:	Globus Support
 Summary:	Globus Toolkit - Globus GSI System Config Library
 
 Group:		System Environment/Libraries
 License:	%{apache_license}
-URL:		http://toolkit.globus.org/
-Source:	http://toolkit.globus.org/ftppub/gt6/packages/%{_name}-%{version}.tar.gz
+URL:           https://www.globus.org/
+Source:        https://downloads.globus.org/toolkit/gt6/packages/%{_name}-%{version}.tar.gz
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:	globus-common-devel >= 15
@@ -184,6 +185,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man3/*
 
 %changelog
+* Mon Nov 25 2019 Globus Toolkit <support@globus.org> - 8.1-3
+- Packaging update to ensure priority of Globus packages
+
 * Thu Jul 26 2018 Globus Toolkit <support@globus.org> - 8.1-2
 - Package /etc/grid-security/certificates
 

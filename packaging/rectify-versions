@@ -23,7 +23,7 @@ my $dryrun = 0;
 my $update;
 my $help;
 my %packagelist = ();
-my $package_root = "http://toolkit.globus.org/ftppub/gt6/packages";
+my $package_root = "https://downloads.globus.org/toolkit/gt6/packages";
 
 sub parse_package
 {
@@ -127,23 +127,6 @@ sub update_rpm($$)
         elsif ($specline =~ m/\%changelog/)
         {
             $changelogindex = $index;
-        }
-        elsif ($specline =~ m!URL:\s*http://www.globus.org(.*)!)
-        {
-            my $oldpath = $1;
-            $ARRAY[$index] = "URL:\t\thttp://toolkit.globus.org$1\n";
-            $specfile_changed = 1;
-        }
-        elsif ($specline =~ m!Source:\s*http://(.*)/([^/]*)!)
-        {
-            if ($1 =~ m/www.globus.org/ || $1 =~ m/toolkit.globus.org/) {
-                my $oldsrc = $2;
-                my $newsrc = $package_root . "/\%{_name}-\%{version}.tar.gz";
-                if ($oldsrc ne $newsrc) {
-                    $ARRAY[$index] = "Source:\t$newsrc\n";
-                    $specfile_changed = 1;
-                }
-            }
         }
         elsif ($specline =~ m/(Requires:\s*(\S*)\s*)(>=\s*[0-9.]+)/)
         {
@@ -557,7 +540,7 @@ sub update_copyright
             my $newsource;
             ($_, $oldsource) = split(/:\s*/, $line, 2);
             $newsource = $oldsource;
-            if ($oldsource =~ m!http://www(-unix)?.globus.org!) {
+            if ($oldsource =~ m!http://toolkit.globus.org!) {
                 $newsource = $package_root . "/" . $pkgmeta->{TARBALL};
             }
 
@@ -707,7 +690,7 @@ sub update_changelog
         }
     }
 
-    $update = "$package ($version-$release) \@distro\@; urgency=low\n\n";
+    $update = "$package (1:$version-$release) \@distro\@; urgency=low\n\n";
 
     if ($git_changelog)
     {

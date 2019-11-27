@@ -6,15 +6,16 @@ Name:		globus-xio-gridftp-multicast
 %global apache_license ASL 2.0
 %endif
 %global _name %(tr - _ <<< %{name})
+Epoch:          1
 Version:	1.7
-Release:	4%{?dist}
+Release:	5%{?dist}
 Vendor:	Globus Support
 Summary:	Globus Toolkit - Globus XIO GridFTP Multicast Driver
 
 Group:		System Environment/Libraries
 License:	%{apache_license}
-URL:		http://toolkit.globus.org/
-Source:	http://toolkit.globus.org/ftppub/gt6/packages/%{_name}-%{version}.tar.gz
+URL:           https://www.globus.org/
+Source:        https://downloads.globus.org/toolkit/gt6/packages/%{_name}-%{version}.tar.gz
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:	globus-xio-devel >= 0
@@ -124,6 +125,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/pkgconfig/*.pc
 
 %changelog
+* Mon Nov 25 2019 Globus Toolkit <support@globus.org> - 1.7-5
+- Packaging update to ensure priority of Globus packages
+
 * Thu Sep 08 2016 Globus Toolkit <support@globus.org> - 1.7-4
 - Rebuild after changes for el.5 with openssl101e
 

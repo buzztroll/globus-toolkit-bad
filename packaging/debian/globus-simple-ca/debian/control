@@ -1,6 +1,6 @@
 Source: globus-simple-ca
 Priority: optional
-Maintainer: Mattias Ellert <mattias.ellert@fysast.uu.se>
+Maintainer: Globus Support <support@globus.org>
 Build-Depends: debhelper (>= 9), autotools-dev, quilt, libglobus-common-dev, openssl, pkg-config
 Standards-Version: 3.9.0
 Section: net

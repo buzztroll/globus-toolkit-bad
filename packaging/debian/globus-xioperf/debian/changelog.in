@@ -1,3 +1,9 @@
+globus-xioperf (1:4.5-2+gt6.@distro@) @distro@; urgency=low
+
+  * Packaging update to ensure priority of Globus packages
+
+ -- Globus Toolkit <support@globus.org>  Mon, 25 Nov 2019 10:41:50 -0600
+
 globus-xioperf (4.5-1+gt6.@distro@) @distro@; urgency=low
 
   * Update bug report URL

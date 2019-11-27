@@ -6,15 +6,16 @@ Name:		globus-openssl-module
 %global apache_license ASL 2.0
 %endif
 %global _name %(tr - _ <<< %{name})
+Epoch:          1
 Version:	4.8
-Release:	1%{?dist}
+Release:	2%{?dist}
 Vendor:	Globus Support
 Summary:	Globus Toolkit - Globus OpenSSL Module Wrapper
 
 Group:		System Environment/Libraries
 License:	%{apache_license}
-URL:		http://toolkit.globus.org/
-Source:	http://toolkit.globus.org/ftppub/gt6/packages/%{_name}-%{version}.tar.gz
+URL:           https://www.globus.org/
+Source:        https://downloads.globus.org/toolkit/gt6/packages/%{_name}-%{version}.tar.gz
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:	globus-gsi-proxy-ssl-devel >= 4
@@ -184,6 +185,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man3/*
 
 %changelog
+* Mon Nov 25 2019 Globus Toolkit <support@globus.org> - 4.8-2
+- Packaging update to ensure priority of Globus packages
+
 * Thu Sep 08 2016 Globus Toolkit <support@globus.org> - 4.8-1
 - Update for el.5 openssl101e
 

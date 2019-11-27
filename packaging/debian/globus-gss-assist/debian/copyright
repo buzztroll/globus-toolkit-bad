@@ -1,6 +1,6 @@
 Name: globus-gss-assist
-Maintainer: Mattias Ellert <mattias.ellert@fysast.uu.se>
-Source: http://toolkit.globus.org/ftppub/gt6/packages/globus_gss_assist-10.14.tar.gz
+Maintainer: Globus Support <support@globus.org>
+Source: https://downloads.globus.org/toolkit/gt6/packages/globus_gss_assist-11.2.tar.gz
 
 
 Upstream-Authors: The Globus Alliance - http://www.globus.org/

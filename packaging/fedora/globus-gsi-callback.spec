@@ -6,15 +6,16 @@ Name:		globus-gsi-callback
 %global apache_license ASL 2.0
 %endif
 %global _name %(tr - _ <<< %{name})
+Epoch:          1
 Version:	5.13
-Release:	1%{?dist}
+Release:	2%{?dist}
 Vendor:	Globus Support
 Summary:	Globus Toolkit - Globus GSI Callback Library
 
 Group:		System Environment/Libraries
 License:	%{apache_license}
-URL:		http://toolkit.globus.org/
-Source:	http://toolkit.globus.org/ftppub/gt6/packages/%{_name}-%{version}.tar.gz
+URL:           https://www.globus.org/
+Source:        https://downloads.globus.org/toolkit/gt6/packages/%{_name}-%{version}.tar.gz
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 %if %{?suse_version}%{!?suse_version:0} >= 1315
@@ -173,6 +174,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man3/*
 
 %changelog
+* Mon Nov 25 2019 Globus Toolkit <support@globus.org> - 5.13-2
+- Packaging update to ensure priority of Globus packages
+
 * Fri Jan 06 2017 Globus Toolkit <support@globus.org> - 5.13-1
 - Fix crash with OpenSSL 1.1.0 with a CRL (issue #87), replace some deprecated API calls
 

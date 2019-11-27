@@ -1,12 +1,9 @@
 Source: globus-usage
 Priority: optional
-Maintainer: Mattias Ellert <mattias.ellert@fysast.uu.se>
+Maintainer: Globus Support <support@globus.org>
 Build-Depends: debhelper (>= 5), autotools-dev, quilt, libglobus-common-dev (>= 14), libglobus-xio-dev (>= 3), pkg-config
 Standards-Version: 3.9.2
 Section: net
-DM-Upload-Allowed: yes
-Vcs-Browser: http://svn.nordugrid.org/trac/packaging/browser/debian/globus-usage
-Vcs-Svn: http://svn.nordugrid.org/repos/packaging/debian/globus-usage
 Homepage: http://www.globus.org/
 
 Package: libglobus-usage0

@@ -1,12 +1,9 @@
 Source: globus-gss-assist
 Priority: optional
-Maintainer: Mattias Ellert <mattias.ellert@fysast.uu.se>
+Maintainer: Globus Support <support@globus.org>
 Build-Depends: debhelper (>= 5), autotools-dev, quilt, libglobus-gsi-cert-utils-dev (>= 8), libglobus-gsi-sysconfig-dev (>= 7), libglobus-common-dev (>= 14), libglobus-callout-dev (>= 2), libglobus-gssapi-gsi-dev (>= 13), libglobus-gsi-credential-dev (>= 6), doxygen (<< 1.6.2-1) | doxygen (>> 1.6.2-1), graphviz, pkg-config, openssl
 Standards-Version: 3.9.2
 Section: net
-DM-Upload-Allowed: yes
-Vcs-Browser: http://svn.nordugrid.org/trac/packaging/browser/debian/globus-gss-assist
-Vcs-Svn: http://svn.nordugrid.org/repos/packaging/debian/globus-gss-assist
 Homepage: http://www.globus.org/
 
 Package: libglobus-gss-assist3

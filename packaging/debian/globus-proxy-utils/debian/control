@@ -1,12 +1,9 @@
 Source: globus-proxy-utils
 Priority: optional
-Maintainer: Mattias Ellert <mattias.ellert@fysast.uu.se>
+Maintainer: Globus Support <support@globus.org>
 Build-Depends: debhelper (>= 5), autotools-dev, quilt, libglobus-gsi-credential-dev, libglobus-gsi-callback-dev, libglobus-openssl-module-dev, libglobus-gss-assist-dev, libglobus-gsi-openssl-error-dev, libglobus-gsi-proxy-core-dev, libglobus-gsi-cert-utils-dev, libglobus-common-dev, libglobus-gsi-sysconfig-dev, libglobus-gssapi-gsi-dev, openssl
 Standards-Version: 3.9.2
 Section: net
-DM-Upload-Allowed: yes
-Vcs-Browser: http://svn.nordugrid.org/trac/packaging/browser/debian/globus-proxy-utils
-Vcs-Svn: http://svn.nordugrid.org/repos/packaging/debian/globus-proxy-utils
 Homepage: http://www.globus.org/
 
 Package: globus-proxy-utils

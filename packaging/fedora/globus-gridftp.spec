@@ -1,5 +1,6 @@
 Name:		globus-gridftp
 %global _name %(tr - _ <<< %{name})
+Epoch:          1
 Version:	6.0
 Release:	1%{?dist}
 Vendor:	Globus Support
@@ -7,7 +8,7 @@ Summary:	Globus Toolkit - GridFTP Bundle
 
 Group:		System Environment/Libraries
 License:	ASL 2.0
-URL:		http://www.globus.org/
+URL:           https://www.globus.org/
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Requires:       globus-gridftp-server-progs

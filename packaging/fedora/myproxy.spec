@@ -13,15 +13,16 @@ Name:           myproxy
 %global nlibpkg libs
 %endif
 %global _name %(tr - _ <<< %{name})
+Epoch:          1
 Version:	6.1.31
-Release:	4%{?dist}
+Release:	1%{?dist}
 Vendor: Globus Support
 Summary:        Manage X.509 Public Key Infrastructure (PKI) security credentials
 
 Group:          System Environment/Daemons
 License:        NCSA and %{bsd_license} and %{apache_license}
 URL:            http://grid.ncsa.illinois.edu/myproxy/
-Source0:        http://toolkit.globus.org/ftppub/gt6/packages/%{_name}-%{version}.tar.gz
+Source:        https://downloads.globus.org/toolkit/gt6/packages/%{_name}-%{version}.tar.gz
 
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
@@ -567,6 +568,9 @@ fi
 %endif
 
 %changelog
+* Mon Nov 25 2019 Globus Toolkit <support@globus.org> - 6.1.31-1
+- Packaging update to ensure priority of Globus packages
+
 * Fri May 03 2019 Globus Toolkit <support@globus.org> - 6.1.31-4
 - Add dependencies for fedora 30
 

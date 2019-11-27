@@ -13,16 +13,17 @@
 
 Name:		globus-common
 %global _name %(tr - _ <<< %{name})
+Epoch:          1
 Version:	17.5
-Release:	1%{?dist}
+Release:	2%{?dist}
 Vendor:		Globus Support
 Summary:	Globus Toolkit - Common Library
 
 
 Group:		System Environment/Libraries
 License:	%{apache_license}
-URL:		http://toolkit.globus.org/
-Source:	http://toolkit.globus.org/ftppub/gt6/packages/%{_name}-%{version}.tar.gz
+URL:           https://www.globus.org/
+Source:        https://downloads.globus.org/toolkit/gt6/packages/%{_name}-%{version}.tar.gz
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 #		Obsolete dropped packages from Globus Toolkit 4.2.1
@@ -252,6 +253,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_docdir}/%{name}-%{version}/html/*
 
 %changelog
+* Mon Nov 25 2019 Globus Toolkit <support@globus.org> - 17.5-2
+- Packaging update to ensure priority of Globus packages
+
 * Thu Jul 11 2019 Globus Toolkit <support@globus.org> - 17.5-1
 - win: set minimum target to Windows 7
 
