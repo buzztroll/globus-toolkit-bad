@@ -7,7 +7,7 @@ Name:		myproxy-oauth
 %global _name %(tr - _ <<< %{name})
 Epoch:          1
 Version:	0.30
-Release:	2%{?dist}
+Release:	3%{?dist}
 Vendor:	Globus Support
 Summary:	MyProxy OAuth Delegation Serice
 
@@ -146,6 +146,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_sbindir}/myproxy-oauth-setup
 
 %changelog
+* Mon Nov 25 2019 Globus Toolkit <support@globus.org> - 0.30-3
+- Packaging update to ensure priority of Globus packages
+
 * Fri May 10 2019 Globus Toolkit <support@globus.org> - 0.30-2
 - Explicitly py2
 
