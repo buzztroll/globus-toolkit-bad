@@ -1,4 +1,4 @@
-globus-toolkit-repo (6.0.18) unstable; urgency=low
+globus-toolkit-repo (6.0.19) unstable; urgency=low
 
   * (rpm) add el8
   * (deb) add buster and eoan
