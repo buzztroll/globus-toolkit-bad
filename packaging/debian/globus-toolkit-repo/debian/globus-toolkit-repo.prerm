@@ -22,11 +22,19 @@ fi
 
 data="/usr/share/globus-toolkit-repo/sources.list.d"
 list_d="/etc/apt/sources.list.d"
+gpgkey="/etc/apt/trusted.gpg.d/RPM-GPG-KEY-Globus.gpg"
+
+# only jessie has the key added, others reference it directly at $gpgkey
+if [ "$codename" = "jessie" ]; then
+    rm "${gpgkey}"
+fi
 
 for repo in stable testing unstable; do
-    list="globus-toolkit-6-${repo}-${codename}.list"
-    if [ -f "${list_d}/${list}" ] && \
-       cmp -s "${list_d}/${list}" "${data}/${list}"; then
-        rm "${list_d}/${list}"
-    fi
+    for packagetype in globus-toolkit-6 globus-connect-server; do
+        list="${packagetype}-${repo}-${codename}.list"
+        if [ -f "${list_d}/${list}" ] && \
+           cmp -s "${list_d}/${list}" "${data}/${list}"; then
+           rm "${list_d}/${list}"
+        fi
+    done
 done

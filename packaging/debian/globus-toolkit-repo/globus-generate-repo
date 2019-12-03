@@ -5,6 +5,9 @@ gcs5_repo_root="https://downloads.globus.org/globus-connect-server"
 stability_levels="stable testing unstable"
 rpmoses="el6 el7 el8 fedora sles12"
 deboses="jessie stretch buster xenial bionic cosmic disco eoan"
+#gpg --with-fingerprint gpgfile
+fingerprint="66A86341D3CDB1B26BE4D46F44AE7EC2FAF24365"
+gpgfile="/usr/share/globus-toolkit-repo/RPM-GPG-KEY-Globus.gpg"
 
 bin_el6="el/6/\$basearch/"
 src_el6="el/6/SRPMS/"
@@ -110,10 +113,16 @@ else
                 else
                     enabled="# "
                 fi
+                if [ "$release" = "jessie" ]; then
+                    key=$fingerprint
+                else
+                    key=$gpgfile
+                fi
                 sed -e "s!@REPOSITORY_ROOT@!${repo_root}!g" \
                     -e "s!@ENABLED@!${enabled}!g" \
                     -e "s!@STABILITY@!${stability}!g" \
                     -e "s!@RELEASE@!${release}!g" \
+                    -e "s!@KEY@!${key}!g" \
                     < globus-list.in > $repo_name-$stability-$release.list
                 repo_enabled=0
             done

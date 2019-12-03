@@ -17,6 +17,7 @@ override_dh_auto_install:
 	mkdir -p debian/$(name)/$(sourceslistdir)
 	mkdir -p debian/$(name)/$(prefsdir)
 	cp RPM-GPG-KEY-Globus debian/$(name)/$(datadir)
+	cp RPM-GPG-KEY-Globus.gpg debian/$(name)/$(datadir)
 	cp *.list debian/$(name)/$(sourceslistdir)
 	cp globus.preferences debian/$(name)$(prefsdir)/globus
 

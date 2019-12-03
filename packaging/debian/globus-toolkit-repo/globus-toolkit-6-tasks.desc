@@ -16,16 +16,16 @@ Section: network
 Description: Globus Data Management Server
  This task installs programs for running Globus data management services.
 Packages: list
- globus-common-progsg
- globus-gfork-progsg
- globus-xio-pipe-driverg
- globus-gsi-cert-utils-progsg
- globus-ftp-controlg
- globus-authz-callout-errorg
- globus-authzg
- globus-usageg
- globus-xioperfg
- globus-gridftp-server-progsg
+ globus-common-progs
+ globus-gfork-progs
+ globus-xio-pipe-driver
+ globus-gsi-cert-utils-progs
+ globus-ftp-control
+ globus-authz-callout-error
+ globus-authz
+ globus-usage
+ globus-xioperf
+ globus-gridftp-server-progs
 
 Task: globus-data-management-client
 Section: network

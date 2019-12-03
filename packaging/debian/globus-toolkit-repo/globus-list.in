@@ -1,2 +1,2 @@
-@ENABLED@deb @REPOSITORY_ROOT@/@STABILITY@/deb @RELEASE@ contrib
-# deb-src @REPOSITORY_ROOT@/@STABILITY@/deb @RELEASE@ contrib
+@ENABLED@deb [signed-by=@KEY@] @REPOSITORY_ROOT@/@STABILITY@/deb @RELEASE@ contrib
+# deb-src [signed-by=@KEY@] @REPOSITORY_ROOT@/@STABILITY@/deb @RELEASE@ contrib

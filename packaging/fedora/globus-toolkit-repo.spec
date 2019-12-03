@@ -1,5 +1,5 @@
 Name:           globus-toolkit-repo
-Version:        6.0.19
+Version:        6.0.20
 Release:        1
 Summary:        Globus Repository Configuration
 Group:          System Environment/Base
@@ -148,7 +148,7 @@ fi
 %{_datadir}/globus/repo/*
 
 %changelog
-* Mon Nov 18 2019 Globus Toolkit <support@globus.org> - 6.0.19-1
+* Mon Nov 18 2019 Globus Toolkit <support@globus.org> - 6.0.20-1
 - (rpm) add el8
 - (deb) add buster and eoan
 
