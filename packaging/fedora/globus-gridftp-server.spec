@@ -7,8 +7,8 @@ Name:		globus-gridftp-server
 %endif
 %global _name %(tr - _ <<< %{name})
 Epoch:          1
-Version:	12.23
-Release:	2%{?dist}
+Version:	12.24
+Release:	1%{?dist}
 Vendor:	Globus Support
 Summary:	Globus Toolkit - Globus GridFTP Server
 
@@ -243,6 +243,9 @@ fi
 %{_libdir}/pkgconfig/*.pc
 
 %changelog
+* Thu Mar 19 2020 Globus Toolkit <support@globus.org> - 12.24-1
+- Added support for globus_gridftp_server_get_task_id()
+
 * Mon Nov 25 2019 Globus Toolkit <support@globus.org> - 12.23-2
 - Packaging update to ensure priority of Globus packages
 
