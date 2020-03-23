@@ -1304,6 +1304,17 @@ globus_gridftp_server_get_update_interval(
     int *                               interval);
     
 /*
+ * get Transfer task ID
+ *
+ * Returns the Transfer task ID associated with the current GridFTP session.
+ * If a task id is not known, return NULL instead.
+ */
+void
+globus_gridftp_server_get_task_id(
+    globus_gfs_operation_t              op,
+    char **                             task_id);
+
+/*
  * get read_range
  * 
  * This should be called during send() in order to know the specific

@@ -13324,6 +13324,19 @@ globus_gridftp_server_get_update_interval(
 }
 
 void
+globus_gridftp_server_get_task_id(
+    globus_gfs_operation_t              op,
+    char **                             taskid)
+{
+    GlobusGFSName(globus_gridftp_server_get_task_id);
+    GlobusGFSDebugEnter();
+
+    *taskid = globus_libc_strdup(op->session_handle->taskid);
+
+    GlobusGFSDebugExit();
+}
+
+void
 globus_gridftp_server_get_session_uid(
     globus_gfs_operation_t              op,
     uid_t *                             uid)
