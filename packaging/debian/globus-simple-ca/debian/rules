@@ -5,7 +5,7 @@ include /usr/share/quilt/quilt.make
 
 name = globus-simple-ca
 _name = globus_simple_ca
-version = 4.24
+version = 4.25
 
 _prefix = /usr
 _bindir = $(_prefix)/bin

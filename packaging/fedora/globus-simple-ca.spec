@@ -8,8 +8,8 @@ Name:		globus-simple-ca
 %global apache_license ASL 2.0
 %endif
 Epoch:          1
-Version:	4.24
-Release:	5%{?dist}
+Version:	4.25
+Release:	1%{?dist}
 Vendor:	Globus Support
 Summary:	Globus Toolkit - Simple CA
 
@@ -139,6 +139,9 @@ fi
 %{_mandir}/man1/*
 
 %changelog
+* Tue Mar 31 2020 Globus Toolkit <support@globus.org> - 4.25-1
+- change default signature alg to sha256
+
 * Mon Nov 25 2019 Globus Toolkit <support@globus.org> - 4.24-5
 - Packaging update to ensure priority of Globus packages
 
