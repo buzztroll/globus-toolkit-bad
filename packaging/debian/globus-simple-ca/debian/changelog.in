@@ -1,4 +1,4 @@
-globus-simple-ca (1:4.25-1) @distro@; urgency=low
+globus-simple-ca (1:4.25-1+gt6.@distro@) @distro@; urgency=low
 
   * change default signature alg to sha256
 
