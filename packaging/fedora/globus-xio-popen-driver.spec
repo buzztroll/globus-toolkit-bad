@@ -6,8 +6,8 @@ Name:		globus-xio-popen-driver
 %endif
 %global _name %(tr - _ <<< %{name})
 Epoch:          1
-Version:	3.6
-Release:	4%{?dist}
+Version:	3.7
+Release:	1%{?dist}
 Vendor:	Globus Support
 Summary:	Globus Toolkit - Globus XIO Pipe Open Driver
 
@@ -124,6 +124,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/pkgconfig/*.pc
 
 %changelog
+* Fri Jul 31 2020 Globus Toolkit <support@globus.org> - 3.7-1
+- fix cancellability of exec'd app when a close timeout is triggered
+
 * Mon Nov 25 2019 Globus Toolkit <support@globus.org> - 3.6-4
 - Packaging update to ensure priority of Globus packages
 

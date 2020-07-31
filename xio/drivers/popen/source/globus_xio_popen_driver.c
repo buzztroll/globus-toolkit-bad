@@ -809,10 +809,9 @@ globus_l_popen_waitpid(
     }
     else
     {
-        
         handle->wait_count++;
-        
-        if(handle->canceled)
+
+        if(handle->canceled || globus_xio_operation_is_canceled(handle->close_op))
         {
             switch(handle->kill_state)
             {
@@ -874,7 +873,7 @@ globus_l_xio_popen_close(
     globus_xio_system_file_destroy(handle->out_system);
 #endif
 
-    if(globus_xio_driver_operation_is_blocking(op))
+    if(handle->use_blocking_io && globus_xio_driver_operation_is_blocking(op))
     {
         globus_l_popen_waitpid(handle, 0);
     }
