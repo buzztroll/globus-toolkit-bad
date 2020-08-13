@@ -629,7 +629,7 @@ sub check_if_version_is_different
     @oldchanges = <$fd>;
     close($fd);
 
-    if ($oldchanges[0] =~ /\S\s+\(([0-9.]*)-.*\)/)
+    if ($oldchanges[0] =~ /\S\s+\(\d:([0-9.]*)-.*\)/)
     {
         $old_version = $1;
         if ($old_version ne $version)
@@ -674,7 +674,7 @@ sub update_changelog
     @oldchanges = <$fd>;
     close($fd);
 
-    if ($oldchanges[0] =~ /\(([0-9\.]+)-([^)]*)\)/)
+    if ($oldchanges[0] =~ /\(\d:([0-9\.]+)-([^)]*)\)/)
     {
         my ($oldversion, $oldrelease) = ($1, $2);
         $oldrelease =~ m/([0-9\.]+).*/;
