@@ -6,8 +6,8 @@ Name:		globus-xio-udt-driver
 %endif
 %global _name %(tr - _ <<< %{name})
 Epoch:          1
-Version:	1.30
-Release:	2%{?dist}
+Version:	1.31
+Release:	1%{?dist}
 Vendor:	Globus Support
 Summary:	Globus Toolkit - Globus XIO UDT Driver
 
@@ -164,6 +164,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/pkgconfig/%{name}.pc
 
 %changelog
+* Wed Aug 12 2020 Globus Toolkit <support@globus.org> - 1.31-1
+- increase minimum glib2 version before building our own
+
 * Mon Nov 25 2019 Globus Toolkit <support@globus.org> - 1.30-2
 - Packaging update to ensure priority of Globus packages
 

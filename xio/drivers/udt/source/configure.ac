@@ -1,6 +1,6 @@
 AC_PREREQ([2.60])
 
-AC_INIT([globus_xio_udt_driver],[1.30],[https://github.com/globus/globus-toolkit/issues])
+AC_INIT([globus_xio_udt_driver],[1.31],[https://github.com/globus/globus-toolkit/issues])
 AC_SUBST([MAJOR_VERSION], [${PACKAGE_VERSION%%.*}])
 AC_SUBST([MINOR_VERSION], [${PACKAGE_VERSION##*.}])
 AC_SUBST([AGE_VERSION], [1])
@@ -130,7 +130,7 @@ if test $NICE_VERSION_AT_LEAST_0_1_2 = 1; then
 fi
 
 if test X"$use_included_glib2" = "X"; then
-    PKG_CHECK_MODULES([GLIB2], [glib-2.0 >= 2.20 gobject-2.0 >= 2.20 gthread-2.0 >= 2.20], [], [use_included_glib2=1])
+    PKG_CHECK_MODULES([GLIB2], [glib-2.0 >= 2.30 gobject-2.0 >= 2.30 gthread-2.0 >= 2.30], [], [use_included_glib2=1])
 fi
 
 if test X"$use_included_glib2" = X1; then
