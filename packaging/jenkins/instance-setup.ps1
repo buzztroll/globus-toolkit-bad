@@ -11,13 +11,13 @@ Start-Transcript -path C:\Windows\Temp\instance-setup.txt
 $password = [Guid]::NewGuid().Guid
 Net user /add jenkins "$password" /yes
 
-$cygwin_core_packages = "autoconf,autoconf2.5,automake,automake1.14,automake1.15,bison,bsdtar,cpio,curl,diffutils,dos2unix,doxygen,findutils,flex,gawk,gccmakedep,gdb,git,graphviz,grep,groff,libtool,make,makedepend,openssh,openssl,patch,patchutils,pax,perl-Test-Simple,perl-XML-Simple,pkg-config,pylint,python,rebase,rpm,vim,vim-common,vim-minimal,w3m,zip,zsh"
+$cygwin_core_packages = "autoconf,autoconf2.5,automake,automake1.14,automake1.15,bison,bsdtar,cpio,curl,diffutils,dos2unix,doxygen,findutils,flex,gawk,gccmakedep,gdb,git,graphviz,grep,groff,libtool,make,makedepend,openssh,openssl,patch,patchutils,pax,perl-Test-Simple,perl-XML-Simple,pkg-config,pylint,python,rebase,rpm,vim,vim-common,vim-minimal,w3m,zip,zsh,zstd,libcurl-devel,libssl-devel,unzip"
 
-$cygwin_dev_packages = "binutils,bzip2,gcc-core,gcc-g++,gcc-tools-autoconf,gcc-tools-automake,gcc4,gcc4-core,gcc4-g++,gettext,gettext-devel,glib2.0-networking,graphviz,grep,groff,libisl10,libcloog-isl4,libffi-devel,libffi6,libgcc1,libglib2.0-devel,libglib2.0_0,libnice-devel,openssl-devel,pkg-config,zlib,zlib-devel"
+$cygwin_dev_packages = "binutils,bzip2,gcc-core,gcc-g++,gcc-tools-autoconf,gcc-tools-automake,gcc4,gcc4-core,gcc4-g++,gettext,gettext-devel,glib2.0-networking,graphviz,grep,groff,libisl10,libcloog-isl4,libffi-devel,libffi6,libgcc1,libglib2.0-devel,libglib2.0_0,libnice-devel,libssl-devel,pkg-config,zlib,zlib-devel,libcurl-devel"
 
-$mingw_32_packages = "mingw64-i686-binutils,mingw64-i686-bzip2,mingw64-i686-gcc-core,mingw64-i686-gcc-g++,mingw64-i686-headers,mingw64-i686-pkg-config,mingw64-i686-runtime,mingw64-i686-windows-default-manifest,mingw64-i686-xz,mingw64-i686-zlib"
+$mingw_32_packages = "mingw64-i686-binutils,mingw64-i686-bzip2,mingw64-i686-gcc-core,mingw64-i686-gcc-g++,mingw64-i686-headers,mingw64-i686-pkg-config,mingw64-i686-runtime,mingw64-i686-windows-default-manifest,mingw64-i686-xz,mingw64-i686-zlib,mingw64-i686-qt4-qmake,mingw64-i686-qt4,mingw64-i686-pcre,mingw64-i686-glib2.0,mingw64-i686-glib2.0-networking,mingw64-i686-gettext,mingw64-i686-libffi,mingw64-i686-win-iconv,mingw64-i686-winpthreads"
 
-$mingw_64_packages = "mingw64-x86_64-binutils,mingw64-x86_64-bzip2,mingw64-x86_64-gcc-core,mingw64-x86_64-gcc-g++,mingw64-x86_64-headers,mingw64-x86_64-pkg-config,mingw64-x86_64-runtime,mingw64-x86_64-windows-default-manifest,mingw64-x86_64-xz,mingw64-x86_64-zlib"
+$mingw_64_packages = "mingw64-x86_64-binutils,mingw64-x86_64-bzip2,mingw64-x86_64-gcc-core,mingw64-x86_64-gcc-g++,mingw64-x86_64-headers,mingw64-x86_64-pkg-config,mingw64-x86_64-runtime,mingw64-x86_64-windows-default-manifest,mingw64-x86_64-xz,mingw64-x86_64-zlib,mingw64-x86_64-qt4-qmake,mingw64-x86_64-qt4,mingw64-x86_64-pcre,mingw64-x86_64-glib2.0,mingw64-x86_64-glib2.0-networking,mingw64-x86_64-gettext,mingw64-x86_64-libffi,mingw64-x86_64-win-iconv,mingw64-x86_64-winpthreads"
 
 switch ($InstanceType)
 {
@@ -50,6 +50,43 @@ Set-ItemProperty `
     -Name "DisableFirstRunCustomize" `
     -Value 1
 
+if ($InstanceType -eq "mingw32")
+{
+    Echo "Downloading Python"
+    Invoke-WebRequest `
+            -Uri "https://www.python.org/ftp/python/3.7.7/python-3.7.7.exe" `
+            -OutFile "C:\Windows\Temp\pythoninstall.exe"
+
+    Echo "Downloading custom PyInstaller source"
+    Invoke-WebRequest `
+            -Uri "https://builds.globus.org/pyinstaller-4.0.tar.gz" `
+            -OutFile "C:\Windows\Temp\pyinstaller-4.0.tar.gz"
+
+    Echo "Installing Python"
+    $pythonInstallProc = Start-Process -NoNewWindow `
+            "C:\Windows\Temp\pythoninstall.exe" `
+            -ArgumentList "/passive TargetDir=c:\python InstallAllUsers=0 Include_test=0 Include_Launcher=0 SimpleInstall=1 Shortcuts=0 AssociateFiles=0 InstallLauncherAllUsers=0 Include_tcltk=0" `
+            -Wait -RedirectStandardOutput "C:\Windows\Temp\python-log.txt"
+
+    Echo "Installing Python Packages"
+    $pythonInstallProc = Start-Process -NoNewWindow `
+            "C:\python\Scripts\pip3.exe" `
+            -ArgumentList "install wxpython c:\Windows\Temp\pyinstaller-4.0.tar.gz" `
+            -Wait -RedirectStandardOutput "C:\Windows\Temp\python-pip-log.txt"
+
+    Echo "Downloading NSIS"
+    Invoke-WebRequest `
+            -Uri "https://builds.globus.org/nsis-installer.exe" `
+            -OutFile "C:\Windows\Temp\nsis-installer.exe"
+
+    Echo "Installing NSIS"
+    $nsisInstallProc = Start-Process -NoNewWindow `
+            "C:\Windows\Temp\nsis-installer.exe" `
+            -ArgumentList "/S" `
+            -Wait -RedirectStandardOutput "C:\Windows\Temp\nsis-log.txt"
+
+}
+
 Echo "Downloading Cygwin setup"
 Invoke-WebRequest `
         -Uri "https://cygwin.com/${cygwin_setup}" `
@@ -57,24 +94,26 @@ Invoke-WebRequest `
 
 mkdir "C:\Windows\Temp\Cygwin"
 
-
 Echo "Installing cygwin"
 $cygwinInstallProc = Start-Process -NoNewWindow `
         "C:\Windows\Temp\${cygwin_setup}" `
         -ArgumentList "-R C:\cygwin -s https://mirrors.kernel.org/sourceware/cygwin -A -q -l C:\Windows\Temp\cygwin -P `"$packages`"" `
         -Wait -RedirectStandardOutput "C:\Windows\Temp\setup-log.txt"
 
-if ($InstanceType -eq "mingw32" -or $InstanceType -eq "mingw64")
+if (0)
+#($InstanceType -eq "mingw32" -or $InstanceType -eq "mingw64")
+# can get required packages from cywin now
 {
-    $mingw_repo_m="https://dl.fedoraproject.org/pub/epel/7/x86_64/Packages/m/"
+    $mingw_repo_m="https://dl.fedoraproject.org/pub/fedora/linux/development/32/Everything/x86_64/os/Packages/m/"
+    #$mingw_repo_m="https://dl.fedoraproject.org/pub/epel/7/x86_64/Packages/m/"
     $mingw_prereqs = `
-        "${InstanceType}-gettext",`
-        "${InstanceType}-pcre",`
-        "${InstanceType}-glib2",`
-        "${InstanceType}-glib-networking",`
-        "${InstanceType}-libffi",`
-        "${InstanceType}-win-iconv",`
-        "${InstanceType}-winpthreads"
+        "${InstanceType}-nsis"
+#        "${InstanceType}-pcre",`
+#        "${InstanceType}-glib2",`
+#        "${InstanceType}-glib-networking",`
+#        "${InstanceType}-libffi",`
+#        "${InstanceType}-win-iconv",`
+#        "${InstanceType}-winpthreads"
 
     Echo "Installing additional prereqs ($mingw_prereqs) for mingw from EPEL 7"
     Echo "Fetching x86_64/m dir index"
@@ -120,7 +159,7 @@ $public_key = (Invoke-WebRequest `
 
 [IO.File]::WriteAllLines("c:\cygwin\home\jenkins\.ssh\authorized_keys", `
         $public_key.Content)
-C:\Cygwin\bin\bash --login -c "chown jenkins ~jenkins/.ssh ; chmod -R og-rw ~jenkins/.ssh"
+C:\Cygwin\bin\bash --login -c "chown jenkins ~jenkins/.ssh ; chmod 700 ~jenkins/.ssh; chmod 600 ~jenkins/.ssh/*"
 
 [IO.File]::WriteAllLines("c:\cygwin\home\Administrator\.ssh\authorized_keys", `
         $public_key.Content)
@@ -173,17 +212,20 @@ New-NetFirewallRule -Protocol TCP -LocalPort 22 -Direction Inbound -Action Allow
 Echo "Installing XML::Generator perl module"
 C:\cygwin\bin\bash.exe --login -c "(echo y;echo o conf prerequisites_policy follow;echo o conf commit)|cpan; cpan install XML::Generator"
 
-Echo "Adding IP to /etc/hosts"
-$public_hostname = (Invoke-WebRequest `
-        -Uri http://169.254.169.254/latest/meta-data/public-hostname).Content
-
-$ip_address = (Invoke-WebRequest `
-        -Uri http://169.254.169.254/latest/meta-data/local-ipv4).Content
-
-C:\cygwin\bin\bash.exe --login -c "printf '%s\r\n' '$ip_address $public_hostname' >> /etc/hosts"
+#Echo "Adding IP to /etc/hosts"
+#$public_hostname = (Invoke-WebRequest `
+#        -Uri http://169.254.169.254/latest/meta-data/public-hostname).Content
+#
+#$ip_address = (Invoke-WebRequest `
+#        -Uri http://169.254.169.254/latest/meta-data/local-ipv4).Content
+#
+#C:\cygwin\bin\bash.exe --login -c "printf '%s\r\n' '$ip_address $public_hostname' >> /etc/hosts"
 
 Echo "Starting OpenSSH server"
-Start-Service sshd
+#Start-Service sshd
 Start-Service cygsshd
+#Set-Service doesn't support delayed-auto
+#extra space after = is required
+sc.exe config cygsshd start= delayed-auto
 
 Stop-Transcript
