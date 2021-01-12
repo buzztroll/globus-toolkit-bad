@@ -385,7 +385,7 @@ GSS_CALLCONV gss_init_sec_context(
          * to get back in sync which we will ignore
          */
 
-        if (output_token->length != 0)
+        if (BIO_pending(context->gss_wbio) != 0)
         {
             context->gss_state=GSS_CON_ST_FLAGS;
             break;

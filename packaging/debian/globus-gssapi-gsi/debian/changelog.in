@@ -1,3 +1,10 @@
+globus-gssapi-gsi (1:13.12-1+gt6.@distro@) @distro@; urgency=low
+
+  * Ensure gsi handshake is complete
+  * https://github.com/gridcf/gct/pull/136
+
+ -- Globus Toolkit <support@globus.org>  Tue, 12 Jan 2021 16:50:37 -0600
+
 globus-gssapi-gsi (1:13.11-2+gt6.@distro@) @distro@; urgency=low
 
   * Packaging update to ensure priority of Globus packages
