@@ -14,8 +14,8 @@
 Name:		globus-common
 %global _name %(tr - _ <<< %{name})
 Epoch:          1
-Version:	17.5
-Release:	4%{?dist}
+Version:	17.6
+Release:	1%{?dist}
 Vendor:		Globus Support
 Summary:	Globus Toolkit - Common Library
 
@@ -253,6 +253,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_docdir}/%{name}-%{version}/html/*
 
 %changelog
+* Wed Feb 03 2021 Globus Toolkit <support@globus.org> - 17.6-1
+- remove obsolete storage class from function prototypes
+
 * Wed Nov 27 2019 Globus Toolkit <support@globus.org> - 17.5-4
 - Packaging update to ensure priority of Globus packages
 

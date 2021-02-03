@@ -7,8 +7,8 @@
 #endif
 int
 globus_libc_setenv(
-    register const char *name,
-    register const char *value,
+    const char *name,
+    const char *value,
     int rewrite)
 {
 #ifdef _WIN32

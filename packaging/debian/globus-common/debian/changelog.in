@@ -1,3 +1,9 @@
+globus-common (1:17.6-1+gt6.@distro@) @distro@; urgency=low
+
+  * remove obsolete storage class from function prototypes
+
+ -- Globus Toolkit <support@globus.org>  Wed, 03 Feb 2021 10:03:58 -0600
+
 globus-common (1:17.5-2+gt6.@distro@) @distro@; urgency=low
 
   * Packaging update to ensure priority of Globus packages
