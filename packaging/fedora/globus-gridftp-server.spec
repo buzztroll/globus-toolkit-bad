@@ -1,30 +1,20 @@
 Name:		globus-gridftp-server
 %global soname 6
-%if %{?suse_version}%{!?suse_version:0} >= 1315
-%global apache_license Apache-2.0
-%else
-%global apache_license ASL 2.0
-%endif
 %global _name %(tr - _ <<< %{name})
 Epoch:          1
 Version:	12.24
-Release:	1%{?dist}
+Release:	2%{?dist}
 Vendor:	Globus Support
 Summary:	Globus Toolkit - Globus GridFTP Server
 
 Group:		System Environment/Libraries
-License:	%{apache_license}
+License:	ASL 2.0
 URL:           https://www.globus.org/
 Source:        https://downloads.globus.org/toolkit/gt6/packages/%{_name}-%{version}.tar.gz
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-%if %{?suse_version}%{!?suse_version:0} >= 1315
-Requires:	libglobus_xio_gsi_driver%{?_isa} >= 2
-Requires:       libglobus_xio_udt_driver%{?_isa} >= 1
-%else
 Requires:	globus-xio-gsi-driver%{?_isa} >= 2
 Requires:       globus-xio-udt-driver%{?_isa} >= 1
-%endif
 
 BuildRequires:	globus-gridftp-server-control-devel >= 5
 BuildRequires:	globus-usage-devel >= 3
@@ -36,56 +26,26 @@ BuildRequires:	globus-ftp-control-devel >= 7
 BuildRequires:	globus-gss-assist-devel >= 9
 BuildRequires:  globus-common-progs >= 17
 BuildRequires:	globus-gsi-credential-devel >= 6
-%if %{?fedora}%{!?fedora:0} >= 19 || %{?rhel}%{!?rhel:0} >= 7 || %{?suse_version}%{!?suse_version:0} >= 1315
 BuildRequires:  zlib-devel
 BuildRequires:  automake >= 1.11
 BuildRequires:  autoconf >= 2.60
 BuildRequires:  libtool >= 2.2
-%endif
-%if %{?rhel}%{!?rhel:0} == 5
-BuildRequires:  openssl101e
-%else
 BuildRequires:  openssl
-%endif
 BuildRequires:  pkgconfig
-%if 0%{?suse_version} > 0
-BuildRequires: libtool
-%else
 BuildRequires: libtool-ltdl-devel
-%endif
-%if %{?fedora}%{!?fedora:0} >= 21 || %{?rhel}%{!?rhel:0} >= 5
 # Used for some tests which are skipped if not present
 BuildRequires: fakeroot
-%endif
-
-%if %{?suse_version}%{!?suse_version:0} >= 1315
-%global mainpkg lib%{_name}%{soname}
-%global nmainpkg -n %{mainpkg}
-%else
-%global mainpkg %{name}
-%endif
-
-%if %{?nmainpkg:1}%{!?nmainpkg:0} != 0
-%package %{?nmainpkg}
-Summary:	Globus Toolkit - Globus GridFTP Server
-Group:		System Environment/Libraries
-%endif
 
 %package progs
 Summary:	Globus Toolkit - Globus GridFTP Server Programs
 Group:		Applications/Internet
-Requires:	%{mainpkg}%{?_isa} = %{epoch}:%{version}-%{release}
-%if %{?suse_version}%{!?suse_version:0} >= 1315
-Requires:	libglobus_xio_gsi_driver%{?_isa} >= 2
-%else
+Requires:	%{name}%{?_isa} = %{epoch}:%{version}-%{release}
 Requires:	globus-xio-gsi-driver%{?_isa} >= 2
-%endif
-
 
 %package devel
 Summary:	Globus Toolkit - Globus GridFTP Server Development Files
 Group:		Development/Libraries
-Requires:	%{mainpkg}%{?_isa} = %{epoch}:%{version}-%{release}
+Requires:	%{name}%{?_isa} = %{epoch}:%{version}-%{release}
 Requires:	globus-gridftp-server-control-devel%{?_isa} >= 5
 Requires:	globus-usage-devel%{?_isa} >= 3
 Requires:	globus-xio-gsi-driver-devel%{?_isa} >= 2
@@ -95,17 +55,6 @@ Requires:	globus-gfork-devel%{?_isa} >= 3
 Requires:	globus-ftp-control-devel%{?_isa} >= 7
 Requires:	globus-gss-assist-devel%{?_isa} >= 9
 Requires:	globus-gsi-credential-devel%{?_isa} >= 6
-
-%if %{?suse_version}%{!?suse_version:0} >= 1315
-%description %{?nmainpkg}
-The Globus Toolkit is an open source software toolkit used for building Grid
-systems and applications. It is being developed by the Globus Alliance and
-many others all over the world. A growing number of projects and companies are
-using the Globus Toolkit to unlock the potential of grids for their cause.
-
-The %{mainpkg} package contains:
-Globus GridFTP Server
-%endif
 
 %description
 The Globus Toolkit is an open source software toolkit used for building Grid
@@ -138,22 +87,12 @@ Globus GridFTP Server Development Files
 %setup -q -n %{_name}-%{version}
 
 %build
-%if %{?fedora}%{!?fedora:0} >= 19 || %{?rhel}%{!?rhel:0} >= 7 || %{?suse_version}%{!?suse_version:0} >= 1315
 # Remove files that should be replaced during bootstrap
 rm -rf autom4te.cache
 
 autoreconf -if
-%endif
 
 export GRIDMAP=/etc/grid-security/grid-mapfile
-
-%if %{?suse_version}%{!?suse_version:0} >= 1315
-%global default_runlevels --with-default-runlevels=235
-%endif
-
-%if %{?rhel}%{!?rhel:0} == 5
-export OPENSSL="$(which openssl101e)"
-%endif
 
 %configure \
            --disable-static \
@@ -175,18 +114,10 @@ mv $RPM_BUILD_ROOT%{_sysconfdir}/gridftp.gfork.default $RPM_BUILD_ROOT%{_sysconf
 # Remove libtool archives (.la files)
 find $RPM_BUILD_ROOT%{_libdir} -name 'lib*.la' -exec rm -v '{}' \;
 
-%if %{?suse_version}%{!?suse_version:0} >= 1315
-sed -i -e 's/Required-Stop:.*/Required-Stop: $network $local_fs/' $RPM_BUILD_ROOT%{_sysconfdir}/init.d/%{name}
-sed -i -e 's/Required-Stop:.*/Required-Stop: $network $local_fs/' $RPM_BUILD_ROOT%{_sysconfdir}/init.d/globus-gridftp-sshftp
-%endif
-
-%if %{?fedora}%{!?fedora:0} >= 28 || %{?rhel}%{!?rhel:0} >= 6
 # Move from /etc/init.d to /etc/rc.d/init.d to avoid errors installing
 # chkconfig on fedora 30
 mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}/rc.d
 mv $RPM_BUILD_ROOT%{_sysconfdir}/init.d $RPM_BUILD_ROOT%{_sysconfdir}/rc.d/
-%endif
-
 
 %check
 make %{_smp_mflags} check
@@ -217,7 +148,7 @@ if [ $1 -eq 1 ]; then
     /sbin/service globus-gridftp-sshftp condrestart > /dev/null 2>&1 || :
 fi
 
-%files %{?nmainpkg}
+%files
 %defattr(-,root,root,-)
 %dir %{_docdir}/%{name}-%{version}
 %{_docdir}/%{name}-%{version}/GLOBUS_LICENSE
@@ -228,11 +159,7 @@ fi
 %config(noreplace) %{_sysconfdir}/gridftp.conf
 %config(noreplace) %{_sysconfdir}/gridftp.gfork
 %config(noreplace) %{_sysconfdir}/xinetd.d/gridftp
-%if %{?fedora}%{!?fedora:0} >= 28 || %{?rhel}%{!?rhel:0} >= 6
 %{_sysconfdir}/rc.d/init.d/*
-%else
-%{_sysconfdir}/init.d/*
-%endif
 %{_sbindir}/*
 %{_mandir}/man8/*
 

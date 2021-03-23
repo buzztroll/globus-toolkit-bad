@@ -2,54 +2,40 @@
 
 Name:		globus-simple-ca
 %global _name %(tr - _ <<< %{name})
-%if %{?suse_version}%{!?suse_version:0} >= 1315
-%global apache_license Apache-2.0
-%else
-%global apache_license ASL 2.0
-%endif
 Epoch:          1
-Version:	4.25
+Version:	4.26
 Release:	1%{?dist}
 Vendor:	Globus Support
 Summary:	Globus Toolkit - Simple CA
 
 Group:		System Environment/Libraries
-License:	%{apache_license}
+License:	ASL 2.0
 URL:           https://www.globus.org/
 Source:        https://downloads.globus.org/toolkit/gt6/packages/%{_name}-%{version}.tar.gz
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-%if %{?suse_version}%{!?suse_version:0} >= 1315
-BuildRequires:  shadow
-Requires(pre):  shadow
-%endif
 Requires:       globus-common-progs
 Requires:  openssl
 Requires(post): openssl
 Requires(post): globus-gsi-cert-utils-progs
-%if %{?fedora}%{!?fedora:0} >= 19 || %{?rhel}%{!?rhel:0} >= 7 || %{?suse_version}%{!?suse_version:0} >= 1315
 BuildRequires:  automake >= 1.11
 BuildRequires:  autoconf >= 2.60
 BuildRequires:  libtool >= 2.2
-%endif
 BuildRequires:  globus-common-progs >= 14
 BuildRequires:  globus-common-devel >= 14
 BuildRequires:  globus-gsi-cert-utils-progs
 BuildRequires:  pkgconfig
 
-%if %{?suse_version}%{!?suse_version:0} >= 1315
-BuildRequires:  openssl
-BuildRequires:  libopenssl-devel
-%else
 BuildRequires:  openssl
 BuildRequires:  openssl-devel
-%endif
 
-%if %{?fedora}%{!?fedora:0} >= 18 || %{?rhel}%{!?rhel:0} >= 6
-BuildRequires:  perl-Test-Simple
-%endif
+BuildRequires:  perl
+BuildRequires:  perl(File::Temp)
+BuildRequires:  perl(IPC::Open3)
+BuildRequires:  perl(Symbol)
+BuildRequires:  perl(Test::More)
+
 BuildArch:      noarch
-
 
 %description
 The Globus Toolkit is an open source software toolkit used for building Grid
@@ -64,12 +50,10 @@ Globus Simple CA
 %setup -q -n %{_name}-%{version}
 
 %build
-%if %{?fedora}%{!?fedora:0} >= 19 || %{?rhel}%{!?rhel:0} >= 7
 # Remove files that should be replaced during bootstrap
 rm -rf autom4te.cache
 
 autoreconf -if
-%endif
 
 %global openssl openssl
 
@@ -139,6 +123,9 @@ fi
 %{_mandir}/man1/*
 
 %changelog
+* Tue Mar 30 2021 Globus Toolkit <support@globus.org> - 4.26-1
+- modernize package metadata
+
 * Tue Mar 31 2020 Globus Toolkit <support@globus.org> - 4.25-1
 - change default signature alg to sha256
 

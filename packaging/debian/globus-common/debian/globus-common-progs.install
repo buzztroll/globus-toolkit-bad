@@ -1,0 +1,6 @@
+#! /usr/bin/dh-exec
+
+usr/bin/*
+usr/sbin/*
+usr/share/globus/*
+usr/share/man/man1/*

@@ -1,6 +1,6 @@
 AC_PREREQ([2.60])
 
-AC_INIT([globus_callout], [3.15], [https://github.com/globus/globus-toolkit/issues])
+AC_INIT([globus_callout], [3.16], [https://github.com/globus/globus-toolkit/issues])
 AC_SUBST([MAJOR_VERSION], [${PACKAGE_VERSION%%.*}])
 AC_SUBST([MINOR_VERSION], [${PACKAGE_VERSION##*.}])
 AC_SUBST([AGE_VERSION], [3])
@@ -33,7 +33,8 @@ fi
 
 AC_PATH_PROGS([DOXYGEN], doxygen)
 
-AM_CONDITIONAL([ENABLE_DOXYGEN], [test "$DOXYGEN" != "no"])
+AM_CONDITIONAL([ENABLE_DOXYGEN], [test "$DOXYGEN" != ""])
+AM_CONDITIONAL([DIST_DOC], [test "$DOXYGEN" != "" || test -d "${srcdir}/library/doc"])
 
 AC_CONFIG_FILES(
         Makefile

@@ -1,7 +1,7 @@
 Source: globus-xio-pipe-driver
 Priority: optional
 Maintainer: Globus Support <support@globus.org>
-Build-Depends: debhelper (>= 5), autotools-dev, quilt, libglobus-common-dev (>= 14), libglobus-xio-dev (>= 3), pkg-config
+Build-Depends: debhelper (>= 9), dh-exec, autotools-dev, quilt, libglobus-common-dev (>= 14), libglobus-xio-dev (>= 3), pkg-config
 Standards-Version: 3.8.4
 Section: net
 Homepage: http://www.globus.org/
@@ -36,18 +36,3 @@ Description: Globus Toolkit - Globus Pipe Driver Development Files
  .
  The libglobus-xio-pipe-driver-dev package contains:
  Globus Pipe Driver Development Files
-
-Package: libglobus-xio-pipe-driver-dbg
-Section: debug
-Priority: extra
-Architecture: any
-Depends: libglobus-xio-pipe-driver (= ${binary:Version}), ${misc:Depends}
-Description: Globus Toolkit - Globus Pipe Driver Debug Symbols
- The Globus Toolkit is an open source software toolkit used for
- building Grid systems and applications. It is being developed by the
- Globus Alliance and many others all over the world. A growing number
- of projects and companies are using the Globus Toolkit to unlock the
- potential of grids for their cause.
- .
- The libglobus-xio-pipe-driver-dbg package contains:
- Globus Pipe Driver Debug Symbols

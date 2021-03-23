@@ -29,6 +29,7 @@ clean-local:
 endif
 
 all-local: $(DOC_STAMPS)
+doc: $(DOC_STAMPS)
 
 # Only install manpages that are prefixed by globus
 install-data-local: $(DOC_STAMPS)
@@ -45,7 +46,11 @@ install-data-local: $(DOC_STAMPS)
 		done ; \
 	fi
 
-EXTRA_DIST = dirt.sh $(doc_DATA) \
+if DIST_DOC
+dist_doc = doc
+endif
+
+EXTRA_DIST = dirt.sh $(doc_DATA) $(dist_doc) \
     globus-vararg-enums-doxygen-filter.pl
 
 distuninstallcheck:

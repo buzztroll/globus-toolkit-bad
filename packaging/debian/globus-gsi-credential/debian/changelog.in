@@ -1,3 +1,15 @@
+globus-gsi-credential (1:7.15-1+gt6.@distro@) @distro@; urgency=low
+
+  * Use prebuilt doxyxgen if available
+
+ -- Globus Toolkit <support@globus.org>  Fri, 26 Mar 2021 19:20:07 +0000
+
+globus-gsi-credential (1:7.14-3+gt6.@distro@) @distro@; urgency=low
+
+  * Modernize package metadata
+
+ -- Globus Toolkit <support@globus.org>  Thu, 25 Mar 2021 09:15:14 -0400
+
 globus-gsi-credential (1:7.14-2+gt6.@distro@) @distro@; urgency=low
 
   * Packaging update to ensure priority of Globus packages

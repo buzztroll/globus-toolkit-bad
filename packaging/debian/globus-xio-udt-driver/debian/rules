@@ -5,8 +5,6 @@ include /usr/share/dpkg/default.mk
 
 name = globus-xio-udt-driver
 _prefix = /usr
-_bindir = $(_prefix)/bin
-_sbindir = $(_prefix)/sbin
 _sysconfdir = /etc
 _includedir = $(_prefix)/include
 _datadir = $(_prefix)/share
@@ -16,17 +14,13 @@ _docdir = $(_datadir)/doc
 override_dh_auto_configure:
 	dh_auto_configure -- \
 	    --sysconfdir=$(_sysconfdir) \
-	    --enable-silent-rules \
 	    --docdir='$(_docdir)/lib$(name)' \
 	    --includedir='$(_includedir)/globus' \
 	    --datadir='$(_datadir)/globus' \
 	    --libexecdir='$(_datadir)/globus' \
 	    --disable-static
 
-override_dh_strip:
-	dh_strip --dbg-package=lib$(name)-dbg
-
 %:
-	dh $@ --with autotools-dev
+	dh $@
 
-.PHONY: override_dh_auto_configure override_dh_strip
+.PHONY: override_dh_auto_configure

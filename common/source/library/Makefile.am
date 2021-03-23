@@ -182,11 +182,16 @@ libglobus_thread_windows_la_SOURCES = globus_thread_windows.c globus_thread_wind
 libglobus_thread_windows_la_LDFLAGS = $(PACKAGE_DEP_LIBS) -module -no-undefined -avoid-version
 endif
 
+if DIST_DOC
+dist_doc = doc
+endif
+
 EXTRA_DIST = \
         globus_callback_nothreads.c \
         globus_callback_threads.c \
         $(pthreads_sources) \
         $(windowsthreads_sources) \
+	$(dist_doc) \
         sym
 
 DOC_STAMPS =
@@ -203,6 +208,7 @@ clean-local:
 endif
 
 all-local: $(DOC_STAMPS)
+doc: $(DOC_STAMPS)
 
 install-data-local: $(DOC_STAMPS)
 	if test -d doc/man/man3; then \

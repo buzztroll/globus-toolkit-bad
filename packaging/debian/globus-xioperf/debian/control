@@ -1,7 +1,7 @@
 Source: globus-xioperf
 Priority: optional
 Maintainer: Globus Support <support@globus.org>
-Build-Depends: debhelper (>= 5), autotools-dev, quilt, libglobus-common-dev (>= 14), libglobus-xio-dev (>= 3), pkg-config
+Build-Depends: debhelper (>= 9), dh-exec, autotools-dev, quilt, libglobus-common-dev (>= 14), libglobus-xio-dev (>= 3), pkg-config
 Standards-Version: 3.9.2
 Section: net
 Homepage: http://www.globus.org/
@@ -19,18 +19,3 @@ Description: Globus Toolkit - XIO Performance Tool Programs
  .
  The globus-gass-copy-progs package contains:
  XIO Performance Tool Programs
-
-Package: globus-xioperf-dbg
-Section: debug
-Priority: extra
-Architecture: any
-Depends: globus-xioperf (= ${binary:Version})
-Description: Globus Toolkit - XIO Performance Tool Debug Symbols
- The Globus Toolkit is an open source software toolkit used for
- building Grid systems and applications. It is being developed by the
- Globus Alliance and many others all over the world. A growing number
- of projects and companies are using the Globus Toolkit to unlock the
- potential of grids for their cause.
- .
- The globus-gass-copy-dbg package contains:
- XIO Performance Tool Debug Symbols

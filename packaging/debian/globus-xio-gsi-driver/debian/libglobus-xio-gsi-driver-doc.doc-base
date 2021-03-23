@@ -5,5 +5,5 @@ Abstract: The Globus toolkit, Globus XIO GSI Driver
 Section: Programming
 
 Format: HTML
-Index: /usr/share/doc/libglobus-xio-gsi-driver-dev/html/index.html
-Files: /usr/share/doc/libglobus-xio-gsi-driver-dev/html/*.html
+Index: /usr/share/doc/libglobus-xio-gsi-driver/html/index.html
+Files: /usr/share/doc/libglobus-xio-gsi-driver/html/*.html

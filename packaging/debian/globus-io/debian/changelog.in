@@ -1,3 +1,15 @@
+globus-io (1:11.11-1+gt6.@distro@) @distro@; urgency=low
+
+  * Fix tests to run in chroot without homedir
+
+ -- Globus Toolkit <support@globus.org>  Sat, 27 Mar 2021 02:15:57 +0000
+
+globus-io (1:11.10-3+gt6.@distro@) @distro@; urgency=low
+
+  * Modernize package metadta
+
+ -- Globus Toolkit <support@globus.org>  Thu, 25 Nov 2021 10:10:16 -0400
+
 globus-io (1:11.10-2+gt6.@distro@) @distro@; urgency=low
 
   * Packaging update to ensure priority of Globus packages

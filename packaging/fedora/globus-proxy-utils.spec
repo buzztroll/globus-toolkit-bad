@@ -1,27 +1,18 @@
 Name:		globus-proxy-utils
-%if %{?suse_version}%{!?suse_version:0} >= 1315
-%global apache_license Apache-2.0
-%else
-%global apache_license ASL 2.0
-%endif
 %global _name %(tr - _ <<< %{name})
 Epoch:          1
 Version:	6.20
-Release:	2%{?dist}
+Release:	3%{?dist}
 Vendor:	Globus Support
 Summary:	Globus Toolkit - Globus GSI Proxy Utility Programs
 
 Group:		Applications/Internet
-License:	%{apache_license}
+License:	ASL 2.0
 URL:           https://www.globus.org/
 Source:        https://downloads.globus.org/toolkit/gt6/packages/%{_name}-%{version}.tar.gz
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-%if %{?rhel}%{!?rhel:0} == 5
-Requires:  openssl101e%{?_isa}
-%else
 Requires:  openssl%{?_isa}
-%endif
 
 BuildRequires:	globus-gsi-credential-devel >= 5
 BuildRequires:	globus-gsi-callback-devel >= 4
@@ -33,30 +24,18 @@ BuildRequires:	globus-gsi-cert-utils-devel >= 8
 BuildRequires:	globus-common-devel >= 14
 BuildRequires:	globus-gsi-sysconfig-devel >= 5
 BuildRequires:	globus-gssapi-gsi-devel >= 4
-%if %{?fedora}%{!?fedora:0} >= 19 || %{?rhel}%{!?rhel:0} >= 7 || %{?suse_version}%{!?suse_version:0} >= 1315
 BuildRequires:  automake >= 1.11
 BuildRequires:  autoconf >= 2.60
 BuildRequires:  libtool >= 2.2
-%endif
 BuildRequires:  pkgconfig
-%if %{?fedora}%{!?fedora:0} >= 18 || %{?rhel}%{!?rhel:0} >= 6
-BuildRequires:  perl-Test-Simple
-%endif
 
-%if %{?suse_version}%{!?suse_version:0} >= 1315
-BuildRequires:  openssl
-BuildRequires:  libopenssl-devel
-%else
-%if %{?rhel}%{!?rhel:0} == 5
-BuildRequires:  openssl101e
-BuildRequires:  openssl101e-devel
-BuildConflicts: openssl-devel
-%else
+BuildRequires:  perl
+BuildRequires:  perl(File::Temp)
+BuildRequires:  perl(IO::Handle)
+BuildRequires:  perl(Test::More)
+
 BuildRequires:  openssl
 BuildRequires:  openssl-devel
-%endif
-%endif
-
 
 %description
 The Globus Toolkit is an open source software toolkit used for building Grid
@@ -72,16 +51,10 @@ Globus GSI Proxy Utility Programs
 
 %build
 # Remove files that should be replaced during bootstrap
-%if %{?fedora}%{!?fedora:0} >= 19 || %{?rhel}%{!?rhel:0} >= 7 || %{?suse_version}%{!?suse_version:0} >= 1315
 # Remove files that should be replaced during bootstrap
 rm -rf autom4te.cache
 
 autoreconf -if
-%endif
-
-%if %{?rhel}%{!?rhel:0} == 5
-export OPENSSL="$(which openssl101e)"
-%endif
 
 %configure \
            --disable-static \

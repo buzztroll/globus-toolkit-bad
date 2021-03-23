@@ -79,6 +79,8 @@ TESTS_ENVIRONMENT = \
     X509_CERT_DIR=$(X509_CERT_DIR) \
     GRIDMAP=$(GRIDMAP) \
     PATH="$(TEST_PATH)" \
+    HOME="$(abs_builddir)" \
+    GLOBUS_HOSTNAME="127.0.0.1" \
     $(CYGPATH_W_DEFINED);
 
 LOG_COMPILER = $(LIBTOOL) --mode=execute \

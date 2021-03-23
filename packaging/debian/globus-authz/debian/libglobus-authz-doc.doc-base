@@ -5,5 +5,5 @@ Abstract: The Globus toolkit, Globus authz library
 Section: Programming
 
 Format: HTML
-Index: /usr/share/doc/libglobus-authz-dev/html/index.html
-Files: /usr/share/doc/libglobus-authz-dev/html/*.html
+Index: /usr/share/doc/libglobus-authz0/html/index.html
+Files: /usr/share/doc/libglobus-authz0/html/*.html

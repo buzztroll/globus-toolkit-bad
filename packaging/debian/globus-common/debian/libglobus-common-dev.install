@@ -1,0 +1,6 @@
+#! /usr/bin/dh-exec
+
+usr/include/globus/*.h
+usr/lib/*/libglobus_common.so
+usr/lib/*/libglobus_memory_debug.so
+usr/lib/*/pkgconfig/*pc

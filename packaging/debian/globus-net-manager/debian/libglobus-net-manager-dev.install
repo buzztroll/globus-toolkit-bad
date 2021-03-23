@@ -1,0 +1,5 @@
+#! /usr/bin/dh-exec
+
+usr/include/globus/*manager.h
+usr/lib/*/*manager.so
+usr/lib/*/pkgconfig/*manager.pc

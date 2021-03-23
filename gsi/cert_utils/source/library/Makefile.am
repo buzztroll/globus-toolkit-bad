@@ -19,6 +19,10 @@ libglobus_gsi_cert_utils_la_SOURCES = \
 	globus_gsi_cert_utils_error.c
 
 
+if DIST_DOC
+dist_doc = doc
+endif
+
 DOC_STAMPS =
 if ENABLE_DOXYGEN
 DOC_STAMPS += doc-stamp
@@ -33,6 +37,9 @@ clean-local:
 endif
 
 all-local: $(DOC_STAMPS)
+doc: $(DOC_STAMPS)
+
+EXTRA_DIST = $(dist_doc)
 
 install-data-local: $(DOC_STAMPS)
 	if test -d doc/man/man3; then \

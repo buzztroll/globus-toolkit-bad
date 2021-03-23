@@ -10,3 +10,6 @@ EXTRA_DIST = \
 
 distuninstallcheck:
 	@:
+
+doc:
+	$(MAKE) $(AM_MAKEFLAGS) -C library doc

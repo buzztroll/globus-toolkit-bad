@@ -46,6 +46,10 @@ SUFFIXES = .txt .1
 MAINTAINERCLEANFILES = $(man_MANS)
 endif
 
+if DIST_DOC
+dist_doc = doc
+endif
+
 DOC_STAMPS =
 if ENABLE_DOXYGEN
 DOC_STAMPS += doc-stamp
@@ -60,6 +64,7 @@ clean-local:
 endif
 
 all-local: $(DOC_STAMPS)
+doc: $(DOC_STAMPS)
 
 install-data-local: $(DOC_STAMPS)
 	if test -d doc/man/man3; then \
@@ -79,6 +84,7 @@ EXTRA_DIST = \
 	dirt.sh \
 	$(doc_DATA) \
         $(man_MANS) \
+        $(dist_doc) \
         $(MANUAL_SOURCE) \
         globus-url-copy.txt
 

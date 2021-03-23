@@ -2,7 +2,7 @@ Name:		globus-gridftp
 %global _name %(tr - _ <<< %{name})
 Epoch:          1
 Version:	6.0
-Release:	1%{?dist}
+Release:	2%{?dist}
 Vendor:	Globus Support
 Summary:	Globus Toolkit - GridFTP Bundle
 

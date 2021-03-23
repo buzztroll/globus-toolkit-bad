@@ -20,7 +20,11 @@ libglobus_authz_la_SOURCES = \
 	globus_gsi_authz_constants.h \
 	globus_i_gsi_authz.h
 
-EXTRA_DIST = dirt.sh $(doc_DATA)
+if DIST_DOC
+dist_doc = doc
+endif
+
+EXTRA_DIST = dirt.sh $(doc_DATA) $(dist_doc)
 
 DOC_STAMPS =
 if ENABLE_DOXYGEN
@@ -36,6 +40,7 @@ clean-local:
 endif
 
 all-local: $(DOC_STAMPS)
+doc: $(DOC_STAMPS)
 
 install-data-local: $(DOC_STAMPS)
 	if test -d doc/man/man3; then \

@@ -1,7 +1,7 @@
 Source: globus-gsi-openssl-error
 Priority: optional
 Maintainer: Globus Support <support@globus.org>
-Build-Depends: debhelper (>= 6.0.7~), autotools-dev, libglobus-common-dev (>= 14), libssl-dev, doxygen (<< 1.6.2-1) | doxygen (>> 1.6.2-1), graphviz, pkg-config
+Build-Depends: debhelper (>= 9), dh-exec, autotools-dev, libglobus-common-dev (>= 14), libssl-dev, pkg-config
 Standards-Version: 3.8.4
 Section: net
 Homepage: http://www.globus.org/
@@ -48,18 +48,3 @@ Description: Globus Toolkit - Globus OpenSSL Error Handling Documentation Files
  .
  The libglobus-gsi-openssl-error-doc package contains:
  Globus OpenSSL Error Handling Documentation Files
-
-Package: libglobus-gsi-openssl-error-dbg
-Section: debug
-Priority: extra
-Architecture: any
-Depends: libglobus-gsi-openssl-error0 (= ${binary:Version}), ${misc:Depends}
-Description: Globus Toolkit - Globus OpenSSL Error Handling Debug Symbols
- The Globus Toolkit is an open source software toolkit used for
- building Grid systems and applications. It is being developed by the
- Globus Alliance and many others all over the world. A growing number
- of projects and companies are using the Globus Toolkit to unlock the
- potential of grids for their cause.
- .
- The libglobus-gsi-openssl-error-dbg package contains:
- Globus OpenSSL Error Handling Debug Symbols

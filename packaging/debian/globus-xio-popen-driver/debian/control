@@ -1,7 +1,7 @@
 Source: globus-xio-popen-driver
 Priority: optional
 Maintainer: Globus Support <support@globus.org>
-Build-Depends: debhelper (>= 5), autotools-dev, quilt, libglobus-xio-dev
+Build-Depends: debhelper (>= 9), dh-exec, autotools-dev, quilt, libglobus-xio-dev
 Standards-Version: 3.9.2
 Section: net
 Homepage: http://www.globus.org/
@@ -36,18 +36,3 @@ Description: Globus Toolkit - Globus XIO Pipe Open Driver Development Files
  .
  The libglobus-xio-popen-driver-dev package contains:
  Globus XIO Pipe Open Driver Development Files
-
-Package: libglobus-xio-popen-driver-dbg
-Section: debug
-Priority: extra
-Architecture: any
-Depends: libglobus-xio-popen-driver (= ${binary:Version}), ${misc:Depends}
-Description: Globus Toolkit - Globus XIO Pipe Open Driver Debug Symbols
- The Globus Toolkit is an open source software toolkit used for
- building Grid systems and applications. It is being developed by the
- Globus Alliance and many others all over the world. A growing number
- of projects and companies are using the Globus Toolkit to unlock the
- potential of grids for their cause.
- .
- The libglobus-xio-popen-driver-dbg package contains:
- Globus XIO Pipe Open Driver Debug Symbols

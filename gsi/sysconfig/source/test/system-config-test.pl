@@ -45,14 +45,18 @@ sub get_home_dir {
     my $homedir = (getpwuid($<))[7];
     my ($rc, $output);
 
-    $output = qx($system_config_test get_home_dir);
-    $rc = $? << 8;
+    SKIP: {
+        skip 1, "User home dir doesn't exist" unless -d $homedir;
 
-    $output =~ s/\n$//;
+        $output = qx($system_config_test get_home_dir);
+        $rc = $? << 8;
 
-    diag($output) if $output ne "";
+        $output =~ s/\n$//;
 
-    ok($homedir eq $output, "get_home_dir");
+        diag($output) if $output ne "";
+
+        ok($homedir eq $output, "get_home_dir");
+    }
 }
 
 sub file_exists_true {

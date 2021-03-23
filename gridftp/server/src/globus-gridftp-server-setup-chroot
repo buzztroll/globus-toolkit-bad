@@ -59,7 +59,7 @@ case $(uname) in
         ;;
 esac
 
-if [ ! -c "$ROOT_DIR/dev/null" ]; then
+if [ ! -c "$ROOT_DIR/dev/null" ] && [ -z "$FAKEROOTKEY" ]; then
     echo "Could not create /dev devices."
     exit 1
 fi

@@ -15,8 +15,11 @@ libglobus_gsi_authz_callout_error_la_SOURCES = \
 	globus_gsi_authz_callout_error.h \
 	globus_gsi_authz_callout_error.c
 
-EXTRA_DIST = dirt.sh $(doc_DATA)
+if DIST_DOC
+dist_doc = doc
+endif
 
+EXTRA_DIST = dirt.sh $(doc_DATA) $(dist_doc)
 
 DOC_STAMPS =
 if ENABLE_DOXYGEN
@@ -32,6 +35,7 @@ clean-local:
 endif
 
 all-local: $(DOC_STAMPS)
+doc: $(DOC_STAMPS)
 
 install-data-local: $(DOC_STAMPS)
 	if test -d doc/man/man3; then \

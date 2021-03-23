@@ -45,7 +45,13 @@ xio_driver_test_LDADD = \
 if ENABLE_PYTHON
 check_PROGRAMS += python_test
 TESTS_ENVIRONMENT = export \
+    GLOBUS_HOSTNAME=127.0.0.1 \
+    HOME="$(abs_builddir)" \
     PYTHONPATH="$${PYTHONPATH:+$$PYTHONPATH:}$(srcdir)";
+else
+TESTS_ENVIRONMENT = export \
+    HOME="$(abs_builddir)" \
+    GLOBUS_HOSTNAME=127.0.0.1;
 endif
 
 EXTRA_DIST = \

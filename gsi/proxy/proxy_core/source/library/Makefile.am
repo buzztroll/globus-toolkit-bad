@@ -23,6 +23,10 @@ libglobus_gsi_proxy_core_la_SOURCES = \
 	globus_gsi_proxy_constants.h \
 	globus_gsi_proxy_error.c 
 
+if DIST_DOC
+dist_doc = doc
+endif
+
 DOC_STAMPS =
 if ENABLE_DOXYGEN
 DOC_STAMPS += doc-stamp
@@ -37,6 +41,7 @@ clean-local:
 endif
 
 all-local: $(DOC_STAMPS)
+doc: $(DOC_STAMPS)
 
 install-data-local: $(DOC_STAMPS)
 	if test -d doc/man/man3; then \
@@ -51,4 +56,4 @@ install-data-local: $(DOC_STAMPS)
 			$(INSTALL) -m 644 doc/$$f $(DESTDIR)$(docdir)/$$f ; \
 		done ; \
 	fi
-EXTRA_DIST=sym
+EXTRA_DIST=sym $(dist_doc)

@@ -1,0 +1,5 @@
+#! /usr/bin/dh-exec
+
+usr/sbin/myproxy-server
+usr/share/man/man[58]/*myproxy-server*
+etc/myproxy-server.config

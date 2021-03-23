@@ -1,19 +1,14 @@
 Name:		globus-gss-assist
 %global soname 3
-%if %{?suse_version}%{!?suse_version:0} >= 1315
-%global apache_license Apache-2.0
-%else
-%global apache_license ASL 2.0
-%endif
 %global _name %(tr - _ <<< %{name})
 Epoch:          1
-Version:	11.2
-Release:	3%{?dist}
+Version:	11.3
+Release:	1%{?dist}
 Vendor:	Globus Support
 Summary:	Globus Toolkit - GSSAPI Assist library
 
 Group:		System Environment/Libraries
-License:	%{apache_license}
+License:	ASL 2.0
 URL:           https://www.globus.org/
 Source:        https://downloads.globus.org/toolkit/gt6/packages/%{_name}-%{version}.tar.gz
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
@@ -25,50 +20,33 @@ BuildRequires:	globus-callout-devel >= 2
 BuildRequires:	globus-gssapi-gsi-devel >= 13
 BuildRequires:	globus-gsi-credential-devel >= 6
 BuildRequires:	globus-common-progs >= 14
-BuildRequires:	doxygen
-BuildRequires:	graphviz
-%if "%{?rhel}" == "5"
-BuildRequires:	graphviz-gd
-%endif
-%if %{?fedora}%{!?fedora:0} >= 19 || %{?rhel}%{!?rhel:0} >= 7 || %{?suse_version}%{!?suse_version:0} >= 1315
 BuildRequires:  automake >= 1.11
 BuildRequires:  autoconf >= 2.60
 BuildRequires:  libtool >= 2.2
-%endif
 BuildRequires:  pkgconfig
-%if %{?fedora}%{!?fedora:0} >= 18 || %{?rhel}%{!?rhel:0} >= 6
-BuildRequires:  perl-Test-Simple
-%endif
 
-%if %{?rhel}%{!?rhel:0} == 5
-BuildRequires:  openssl101e
-%else
+BuildRequires:  perl-generators
+
+BuildRequires:  perl(English)
+BuildRequires:  perl(Fcntl)
+BuildRequires:  perl(File::Copy)
+BuildRequires:  perl(FileHandle)
+BuildRequires:  perl(File::Spec)
+BuildRequires:  perl(Getopt::Long)
+BuildRequires:	perl(Test::More)
+
 BuildRequires:  openssl
-%endif
-
-%if %{?suse_version}%{!?suse_version:0} >= 1315
-%global mainpkg lib%{_name}%{soname}
-%global nmainpkg -n %{mainpkg}
-%else
-%global mainpkg %{name}
-%endif
-
-%if %{?nmainpkg:1}%{!?nmainpkg:0} != 0
-%package %{?nmainpkg}
-Summary:	Globus Toolkit - GSSAPI Assist library Programs
-Group:		System Environment/Libraries
-%endif
 
 %package progs
 Summary:	Globus Toolkit - GSSAPI Assist library Programs
 Group:		Applications/Internet
-Requires:	%{mainpkg}%{?_isa} = %{epoch}:%{version}-%{release}
+Requires:	%{name}%{?_isa} = %{epoch}:%{version}-%{release}
 Requires:	globus-common-progs >= 14
 
 %package devel
 Summary:	Globus Toolkit - GSSAPI Assist library Development Files
 Group:		Development/Libraries
-Requires:	%{mainpkg}%{?_isa} = %{epoch}:%{version}-%{release}
+Requires:	%{name}%{?_isa} = %{epoch}:%{version}-%{release}
 Requires:	globus-gsi-cert-utils-devel%{?_isa} >= 8
 Requires:	globus-gsi-credential-devel%{?_isa} >= 6
 Requires:	globus-gsi-sysconfig-devel%{?_isa} >= 7
@@ -79,21 +57,8 @@ Requires:	globus-gssapi-gsi-devel%{?_isa} >= 13
 %package doc
 Summary:	Globus Toolkit - GSSAPI Assist library Documentation Files
 Group:		Documentation
-%if %{?fedora}%{!?fedora:0} >= 10 || %{?rhel}%{!?rhel:0} >= 6
 BuildArch:	noarch
-%endif
-Requires:	%{mainpkg} = %{epoch}:%{version}-%{release}
-
-%if %{?suse_version}%{!?suse_version:0} >= 1315
-%description %{?nmainpkg}
-The Globus Toolkit is an open source software toolkit used for building Grid
-systems and applications. It is being developed by the Globus Alliance and
-many others all over the world. A growing number of projects and companies are
-using the Globus Toolkit to unlock the potential of grids for their cause.
-
-The %{mainpkg} package contains:
-GSSAPI Assist library
-%endif
+Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description
 The Globus Toolkit is an open source software toolkit used for building Grid
@@ -135,16 +100,10 @@ GSSAPI Assist library Documentation Files
 %setup -q -n %{_name}-%{version}
 
 %build
-%if %{?fedora}%{!?fedora:0} >= 19 || %{?rhel}%{!?rhel:0} >= 7 || %{?suse_version}%{!?suse_version:0} >= 1315
 # Remove files that should be replaced during bootstrap
 rm -rf autom4te.cache
 
 autoreconf -if
-%endif
-
-%if %{?rhel}%{!?rhel:0} == 5
-export OPENSSL="$(which openssl101e)"
-%endif
 
 %configure \
            --disable-static \
@@ -171,7 +130,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %postun %{?nmainpkg} -p /sbin/ldconfig
 
-%files %{?nmainpkg}
+%files
 %defattr(-,root,root,-)
 %dir %{_docdir}/%{name}-%{version}
 %doc %{_docdir}/%{name}-%{version}/GLOBUS_LICENSE
@@ -195,6 +154,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man3/*
 
 %changelog
+* Fri Mar 26 2021 Globus Toolkit <support@globus.org> - 11.3-1
+- Use prebuilt doxyxgen if available
+
 * Wed Nov 27 2019 Globus Toolkit <support@globus.org> - 11.2-3
 - Packaging update to ensure priority of Globus packages
 

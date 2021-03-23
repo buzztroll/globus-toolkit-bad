@@ -1,3 +1,15 @@
+globus-gssapi-error (1:5.6-1+gt6.@distro@) @distro@; urgency=low
+
+  * Use prebuilt doxyxgen if available
+
+ -- Globus Toolkit <support@globus.org>  Fri, 26 Mar 2021 19:20:08 +0000
+
+globus-gssapi-error (1:5.5-3+gt6.@distro@) @distro@; urgency=low
+
+  * Modernize package metadata
+
+ -- Globus Toolkit <support@globus.org>  Thu, 25 Nov 2021 09:51:56 -0400
+
 globus-gssapi-error (1:5.5-2+gt6.@distro@) @distro@; urgency=low
 
   * Packaging update to ensure priority of Globus packages

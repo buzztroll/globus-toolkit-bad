@@ -66,9 +66,12 @@ gsi.conf.h: Makefile $(srcdir)/gsi.conf
 	              { print "\"" $$0 "\\n\"" } \
 	        END { print ";" }' < $(srcdir)/gsi.conf > $(builddir)/gsi.conf.h
 
+if DIST_DOC
+dist_doc = doc
+endif
 
 CLEANFILES = gsi.conf.h
-EXTRA_DIST = gssapi.sym gsi.conf
+EXTRA_DIST = gssapi.sym gsi.conf $(dist_doc)
 
 DOC_STAMPS =
 if ENABLE_DOXYGEN
@@ -84,6 +87,7 @@ clean-local:
 endif
 
 all-local: $(DOC_STAMPS)
+doc: $(DOC_STAMPS)
 
 install-data-local: $(DOC_STAMPS)
 	if test -d doc/man/man3; then \

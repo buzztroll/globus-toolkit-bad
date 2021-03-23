@@ -1,28 +1,19 @@
 Name:		globus-io
 %global soname 3
-%if %{?suse_version}%{!?suse_version:0} >= 1315
-%global apache_license Apache-2.0
-%else
-%global apache_license ASL 2.0
-%endif
 %global _name %(tr - _ <<< %{name})
 Epoch:          1
-Version:	11.10
-Release:	2%{?dist}
+Version:	11.11
+Release:	1%{?dist}
 Vendor:	Globus Support
 Summary:	Globus Toolkit - uniform I/O interface
 
 Group:		System Environment/Libraries
-License:	%{apache_license}
+License:	ASL 2.0
 URL:           https://www.globus.org/
 Source:        https://downloads.globus.org/toolkit/gt6/packages/%{_name}-%{version}.tar.gz
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-%if %{?suse_version}%{!?suse_version:0} >= 1315
-Requires:	libglobus_xio_gsi_driver%{?_isa} >= 2
-%else
 Requires:	globus-xio-gsi-driver%{?_isa} >= 2
-%endif
 
 BuildRequires:	globus-common-devel >= 14
 BuildRequires:	globus-xio-gsi-driver-devel >= 2
@@ -30,60 +21,24 @@ BuildRequires:	globus-gss-assist-devel >= 8
 BuildRequires:	globus-xio-devel >= 3
 BuildRequires:	globus-gssapi-gsi-devel >= 10
 BuildRequires:	globus-gssapi-error-devel >= 4
-%if %{?fedora}%{!?fedora:0} >= 19 || %{?rhel}%{!?rhel:0} >= 7
 BuildRequires:	automake >= 1.11
 BuildRequires:	autoconf >= 2.60
 BuildRequires:	libtool >= 2.2
-%endif
 BuildRequires:  pkgconfig
-%if %{?fedora}%{!?fedora:0} >= 18 || %{?rhel}%{!?rhel:0} >= 6
 BuildRequires:  perl-Test-Simple
-%endif
-%if 0%{?suse_version} > 0
-BuildRequires: libtool
-%else
 BuildRequires: libtool-ltdl-devel
-%endif
-%if %{?rhel}%{!?rhel:0} == 5
-BuildRequires:  openssl101e
-%else
 BuildRequires:  openssl
-%endif
-
-%if %{?suse_version}%{!?suse_version:0} >= 1315
-%global mainpkg lib%{_name}%{soname}
-%global nmainpkg -n %{mainpkg}
-%else
-%global mainpkg %{name}
-%endif
-
-%if %{?nmainpkg:1}%{!?nmainpkg:0} != 0
-%package %{?nmainpkg}
-Summary:	Globus Toolkit - uniform I/O interface
-Group:		System Environment/Libraries
-%endif
 
 %package devel
 Summary:	Globus Toolkit - uniform I/O interface Development Files
 Group:		Development/Libraries
-Requires:	%{mainpkg}%{?_isa} = %{epoch}:%{version}-%{release}
+Requires:	%{name}%{?_isa} = %{epoch}:%{version}-%{release}
 Requires:	globus-common-devel%{?_isa} >= 14
 Requires:	globus-xio-gsi-driver-devel%{?_isa} >= 2
 Requires:	globus-gss-assist-devel%{?_isa} >= 8
 Requires:	globus-xio-devel%{?_isa} >= 3
 Requires:	globus-gssapi-gsi-devel%{?_isa} >= 10
 Requires:	globus-gssapi-error-devel%{?_isa} >= 4
-
-%if %{?suse_version}%{!?suse_version:0} >= 1315
-%description %{?nmainpkg}
-The Globus Toolkit is an open source software toolkit used for building Grid
-systems and applications. It is being developed by the Globus Alliance and
-many others all over the world. A growing number of projects and companies are
-using the Globus Toolkit to unlock the potential of grids for their cause.
-
-The %{mainpkg} package contains:
-uniform I/O interface to stream and datagram style communications
-%endif
 
 %description
 The Globus Toolkit is an open source software toolkit used for building Grid
@@ -107,16 +62,10 @@ uniform I/O interface Development Files
 %setup -q -n %{_name}-%{version}
 
 %build
-%if %{?fedora}%{!?fedora:0} >= 19 || %{?rhel}%{!?rhel:0} >= 7 || %{?suse_version}%{!?suse_version:0} >= 1315
 # Remove files that should be replaced during bootstrap
 rm -rf autom4te.cache
 
 autoreconf -if
-%endif
-
-%if %{?rhel}%{!?rhel:0} == 5
-export OPENSSL="$(which openssl101e)"
-%endif
 
 %configure \
            --disable-static \
@@ -144,7 +93,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %postun %{?nmainpkg} -p /sbin/ldconfig
 
-%files %{?nmainpkg}
+%files
 %defattr(-,root,root,-)
 %dir %{_docdir}/%{name}-%{version}
 %doc %{_docdir}/%{name}-%{version}/GLOBUS_LICENSE
@@ -157,6 +106,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/pkgconfig/%{name}.pc
 
 %changelog
+* Sat Mar 27 2021 Globus Toolkit <support@globus.org> - 11.11-1
+- Fix tests to run in chroot without homedir
+
 * Mon Nov 25 2019 Globus Toolkit <support@globus.org> - 11.10-2
 - Packaging update to ensure priority of Globus packages
 

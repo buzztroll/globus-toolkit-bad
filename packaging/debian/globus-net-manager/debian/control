@@ -1,7 +1,7 @@
 Source: globus-net-manager
 Priority: optional
 Maintainer: Globus Support <support@globus.org>
-Build-Depends: debhelper (>= 5), autotools-dev, libglobus-common-dev (>= 15.27), libglobus-xio-dev (>= 5), doxygen (<< 1.6.2-1) | doxygen (>> 1.6.2-1), graphviz, python-dev, libltdl-dev
+Build-Depends: debhelper (>= 9), dh-exec, autotools-dev, libglobus-common-dev (>= 15.27), libglobus-xio-dev (>= 5), python-dev, libltdl-dev
 Standards-Version: 3.9.0
 Section: net
 Homepage: http://www.globus.org/
@@ -38,7 +38,7 @@ Description: Globus Toolkit - Net Manager Library Development Files
 Package: libglobus-xio-net-manager-driver
 Section: libs
 Architecture: any
-Depends: libglobus-net-manager0 (= ${binary:Version}), ${misc:Depends}, libglobus-common0, libglobus-xio0
+Depends: libglobus-net-manager0 (= ${binary:Version}), ${shlibs:Depends}, ${misc:Depends}, libglobus-common0, libglobus-xio0
 Recommends: libglobus-net-manager-doc (= ${binary:Version})
 Description: Globus Toolkit - Net Manager Library Development Files
  The Globus Toolkit is an open source software toolkit used for
@@ -63,18 +63,3 @@ Description: Globus Toolkit - Net Manager Library Documentation Files
  .
  The libglobus-net-manager-doc package contains:
  Net Manager Library Documentation Files
-
-Package: libglobus-net-manager-dbg
-Section: debug
-Priority: extra
-Architecture: any
-Depends: libglobus-net-manager0 (= ${binary:Version}), ${misc:Depends}
-Description: Globus Toolkit - Net Manager Library Debug Symbols
- The Globus Toolkit is an open source software toolkit used for
- building Grid systems and applications. It is being developed by the
- Globus Alliance and many others all over the world. A growing number
- of projects and companies are using the Globus Toolkit to unlock the
- potential of grids for their cause.
- .
- The libglobus-net-manager-dbg package contains:
- Net Manager Library Debug Symbols

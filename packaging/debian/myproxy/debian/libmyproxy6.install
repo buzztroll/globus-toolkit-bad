@@ -1,0 +1,4 @@
+#! /usr/bin/dh-exec
+
+usr/lib/*/*.so.*
+usr/share/doc/libmyproxy6/README

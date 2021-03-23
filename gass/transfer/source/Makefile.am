@@ -11,3 +11,5 @@ EXTRA_DIST = dirt.sh $(doc_DATA)
 
 distuninstallcheck:
 	@:
+doc:
+	$(MAKE) $(AM_MAKEFLAGS) -C library doc

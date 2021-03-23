@@ -1,35 +1,23 @@
 Name:		globus-net-manager
 %global soname 0
-%if %{?suse_version}%{!?suse_version:0} >= 1315
-%global apache_license Apache-2.0
-%else
-%global apache_license ASL 2.0
-%endif
 %global _name %(tr - _ <<< %{name})
 Epoch:          1
-Version:	0.19
-Release:	3%{?dist}
+Version:	0.20
+Release:	1%{?dist}
 Vendor:	Globus Support
 Summary:	Globus Toolkit - Net Manager Library
 
 Group:		System Environment/Libraries
-License:	%{apache_license}
+License:	ASL 2.0
 URL:           https://www.globus.org/
 Source:        https://downloads.globus.org/toolkit/gt6/packages/%{_name}-%{version}.tar.gz
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:	globus-common-devel >= 15.27
 BuildRequires:	globus-xio-devel >= 5
-BuildRequires:	doxygen
-BuildRequires:	graphviz
-%if "%{?rhel}" == "5"
-BuildRequires:	graphviz-gd
-%endif
-%if %{?fedora}%{!?fedora:0} >= 19 || %{?rhel}%{!?rhel:0} >= 7 || %{?suse_version}%{!?suse_version:0} >= 1315
 BuildRequires:  automake >= 1.11
 BuildRequires:  autoconf >= 2.60
 BuildRequires:  libtool >= 2.2
-%endif
 BuildRequires:  pkgconfig
 %if %{?rhel}%{!?rhel:0} >= 8 || %{?fedora}%{!?fedora:0} >= 31
 BuildRequires:  python2-devel
@@ -37,61 +25,26 @@ BuildRequires:  python2-devel
 BuildRequires:  python-devel
 %endif
 
-%if %{?suse_version}%{!?suse_version:0} >= 1315
-%global mainpkg lib%{_name}%{soname}
-%global nmainpkg -n %{mainpkg}
-%else
-%global mainpkg %{name}
-%endif
-
-%if %{?suse_version}%{!?suse_version:0} >= 1315
-%global driver_package libglobus_xio_net_manager_driver
-%else
-%global driver_package globus-xio-net-manager-driver
-%endif
-
-%if %{?nmainpkg:1}%{!?nmainpkg:0} != 0
-%package %{?nmainpkg}
-Summary:	Globus Toolkit - Net Manager Library
-Group:		System Environment/Libraries
-%endif
-
 %package devel
 Summary:	Globus Toolkit - Net Manager Library Development Files
 Group:		Development/Libraries
-Requires:	%{mainpkg}%{?_isa} = %{epoch}:%{version}-%{release}
+Requires:	%{name}%{?_isa} = %{epoch}:%{version}-%{release}
 Requires:	globus-common-devel%{?_isa} >= 15.27
 Requires:	globus-xio-devel%{?_isa} >= 5
 
-%package -n %{driver_package}
+%package -n globus-xio-net-manager-driver
 Summary:	Globus Toolkit - Net Manager Library XIO Driver
 Group:		System Environment/Libraries
-Requires:	%{mainpkg}%{?_isa} = %{epoch}:%{version}-%{release}
+Requires:	%{name}%{?_isa} = %{epoch}:%{version}-%{release}
 Requires:	globus-common-devel%{?_isa} >= 15.27
 Requires:	globus-xio-devel%{?_isa} >= 5
 Provides:       globus-net-manager-xio-driver
-%if %{?suse_version}%{!?suse_version:0} >= 1315
-Provides:       globus-xio-net-manager-driver
-%endif
 
 %package doc
 Summary:	Globus Toolkit - Net Manager Library Documentation Files
 Group:		Documentation
-%if %{?fedora}%{!?fedora:0} >= 10 || %{?rhel}%{!?rhel:0} >= 6
 BuildArch:	noarch
-%endif
-Requires:	%{mainpkg} = %{epoch}:%{version}-%{release}
-
-%if %{?suse_version}%{!?suse_version:0} >= 1315
-%description %{?nmainpkg}
-The Globus Toolkit is an open source software toolkit used for building Grid
-systems and applications. It is being developed by the Globus Alliance and
-many others all over the world. A growing number of projects and companies are
-using the Globus Toolkit to unlock the potential of grids for their cause.
-
-The %{mainpkg} package contains:
-Net Manager Library
-%endif
+Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description
 The Globus Toolkit is an open source software toolkit used for building Grid
@@ -111,7 +64,7 @@ using the Globus Toolkit to unlock the potential of grids for their cause.
 The %{name}-devel package contains:
 Net Manager Library Development Files
 
-%description -n %{driver_package}
+%description -n globus-xio-net-manager-driver
 The Globus Toolkit is an open source software toolkit used for building Grid
 systems and applications. It is being developed by the Globus Alliance and
 many others all over the world. A growing number of projects and companies are
@@ -133,12 +86,10 @@ Net Manager Library Documentation Files
 %setup -q -n %{_name}-%{version}
 
 %build
-%if %{?fedora}%{!?fedora:0} >= 19 || %{?rhel}%{!?rhel:0} >= 7 || %{?suse_version}%{!?suse_version:0} >= 1315
 # Remove files that should be replaced during bootstrap
 rm -rf autom4te.cache
 
 autoreconf -if
-%endif
 
 %configure \
            --disable-static \
@@ -166,7 +117,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %postun %{?nmainpkg} -p /sbin/ldconfig
 
-%files %{?nmainpkg}
+%files
 %defattr(-,root,root,-)
 %dir %{_docdir}/%{name}-%{version}
 %doc %{_docdir}/%{name}-%{version}/GLOBUS_LICENSE
@@ -179,7 +130,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/pkgconfig/%{name}.pc
 %{_libdir}/pkgconfig/globus-xio-net-manager-driver.pc
 
-%files -n %{driver_package}
+%files -n globus-xio-net-manager-driver
 %defattr(-,root,root,-)
 %{_libdir}/libglobus_xio_net_manager_driver.so
 
@@ -190,6 +141,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man3/*
 
 %changelog
+* Fri Mar 26 2021 Globus Toolkit <support@globus.org> - 0.20-1
+- Use prebuilt doxyxgen if available
+
 * Wed Nov 27 2019 Globus Toolkit <support@globus.org> - 0.19-3
 - Packaging update to ensure priority of Globus packages
 

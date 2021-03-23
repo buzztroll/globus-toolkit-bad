@@ -1,6 +1,6 @@
 AC_PREREQ([2.60])
 
-AC_INIT([globus_gass_copy],[9.29],[https://github.com/globus/globus-toolkit/issues])
+AC_INIT([globus_gass_copy],[9.30],[https://github.com/globus/globus-toolkit/issues])
 AC_CONFIG_MACRO_DIR([m4])
 AC_SUBST([MAJOR_VERSION], [${PACKAGE_VERSION%%.*}])
 AC_SUBST([MINOR_VERSION], [${PACKAGE_VERSION##*.}])
@@ -75,6 +75,7 @@ AC_PATH_PROGS([DOXYGEN], doxygen)
 
 AM_CONDITIONAL([ENABLE_TESTS], [test x"$OPENSSL" != "x"])
 AM_CONDITIONAL([ENABLE_DOXYGEN], [test x"$DOXYGEN" != "x"])
+AM_CONDITIONAL([DIST_DOC], [test "$DOXYGEN" != "" || test -d "${srcdir}/doc"])
 
 AC_MSG_CHECKING([Toolkit version])
 if test "X$GLOBUS_TOOLKIT_ID" = "X"; then

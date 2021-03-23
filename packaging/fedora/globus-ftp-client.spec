@@ -1,20 +1,15 @@
 Name:		globus-ftp-client
 %global soname 2
-%if %{?suse_version}%{!?suse_version:0} >= 1315
-%global apache_license Apache-2.0
-%else
-%global apache_license ASL 2.0
-%endif
 
 %global _name %(tr - _ <<< %{name})
 Epoch:          1
-Version:	8.37
-Release:	3%{?dist}
+Version:	8.38
+Release:	1%{?dist}
 Vendor:	Globus Support
 Summary:	Globus Toolkit - GridFTP Client Library
 
 Group:		System Environment/Libraries
-License:	%{apache_license}
+License:	ASL 2.0
 URL:           https://www.globus.org/
 Source:        https://downloads.globus.org/toolkit/gt6/packages/%{_name}-%{version}.tar.gz
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
@@ -26,51 +21,36 @@ BuildRequires:	globus-common-devel >= 15
 BuildRequires:	globus-ftp-control-devel >= 4
 BuildRequires:	globus-ftp-control-doc >= 4
 BuildRequires:	globus-gridftp-server-progs
-BuildRequires:	doxygen
-BuildRequires:	graphviz
+
 BuildRequires:	globus-gridftp-server-devel >= 0
 BuildRequires:	globus-xio-pipe-driver-devel >= 0
 
-%if %{?suse_version}%{!?suse_version:0} >= 1315
-BuildRequires:  openssl
-BuildRequires:  libopenssl-devel
-%else
 BuildRequires:  openssl
 BuildRequires:  openssl-devel
-%endif
 
-%if %{?fedora}%{!?fedora:0} >= 19 || %{?rhel}%{!?rhel:0} >= 7 || %{?suse_version}%{!?suse_version:0} >= 1315
 BuildRequires:  automake >= 1.11
 BuildRequires:  autoconf >= 2.60
 BuildRequires:  libtool >= 2.2
-%endif
 BuildRequires:  pkgconfig
-%if %{?fedora}%{!?fedora:0} >= 18 || %{?rhel}%{!?rhel:0} >= 6
-BuildRequires:  perl-Test-Simple
-%endif
-%if 0%{?suse_version} > 0
-BuildRequires: libtool
-%else
-BuildRequires: libtool-ltdl-devel
-%endif
 
-%if %{?suse_version}%{!?suse_version:0} >= 1315
-%global mainpkg lib%{_name}%{soname}
-%global nmainpkg -n %{mainpkg}
-%else
-%global mainpkg %{name}
-%endif
+# Perl modules in the test suite
+BuildRequires:  perl(Cwd)
+BuildRequires:  perl(File::Basename)
+BuildRequires:  perl(File::Spec)
+BuildRequires:  perl(File::Temp)
+BuildRequires:  perl(FileHandle)
+BuildRequires:  perl(Getopt::Long)
+BuildRequires:  perl(Sys::Hostname)
+BuildRequires:  perl(Test::Harness)
+BuildRequires:  perl(Test::More)
+BuildRequires:  perl(lib)
 
-%if %{?nmainpkg:1}%{!?nmainpkg:0} != 0
-%package %{?nmainpkg}
-Summary:	Globus Toolkit - Globus XIO Framework
-Group:		System Environment/Libraries
-%endif
+BuildRequires:  libtool-ltdl-devel
 
 %package devel
 Summary:	Globus Toolkit - GridFTP Client Library Development Files
 Group:		Development/Libraries
-Requires:	%{mainpkg}%{?_isa} = %{epoch}:%{version}-%{release}
+Requires:	%{name}%{?_isa} = %{epoch}:%{version}-%{release}
 Requires:	globus-xio-popen-driver-devel%{?_isa}
 Requires:	globus-common-devel%{?_isa} >= 15
 Requires:	globus-ftp-control-devel%{?_isa} >= 4
@@ -78,21 +58,8 @@ Requires:	globus-ftp-control-devel%{?_isa} >= 4
 %package doc
 Summary:	Globus Toolkit - GridFTP Client Library Documentation Files
 Group:		Documentation
-%if %{?fedora}%{!?fedora:0} >= 10 || %{?rhel}%{!?rhel:0} >= 6
 BuildArch:	noarch
-%endif
-Requires:	%{mainpkg} = %{epoch}:%{version}-%{release}
-
-%if %{?suse_version}%{!?suse_version:0} >= 1315
-%description %{?nmainpkg}
-The Globus Toolkit is an open source software toolkit used for building Grid
-systems and applications. It is being developed by the Globus Alliance and
-many others all over the world. A growing number of projects and companies are
-using the Globus Toolkit to unlock the potential of grids for their cause.
-
-The %{mainpkg} package contains:
-GridFTP Client Library
-%endif
+Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description
 The Globus Toolkit is an open source software toolkit used for building Grid
@@ -125,12 +92,10 @@ GridFTP Client Library Documentation Files
 %setup -q -n %{_name}-%{version}
 
 %build
-%if %{?fedora}%{!?fedora:0} >= 19 || %{?rhel}%{!?rhel:0} >= 7 || %{?suse_version}%{!?suse_version:0} >= 1315
 # Remove files that should be replaced during bootstrap
 rm -rf autom4te.cache
 
 autoreconf -if
-%endif
 
 %configure \
            --disable-static \
@@ -157,7 +122,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %postun %{?nmainpkg} -p /sbin/ldconfig
 
-%files %{?nmainpkg}
+%files
 %defattr(-,root,root,-)
 %dir %{_docdir}/%{name}-%{version}
 %doc %{_docdir}/%{name}-%{version}/GLOBUS_LICENSE
@@ -177,6 +142,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man3/*
 
 %changelog
+* Fri Mar 26 2021 Globus Toolkit <support@globus.org> - 8.38-1
+- Use prebuilt doxyxgen if available
+
 * Wed Nov 27 2019 Globus Toolkit <support@globus.org> - 8.37-3
 - Packaging update to ensure priority of Globus packages
 

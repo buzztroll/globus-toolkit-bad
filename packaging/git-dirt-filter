@@ -1,7 +1,15 @@
 #! /bin/sh
 
 DIRT_BRANCH_DEF="$(git rev-parse --show-toplevel)/branch.def"
-current_branch="$(git branch | awk "/\*/ {print \$2}")"
+# If running under jenkins, we may have a detached head, but we know the
+# current branch from the environment
+if [ -n "$CHANGE_BRANCH" ]; then
+    current_branch="$CHANGE_BRANCH"
+elif [ -n "$BRANCH_NAME" ]; then
+    current_branch="$BRANCH_NAME"
+else
+    current_branch="$(git rev-parse --abbrev-ref HEAD)"
+fi
 current_branch_id="$(awk "/$current_branch/ {print \$2}" < "$DIRT_BRANCH_DEF")"
 current_timestamp="$(git log -n 1 --pretty=format:%ct%n .)"
 

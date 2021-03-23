@@ -19,24 +19,26 @@ case "$1" in
                 -s /bin/nologin \
                 -c "User to run the SimpleCA" simpleca
         mkdir -p ${simplecadir}
+        if [ ! -f ${simplecadir}/cacert.pem ] ; then
 	tempdir=$(mktemp -d)
 	cd "$tempdir"
-        if [ ! -f ${simplecadir}/cacert.pem ] ; then
             grid-ca-create -noint -nobuild -dir "${simplecadir}"
             (umask 077; echo globus > ${simplecadir}/passwd)
             simplecahash=`openssl x509 -hash -noout -in ${simplecadir}/cacert.pem`
             grid-ca-package -cadir ${simplecadir}
-            tar --strip 1 --no-same-owner -zx --exclude debian -C /etc/grid-security/certificates -f ${simplecadir}/globus_simple_ca_$simplecahash.tar.gz
+            tar --strip 1 --no-same-owner -zx --exclude debian -C /etc/grid-security/certificates -f globus_simple_ca_$simplecahash.tar.gz
             chown -R simpleca:simpleca ${simplecadir}
             chmod -R g+rw ${simplecadir}
             find ${simplecadir} -type d -exec chmod g+xs {} \;
             if [ ! -r /etc/grid-security/globus-user-ssl.conf ]; then
                 grid-default-ca -ca $simplecahash
             fi
+            hostname=`hostname -f 2>/dev/null`
             if [ ! -f /etc/grid-security/hostcert.pem ] && \
                [ ! -f /etc/grid-security/hostcert_request.pem ] && \
-               [ ! -f /etc/grid-security/hostkey.pem ]; then
-                grid-cert-request -cn `hostname -f` -host `hostname -f`
+               [ ! -f /etc/grid-security/hostkey.pem ] && \
+               [ ! -z "${hostname}" ]; then
+                grid-cert-request -cn ${hostname} -host ${hostname}
                 su -s /bin/sh simpleca -c "umask 007; grid-ca-sign \
                         -in /etc/grid-security/hostcert_request.pem \
                         -out ${simplecadir}/hostcert.pem"

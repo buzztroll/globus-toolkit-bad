@@ -4,13 +4,8 @@
 include /usr/share/quilt/quilt.make
 
 name = globus-simple-ca
-_name = globus_simple_ca
-version = 4.25
 
 _prefix = /usr
-_bindir = $(_prefix)/bin
-_sbindir = $(_prefix)/sbin
-_libdir = $(_prefix)/lib
 _datadir = $(_prefix)/share
 _libexecdir = $(_datadir)/globus
 _mandir = $(_datadir)/man
@@ -26,6 +21,6 @@ override_dh_auto_configure:
            --sysconfdir='$(_sysconfdir)'
 
 %:
-	dh $@  --with autotools-dev
+	dh $@
 
 .PHONY: override_dh_auto_configure

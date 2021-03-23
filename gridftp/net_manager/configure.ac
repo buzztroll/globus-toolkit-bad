@@ -1,6 +1,6 @@
 AC_PREREQ([2.60])
 
-AC_INIT([globus_net_manager],[0.19],[https://github.com/globus/globus-toolkit/issues])
+AC_INIT([globus_net_manager],[0.20],[https://github.com/globus/globus-toolkit/issues])
 AC_CONFIG_MACRO_DIR([m4])
 AC_SUBST([MAJOR_VERSION], [${PACKAGE_VERSION%%.*}])
 AC_SUBST([MINOR_VERSION], [${PACKAGE_VERSION##*.}])
@@ -54,6 +54,7 @@ if test "x$PYTHON_CONFIG" != x; then
 fi
 AM_CONDITIONAL([ENABLE_PYTHON], [test "x$PYTHON_CONFIG" != x])
 AM_CONDITIONAL([ENABLE_DOXYGEN], [test "x$DOXYGEN" != "x"])
+AM_CONDITIONAL([DIST_DOC], [test "$DOXYGEN" != "" || test -d "${srcdir}/doc"])
 
 AC_CONFIG_FILES(
         globus-net-manager-uninstalled.pc

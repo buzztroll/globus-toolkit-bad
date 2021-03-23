@@ -1,6 +1,6 @@
 AC_PREREQ([2.60])
 
-AC_INIT([globus_xio], [6.0], [https://github.com/globus/globus-toolkit/issues])
+AC_INIT([globus_xio], [6.1], [https://github.com/globus/globus-toolkit/issues])
 AC_CONFIG_MACRO_DIR([m4])
 AC_SUBST(MAJOR_VERSION, [${PACKAGE_VERSION%%.*}])
 AC_SUBST(MINOR_VERSION, [${PACKAGE_VERSION##*.}])
@@ -82,6 +82,7 @@ fi
 AC_PATH_PROGS([DOXYGEN], doxygen)
 
 AM_CONDITIONAL([ENABLE_DOXYGEN], [test "$DOXYGEN" != ""])
+AM_CONDITIONAL([DIST_DOC], [test "$DOXYGEN" != "" || test -d "${srcdir}/doc"])
 
 AC_CONFIG_FILES(
     Makefile

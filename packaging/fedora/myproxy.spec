@@ -1,26 +1,19 @@
 %{!?_initddir: %global _initddir %{_initrddir}}
 Name:           myproxy
 %global soname 6
-%if %{?suse_version}%{!?suse_version:0} >= 1315
-%global apache_license Apache-2.0
-%global bsd_license BSD-4-Clause
-%global libpkg libmyproxy%{soname}
-%global nlibpkg -n libmyproxy%{soname}
-%else
 %global apache_license ASL 2.0
 %global bsd_license BSD
 %global libpkg  myproxy-libs
 %global nlibpkg libs
-%endif
 %global _name %(tr - _ <<< %{name})
 Epoch:          1
 Version:	6.1.31
-Release:	5%{?dist}
+Release:	6%{?dist}
 Vendor: Globus Support
 Summary:        Manage X.509 Public Key Infrastructure (PKI) security credentials
 
 Group:          System Environment/Daemons
-License:        NCSA and %{bsd_license} and %{apache_license}
+License:        NCSA and %{bsd_license} and ASL 2.0
 URL:            http://grid.ncsa.illinois.edu/myproxy/
 Source:        https://downloads.globus.org/toolkit/gt6/packages/%{_name}-%{version}.tar.gz
 
@@ -28,29 +21,16 @@ BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:  openssl
 
-%if %{?suse_version}%{!?suse_version:0} >= 1315
-Requires:       insserv
-Requires(post): %insserv_prereq  %fillup_prereq
-BuildRequires:  insserv
-BuildRequires:  shadow
-%endif
-
 BuildRequires:  globus-gssapi-gsi-devel >= 13
 BuildRequires:  globus-gss-assist-devel >= 8
 BuildRequires:  globus-usage-devel >= 3
 BuildRequires:  pam-devel
 
-%if %{?fedora}%{!?fedora:0} > 0 || %{?rhel}%{!?rhel:0} > 5
 BuildRequires:  voms-devel >= 1.9.12.1
-%endif
 
 BuildRequires:  cyrus-sasl-devel
 
-%if %{?suse_version}%{!?suse_version:0} >= 1315
-BuildRequires:  openldap2-devel
-%else
 BuildRequires:  openldap-devel >= 2.3
-%endif
 
 BuildRequires:      globus-proxy-utils >= 5
 BuildRequires:      globus-gsi-cert-utils-progs >= 8
@@ -61,11 +41,9 @@ BuildRequires:      globus-gss-assist-devel >= 8
 
 Requires:      globus-proxy-utils >= 5
 Requires:      %{libpkg}%{?_isa} = %{epoch}:%{version}-%{release}
-%if %{?fedora}%{!?fedora:0} >= 19 || %{?rhel}%{!?rhel:0} >= 7 || %{?suse_version}%{!?suse_version:0} >= 1315
 BuildRequires:  automake >= 1.11
 BuildRequires:  autoconf >= 2.60
 BuildRequires:  libtool >= 2.2
-%endif
 BuildRequires:  pkgconfig
 %if %{?fedora}%{!?fedora:0} >= 28
 BuildRequires:  krb5-devel
@@ -115,20 +93,12 @@ trusted CA certificates and Certificate Revocation Lists (CRLs).
 Package %{name}-devel contains development files for MyProxy.
 
 %package server
-%if 0%{?suse_version} == 0
 Requires:         %{libpkg}%{?_isa} = %{epoch}:%{version}-%{release}
 Requires(pre):    shadow-utils
 Requires(post):   chkconfig
 Requires(preun):  chkconfig
 Requires(preun):  initscripts
 Requires(postun): initscripts
-%else
-Requires(pre):    shadow
-Requires(preun):  sysconfig
-Requires(preun):  aaa_base
-Requires(postun): sysconfig
-Requires(postun): aaa_base
-%endif
 Summary:          Server for X.509 Public Key Infrastructure (PKI) security credentials 
 Group:            System Environment/Daemons
 
@@ -178,8 +148,6 @@ trusted CA certificates and Certificate Revocation Lists (CRLs).
 
 Package %{name}-doc contains the MyProxy documentation.
 
-
-%if %{?rhel}%{!?rhel:0} > 5 || %{?fedora}%{!?fedora:0} > 0
 %package voms
 Summary:       Manage X.509 Public Key Infrastructure (PKI) security credentials 
 Group:         System Environment/Daemons
@@ -195,41 +163,26 @@ Users run myproxy-logon to authenticate and obtain credentials, including
 trusted CA certificates and Certificate Revocation Lists (CRLs). 
 
 Package %{name}-libs contains runtime libs for MyProxy to use VOMS.
-%endif
 
 %prep
 %setup -q -n myproxy-%{version}
 
 %build
-%if %{?suse_version}%{!?suse_version:0} >= 1315
-%global initscript_config_path %{_localstatedir}/adm/fillup-templates/sysconfig.myproxy-server
-%else
 %global initscript_config_path %{_sysconfdir}/sysconfig/myproxy-server 
-%endif
 
 rm -f pkgdata/Makefile.am
 
-%if %{?fedora}%{!?fedora:0} >= 19 || %{?rhel}%{!?rhel:0} >= 7
 rm -rf autom4te.cache
 autoreconf -if
-%endif
 
 with_kerberos5=--with-kerberos5=%{_usr}
 with_sasl2=--with-sasl2=%{_usr}
 
-%if %{?fedora}%{!?fedora:0} > 0 || %{?rhel}%{!?rhel:0} > 5
 %configure --with-openldap=%{_usr} \
            --with-voms=%{_usr} \
            --with-kerberos5=%{_usr} \
            --with-sasl2=%{_usr} \
            --includedir=%{_usr}/include/globus
-%else
-%configure --without-openldap \
-           --without-voms \
-           %{with_kerberos5} \
-           %{with_sasl2} \
-           --includedir=%{_usr}/include/globus
-%endif
 make %{?_smp_mflags}
 
 %install
@@ -247,7 +200,6 @@ rm -f $RPM_BUILD_ROOT%{_sbindir}/myproxy-test-wrapper
 # No need for myproxy-server-setup since the rpm will perform
 # the needed setup
 rm $RPM_BUILD_ROOT%{_sbindir}/myproxy-server-setup
-
 
 # We are going to zip the man pages later in the package so we need to
 # correct the gpt data in anticipation.
@@ -288,19 +240,13 @@ done
 #%{_datadir}/globus/globus-gpt2pkg-config pkgdata/pkg_data_%{flavor}_dev.gpt > \
 #  $RPM_BUILD_ROOT%{_libdir}/pkgconfig/%{name}.pc
 
-
 # Move example configuration file into place.
 mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}
 mv $RPM_BUILD_ROOT%{_datadir}/%{name}/myproxy-server.config \
    $RPM_BUILD_ROOT%{_sysconfdir}
 
-
 mkdir -p $RPM_BUILD_ROOT%{_initddir}
-%if %{?suse_version}%{!?suse_version:0} >= 1315
-mkdir -p $RPM_BUILD_ROOT%{_localstatedir}/adm/fillup-templates
-%else
 mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}/sysconfig
-%endif
 
 install  -m 644 myproxy.sysconfig $RPM_BUILD_ROOT%{initscript_config_path}
 
@@ -436,7 +382,6 @@ mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}/grid-security/myproxy
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-
 %check 
 PATH=.:$PATH make check
 
@@ -452,31 +397,18 @@ useradd -r -g myproxy -d %{_var}/lib/myproxy -s /sbin/nologin \
 exit 0
 
 %post server
-%if %{?suse_version}%{!?suse_version:0} >= 1315
-%fillup_and_insserv -n myproxy-server myproxy-server
-%else
 /sbin/chkconfig --add myproxy-server
-%endif
 
 %preun server
-%if %{?suse_version}%{!?suse_version:0} >= 1315
-%stop_on_removal service
-%else
 if [ $1 = 0 ] ; then
     /sbin/service myproxy-server stop >/dev/null 2>&1
     /sbin/chkconfig --del myproxy-server
 fi
-%endif
 
 %postun server
-%if %{?suse_version}%{!?suse_version:0} >= 1315
-%restart_on_update service
-%insserv_cleanup
-%else
 if [ "$1" -eq "1" ] ; then
     /sbin/service myproxy-server condrestart >/dev/null 2>&1 || :
 fi
-%endif
 
 %files
 %defattr(-,root,root,-)
@@ -561,11 +493,9 @@ fi
 %{_libdir}/libmyproxy.so
 %{_libdir}/pkgconfig/myproxy.pc
 
-%if %{?rhel}%{!?rhel:0} > 5 || %{?fedora}%{!?fedora:0} > 0
 %files voms
 %defattr(-,root,root,-)
 %{_libdir}/libmyproxy_voms.so
-%endif
 
 %changelog
 * Mon Nov 25 2019 Globus Toolkit <support@globus.org> - 6.1.31-5

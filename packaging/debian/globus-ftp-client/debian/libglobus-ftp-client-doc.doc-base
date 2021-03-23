@@ -5,5 +5,5 @@ Abstract: The Globus toolkit, GridFTP Client Library
 Section: Programming
 
 Format: HTML
-Index: /usr/share/doc/libglobus-ftp-client-dev/html/index.html
-Files: /usr/share/doc/libglobus-ftp-client-dev/html/*.html
+Index: /usr/share/doc/libglobus-ftp-client2/html/index.html
+Files: /usr/share/doc/libglobus-ftp-client2/html/*.html

@@ -1,3 +1,15 @@
+globus-gssapi-gsi (1:13.14-1+gt6.@distro@) @distro@; urgency=low
+
+  * Use prebuilt doxyxgen if available
+
+ -- Globus Toolkit <support@globus.org>  Fri, 26 Mar 2021 19:20:08 +0000
+
+globus-gssapi-gsi (1:13.13-2+gt6.@distro@) @distro@; urgency=low
+
+  * Modernize package metadata
+
+ -- Globus Toolkit <support@globus.org>  Thu, 25 Mar 2021 09:31:35 +0400
+
 globus-gssapi-gsi (1:13.13-1+gt6.@distro@) @distro@; urgency=low
 
   * Include optional cert chain when importing vhost credentials

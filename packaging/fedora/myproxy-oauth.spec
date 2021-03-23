@@ -1,18 +1,13 @@
 Name:		myproxy-oauth
-%if %{?suse_version}%{!?suse_version:0} >= 1315
-%global apache_license Apache-2.0
-%else
-%global apache_license ASL 2.0
-%endif
 %global _name %(tr - _ <<< %{name})
 Epoch:          1
 Version:	0.30
-Release:	3%{?dist}
+Release:	4%{?dist}
 Vendor:	Globus Support
 Summary:	MyProxy OAuth Delegation Serice
 
 Group:		System Environment/Libraries
-License:	%{apache_license}
+License:	ASL 2.0
 URL:           https://www.globus.org/
 Source:        https://downloads.globus.org/toolkit/gt6/packages/%{_name}-%{version}.tar.gz
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
@@ -29,7 +24,6 @@ BuildRequires:	python
 Requires:	pyOpenSSL
 %global		python2 python
 %endif
-
 
 %if 0%{?suse_version} == 0
 Requires:       mod_ssl

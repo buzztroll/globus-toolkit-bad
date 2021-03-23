@@ -1,0 +1,4 @@
+#! /usr/bin/dh-exec
+
+usr/share/doc/*/html/*
+usr/share/man/man3/globus*.3

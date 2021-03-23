@@ -1,6 +1,6 @@
 Name:           globus-toolkit-repo
 Version:        6.0.21
-Release:        1
+Release:        2
 Summary:        Globus Repository Configuration
 Group:          System Environment/Base
 License:        ASL 2.0

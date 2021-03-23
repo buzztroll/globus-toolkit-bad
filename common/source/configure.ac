@@ -1,5 +1,5 @@
 AC_PREREQ([2.60])
-AC_INIT([globus_common], [17.6], [https://github.com/globus/globus-toolkit/issues])
+AC_INIT([globus_common], [17.7], [https://github.com/globus/globus-toolkit/issues])
 AC_CONFIG_MACRO_DIR([m4])
 AC_SUBST([MAJOR_VERSION], [${PACKAGE_VERSION%%.*}])
 AC_SUBST([MINOR_VERSION], [${PACKAGE_VERSION##*.}])
@@ -101,6 +101,7 @@ LIBS="$gtsave_LIBS"
 CPPFLAGS="$gtsave_CPPFLAGS"
 
 AM_CONDITIONAL([ENABLE_DOXYGEN], [test "$DOXYGEN" != ""])
+AM_CONDITIONAL([DIST_DOC], [test "$DOXYGEN" != "" || test -d "${srcdir}/library/doc"])
 
 m4_include(globus_version)
 AC_SUBST(GLOBUS_VERSION)

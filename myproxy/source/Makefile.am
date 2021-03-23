@@ -257,6 +257,12 @@ pkgconfdir = ${libdir}/pkgconfig
 
 pkgconf_DATA = myproxy.pc
 if ENABLE_TESTS
-TESTS_ENVIRONMENT = export GSI_PROXY_UTILS_PATH="$(GSI_PROXY_UTILS_PATH)"; export GSI_CERT_UTILS_PATH="$(GSI_CERT_UTILS_PATH)"; export PATH="$(abs_srcdir)$${GSI_PROXY_UTILS_PATH:+:$$GSI_PROXY_UTILS_PATH}$${GSI_CERT_UTILS_PATH:+:$$GSI_CERT_UTILS_PATH}:$(abs_builddir):$${PATH}"; export OPENSSL="$(OPENSSL)";
+TESTS_ENVIRONMENT = \
+    export GSI_PROXY_UTILS_PATH="$(GSI_PROXY_UTILS_PATH)" \
+    GSI_CERT_UTILS_PATH="$(GSI_CERT_UTILS_PATH)" \
+    PATH="$(abs_srcdir)$${GSI_PROXY_UTILS_PATH:+:$$GSI_PROXY_UTILS_PATH}$${GSI_CERT_UTILS_PATH:+:$$GSI_CERT_UTILS_PATH}:$(abs_builddir):$${PATH}" \
+    GLOBUS_HOSTNAME=127.0.0.1 \
+    HOME="$(abs_builddir)" \
+    OPENSSL="$(OPENSSL)"; \
 TESTS = myproxy-test-wrapper
 endif

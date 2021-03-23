@@ -16,7 +16,11 @@ libglobus_xio_gsi_driver_la_LDFLAGS = \
         -module \
         -no-undefined
 
-EXTRA_DIST = dirt.sh $(doc_DATA) globus-vararg-enums-doxygen-filter.pl
+if DIST_DOC
+dist_doc = doc
+endif
+
+EXTRA_DIST = dirt.sh $(doc_DATA) globus-vararg-enums-doxygen-filter.pl $(dist_doc)
 
 DOC_STAMPS =
 if ENABLE_DOXYGEN
@@ -32,6 +36,7 @@ clean-local:
 endif
 
 all-local: $(DOC_STAMPS)
+doc: $(DOC_STAMPS)
 
 install-data-local: $(DOC_STAMPS)
 	if test -d doc/man/man3; then \

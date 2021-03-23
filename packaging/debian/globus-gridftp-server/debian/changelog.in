@@ -1,3 +1,9 @@
+globus-gridftp-server (1:12.24-2+gt6.@distro@) @distro@; urgency=low
+
+  * Modernize package metadata
+
+ -- Globus Toolkit <support@globus.org>  Thu, 25 Mar 2021 11:18:01 +0400
+
 globus-gridftp-server (1:12.24-1+gt6.@distro@) @distro@; urgency=low
 
   * Added support for globus_gridftp_server_get_task_id()
@@ -859,11 +865,6 @@ globus-gridftp-server (6.8-2) unstable; urgency=low
   * GRIDFTP-215: add MFMT synonym to SITE UTIME
 
  -- Globus Toolkit <support@globus.org>  Fri, 23 Mar 2012 11:12:56 -0400
-
-globus-gridftp-server (6.8-1) unstable; urgency=low
-
-
- -- Globus Toolkit <support@globus.org>  Fri, 23 Mar 2012 11:11:42 -0400
 
 globus-gridftp-server (6.7-1) unstable; urgency=low
 

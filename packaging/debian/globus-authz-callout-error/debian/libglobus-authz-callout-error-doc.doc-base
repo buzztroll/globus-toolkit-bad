@@ -5,5 +5,5 @@ Abstract: The Globus toolkit, Globus authz error library (used by globus authz c
 Section: Programming
 
 Format: HTML
-Index: /usr/share/doc/libglobus-authz-callout-error-dev/html/index.html
-Files: /usr/share/doc/libglobus-authz-callout-error-dev/html/*.html
+Index: /usr/share/doc/libglobus-authz-callout-error0/html/index.html
+Files: /usr/share/doc/libglobus-authz-callout-error0/html/*.html

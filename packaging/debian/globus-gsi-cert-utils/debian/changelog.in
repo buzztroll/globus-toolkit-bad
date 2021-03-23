@@ -1,3 +1,15 @@
+globus-gsi-cert-utils (1:9.17-1+gt6.@distro@) @distro@; urgency=low
+
+  * Use prebuilt doxyxgen if available
+
+ -- Globus Toolkit <support@globus.org>  Fri, 26 Mar 2021 19:20:06 +0000
+
+globus-gsi-cert-utils (1:9.16-3+gt6.@distro@) @distro@; urgency=low
+
+  * Modernize package metadata
+
+ -- Globus Toolkit <support@globus.org>  Thu, 25 Mar 2021 16:48:44 -0400
+
 globus-gsi-cert-utils (1:9.16-2+gt6.@distro@) @distro@; urgency=low
 
   * Packaging update to ensure priority of Globus packages

@@ -1,0 +1,5 @@
+#! /usr/bin/dh-exec
+
+usr/bin/*
+usr/share/doc/*/GLOBUS_LICENSE
+usr/share/man/man1/*

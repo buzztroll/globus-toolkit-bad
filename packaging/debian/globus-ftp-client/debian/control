@@ -1,7 +1,7 @@
 Source: globus-ftp-client
 Priority: optional
 Maintainer: Globus Support <support@globus.org>
-Build-Depends: debhelper (>= 9), autotools-dev, quilt, libglobus-xio-popen-driver-dev (>= 2), libglobus-xio-pipe-driver-dev, libglobus-common-dev (>= 15), libglobus-ftp-control-dev (>= 4), libglobus-ftp-control-doc (>= 1), globus-gridftp-server-progs (>= 0), libglobus-gridftp-server-dev, doxygen (<< 1.6.2-1) | doxygen (>> 1.6.2-1), graphviz, pkg-config, openssl, dh-exec, libltdl-dev
+Build-Depends: debhelper (>= 9), autotools-dev, quilt, libglobus-xio-popen-driver-dev (>= 2), libglobus-xio-pipe-driver-dev, libglobus-common-dev (>= 15), libglobus-ftp-control-dev (>= 4), libglobus-ftp-control-doc (>= 1), globus-gridftp-server-progs (>= 0), libglobus-gridftp-server-dev, pkg-config, openssl, dh-exec, libltdl-dev
 Standards-Version: 3.9.2
 Section: net
 Homepage: http://www.globus.org/
@@ -50,18 +50,3 @@ Description: Globus Toolkit - GridFTP Client Library Documentation Files
  .
  The libglobus-ftp-client-doc package contains:
  GridFTP Client Library Documentation Files
-
-Package: libglobus-ftp-client-dbg
-Section: debug
-Priority: extra
-Architecture: any
-Depends: libglobus-ftp-client2 (= ${binary:Version}), ${misc:Depends}
-Description: Globus Toolkit - GridFTP Client Library Debug Symbols
- The Globus Toolkit is an open source software toolkit used for
- building Grid systems and applications. It is being developed by the
- Globus Alliance and many others all over the world. A growing number
- of projects and companies are using the Globus Toolkit to unlock the
- potential of grids for their cause.
- .
- The globus-ftp-client-dbg package contains:
- GridFTP Client Library Debug Symbols

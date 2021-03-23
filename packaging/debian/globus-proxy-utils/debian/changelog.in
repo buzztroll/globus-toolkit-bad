@@ -1,3 +1,9 @@
+globus-proxy-utils (1:6.20-3+gt6.@distro@) @distro@; urgency=low
+
+  * Modernize package metadata
+
+ -- Globus Toolkit <support@globus.org>  Thu, 25 Mar 2021 14:41:37 -0400
+
 globus-proxy-utils (1:6.20-2+gt6.@distro@) @distro@; urgency=low
 
   * Packaging update to ensure priority of Globus packages

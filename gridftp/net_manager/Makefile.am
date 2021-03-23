@@ -25,7 +25,11 @@ libglobus_net_manager_la_LDFLAGS = \
 	-version-info $(MAJOR_VERSION):$(MINOR_VERSION):$(AGE_VERSION) \
         -no-undefined
 
-EXTRA_DIST = dirt.sh version.h.in globus-vararg-enums-doxygen-filter.pl $(doc_DATA)
+if DIST_DOC
+dist_doc = doc
+endif
+
+EXTRA_DIST = dirt.sh version.h.in globus-vararg-enums-doxygen-filter.pl $(doc_DATA) $(dist_doc)
 
 DOC_STAMPS =
 if ENABLE_DOXYGEN
@@ -39,6 +43,8 @@ doc-stamp: Doxyfile $(libglobus_common_la_SOURCES)
 clean-local:
 	rm -rf doc doc-stamp
 endif
+
+doc: $(DOC_STAMPS)
 
 all-local: $(DOC_STAMPS)
 

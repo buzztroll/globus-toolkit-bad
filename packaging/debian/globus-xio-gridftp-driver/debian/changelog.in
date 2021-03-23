@@ -1,3 +1,15 @@
+globus-xio-gridftp-driver (1:2.19-1+gt6.@distro@) @distro@; urgency=low
+
+  * Use prebuilt doxyxgen if available
+
+ -- Globus Toolkit <support@globus.org>  Fri, 26 Mar 2021 17:12:47 +0000
+
+globus-xio-gridftp-driver (1:2.18-3+gt6.@distro@) @distro@; urgency=low
+
+  * Modernize package metadata
+
+ -- Globus Toolkit <support@globus.org>  Thu, 25 Mar 2021 14:12:18 -0400
+
 globus-xio-gridftp-driver (1:2.18-2+gt6.@distro@) @distro@; urgency=low
 
   * Packaging update to ensure priority of Globus packages

@@ -75,6 +75,8 @@ TESTS_ENVIRONMENT = export \
     X509_USER_CERT=testcred.cert \
     X509_USER_KEY=testcred.key \
     X509_CERT_DIR=$(X509_CERT_DIR) \
+    HOME="$(abs_builddir)" \
+    GLOBUS_HOSTNAME=127.0.0.1 \
     GRIDMAP=$(GRIDMAP) \
     PATH=$${PATH}:$(abs_builddir):$(abs_srcdir);
 LOG_COMPILER = $(LIBTOOL) --mode=execute $(GSI_DRIVER_DLOPEN)

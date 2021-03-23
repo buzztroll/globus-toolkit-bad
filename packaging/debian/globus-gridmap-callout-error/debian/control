@@ -1,7 +1,7 @@
 Source: globus-gridmap-callout-error
 Priority: optional
 Maintainer: Globus Support <support@globus.org>
-Build-Depends: debhelper (>= 5), autotools-dev, libglobus-common-dev, libglobus-gssapi-error-dev, doxygen (<< 1.6.2-1) | doxygen (>> 1.6.2-1), graphviz
+Build-Depends: debhelper (>= 9), dh-exec, autotools-dev, libglobus-common-dev, libglobus-gssapi-error-dev
 Standards-Version: 3.8.4
 Section: net
 Homepage: http://www.globus.org/
@@ -48,18 +48,3 @@ Description: Globus Toolkit - Globus Gridmap Callout Errors Documentation Files
  .
  The libglobus-gridmap-callout-error-doc package contains:
  Globus Gridmap Callout Errors Documentation Files
-
-Package: libglobus-gridmap-callout-error-dbg
-Section: debug
-Priority: extra
-Architecture: any
-Depends: libglobus-gridmap-callout-error0 (= ${binary:Version}), ${misc:Depends}
-Description: Globus Toolkit - Globus Gridmap Callout Errors Debug Symbols
- The Globus Toolkit is an open source software toolkit used for
- building Grid systems and applications. It is being developed by the
- Globus Alliance and many others all over the world. A growing number
- of projects and companies are using the Globus Toolkit to unlock the
- potential of grids for their cause.
- .
- The libglobus-gridmap-callout-error-dbg package contains:
- Globus Gridmap Callout Errors Debug Symbols

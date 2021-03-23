@@ -5,5 +5,5 @@ Abstract: The Globus toolkit, Common Library
 Section: Programming
 
 Format: HTML
-Index: /usr/share/doc/libglobus-common-dev/html/index.html
-Files: /usr/share/doc/libglobus-common-dev/html/*.html
+Index: /usr/share/doc/libglobus-common0/html/index.html
+Files: /usr/share/doc/libglobus-common0/html/*.html

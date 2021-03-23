@@ -1,6 +1,6 @@
 AC_PREREQ([2.60])
 
-AC_INIT([globus_gsi_proxy_core],[8.7],[https://github.com/globus/globus-toolkit/issues])
+AC_INIT([globus_gsi_proxy_core],[8.9],[https://github.com/globus/globus-toolkit/issues])
 AC_CONFIG_MACRO_DIR([m4])
 AC_SUBST([MAJOR_VERSION], [${PACKAGE_VERSION%%.*}])
 AC_SUBST([MINOR_VERSION], [${PACKAGE_VERSION##*.}])
@@ -56,7 +56,8 @@ fi
 
 
 AC_PATH_PROGS([DOXYGEN], doxygen)
-AM_CONDITIONAL([ENABLE_DOXYGEN], [test "$DOXYGEN" != "no"])
+AM_CONDITIONAL([ENABLE_DOXYGEN], [test "$DOXYGEN" != ""])
+AM_CONDITIONAL([DIST_DOC], [test "$DOXYGEN" != "" || test -d "${srcdir}/library/doc"])
 
 AC_OUTPUT(
         globus-gsi-proxy-core.pc

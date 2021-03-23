@@ -9,6 +9,10 @@ libglobus_openssl_la_LDFLAGS = \
         -no-undefined
 libglobus_openssl_la_SOURCES = globus_openssl.c globus_openssl.h
 
+if DIST_DOC
+dist_doc = doc
+endif
+
 DOC_STAMPS =
 if ENABLE_DOXYGEN
 DOC_STAMPS += doc-stamp
@@ -21,6 +25,10 @@ doc-stamp: Doxyfile $(libglobus_openssl_la_SOURCES)
 clean-local:
 	rm -rf doc doc-stamp
 endif
+
+doc: $(DOC_STAMPS)
+
+EXTRA_DIST = $(dist_doc)
 
 all-local: $(DOC_STAMPS)
 

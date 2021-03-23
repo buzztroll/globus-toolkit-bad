@@ -1,3 +1,15 @@
+globus-gass-copy (1:9.30-1+gt6.@distro@) @distro@; urgency=low
+
+  * Use prebuilt doxyxgen if available
+
+ -- Globus Toolkit <support@globus.org>  Fri, 26 Mar 2021 19:20:05 +0000
+
+globus-gass-copy (1:9.29-3+gt6.@distro@) @distro@; urgency=low
+
+  * Modernize package metadata
+
+ -- Globus Toolkit <support@globus.org>  Thu, 25 Nov 2021 11:38:31 -0400
+
 globus-gass-copy (1:9.29-2+gt6.@distro@) @distro@; urgency=low
 
   * Packaging update to ensure priority of Globus packages

@@ -1,3 +1,15 @@
+globus-gsi-callback (1:5.14-1+gt6.@distro@) @distro@; urgency=low
+
+  * Use prebuilt doxyxgen if available
+
+ -- Globus Toolkit <support@globus.org>  Fri, 26 Mar 2021 19:20:06 +0000
+
+globus-gsi-callback (1:5.13-2+gt6.@distro@) @distro@; urgency=low
+
+  * Modernize package metadata
+
+ -- Globus Toolkit <support@globus.org>  Thu, 25 Mar 2021 9:03:04 -0400
+
 globus-gsi-callback (1:5.13-2+gt6.@distro@) @distro@; urgency=low
 
   * Packaging update to ensure priority of Globus packages

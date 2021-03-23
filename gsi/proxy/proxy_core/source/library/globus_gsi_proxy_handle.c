@@ -1354,6 +1354,9 @@ __asm__(".symver globus_gsi_proxy_handle_get_proxy_cert_info_openssl,"
         globus_gsi_proxy_handle_get_proxy_cert_info
 #endif
 
+#if USE_SYMBOL_VERSIONS
+__attribute__((used))
+#endif
 /**
  * @brief Get Cert Info
  * @ingroup globus_gsi_proxy_handle
@@ -1429,6 +1432,9 @@ globus_gsi_proxy_handle_get_proxy_cert_info_openssl(
 }
 /* globus_gsi_proxy_handle_get_proxy_cert_info_openssl() */
 
+#if USE_SYMBOL_VERSIONS
+__attribute__((used))
+#endif
 globus_result_t
 globus_gsi_proxy_handle_get_proxy_cert_info_proxy_ssl(
     globus_gsi_proxy_handle_t           handle,
@@ -1522,6 +1528,9 @@ free_pci_new_exit:
 }
 /* globus_gsi_proxy_handle_get_proxy_cert_info_proxy_ssl() */
 
+#if USE_SYMBOL_VERSIONS
+__attribute__((used))
+#endif
 /**
  * @brief Set Cert Info
  * @ingroup globus_gsi_proxy_handle
@@ -1602,6 +1611,9 @@ globus_gsi_proxy_handle_set_proxy_cert_info_openssl(
 }
 /* globus_gsi_proxy_handle_set_proxy_cert_info_openssl */
 
+#if USE_SYMBOL_VERSIONS
+__attribute__((used))
+#endif
 globus_result_t
 globus_gsi_proxy_handle_set_proxy_cert_info_proxy_ssl(
     globus_gsi_proxy_handle_t           handle,

@@ -1,19 +1,13 @@
 Name:		globus-openssl-module
-%global soname 0
-%if %{?suse_version}%{!?suse_version:0} >= 1315
-%global apache_license Apache-2.0
-%else
-%global apache_license ASL 2.0
-%endif
 %global _name %(tr - _ <<< %{name})
 Epoch:          1
-Version:	4.8
-Release:	3%{?dist}
+Version:	4.9
+Release:	1%{?dist}
 Vendor:	Globus Support
 Summary:	Globus Toolkit - Globus OpenSSL Module Wrapper
 
 Group:		System Environment/Libraries
-License:	%{apache_license}
+License:	ASL 2.0
 URL:           https://www.globus.org/
 Source:        https://downloads.globus.org/toolkit/gt6/packages/%{_name}-%{version}.tar.gz
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
@@ -22,85 +16,30 @@ BuildRequires:	globus-gsi-proxy-ssl-devel >= 4
 BuildRequires:	globus-common-devel >= 14
 BuildRequires:	globus-gsi-openssl-error-devel >= 2
 
-%if %{?suse_version}%{!?suse_version:0} >= 1315
-BuildRequires:  openssl
-BuildRequires:  libopenssl-devel
-%else
-%if %{?rhel}%{!?rhel:0} == 5
-BuildRequires:  openssl101e
-BuildRequires:  openssl101e-devel
-BuildConflicts: openssl-devel
-%else
 BuildRequires:  openssl
 BuildRequires:  openssl-devel
-%endif
-%endif
 
-BuildRequires:	doxygen
-BuildRequires:	graphviz
-%if "%{?rhel}" == "5"
-BuildRequires:	graphviz-gd
-%endif
-%if %{?fedora}%{!?fedora:0} >= 19 || %{?rhel}%{!?rhel:0} >= 7 || %{?suse_version}%{!?suse_version:0} >= 1315
 BuildRequires:	automake >= 1.11
 BuildRequires:	autoconf >= 2.60
 BuildRequires:	libtool >= 2.2
-%endif
 BuildRequires:  pkgconfig
-
-%if %{?suse_version}%{!?suse_version:0} >= 1315
-%global mainpkg libglobus_openssl%{soname}
-%global nmainpkg -n %{mainpkg}
-%else
-%global mainpkg %{name}
-%endif
-
-%if %{?nmainpkg:1}%{!?nmainpkg:0} != 0
-%package %{?nmainpkg}
-Summary:	Globus Toolkit - Globus OpenSSL Module Wrapper
-Group:		System Environment/Libraries
-%endif
 
 %package devel
 Summary:	Globus Toolkit - Globus OpenSSL Module Wrapper Development Files
 Group:		Development/Libraries
-Requires:	%{mainpkg}%{?_isa} = %{epoch}:%{version}-%{release}
+Requires:	%{name}%{?_isa} = %{epoch}:%{version}-%{release}
 Requires:	globus-gsi-proxy-ssl-devel%{?_isa} >= 4
 Requires:	globus-common-devel%{?_isa} >= 14
 Requires:	globus-gsi-openssl-error-devel%{?_isa} >= 2
 
-%if %{?suse_version}%{!?suse_version:0} >= 1315
-Requires:  openssl
-Requires:  libopenssl-devel
-%else
-%if %{?rhel}%{!?rhel:0} == 5
-Requires:  openssl101e
-Requires:  openssl101e-devel
-%else
 Requires:  openssl
 Requires:  openssl-devel
-%endif
-%endif
-
 
 %package doc
 Summary:	Globus Toolkit - Globus OpenSSL Module Wrapper Documentation Files
 Group:		Documentation
-%if %{?fedora}%{!?fedora:0} >= 10 || %{?rhel}%{!?rhel:0} >= 6
 BuildArch:	noarch
-%endif
-Requires:	%{mainpkg} = %{epoch}:%{version}-%{release}
-
-%if %{?suse_version}%{!?suse_version:0} >= 1315
-%description %{?nmainpkg}
-The Globus Toolkit is an open source software toolkit used for building Grid
-systems and applications. It is being developed by the Globus Alliance and
-many others all over the world. A growing number of projects and companies are
-using the Globus Toolkit to unlock the potential of grids for their cause.
-
-The %{mainpkg} package contains:
-Globus OpenSSL Module Wrapper
-%endif
+Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description
 The Globus Toolkit is an open source software toolkit used for building Grid
@@ -133,16 +72,10 @@ Globus OpenSSL Module Wrapper Documentation Files
 %setup -q -n %{_name}-%{version}
 
 %build
-%if %{?fedora}%{!?fedora:0} >= 19 || %{?rhel}%{!?rhel:0} >= 7 || %{?suse_version}%{!?suse_version:0} >= 1315
 # Remove files that should be replaced during bootstrap
 rm -rf autom4te.cache
 
 autoreconf -if
-%endif
-
-%if %{?rhel}%{!?rhel:0} == 5
-export OPENSSL="$(which openssl101e)"
-%endif
 
 %configure \
            --disable-static \
@@ -162,11 +95,11 @@ find $RPM_BUILD_ROOT%{_libdir} -name 'lib*.la' -exec rm -v '{}' \;
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post %{?nmainpkg} -p /sbin/ldconfig
+%post -p /sbin/ldconfig
 
-%postun %{?nmainpkg} -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
-%files %{?nmainpkg}
+%files
 %defattr(-,root,root,-)
 %dir %{_docdir}/%{name}-%{version}
 %doc %{_docdir}/%{name}-%{version}/GLOBUS_LICENSE
@@ -185,6 +118,12 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man3/*
 
 %changelog
+* Fri Mar 26 2021 Globus Toolkit <support@globus.org> - 4.9-1
+- Use prebuilt doxyxgen if available
+
+* Wed Mar 24 2021 Globus Toolkit <support@globus.org> - 4.8-4
+- Remove conditional builds for unsupported OSes
+
 * Wed Nov 27 2019 Globus Toolkit <support@globus.org> - 4.8-3
 - Packaging update to ensure priority of Globus packages
 

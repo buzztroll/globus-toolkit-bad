@@ -1,3 +1,15 @@
+globus-gsi-proxy-ssl (1:5.11-1+gt6.@distro@) @distro@; urgency=low
+
+  * Use prebuilt doxyxgen if available
+
+ -- Globus Toolkit <support@globus.org>  Fri, 26 Mar 2021 19:20:07 +0000
+
+globus-gsi-proxy-ssl (1:5.10-3+gt6.@distro@) @distro@; urgency=low
+
+  * Modernize debian packaging
+
+ -- Globus Toolkit <support@globus.org>  Wed, 24 Mar 2021 19:28:15 -0400
+
 globus-gsi-proxy-ssl (1:5.10-2+gt6.@distro@) @distro@; urgency=low
 
   * Packaging update to ensure priority of Globus packages

@@ -36,18 +36,3 @@ Description: Globus Toolkit - Globus XIO UDT Driver Development Files
  .
  The libglobus-xio-udt-driver-dev package contains:
  Globus XIO UDT Driver Development Files
-
-Package: libglobus-xio-udt-driver-dbg
-Section: debug
-Priority: extra
-Architecture: any
-Depends: libglobus-xio-udt-driver (= ${binary:Version}), ${misc:Depends}
-Description: Globus Toolkit - Globus XIO UDT Driver Debug Symbols
- The Globus Toolkit is an open source software toolkit used for
- building Grid systems and applications. It is being developed by the
- Globus Alliance and many others all over the world. A growing number
- of projects and companies are using the Globus Toolkit to unlock the
- potential of grids for their cause.
- .
- The libglobus-xio-udt-driver-dbg package contains:
- Globus XIO UDT Driver Debug Symbols

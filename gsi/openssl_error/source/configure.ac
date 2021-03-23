@@ -1,6 +1,6 @@
 AC_PREREQ([2.60])
 
-AC_INIT([globus_gsi_openssl_error], [3.8],[https://github.com/globus/globus-toolkit/issues])
+AC_INIT([globus_gsi_openssl_error], [3.9],[https://github.com/globus/globus-toolkit/issues])
 AC_CONFIG_MACRO_DIR([m4])
 AC_SUBST([MAJOR_VERSION], [${PACKAGE_VERSION%%.*}])
 AC_SUBST([MINOR_VERSION], [${PACKAGE_VERSION##*.}])
@@ -27,6 +27,7 @@ PKG_CHECK_MODULES([PACKAGE_DEP], $PACKAGE_DEPS)
 
 AC_PATH_PROGS([DOXYGEN], doxygen)
 AM_CONDITIONAL([ENABLE_DOXYGEN], [test "x$DOXYGEN" != x])
+AM_CONDITIONAL([DIST_DOC], [test "$DOXYGEN" != "" || test -d "${srcdir}/library/doc"])
 
 AC_CONFIG_FILES(
         Makefile

@@ -1,7 +1,7 @@
 Source: globus-gss-assist
 Priority: optional
 Maintainer: Globus Support <support@globus.org>
-Build-Depends: debhelper (>= 5), autotools-dev, quilt, libglobus-gsi-cert-utils-dev (>= 8), libglobus-gsi-sysconfig-dev (>= 7), libglobus-common-dev (>= 14), libglobus-callout-dev (>= 2), libglobus-gssapi-gsi-dev (>= 13), libglobus-gsi-credential-dev (>= 6), doxygen (<< 1.6.2-1) | doxygen (>> 1.6.2-1), graphviz, pkg-config, openssl
+Build-Depends: debhelper (>= 9), dh-exec, autotools-dev, quilt, libglobus-gsi-cert-utils-dev (>= 8), libglobus-gsi-sysconfig-dev (>= 7), libglobus-common-dev (>= 14), libglobus-callout-dev (>= 2), libglobus-gssapi-gsi-dev (>= 13), libglobus-gsi-credential-dev (>= 6), pkg-config, openssl
 Standards-Version: 3.9.2
 Section: net
 Homepage: http://www.globus.org/
@@ -63,18 +63,3 @@ Description: Globus Toolkit - GSSAPI Assist library Documentation Files
  .
  The libglobus-gss-assist-doc package contains:
  GSSAPI Assist library Documentation Files
-
-Package: libglobus-gss-assist-dbg
-Section: debug
-Priority: extra
-Architecture: any
-Depends: libglobus-gss-assist3 (= ${binary:Version}), ${misc:Depends}
-Description: Globus Toolkit - GSSAPI Assist library Debug Symbols
- The Globus Toolkit is an open source software toolkit used for
- building Grid systems and applications. It is being developed by the
- Globus Alliance and many others all over the world. A growing number
- of projects and companies are using the Globus Toolkit to unlock the
- potential of grids for their cause.
- .
- The libglobus-gss-assist-dbg package contains:
- GSSAPI Assist library Debug Symbols

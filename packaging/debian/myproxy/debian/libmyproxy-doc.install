@@ -1,0 +1,27 @@
+#! /usr/bin/dh-exec
+
+usr/share/myproxy/INSTALL => /usr/share/doc/myproxy/INSTALL
+usr/share/myproxy/LICENSE => /usr/share/doc/myproxy/LICENSE
+usr/share/myproxy/LICENSE.globus => /usr/share/doc/myproxy/LICENSE.globus
+usr/share/myproxy/LICENSE.netbsd => usr/share/doc/myproxy/LICENSE.netbsd
+usr/share/myproxy/LICENSE.pidfile => usr/share/doc/myproxy/LICENSE.pidfile
+usr/share/myproxy/LICENSE.safefile => usr/share/doc/myproxy/LICENSE.safefile
+usr/share/myproxy/LICENSE.sasl => usr/share/doc/myproxy/LICENSE.sasl
+usr/share/myproxy/PROTOCOL => usr/share/doc/myproxy/PROTOCOL
+usr/share/myproxy/README => usr/share/doc/myproxy/README
+usr/share/myproxy/VERSION => usr/share/doc/myproxy/VERSION
+
+usr/share/myproxy/login.html => usr/share/doc/myproxy/extras/login.html
+usr/share/myproxy/myproxy-accepted-credentials-mapapp => usr/share/doc/myproxy/extras/myproxy-accepted-credentials-mapapp
+usr/share/myproxy/myproxy-cert-checker => usr/share/doc/myproxy/extras/myproxy-cert-checker
+usr/share/myproxy/myproxy-certificate-mapapp => usr/share/doc/myproxy/extras/myproxy-certificate-mapapp
+usr/share/myproxy/myproxy-certreq-checker => usr/share/doc/myproxy/extras/myproxy-certreq-checker
+usr/share/myproxy/myproxy-crl.cron => usr/share/doc/myproxy/extras/myproxy-crl.cron
+usr/share/myproxy/myproxy-get-delegation.cgi  => usr/share/doc/myproxy/extras/myproxy-get-delegation.cgi
+usr/share/myproxy/myproxy-get-trustroots.cron => usr/share/doc/myproxy/extras/myproxy-get-trustroots.cron
+usr/share/myproxy/myproxy-passphrase-policy => usr/share/doc/myproxy/extras/myproxy-passphrase-policy
+usr/share/myproxy/myproxy-revoke => usr/share/doc/myproxy/extras/myproxy-revoke
+usr/share/myproxy/myproxy.cron => usr/share/doc/myproxy/extras/myproxy.cron
+
+usr/share/myproxy/myproxy-server.conf
+usr/share/myproxy/myproxy-server.service

@@ -1,0 +1,6 @@
+#! /usr/bin/dh-exec
+
+usr/share/doc/libglobus-common0/GLOBUS_LICENSE
+usr/lib/*/*.so.*
+usr/lib/*/libglobus_thread*.so
+usr/share/perl5*/Globus/Core/*.pm

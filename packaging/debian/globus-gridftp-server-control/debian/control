@@ -1,7 +1,7 @@
 Source: globus-gridftp-server-control
 Priority: optional
 Maintainer: Globus Support <support@globus.org>
-Build-Depends: debhelper (>= 5), autotools-dev, quilt, libglobus-xio-pipe-driver-dev (>= 2), libglobus-common-dev (>= 14), libglobus-xio-gsi-driver-dev (>= 2), libglobus-xio-dev (>= 6), libglobus-gss-assist-dev (>= 8), pkg-config
+Build-Depends: debhelper (>= 9), dh-exec, autotools-dev, quilt, libglobus-xio-pipe-driver-dev (>= 2), libglobus-common-dev (>= 14), libglobus-xio-gsi-driver-dev (>= 2), libglobus-xio-dev (>= 6), libglobus-gss-assist-dev (>= 8), pkg-config
 Standards-Version: 3.9.0
 Section: net
 Homepage: http://www.globus.org/
@@ -33,18 +33,3 @@ Description: Globus Toolkit - Globus GridFTP Server Library Development Files
  .
  The libglobus-gridftp-server-control-dev package contains:
  Globus GridFTP Server Library Development Files
-
-Package: libglobus-gridftp-server-control-dbg
-Section: debug
-Priority: extra
-Architecture: any
-Depends: libglobus-gridftp-server-control0 (= ${binary:Version}), ${misc:Depends}
-Description: Globus Toolkit - Globus GridFTP Server Library Debug Symbols
- The Globus Toolkit is an open source software toolkit used for
- building Grid systems and applications. It is being developed by the
- Globus Alliance and many others all over the world. A growing number
- of projects and companies are using the Globus Toolkit to unlock the
- potential of grids for their cause.
- .
- The libglobus-gridftp-server-control-dbg package contains:
- Globus GridFTP Server Library Debug Symbols

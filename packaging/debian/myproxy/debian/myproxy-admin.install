@@ -1,0 +1,7 @@
+#! /usr/bin/dh-exec
+
+usr/sbin/myproxy-admin-*
+usr/sbin/myproxy-replicate
+usr/sbin/myproxy-test*
+usr/share/man/man8/myproxy-admin*
+usr/share/man/man8/myproxy-replicate*

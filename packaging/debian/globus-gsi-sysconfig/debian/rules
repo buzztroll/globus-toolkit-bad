@@ -9,38 +9,21 @@ include /usr/share/dpkg/default.mk
 #export DEB_BUILD_MAINT_OPTIONS = hardening=+all
 
 name = globus-gsi-sysconfig
-_name = globus_gsi_sysconfig
-version = 8.1
-soname = 1
 _prefix = /usr
-_bindir = $(_prefix)/bin
-_sbindir = $(_prefix)/sbin
-_sysconfdir = /etc
 _includedir = $(_prefix)/include
-_libdir = $(_prefix)/lib/$(DEB_HOST_MULTIARCH)
 _datadir = $(_prefix)/share
 _mandir = $(_datadir)/man
 _docdir = $(_datadir)/doc
 
 override_dh_auto_configure:
 	dh_auto_configure -- \
-	    --sysconfdir=$(_sysconfdir) \
-	    --enable-silent-rules \
-	    --docdir='$(_docdir)/lib$(name)-dev' \
+	    --docdir='$(_docdir)/lib$(name)1' \
 	    --includedir='$(_includedir)/globus' \
 	    --datadir='$(_datadir)/globus' \
 	    --libexecdir='$(_datadir)/globus' \
-	    --disable-static \
-	    --enable-doxygen
-
-override_dh_auto_install:
-	mkdir -p debian/tmp/etc/grid-security/certificates
-	dh_auto_install
-
-override_dh_strip:
-	dh_strip --dbg-package=libglobus-gsi-sysconfig-dbg
+	    --disable-static
 
 %:
-	dh $@ --with autotools-dev
+	dh $@
 
-.PHONY: override_dh_auto_configure override_dh_strip override_dh_auto_install
+.PHONY: override_dh_auto_configure

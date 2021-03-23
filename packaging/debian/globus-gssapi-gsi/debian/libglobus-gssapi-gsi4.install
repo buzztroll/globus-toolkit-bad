@@ -1,4 +1,5 @@
 #! /usr/bin/dh-exec
+
 etc/grid-security/gsi.conf
-usr/lib/*/libglobus_gssapi_gsi.so.*
-usr/share/doc/libglobus-gssapi-gsi-dev/GLOBUS_LICENSE
+usr/lib/*/*.so.*
+usr/share/doc/*/GLOBUS_LICENSE

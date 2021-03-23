@@ -1,135 +1,44 @@
-%if %{?fedora}%{!?fedora:0} <= 16 || %{?rhel}%{!?rhel:0} < 7
-%global backwardcompat "--with-backward-compatibility-hack"
-%endif
 %global soname 0
-
-%if %{?suse_Version}%{!?suse_Version:0} >= 1315
-%global apache_license Apache-2.0
-%else
-%global apache_license ASL 2.0
-%endif
 
 %{!?perl_vendorlib: %global perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)}
 
 Name:		globus-common
 %global _name %(tr - _ <<< %{name})
 Epoch:          1
-Version:	17.6
+Version:	17.7
 Release:	1%{?dist}
 Vendor:		Globus Support
 Summary:	Globus Toolkit - Common Library
 
-
 Group:		System Environment/Libraries
-License:	%{apache_license}
+License:	ASL 2.0
 URL:           https://www.globus.org/
 Source:        https://downloads.globus.org/toolkit/gt6/packages/%{_name}-%{version}.tar.gz
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-#		Obsolete dropped packages from Globus Toolkit 4.2.1
-Obsoletes:	globus-data-conversion
-Obsoletes:	globus-mp
-Obsoletes:	globus-nexus
-Obsoletes:	globus-duct-common
-Obsoletes:	globus-duct-control
-Obsoletes:	globus-duroc-common
-Obsoletes:	globus-duroc-control
-%if %{?fedora}%{!?fedora:0} <= 16 || %{?rhel}%{!?rhel:0} < 7
-Provides:	globus-libtool%{?_isa}
-Provides:       globus-common-setup%{?_isa}
-%endif
-Obsoletes:      globus-libtool < 2
-Obsoletes:      globus-common-setup < 3
-BuildRequires:	doxygen
-BuildRequires:	graphviz
-%if 0%{?suse_version} == 0
-%if 0%{?rhel} > 4 || 0%{?rhel} == 0
 BuildRequires:	libtool-ltdl-devel
-%endif
-%endif
-%if 0%{?suse_version} >= 1315
-BuildRequires:   autoconf
-BuildRequires:   automake
-BuildRequires:   libtool
-%endif
-%if "%{?rhel}" == "5"
-BuildRequires:	graphviz-gd
-%else
-%if %{?fedora}%{!?fedora:0} >= 19 || %{?rhel}%{!?rhel:0} >= 7
 BuildRequires:	automake >= 1.11
 BuildRequires:	autoconf >= 2.60
 BuildRequires:	libtool >= 2.2
-%endif
-%endif
 BuildRequires:  pkgconfig
-
-%if %{?suse_version}%{!?suse_version:0} >= 1315
-%global mainpkg lib%{_name}%{soname}
-%global nmainpkg -n %{mainpkg}
-%else
-%global mainpkg %{name}
-%endif
-
-%if %{?nmainpkg:1}%{!?nmainpkg:0} != 0
-%package %{?nmainpkg}
-Summary:	Globus Toolkit - Common Library
-Group:		System Environment/Libraries
-%endif
 
 %package progs
 Summary:	Globus Toolkit - Common Library Programs
 Group:		Applications/Internet
-Requires:	%{mainpkg}%{?_isa} = %{epoch}:%{version}-%{release}
-%if 0%{?suse_version} > 0
-    %if %{suse_version} < 1140
-Requires:     perl = %{perl_version}
-    %else
-%{perl_requires}
-    %endif
-%else
+Requires:	%{name}%{?_isa} = %{epoch}:%{version}-%{release}
 Requires:	perl(:MODULE_COMPAT_%(eval "`perl -V:version`"; echo $version))
-%endif
 
 %package devel
 Summary:	Globus Toolkit - Common Library Development Files
 Group:		Development/Libraries
-Requires:	%{mainpkg}%{?_isa} = %{epoch}:%{version}-%{release}
-%if 0%{?suse_version} == 0
-%if 0%{?rhel} > 4 || 0%{?rhel} == 0
+Requires:	%{name}%{?_isa} = %{epoch}:%{version}-%{release}
 Requires:	libtool-ltdl-devel
-%endif
-%endif
-%if 0%{?rhel} > 4 || 0%{?rhel} == 0
-Obsoletes:	globus-libtool-devel
-%endif
-#		Obsolete dropped packages from Globus Toolkit 4.2.1
-Obsoletes:	globus-core
-Obsoletes:	globus-data-conversion-devel
-Obsoletes:	globus-mp-devel
-Obsoletes:	globus-nexus-devel
-Obsoletes:	globus-duct-common-devel
-Obsoletes:	globus-duct-control-devel
-Obsoletes:	globus-duroc-common-devel
-Obsoletes:	globus-duroc-control-devel
 
 %package doc
 Summary:	Globus Toolkit - Common Library Documentation Files
 Group:		Documentation
-%if %{?fedora}%{!?fedora:0} >= 10 || %{?rhel}%{!?rhel:0} >= 6
 BuildArch:	noarch
-%endif
-Requires:	%{mainpkg} = %{epoch}:%{version}-%{release}
-
-%if %{?suse_version}%{!?suse_version:0} >= 1315
-%description %{?nmainpkg}
-The Globus Toolkit is an open source software toolkit used for building Grid
-systems and applications. It is being developed by the Globus Alliance and
-many others all over the world. A growing number of projects and companies are
-using the Globus Toolkit to unlock the potential of grids for their cause.
-
-The %{mainpkg} package contains:
-Common Library
-%endif
+Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description
 The Globus Toolkit is an open source software toolkit used for building Grid
@@ -181,15 +90,13 @@ EOF
 chmod +x %{__perl_requires}
 
 %build
-%if %{?fedora}%{!?fedora:0} >= 19 || %{?rhel}%{!?rhel:0} >= 7 || %{?suse_version}%{!?suse_version:0} >= 1315
 # Remove files that should be replaced during bootstrap
 rm -rf autom4te.cache
 
 autoreconf -if
-%endif
 
 %configure \
-           --disable-static %{backwardcompat} \
+           --disable-static \
            --docdir=%{_docdir}/%{name}-%{version} \
            --includedir=%{_includedir}/globus \
            --datadir=%{_datadir}/globus \
@@ -208,19 +115,17 @@ make install DESTDIR=$RPM_BUILD_ROOT
 find $RPM_BUILD_ROOT%{_libdir} -name 'lib*.la' -exec rm -v '{}' \;
 
 %check
-%if %{?suse_version}%{!?suse_version:0} >= 1315 || %{?fedora}%{!?fedora:0} >= 26
 export NO_EXTERNAL_NET=1
-%endif
 make %{?_smp_mflags} check
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post %{?nmainpkg} -p /sbin/ldconfig
+%post -p /sbin/ldconfig
 
-%postun %{?nmainpkg} -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
-%files %{?nmainpkg}
+%files
 %defattr(-,root,root,-)
 %dir %{_docdir}/%{name}-%{version}
 %dir %{_datadir}/globus
@@ -253,6 +158,13 @@ rm -rf $RPM_BUILD_ROOT
 %{_docdir}/%{name}-%{version}/html/*
 
 %changelog
+* Fri Mar 26 2021 Globus Toolkit <support@globus.org> - 17.7-1
+- Use prebuilt doxyxgen if available
+- Remove doxygen and graphviz build dependencies
+
+* Tue Mar 23 2021 Globus Toolkit <support@globus.org> - 17.6-2
+- Always disable network tests when building, remove obsolete build options
+
 * Wed Feb 03 2021 Globus Toolkit <support@globus.org> - 17.6-1
 - remove obsolete storage class from function prototypes
 

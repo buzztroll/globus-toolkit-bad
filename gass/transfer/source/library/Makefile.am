@@ -26,6 +26,12 @@ libglobus_gass_transfer_la_SOURCES = \
 	globus_i_gass_transfer_keyvalue.h \
 	globus_l_gass_transfer_http.h
 
+if DIST_DOC
+dist_doc = doc
+endif
+
+EXTRA_DIST = $(dist_doc)
+
 DOC_STAMPS =
 if ENABLE_DOXYGEN
 DOC_STAMPS += doc-stamp
@@ -40,6 +46,7 @@ clean-local:
 endif
 
 all-local: $(DOC_STAMPS)
+doc: $(DOC_STAMPS)
 
 install-data-local: $(DOC_STAMPS)
 	if test -d doc/man/man3; then \

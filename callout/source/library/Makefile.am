@@ -19,6 +19,10 @@ libglobus_callout_la_LDFLAGS = \
         -version-info $(MAJOR_VERSION):$(MINOR_VERSION):$(AGE_VERSION) \
         -no-undefined
 
+if DIST_DOC
+dist_doc = doc
+endif
+
 DOC_STAMPS =
 if ENABLE_DOXYGEN
 DOC_STAMPS += doc-stamp
@@ -33,6 +37,9 @@ clean-local:
 endif
 
 all-local: $(DOC_STAMPS)
+doc: $(DOC_STAMPS)
+
+EXTRA_DIST = $(dist_doc)
 
 install-data-local: $(DOC_STAMPS)
 	if test -d doc/man/man3; then \

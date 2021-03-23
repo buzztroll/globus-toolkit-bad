@@ -35,8 +35,13 @@ libglobus_gss_assist_la_SOURCES = \
 	wrap.c \
 	set_sec_context_opts.c 
 
+if DIST_DOC
+dist_doc = doc
+endif
+
 EXTRA_DIST = \
        dirt.sh \
+       $(dist_doc) \
        $(doc_DATA)
 
 DOC_STAMPS =
@@ -53,6 +58,7 @@ clean-local:
 endif
 
 all-local: $(DOC_STAMPS)
+doc: $(DOC_STAMPS)
 
 install-data-local: $(DOC_STAMPS)
 	if test -d doc/man/man3; then \

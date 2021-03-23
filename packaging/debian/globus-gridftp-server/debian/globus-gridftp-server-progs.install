@@ -1,0 +1,6 @@
+#! /usr/bin/dh-exec
+
+usr/sbin/*
+etc/gridftp*
+etc/init.d/*
+usr/share/man/man8/*

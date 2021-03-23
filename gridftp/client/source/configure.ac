@@ -1,6 +1,6 @@
 AC_PREREQ([2.60])
 
-AC_INIT([globus_ftp_client],[8.37],[https://github.com/globus/globus-toolkit/issues])
+AC_INIT([globus_ftp_client],[8.38],[https://github.com/globus/globus-toolkit/issues])
 AC_CONFIG_MACRO_DIR([m4])
 AC_SUBST([MAJOR_VERSION], [${PACKAGE_VERSION%%.*}])
 AC_SUBST([MINOR_VERSION], [${PACKAGE_VERSION##*.}])
@@ -109,6 +109,8 @@ AC_PATH_PROGS([SSH_BIN], ssh, "/usr/bin/ssh")
 AC_PATH_PROGS([DOXYGEN], doxygen)
 
 AM_CONDITIONAL([ENABLE_DOXYGEN], [test "$DOXYGEN" != ""])
+AM_CONDITIONAL([DIST_DOC], [test "$DOXYGEN" != "" || test -d "${srcdir}/doc"])
+
 AC_CONFIG_FILES(
         globus-ftp-client-uninstalled.pc
         globus-ftp-client.pc

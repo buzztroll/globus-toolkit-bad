@@ -1,0 +1,4 @@
+#! /usr/bin/dh-exec
+
+usr/sbin/*
+debian/gfork.conf => etc/gfork.conf

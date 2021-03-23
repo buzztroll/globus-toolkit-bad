@@ -1,7 +1,7 @@
 Source: globus-ftp-control
 Priority: optional
 Maintainer: Globus Support <support@globus.org>
-Build-Depends: debhelper (>= 5), autotools-dev, quilt, libglobus-common-dev (>= 14), libglobus-gss-assist-dev (>= 11), libglobus-io-dev (>= 11), libglobus-gssapi-gsi-dev, libglobus-gssapi-error-dev (>= 4), libglobus-xio-dev (>= 3), doxygen (<< 1.6.2-1) | doxygen (>> 1.6.2-1), graphviz, pkg-config, openssl, libltdl-dev
+Build-Depends: debhelper (>= 9), dh-exec, autotools-dev, quilt, libglobus-common-dev (>= 14), libglobus-gss-assist-dev (>= 11), libglobus-io-dev (>= 11), libglobus-gssapi-gsi-dev, libglobus-gssapi-error-dev (>= 4), libglobus-xio-dev (>= 3), pkg-config, openssl, libltdl-dev
 Standards-Version: 3.9.2
 Section: net
 Homepage: http://www.globus.org/
@@ -48,18 +48,3 @@ Description: Globus Toolkit - GridFTP Control Library Documentation Files
  .
  The libglobus-ftp-control-doc package contains:
  GridFTP Control Library Documentation Files
-
-Package: libglobus-ftp-control-dbg
-Section: debug
-Priority: extra
-Architecture: any
-Depends: libglobus-ftp-control1 (= ${binary:Version}), ${misc:Depends}
-Description: Globus Toolkit - GridFTP Control Library Debug Symbols
- The Globus Toolkit is an open source software toolkit used for
- building Grid systems and applications. It is being developed by the
- Globus Alliance and many others all over the world. A growing number
- of projects and companies are using the Globus Toolkit to unlock the
- potential of grids for their cause.
- .
- The libglobus-ftp-control-dbg package contains:
- GridFTP Control Library Debug Symbols

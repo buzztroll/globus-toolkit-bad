@@ -1,3 +1,9 @@
+globus-xio-udt-driver (1:1.31-2+gt6.@distro@) @distro@; urgency=low
+
+  * Modernize package metadata
+
+ -- Globus Toolkit <support@globus.org>  Thu, 25 Mar 2021 11:02:42 -0400
+
 globus-xio-udt-driver (1:1.31-1+gt6.@distro@) @distro@; urgency=low
 
   * increase minimum glib2 version before building our own

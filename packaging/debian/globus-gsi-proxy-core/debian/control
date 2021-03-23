@@ -1,7 +1,7 @@
 Source: globus-gsi-proxy-core
 Priority: optional
 Maintainer: Globus Support <support@globus.org>
-Build-Depends: debhelper (>= 5), autotools-dev, libglobus-gsi-proxy-ssl-dev (>= 4), libglobus-gsi-credential-dev (>= 5), libglobus-openssl-module-dev (>= 3), libglobus-gsi-openssl-error-dev (>= 2), libglobus-gsi-cert-utils-dev (>= 8), libglobus-common-dev (>= 14), libglobus-gsi-sysconfig-dev (>= 5), doxygen (<< 1.6.2-1) | doxygen (>> 1.6.2-1), graphviz, pkg-config
+Build-Depends: debhelper (>= 9), dh-exec, autotools-dev, libglobus-gsi-proxy-ssl-dev (>= 4), libglobus-gsi-credential-dev (>= 5), libglobus-openssl-module-dev (>= 3), libglobus-gsi-openssl-error-dev (>= 2), libglobus-gsi-cert-utils-dev (>= 8), libglobus-common-dev (>= 14), libglobus-gsi-sysconfig-dev (>= 5), pkg-config
 Standards-Version: 3.9.2
 Section: net
 Homepage: http://www.globus.org/
@@ -48,18 +48,3 @@ Description: Globus Toolkit - Globus GSI Proxy Core Library Documentation Files
  .
  The libglobus-gsi-proxy-core-doc package contains:
  Globus GSI Proxy Core Library Documentation Files
-
-Package: libglobus-gsi-proxy-core-dbg
-Section: debug
-Priority: extra
-Architecture: any
-Depends: libglobus-gsi-proxy-core0 (= ${binary:Version}), ${misc:Depends}
-Description: Globus Toolkit - Globus GSI Proxy Core Library Debug Symbols
- The Globus Toolkit is an open source software toolkit used for
- building Grid systems and applications. It is being developed by the
- Globus Alliance and many others all over the world. A growing number
- of projects and companies are using the Globus Toolkit to unlock the
- potential of grids for their cause.
- .
- The libglobus-gsi-proxy-core-dbg package contains:
- Globus GSI Proxy Core Library Debug Symbols

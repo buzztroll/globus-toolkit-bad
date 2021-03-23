@@ -1,0 +1,5 @@
+#! /usr/bin/dh-exec
+
+usr/lib/*/*.so.*
+usr/share/doc/*/README.txt
+usr/share/doc/*/GLOBUS_LICENSE

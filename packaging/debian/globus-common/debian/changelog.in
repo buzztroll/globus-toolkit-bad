@@ -1,3 +1,16 @@
+globus-common (1:17.7-1+gt6.@distro@) @distro@; urgency=low
+
+  * Use prebuilt doxyxgen if available
+  * Remove doxygen and graphviz build dependencies
+
+ -- Globus Toolkit <support@globus.org>  Fri, 26 Mar 2021 15:35:07 +0000
+
+globus-common (1:17.6-2+gt6.@distro@) @distro@; urgency=low
+
+  * modernize debian metadata
+
+ -- Globus Toolkit <support@globus.org>  Tue, 23 Mar 2021 14:54:00 -0400
+
 globus-common (1:17.6-1+gt6.@distro@) @distro@; urgency=low
 
   * remove obsolete storage class from function prototypes

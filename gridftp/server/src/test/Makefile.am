@@ -24,7 +24,9 @@ TESTS = \
 	sharing_allowed_test
 TESTS_ENVIRONMENT = \
 	export X509_CERT_DIR="$(abs_builddir)/certificates" \
-	       PATH="$(abs_srcdir)/..:$$PATH";
+	       PATH="$(abs_srcdir)/..:$$PATH" \
+               HOME="$(abs_builddir)" \
+	       GLOBUS_HOSTNAME="127.0.0.1";
 LOG_COMPILER = $(FAKEROOT) ../libtool --mode=execute $(MODULE_DLOPEN)
 
 AM_CPPFLAGS = -I$(srcdir)/.. $(PACKAGE_DEP_CFLAGS) $(OPENSSL_CFLAGS) 

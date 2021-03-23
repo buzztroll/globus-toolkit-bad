@@ -1,6 +1,6 @@
 AC_PREREQ([2.60])
 
-AC_INIT([globus_gsi_proxy_ssl], [5.10],[https://github.com/globus/globus-toolkit/issues])
+AC_INIT([globus_gsi_proxy_ssl], [5.11],[https://github.com/globus/globus-toolkit/issues])
 AC_CONFIG_MACRO_DIR([m4])
 AC_SUBST([MAJOR_VERSION], [${PACKAGE_VERSION%%.*}])
 AC_SUBST([MINOR_VERSION], [${PACKAGE_VERSION##*.}])
@@ -20,7 +20,8 @@ PKG_CHECK_MODULES([OPENSSL], [openssl >= 1.0],
 AC_SUBST([OPENSSL_PKGCONFIG])
 
 AC_PATH_PROGS([DOXYGEN], doxygen)
-AM_CONDITIONAL([ENABLE_DOXYGEN], [test "$DOXYGEN" != "no"])
+AM_CONDITIONAL([ENABLE_DOXYGEN], [test "$DOXYGEN" != ""])
+AM_CONDITIONAL([DIST_DOC], [test "$DOXYGEN" != "" || test -d "${srcdir}/library/doc"])
 
 AC_CONFIG_FILES(
         Makefile

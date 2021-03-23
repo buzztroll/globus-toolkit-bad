@@ -1,0 +1,4 @@
+#! /usr/bin/dh-exec
+
+usr/lib/*/lib*.so.*
+usr/share/doc/*/GLOBUS_LICENSE

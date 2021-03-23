@@ -2,7 +2,7 @@ Name:		globus-gsi
 %global _name %(tr - _ <<< %{name})
 Epoch:          1
 Version:	6.0
-Release:	2%{?dist}
+Release:	3%{?dist}
 Vendor:	Globus Support
 Summary:	Globus Toolkit - Security Tools
 

@@ -46,6 +46,10 @@ libglobus_xio_la_LIBADD = $(PACKAGE_DEP_LIBS) $(XIO_BUILTIN_LIBS)
 
 doc_DATA = GLOBUS_LICENSE
 
+if DIST_DOC
+dist_doc = doc
+endif
+
 EXTRA_DIST = \
         globus-vararg-enums-doxygen-filter.pl \
         globus_xio_system_win32.c \
@@ -55,6 +59,7 @@ EXTRA_DIST = \
         globus_i_xio_win32_mode.c \
         globus_i_xio_win32_socket.c \
         dirt.sh \
+        $(dist_doc) \
         $(doc_DATA)
 
 DOC_STAMPS =
@@ -68,7 +73,10 @@ doc-stamp: Doxyfile $(libglobus_xio_la_SOURCES)
 
 clean-local:
 	rm -rf doc doc-stamp
+
 endif
+
+doc: $(DOC_STAMPS)
 
 all-local: $(DOC_STAMPS)
 

@@ -1,7 +1,7 @@
 Source: globus-gass-copy
 Priority: optional
 Maintainer: Globus Support <support@globus.org>
-Build-Depends: debhelper (>= 5), autotools-dev, quilt, libglobus-ftp-client-dev, libglobus-common-dev, libglobus-gssapi-gsi-dev, libglobus-io-dev, libglobus-gass-transfer-dev, libglobus-ftp-control-dev, globus-gridftp-server-progs, libglobus-gridftp-server-dev, doxygen (<< 1.6.2-1) | doxygen (>> 1.6.2-1), graphviz, pkg-config, libltdl-dev, openssl, liburi-perl
+Build-Depends: debhelper (>= 9), dh-exec, autotools-dev, quilt, libglobus-ftp-client-dev, libglobus-common-dev, libglobus-gssapi-gsi-dev, libglobus-io-dev, libglobus-gass-transfer-dev, libglobus-ftp-control-dev, globus-gridftp-server-progs, libglobus-gridftp-server-dev, pkg-config, libltdl-dev, openssl, liburi-perl
 Standards-Version: 3.9.2
 Section: net
 Homepage: http://www.globus.org/
@@ -62,33 +62,3 @@ Description: Globus Toolkit - Globus Gass Copy Documentation Files
  .
  The libglobus-gass-copy-doc package contains:
  Globus Gass Copy Documentation Files
-
-Package: libglobus-gass-copy-dbg
-Section: debug
-Priority: extra
-Architecture: any
-Depends: libglobus-gass-copy2 (= ${binary:Version})
-Description: Globus Toolkit - Globus Gass Copy Library Debug Symbols
- The Globus Toolkit is an open source software toolkit used for
- building Grid systems and applications. It is being developed by the
- Globus Alliance and many others all over the world. A growing number
- of projects and companies are using the Globus Toolkit to unlock the
- potential of grids for their cause.
- .
- The libglobus-gass-copy-dbg package contains:
- Globus Gass Copy Library
-
-Package: globus-gass-copy-dbg
-Section: debug
-Priority: extra
-Architecture: any
-Depends: globus-gass-copy-progs (= ${binary:Version}), ${misc:Depends}
-Description: Globus Toolkit - Globus Gass Copy Debug Symbols
- The Globus Toolkit is an open source software toolkit used for
- building Grid systems and applications. It is being developed by the
- Globus Alliance and many others all over the world. A growing number
- of projects and companies are using the Globus Toolkit to unlock the
- potential of grids for their cause.
- .
- The globus-gass-copy-dbg package contains:
- Globus Gass Copy Program Debug Symbols

@@ -1,3 +1,21 @@
+globus-gsi-proxy-core (1:8.9-1+gt6.@distro@) @distro@; urgency=low
+
+  * Use prebuilt doxyxgen if available
+
+ -- Globus Toolkit <support@globus.org>  Fri, 26 Mar 2021 19:20:07 +0000
+
+globus-gsi-proxy-core (1:8.8-1+gt6.@distro@) @distro@; urgency=low
+
+  * Work around LTO compilation error
+
+ -- Globus Toolkit <support@globus.org>  Fri, 26 Mar 2021 14:27:17 +0000
+
+globus-gsi-proxy-core (1:8.7-3+gt6.@distro@) @distro@; urgency=low
+
+  * Modernize package metadata
+
+ -- Globus Toolkit <support@globus.org>  Thu, 25 Nov 2021 09:25:25 -0400
+
 globus-gsi-proxy-core (1:8.7-2+gt6.@distro@) @distro@; urgency=low
 
   * Packaging update to ensure priority of Globus packages

@@ -10,9 +10,6 @@ include /usr/share/dpkg/default.mk
 
 name = globus-gssapi-gsi
 _prefix = /usr
-_bindir = $(_prefix)/bin
-_sbindir = $(_prefix)/sbin
-_sysconfdir = /etc
 _includedir = $(_prefix)/include
 _libdir = $(_prefix)/lib/$(DEB_HOST_MULTIARCH)
 _datadir = $(_prefix)/share
@@ -21,19 +18,13 @@ _docdir = $(_datadir)/doc
 
 override_dh_auto_configure:
 	dh_auto_configure -- \
-	    --sysconfdir=$(_sysconfdir) \
-	    --enable-silent-rules \
-	    --docdir='$(_docdir)/lib$(name)-dev' \
+	    --docdir='$(_docdir)/lib$(name)4' \
 	    --includedir='$(_includedir)/globus' \
 	    --datadir='$(_datadir)/globus' \
 	    --libexecdir='$(_datadir)/globus' \
-	    --disable-static \
-	    --enable-doxygen
-
-override_dh_strip:
-	dh_strip --dbg-package=libglobus-gssapi-gsi-dbg
+	    --disable-static
 
 %:
-	dh $@ --with autotools-dev
+	dh $@
 
-.PHONY: override_dh_auto_configure override_dh_strip
+.PHONY: override_dh_auto_configure

@@ -16,6 +16,10 @@ libglobus_gsi_sysconfig_la_SOURCES = \
 	globus_gsi_system_config_constants.h \
 	globus_gsi_system_config_error.c
 
+if DIST_DOC
+dist_doc = doc
+endif
+
 DOC_STAMPS =
 if ENABLE_DOXYGEN
 DOC_STAMPS += doc-stamp
@@ -30,6 +34,9 @@ clean-local:
 endif
 
 all-local: $(DOC_STAMPS)
+doc: $(DOC_STAMPS)
+
+EXTRA_DIST = $(dist_doc)
 
 install-data-local: $(DOC_STAMPS)
 	if test -d doc/man/man3; then \

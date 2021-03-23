@@ -1,7 +1,7 @@
 Source: globus-xio-gridftp-multicast
 Priority: optional
 Maintainer: Globus Support <support@globus.org>
-Build-Depends: debhelper (>= 5), autotools-dev, quilt, libglobus-xio-dev (>= 0), libglobus-common-dev (>= 14), libglobus-ftp-client-dev (>= 2), doxygen (<< 1.6.2-1) | doxygen (>> 1.6.2-1), graphviz, pkg-config
+Build-Depends: debhelper (>= 9), dh-exec, autotools-dev, quilt, libglobus-xio-dev (>= 0), libglobus-common-dev (>= 14), libglobus-ftp-client-dev (>= 2), pkg-config
 Standards-Version: 3.9.2
 Section: net
 Homepage: http://www.globus.org/
@@ -26,7 +26,7 @@ Description: Globus Toolkit - Globus XIO GridFTP Multicast Driver
 Package: libglobus-xio-gridftp-multicast-dev
 Section: libdevel
 Architecture: any
-Depends: libglobus-xio-gridftp-multicast0 (= ${binary:Version}), ${misc:Depends}, libglobus-xio-dev
+Depends: libglobus-xio-gridftp-multicast (= ${binary:Version}), ${misc:Depends}, libglobus-xio-dev
 Description: Globus Toolkit - Globus XIO GridFTP Multicast Driver Development Files
  The Globus Toolkit is an open source software toolkit used for
  building Grid systems and applications. It is being developed by the
@@ -36,21 +36,3 @@ Description: Globus Toolkit - Globus XIO GridFTP Multicast Driver Development Fi
  .
  The libglobus-xio-gridftp-multicast-dev package contains:
  Globus XIO GridFTP Multicast Driver Development Files
-
-Package: libglobus-xio-gridftp-multicast-dbg
-Section: debug
-Priority: extra
-Architecture: any
-Provides: globus-xio-gridftp-multicast-dbg
-Conflicts: globus-xio-gridftp-multicast-dbg
-Replaces: globus-xio-gridftp-multicast-dbg
-Depends: libglobus-xio-gridftp-multicast0 (= ${binary:Version}), ${misc:Depends}
-Description: Globus Toolkit - Globus XIO GridFTP Multicast Driver Debug Symbols
- The Globus Toolkit is an open source software toolkit used for
- building Grid systems and applications. It is being developed by the
- Globus Alliance and many others all over the world. A growing number
- of projects and companies are using the Globus Toolkit to unlock the
- potential of grids for their cause.
- .
- The libglobus-xio-gridftp-multicast-dbg package contains:
- Globus XIO GridFTP Multicast Driver Debug Symbols
