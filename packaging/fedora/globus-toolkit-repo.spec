@@ -1,6 +1,6 @@
 Name:           globus-toolkit-repo
-Version:        6.0.21
-Release:        2
+Version:        6.0.22
+Release:        1
 Summary:        Globus Repository Configuration
 Group:          System Environment/Base
 License:        ASL 2.0
@@ -55,9 +55,6 @@ else
     osver=unknown
 fi
 case ${osname}:${osver} in
-    centos*:6* | sl*:6* | redhat*:6* | springdale*:6*)
-        repo=el6
-        ;;
     centos*:7* | sl*:7* | redhat*:7* | springdale*:7*)
         repo=el7
         ;;
@@ -66,9 +63,6 @@ case ${osname}:${osver} in
         ;;
     fedora*:*)
         repo=fedora
-        ;;
-    sles*:12*)
-        repo=sles12
         ;;
     *)
 	echo "Unsupported repo" 1>&2
@@ -109,9 +103,6 @@ else
     osver=unknown
 fi
 case ${osname}:${osver} in
-    centos*:6* | sl*:6* | redhat*:6* | springdale*:6*)
-        repo=el6
-        ;;
     centos*:7* | sl*:7* | redhat*:7* | springdale*:7*)
         repo=el7
         ;;
@@ -120,9 +111,6 @@ case ${osname}:${osver} in
         ;;
     fedora*:*)
         repo=fedora
-        ;;
-    sles*:12*)
-        repo=sles12
         ;;
     *)
 	echo "Unsupported repo" 1>&2
@@ -148,6 +136,11 @@ fi
 %{_datadir}/globus/repo/*
 
 %changelog
+* Fri Apr 23 2021 Globus Toolkit <support@globus.org> - 6.0.22-1
+- (deb) add groovy and hirsute
+- (deb) remove jessie, stretch, xenial, cosmic, disco, eoan
+- (rpm) remove el.6, sles.12
+
 * Fri May 22 2020 Globus Toolkit <support@globus.org> - 6.0.21-1
 - (deb) add focal
 

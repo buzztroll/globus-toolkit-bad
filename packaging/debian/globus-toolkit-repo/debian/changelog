@@ -1,3 +1,11 @@
+globus-toolkit-repo (6.0.22) unstable; urgency=low
+
+  * (deb) add groovy and hirsute
+  * (deb) remove jessie, stretch, xenial, cosmic, disco, eoan
+  * (rpm) remove el.6, sles.12
+
+ -- Globus Toolkit <support@globus.org>  Fri, 23 Apr 2021 12:22:41 -0500
+
 globus-toolkit-repo (6.0.21) unstable; urgency=low
 
   * (deb) add focal
