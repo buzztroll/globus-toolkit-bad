@@ -2,7 +2,7 @@ Name:		globus-gsi-sysconfig
 %global soname 1
 %global _name %(tr - _ <<< %{name})
 Epoch:          1
-Version:	8.3
+Version:	8.4
 Release:	1%{?dist}
 Vendor:	Globus Support
 Summary:	Globus Toolkit - Globus GSI System Config Library
@@ -120,6 +120,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man3/*
 
 %changelog
+* Fri Apr 23 2021 Globus Toolkit <support@globus.org> - 8.4-1
+- Allow prerelease version tags
+
 * Fri Mar 26 2021 Globus Toolkit <support@globus.org> - 8.3-1
 - Use prebuilt doxyxgen if available
 

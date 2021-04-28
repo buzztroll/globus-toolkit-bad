@@ -1,9 +1,10 @@
 AC_PREREQ([2.60])
 
-AC_INIT([globus_gridftp_server],[12.24],[https://github.com/globus/globus-toolkit/issues])
+AC_INIT([globus_gridftp_server],[12.25],[https://github.com/globus/globus-toolkit/issues])
 AC_CONFIG_MACRO_DIR([m4])
-AC_SUBST([MAJOR_VERSION], [${PACKAGE_VERSION%%.*}])
-AC_SUBST([MINOR_VERSION], [${PACKAGE_VERSION##*.}])
+PACKAGE_VERSION_NO_TAG="${PACKAGE_VERSION%~*}"
+AC_SUBST([MAJOR_VERSION], [${PACKAGE_VERSION_NO_TAG%%.*}])
+AC_SUBST([MINOR_VERSION], [${PACKAGE_VERSION_NO_TAG##*.}])
 AC_SUBST([AGE_VERSION], [6])
 AC_SUBST([PACKAGE_DEPS], ["globus-common >= 17, globus-xio >= 5, globus-xio-gsi-driver >= 2, globus-gfork >= 3, globus-gridftp-server-control >= 5, globus-ftp-control >= 7, globus-authz >= 2, globus-usage >= 3, globus-gssapi-gsi >= 10, globus-gss-assist >= 9, globus-gsi-credential >= 6, globus-gsi-sysconfig >= 5, globus-io >= 9"])
 

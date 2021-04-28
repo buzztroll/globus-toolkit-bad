@@ -2,7 +2,7 @@ Name:		globus-gsi-credential
 %global soname 1
 %global _name %(tr - _ <<< %{name})
 Epoch:          1
-Version:	7.15
+Version:	7.16
 Release:	1%{?dist}
 Vendor:	Globus Support
 Summary:	Globus Toolkit - Globus GSI Credential Library
@@ -122,6 +122,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man3/*
 
 %changelog
+* Fri Apr 23 2021 Globus Toolkit <support@globus.org> - 7.16-1
+- Allow prerelease version tags
+
 * Fri Mar 26 2021 Globus Toolkit <support@globus.org> - 7.15-1
 - Use prebuilt doxyxgen if available
 

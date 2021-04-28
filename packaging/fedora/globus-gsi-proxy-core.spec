@@ -2,7 +2,7 @@ Name:		globus-gsi-proxy-core
 %global soname 0
 %global _name %(tr - _ <<< %{name})
 Epoch:          1
-Version:	8.9
+Version:	8.10
 Release:	1%{?dist}
 Vendor:	Globus Support
 Summary:	Globus Toolkit - Globus GSI Proxy Core Library
@@ -129,6 +129,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man3/*
 
 %changelog
+* Fri Apr 23 2021 Globus Toolkit <support@globus.org> - 8.10-1
+- Allow prerelease version tags
+
 * Fri Mar 26 2021 Globus Toolkit <support@globus.org> - 8.9-1
 - Use prebuilt doxyxgen if available
 

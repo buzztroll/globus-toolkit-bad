@@ -1,9 +1,10 @@
 AC_PREREQ([2.60])
 
-AC_INIT([globus_xio_gridftp_driver],[2.19],[https://github.com/globus/globus-toolkit/issues])
+AC_INIT([globus_xio_gridftp_driver],[2.20],[https://github.com/globus/globus-toolkit/issues])
 AC_CONFIG_MACRO_DIR([m4])
-AC_SUBST([MAJOR_VERSION], [${PACKAGE_VERSION%%.*}])
-AC_SUBST([MINOR_VERSION], [${PACKAGE_VERSION##*.}])
+PACKAGE_VERSION_NO_TAG="${PACKAGE_VERSION%~*}"
+AC_SUBST([MAJOR_VERSION], [${PACKAGE_VERSION_NO_TAG%%.*}])
+AC_SUBST([MINOR_VERSION], [${PACKAGE_VERSION_NO_TAG##*.}])
 AC_SUBST([AGE_VERSION], [1])
 AC_SUBST([PACKAGE_DEPS], ["globus-common >= 14, globus-xio >= 3, globus-ftp-client >= 7, globus-xio-gsi-driver >= 2"])
 

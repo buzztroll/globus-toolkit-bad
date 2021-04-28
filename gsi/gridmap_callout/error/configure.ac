@@ -1,9 +1,10 @@
 AC_PREREQ([2.60])
 
-AC_INIT([globus_gridmap_callout_error],[2.6],[https://github.com/globus/globus-toolkit/issues])
+AC_INIT([globus_gridmap_callout_error],[2.7],[https://github.com/globus/globus-toolkit/issues])
 AC_CONFIG_MACRO_DIR([m4])
-AC_SUBST([MAJOR_VERSION], [${PACKAGE_VERSION%%.*}])
-AC_SUBST([MINOR_VERSION], [${PACKAGE_VERSION##*.}])
+PACKAGE_VERSION_NO_TAG="${PACKAGE_VERSION%~*}"
+AC_SUBST([MAJOR_VERSION], [${PACKAGE_VERSION_NO_TAG%%.*}])
+AC_SUBST([MINOR_VERSION], [${PACKAGE_VERSION_NO_TAG##*.}])
 AC_SUBST([AGE_VERSION], [2])
 AC_SUBST([PACKAGE_DEPS], ["globus-common >= 14, globus-gssapi-error >= 4"])
 

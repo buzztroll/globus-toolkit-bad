@@ -2,7 +2,7 @@ Name:		globus-io
 %global soname 3
 %global _name %(tr - _ <<< %{name})
 Epoch:          1
-Version:	11.11
+Version:	11.12
 Release:	1%{?dist}
 Vendor:	Globus Support
 Summary:	Globus Toolkit - uniform I/O interface
@@ -106,6 +106,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/pkgconfig/%{name}.pc
 
 %changelog
+* Fri Apr 23 2021 Globus Toolkit <support@globus.org> - 11.12-1
+- Allow prerelease version tags
+
 * Sat Mar 27 2021 Globus Toolkit <support@globus.org> - 11.11-1
 - Fix tests to run in chroot without homedir
 

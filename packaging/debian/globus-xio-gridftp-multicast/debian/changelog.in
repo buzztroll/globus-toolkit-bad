@@ -1,3 +1,9 @@
+globus-xio-gridftp-multicast (1:1.8-1+gt6.@distro@) @distro@; urgency=low
+
+  * Allow prerelease version tags
+
+ -- Globus Toolkit <support@globus.org>  Fri, 23 Apr 2021 16:53:00 -0400
+
 globus-xio-gridftp-multicast (1:1.7-3+gt6.@distro@) @distro@; urgency=low
 
   * Modernize package metadata

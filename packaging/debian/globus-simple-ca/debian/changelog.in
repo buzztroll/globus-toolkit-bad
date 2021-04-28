@@ -1,3 +1,9 @@
+globus-simple-ca (1:4.27-1+gt6.@distro@) @distro@; urgency=low
+
+  * Allow prerelease version tags
+
+ -- Globus Toolkit <support@globus.org>  Fri, 23 Apr 2021 16:52:58 -0400
+
 globus-simple-ca (1:4.26-1+gt6.@distro@) @distro@; urgency=low
 
   * Modernize package metadata

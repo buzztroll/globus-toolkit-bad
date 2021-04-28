@@ -1,3 +1,9 @@
+globus-io (1:11.12-1+gt6.@distro@) @distro@; urgency=low
+
+  * Allow prerelease version tags
+
+ -- Globus Toolkit <support@globus.org>  Fri, 23 Apr 2021 16:52:57 -0400
+
 globus-io (1:11.11-1+gt6.@distro@) @distro@; urgency=low
 
   * Fix tests to run in chroot without homedir

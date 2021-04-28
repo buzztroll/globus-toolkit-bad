@@ -2,7 +2,7 @@ Name:		globus-authz-callout-error
 %global soname 0
 %global _name %(tr - _ <<< %{name})
 Epoch:          1
-Version:	3.7
+Version:	3.8
 Release:	1%{?dist}
 Vendor:	Globus Support
 Summary:	Globus Toolkit - Globus authz error library
@@ -110,6 +110,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/*/*
 
 %changelog
+* Fri Apr 23 2021 Globus Toolkit <support@globus.org> - 3.8-1
+- Allow prerelease version tags
+
 * Fri Mar 26 2021 Globus Toolkit <support@globus.org> - 3.7-1
 - Use prebuilt doxyxgen if available
 

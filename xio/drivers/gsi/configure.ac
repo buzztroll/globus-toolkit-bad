@@ -1,9 +1,10 @@
 AC_PREREQ([2.60])
 
-AC_INIT([globus_xio_gsi_driver],[4.2],[https://github.com/globus/globus-toolkit/issues/])
+AC_INIT([globus_xio_gsi_driver],[4.3],[https://github.com/globus/globus-toolkit/issues/])
 AC_CONFIG_MACRO_DIR([m4])
-AC_SUBST([MAJOR_VERSION], [${PACKAGE_VERSION%%.*}])
-AC_SUBST([MINOR_VERSION], [${PACKAGE_VERSION##*.}])
+PACKAGE_VERSION_NO_TAG="${PACKAGE_VERSION%~*}"
+AC_SUBST([MAJOR_VERSION], [${PACKAGE_VERSION_NO_TAG%%.*}])
+AC_SUBST([MINOR_VERSION], [${PACKAGE_VERSION_NO_TAG##*.}])
 AC_SUBST([AGE_VERSION], [4])
 AC_SUBST([PACKAGE_DEPS], ["globus-xio >= 3, globus-gss-assist >= 11, globus-gssapi-error >= 4, globus-gssapi-gsi >= 13, globus-common >= 14"])
 

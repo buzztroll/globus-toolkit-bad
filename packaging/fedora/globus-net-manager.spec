@@ -2,7 +2,7 @@ Name:		globus-net-manager
 %global soname 0
 %global _name %(tr - _ <<< %{name})
 Epoch:          1
-Version:	0.20
+Version:	0.21
 Release:	1%{?dist}
 Vendor:	Globus Support
 Summary:	Globus Toolkit - Net Manager Library
@@ -141,6 +141,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man3/*
 
 %changelog
+* Fri Apr 23 2021 Globus Toolkit <support@globus.org> - 0.21-1
+- Allow prerelease version tags
+
 * Fri Mar 26 2021 Globus Toolkit <support@globus.org> - 0.20-1
 - Use prebuilt doxyxgen if available
 

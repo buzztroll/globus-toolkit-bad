@@ -7,8 +7,8 @@ Name:           myproxy
 %global nlibpkg libs
 %global _name %(tr - _ <<< %{name})
 Epoch:          1
-Version:	6.1.31
-Release:	6%{?dist}
+Version:	6.1.32
+Release:	1%{?dist}
 Vendor: Globus Support
 Summary:        Manage X.509 Public Key Infrastructure (PKI) security credentials
 
@@ -21,7 +21,7 @@ BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:  openssl
 
-BuildRequires:  globus-gssapi-gsi-devel >= 13
+BuildRequires:  globus-gssapi-gsi-devel >= 9
 BuildRequires:  globus-gss-assist-devel >= 8
 BuildRequires:  globus-usage-devel >= 3
 BuildRequires:  pam-devel
@@ -498,6 +498,9 @@ fi
 %{_libdir}/libmyproxy_voms.so
 
 %changelog
+* Fri Apr 23 2021 Globus Toolkit <support@globus.org> - 6.1.32-1
+- Allow prerelease version tags
+
 * Mon Nov 25 2019 Globus Toolkit <support@globus.org> - 6.1.31-5
 - Packaging update to ensure priority of Globus packages
 

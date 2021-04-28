@@ -1,6 +1,6 @@
 #! groovy
 
-@Library('gcs-build-scripts@debian-cowbuilder-init') _
+@Library('gcs-build-scripts') _
 
 def get_params(src_dir) {
     return [
@@ -18,6 +18,11 @@ def get_params(src_dir) {
 pipeline {
     agent none
     parameters {
+        booleanParam(
+            name: 'ALL_PACKAGES',
+            defaultValue: false,
+            description: "Set to true to rebuild all packages, otherwise only when changed or when the per-package checkbox is selected"
+        )
         booleanParam(
             name: 'COMMON',
             defaultValue: false,
@@ -254,6 +259,7 @@ pipeline {
             when {
                 anyOf {
                     equals expected: true, actual: params.COMMON;
+                    equals expected: true, actual: params.ALL_PACKAGES;
                     changeset "common/**/*";
                     changeset "packaging/debian/globus-common/**/*";
                     changeset "packaging/fedora/globus-common.spec";
@@ -267,6 +273,7 @@ pipeline {
             when {
                 anyOf {
                     equals expected: true, actual: params.XIO;
+                    equals expected: true, actual: params.ALL_PACKAGES;
                     changeset "xio/src/**/*";
                     changeset "packaging/debian/globus-xio/**/*";
                     changeset "packaging/fedora/globus-xio.spec";
@@ -280,6 +287,7 @@ pipeline {
             when {
                 anyOf {
                     equals expected: true, actual: params.GFORK;
+                    equals expected: true, actual: params.ALL_PACKAGES;
                     changeset "gridftp/gfork/source/**/*";
                     changeset "packaging/debian/globus-gfork/**/*";
                     changeset "packaging/fedora/globus-gfork.spec";
@@ -293,6 +301,7 @@ pipeline {
             when {
                 anyOf {
                     equals expected: true, actual: params.OPENSSL_ERROR;
+                    equals expected: true, actual: params.ALL_PACKAGES;
                     changeset "gsi/openssl_error/source/**/*";
                     changeset "packaging/debian/globus-gsi-openssl-error/**/*";
                     changeset "packaging/fedora/globus-gsi-openssl-error.spec";
@@ -309,6 +318,7 @@ pipeline {
             when {
                 anyOf {
                     equals expected: true, actual: params.GSI_PROXY_SSL;
+                    equals expected: true, actual: params.ALL_PACKAGES;
                     changeset "gsi/proxy/proxy_ssl/source/**/*";
                     changeset "packaging/debian/globus-gsi-proxy-ssl/**/*";
                     changeset "packaging/fedora/globus-gsi-proxy-ssl.spec";
@@ -325,6 +335,7 @@ pipeline {
             when {
                 anyOf {
                     equals expected: true, actual: params.OPENSSL_MODULE;
+                    equals expected: true, actual: params.ALL_PACKAGES;
                     changeset "gsi/openssl_module/source/**/*";
                     changeset "packaging/debian/globus-openssl-module/**/*";
                     changeset "packaging/fedora/globus-openssl-module.spec";
@@ -341,6 +352,7 @@ pipeline {
             when {
                 anyOf {
                     equals expected: true, actual: params.GSI_CERT_UTILS;
+                    equals expected: true, actual: params.ALL_PACKAGES;
                     changeset "gsi/cert_utils/source/**/*";
                     changeset "packaging/debian/globus-gsi-cert-utils/**/*";
                     changeset "packaging/fedora/globus-gsi-cert-utils.spec";
@@ -357,6 +369,7 @@ pipeline {
             when {
                 anyOf {
                     equals expected: true, actual: params.GSI_SYSCONFIG;
+                    equals expected: true, actual: params.ALL_PACKAGES;
                     changeset "gsi/sysconfig/source/**/*";
                     changeset "packaging/debian/globus-gsi-sysconfig/**/*";
                     changeset "packaging/fedora/globus-gsi-sysconfig.spec";
@@ -373,6 +386,7 @@ pipeline {
             when {
                 anyOf {
                     equals expected: true, actual: params.CALLOUT;
+                    equals expected: true, actual: params.ALL_PACKAGES;
                     changeset "callout/source/**/*";
                     changeset "packaging/debian/globus-callout/**/*";
                     changeset "packaging/fedora/globus-callout.spec";
@@ -389,6 +403,7 @@ pipeline {
             when {
                 anyOf {
                     equals expected: true, actual: params.GSI_CALLBACK;
+                    equals expected: true, actual: params.ALL_PACKAGES;
                     changeset "gsi/callback/source/**/*";
                     changeset "packaging/debian/globus-gsi-callback/**/*";
                     changeset "packaging/fedora/globus-gsi-callback.spec";
@@ -405,6 +420,7 @@ pipeline {
             when {
                 anyOf {
                     equals expected: true, actual: params.GSI_CREDENTIAL;
+                    equals expected: true, actual: params.ALL_PACKAGES;
                     changeset "gsi/credential/source/**/*";
                     changeset "packaging/debian/globus-gsi-credential/**/*";
                     changeset "packaging/fedora/globus-gsi-credential.spec";
@@ -421,6 +437,7 @@ pipeline {
             when {
                 anyOf {
                     equals expected: true, actual: params.GSI_PROXY_CORE;
+                    equals expected: true, actual: params.ALL_PACKAGES;
                     changeset "gsi/proxy/proxy_core/source/**/*";
                     changeset "packaging/debian/globus-gsi-proxy-core/**/*";
                     changeset "packaging/fedora/globus-gsi-proxy-core.spec";
@@ -437,6 +454,7 @@ pipeline {
             when {
                 anyOf {
                     equals expected: true, actual: params.GSSAPI_GSI;
+                    equals expected: true, actual: params.ALL_PACKAGES;
                     changeset "gsi/gssapi/source/**/*";
                     changeset "packaging/debian/globus-gssapi-gsi/**/*";
                     changeset "packaging/fedora/globus-gssapi-gsi.spec";
@@ -453,6 +471,7 @@ pipeline {
             when {
                 anyOf {
                     equals expected: true, actual: params.GSS_ASSIST;
+                    equals expected: true, actual: params.ALL_PACKAGES;
                     changeset "gsi/gss_assist/source/**/*";
                     changeset "packaging/debian/globus-gss-assist/**/*";
                     changeset "packaging/fedora/globus-gss-assist.spec";
@@ -469,6 +488,7 @@ pipeline {
             when {
                 anyOf {
                     equals expected: true, actual: params.GSSAPI_ERROR;
+                    equals expected: true, actual: params.ALL_PACKAGES;
                     changeset "gsi/gssapi_error/source/**/*";
                     changeset "packaging/debian/globus-gssapi-error/**/*";
                     changeset "packaging/fedora/globus-gssapi-error.spec";
@@ -485,6 +505,7 @@ pipeline {
             when {
                 anyOf {
                     equals expected: true, actual: params.XIO_GSI_DRIVER;
+                    equals expected: true, actual: params.ALL_PACKAGES;
                     changeset "xio/drivers/gsi/**/*";
                     changeset "packaging/debian/globus-xio-gsi-driver/**/*";
                     changeset "packaging/fedora/globus-xio-gsi-driver.spec";
@@ -501,6 +522,7 @@ pipeline {
             when {
                 anyOf {
                     equals expected: true, actual: params.IO;
+                    equals expected: true, actual: params.ALL_PACKAGES;
                     changeset "io/compat/**/*";
                     changeset "packaging/debian/globus-io/**/*";
                     changeset "packaging/fedora/globus-io.spec";
@@ -517,6 +539,7 @@ pipeline {
             when {
                 anyOf {
                     equals expected: true, actual: params.FTP_CONTROL;
+                    equals expected: true, actual: params.ALL_PACKAGES;
                     changeset "gridftp/control/source/**/*";
                     changeset "packaging/debian/globus-ftp-control/**/*";
                     changeset "packaging/fedora/globus-ftp-control.spec";
@@ -533,6 +556,7 @@ pipeline {
             when {
                 anyOf {
                     equals expected: true, actual: params.USAGE;
+                    equals expected: true, actual: params.ALL_PACKAGES;
                     changeset "usage/c/sender/source/**/*";
                     changeset "packaging/debian/globus-usage/**/*";
                     changeset "packaging/fedora/globus-usage.spec";
@@ -549,6 +573,7 @@ pipeline {
             when {
                 anyOf {
                     equals expected: true, actual: params.XIO_PIPE_DRIVER;
+                    equals expected: true, actual: params.ALL_PACKAGES;
                     changeset "xio/drivers/pipe/source/**/*";
                     changeset "packaging/debian/globus-xio-pipe-driver/**/*";
                     changeset "packaging/fedora/globus-xio-pipe-driver.spec";
@@ -565,6 +590,7 @@ pipeline {
             when {
                 anyOf {
                     equals expected: true, actual: params.GRIDFTP_SERVER_CONTROL;
+                    equals expected: true, actual: params.ALL_PACKAGES;
                     changeset "gridftp/server-lib/src/**/*";
                     changeset "packaging/debian/globus-gridftp-server-control/**/*";
                     changeset "packaging/fedora/globus-gridftp-server-control.spec";
@@ -581,6 +607,7 @@ pipeline {
             when {
                 anyOf {
                     equals expected: true, actual: params.AUTHZ_CALLOUT_ERROR;
+                    equals expected: true, actual: params.ALL_PACKAGES;
                     changeset "gsi/authz/error/**/*";
                     changeset "packaging/debian/globus-authz-callout-error/**/*";
                     changeset "packaging/fedora/globus-authz-callout-error.spec";
@@ -597,6 +624,7 @@ pipeline {
             when {
                 anyOf {
                     equals expected: true, actual: params.AUTHZ;
+                    equals expected: true, actual: params.ALL_PACKAGES;
                     changeset "gsi/authz/source/**/*";
                     changeset "packaging/debian/globus-authz/**/*";
                     changeset "packaging/fedora/globus-authz.spec";
@@ -613,6 +641,7 @@ pipeline {
             when {
                 anyOf {
                     equals expected: true, actual: params.XIO_RATE_DRIVER;
+                    equals expected: true, actual: params.ALL_PACKAGES;
                     changeset "xio/drivers/rate/source/**/*";
                     changeset "packaging/debian/globus-xio-rate-driver/**/*";
                     changeset "packaging/fedora/globus-xio-rate-driver.spec";
@@ -629,6 +658,7 @@ pipeline {
             when {
                 anyOf {
                     equals expected: true, actual: params.XIO_POPEN_DRIVER;
+                    equals expected: true, actual: params.ALL_PACKAGES;
                     changeset "xio/drivers/popen/source/**/*";
                     changeset "packaging/debian/globus-xio-popen-driver/**/*";
                     changeset "packaging/fedora/globus-xio-popen-driver.spec";
@@ -645,6 +675,7 @@ pipeline {
             when {
                 anyOf {
                     equals expected: true, actual: params.XIO_UDT_DRIVER;
+                    equals expected: true, actual: params.ALL_PACKAGES;
                     changeset "xio/drivers/udt/source/**/*";
                     changeset "packaging/debian/globus-xio-udt-driver/**/*";
                     changeset "packaging/fedora/globus-xio-udt-driver.spec";
@@ -661,6 +692,7 @@ pipeline {
             when {
                 anyOf {
                     equals expected: true, actual: params.NET_MANAGER;
+                    equals expected: true, actual: params.ALL_PACKAGES;
                     changeset "gridftp/net_manager/**/*";
                     changeset "packaging/debian/globus-net-manager/**/*";
                     changeset "packaging/fedora/globus-net-manager.spec";
@@ -677,6 +709,7 @@ pipeline {
             when {
                 anyOf {
                     equals expected: true, actual: params.GRIDFTP_SERVER;
+                    equals expected: true, actual: params.ALL_PACKAGES;
                     changeset "gridftp/server/src/**/*";
                     changeset "packaging/debian/globus-gridftp-server/**/*";
                     changeset "packaging/fedora/globus-gridftp-server.spec";
@@ -693,6 +726,7 @@ pipeline {
             when {
                 anyOf {
                     equals expected: true, actual: params.GASS_TRANSFER;
+                    equals expected: true, actual: params.ALL_PACKAGES;
                     changeset "gass/transfer/source/**/*";
                     changeset "packaging/debian/globus-gass-transfer/**/*";
                     changeset "packaging/fedora/globus-gass-transfer.spec";
@@ -709,6 +743,7 @@ pipeline {
             when {
                 anyOf {
                     equals expected: true, actual: params.FTP_CLIENT;
+                    equals expected: true, actual: params.ALL_PACKAGES;
                     changeset "gridftp/client/source/**/*";
                     changeset "packaging/debian/globus-ftp-client/**/*";
                     changeset "packaging/fedora/globus-ftp-client.spec";
@@ -725,6 +760,7 @@ pipeline {
             when {
                 anyOf {
                     equals expected: true, actual: params.GASS_COPY;
+                    equals expected: true, actual: params.ALL_PACKAGES;
                     changeset "gass/copy/source";
                     changeset "packaging/debian/globus-gass-copy/**/*";
                     changeset "packaging/fedora/globus-gass-copy.spec";
@@ -741,6 +777,7 @@ pipeline {
             when {
                 anyOf {
                     equals expected: true, actual: params.XIO_GRIDFTP_MULTICAST;
+                    equals expected: true, actual: params.ALL_PACKAGES;
                     changeset "gridftp/server/multi/source/**/*";
                     changeset "packaging/debian/globus-xio-gridftp-multicast/**/*";
                     changeset "packaging/fedora/globus-xio-gridftp-multicast.spec";
@@ -757,6 +794,7 @@ pipeline {
             when {
                 anyOf {
                     equals expected: true, actual: params.SIMPLE_CA;
+                    equals expected: true, actual: params.ALL_PACKAGES;
                     changeset "gsi/simple_ca/source/**/*";
                     changeset "packaging/debian/globus-simple-ca/**/*";
                     changeset "packaging/fedora/globus-simple-ca.spec";
@@ -773,6 +811,7 @@ pipeline {
             when {
                 anyOf {
                     equals expected: true, actual: params.GRIDMAP_CALLOUT_ERROR;
+                    equals expected: true, actual: params.ALL_PACKAGES;
                     changeset "gsi/gridmap_callout/error/**/*";
                     changeset "packaging/debian/globus-gridmap-callout-error/**/*";
                     changeset "packaging/fedora/globus-gridmap-callout-error.spec";
@@ -789,6 +828,7 @@ pipeline {
             when {
                 anyOf {
                     equals expected: true, actual: params.GRIDMAP_CALLOUT;
+                    equals expected: true, actual: params.ALL_PACKAGES;
                     changeset "gsi/gridmap_callout/source/**/*";
                     changeset "packaging/debian/globus-gridmap-callout/**/*";
                     changeset "packaging/fedora/globus-gridmap-callout.spec";
@@ -805,6 +845,7 @@ pipeline {
             when {
                 anyOf {
                     equals expected: true, actual: params.XIO_GRIDFTP_DRIVER;
+                    equals expected: true, actual: params.ALL_PACKAGES;
                     changeset "gridftp/gridftp_driver/source/**/*";
                     changeset "packaging/debian/globus-xio-gridftp-driver/**/*";
                     changeset "packaging/fedora/globus-xio-gridftp-driver.spec";
@@ -821,6 +862,7 @@ pipeline {
             when {
                 anyOf {
                     equals expected: true, actual: params.GRIDMAP_VERIFY_MYPROXY_CALLOUT;
+                    equals expected: true, actual: params.ALL_PACKAGES;
                     changeset "gsi/gridmap_verify_myproxy_callout/**/*";
                     changeset "packaging/debian/globus-gridmap-verify-myproxy-callout/**/*";
                     changeset "packaging/fedora/globus-gridmap-verify-myproxy-callout.spec";
@@ -837,6 +879,7 @@ pipeline {
             when {
                 anyOf {
                     equals expected: true, actual: params.GRIDMAP_EPPN_CALLOUT;
+                    equals expected: true, actual: params.ALL_PACKAGES;
                     changeset "gsi/gridmap_eppn_callout/**/*";
                     changeset "packaging/debian/globus-gridmap-eppn-callout/**/*";
                     changeset "packaging/fedora/globus-gridmap-eppn-callout.spec";
@@ -853,6 +896,7 @@ pipeline {
             when {
                 anyOf {
                     equals expected: true, actual: params.PROXY_UTILS;
+                    equals expected: true, actual: params.ALL_PACKAGES;
                     changeset "gsi/proxy/proxy_utils/source/**/*";
                     changeset "packaging/debian/globus-proxy-utils/**/*";
                     changeset "packaging/fedora/globus-proxy-utils.spec";
@@ -869,6 +913,7 @@ pipeline {
             when {
                 anyOf {
                     equals expected: true, actual: params.XIOPERF;
+                    equals expected: true, actual: params.ALL_PACKAGES;
                     changeset "xio/xioperf/source/**/*";
                     changeset "packaging/debian/globus-xioperf/**/*";
                     changeset "packaging/fedora/globus-xioperf.spec";
@@ -885,6 +930,7 @@ pipeline {
             when {
                 anyOf {
                     equals expected: true, actual: params.MYPROXY;
+                    equals expected: true, actual: params.ALL_PACKAGES;
                     changeset "myproxy/source/**/*";
                     changeset "packaging/debian/myproxy/**/*";
                     changeset "packaging/fedora/myproxy.spec";

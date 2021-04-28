@@ -1,7 +1,7 @@
 Name:		globus-xio-gridftp-driver
 %global _name %(tr - _ <<< %{name})
 Epoch:          1
-Version:	2.19
+Version:	2.20
 Release:	1%{?dist}
 Vendor:	Globus Support
 Summary:	Globus Toolkit - Globus XIO GridFTP Driver
@@ -127,6 +127,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man3/*
 
 %changelog
+* Fri Apr 23 2021 Globus Toolkit <support@globus.org> - 2.20-1
+- Allow prerelease version tags
+
 * Fri Mar 26 2021 Globus Toolkit <support@globus.org> - 2.19-1
 - Use prebuilt doxyxgen if available
 

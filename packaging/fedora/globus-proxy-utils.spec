@@ -1,8 +1,8 @@
 Name:		globus-proxy-utils
 %global _name %(tr - _ <<< %{name})
 Epoch:          1
-Version:	6.20
-Release:	3%{?dist}
+Version:	6.21
+Release:	1%{?dist}
 Vendor:	Globus Support
 Summary:	Globus Toolkit - Globus GSI Proxy Utility Programs
 
@@ -82,6 +82,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/*
 
 %changelog
+* Fri Apr 23 2021 Globus Toolkit <support@globus.org> - 6.21-1
+- Allow prerelease version tags
+
 * Mon Nov 25 2019 Globus Toolkit <support@globus.org> - 6.20-2
 - Packaging update to ensure priority of Globus packages
 

@@ -3,7 +3,7 @@ Name:		globus-gsi-proxy-ssl
 
 %global _name %(tr - _ <<< %{name})
 Epoch:          1
-Version:	5.11
+Version:	5.12
 Release:	1%{?dist}
 Vendor:	Globus Support
 Summary:	Globus Toolkit - Globus GSI Proxy SSL Library
@@ -117,6 +117,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/*/*
 
 %changelog
+* Fri Apr 23 2021 Globus Toolkit <support@globus.org> - 5.12-1
+- Allow prerelease version tags
+
 * Fri Mar 26 2021 Globus Toolkit <support@globus.org> - 5.11-1
 - Use prebuilt doxyxgen if available
 

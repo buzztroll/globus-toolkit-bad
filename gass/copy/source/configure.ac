@@ -1,9 +1,10 @@
 AC_PREREQ([2.60])
 
-AC_INIT([globus_gass_copy],[9.30],[https://github.com/globus/globus-toolkit/issues])
+AC_INIT([globus_gass_copy],[9.31],[https://github.com/globus/globus-toolkit/issues])
 AC_CONFIG_MACRO_DIR([m4])
-AC_SUBST([MAJOR_VERSION], [${PACKAGE_VERSION%%.*}])
-AC_SUBST([MINOR_VERSION], [${PACKAGE_VERSION##*.}])
+PACKAGE_VERSION_NO_TAG="${PACKAGE_VERSION%~*}"
+AC_SUBST([MAJOR_VERSION], [${PACKAGE_VERSION_NO_TAG%%.*}])
+AC_SUBST([MINOR_VERSION], [${PACKAGE_VERSION_NO_TAG##*.}])
 AC_SUBST([AGE_VERSION], [7])
 AC_SUBST([PACKAGE_DEPS], ["globus-common >= 15, globus-ftp-client >= 7, globus-ftp-control >= 4, globus-gsi-sysconfig >= 4, globus-gass-transfer >= 7, globus-io >= 8, globus-gssapi-gsi >= 9, globus-gssapi-error >= 4"])
 

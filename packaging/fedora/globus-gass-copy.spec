@@ -2,7 +2,7 @@ Name:		globus-gass-copy
 %global soname 2
 %global _name %(tr - _ <<< %{name})
 Epoch:          1
-Version:	9.30
+Version:	9.31
 Release:	1%{?dist}
 Vendor:	Globus Support
 Summary:	Globus Toolkit - Globus Gass Copy
@@ -161,6 +161,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man3/*
 
 %changelog
+* Fri Apr 23 2021 Globus Toolkit <support@globus.org> - 9.31-1
+- Allow prerelease version tags
+
 * Fri Mar 26 2021 Globus Toolkit <support@globus.org> - 9.30-1
 - Use prebuilt doxyxgen if available
 

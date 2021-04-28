@@ -2,8 +2,8 @@ Name:		globus-gfork
 %global soname 0
 %global _name %(tr - _ <<< %{name})
 Epoch:          1
-Version:	4.9
-Release:	6%{?dist}
+Version:	4.10
+Release:	1%{?dist}
 Vendor:	Globus Support
 Summary:	Globus Toolkit - GFork
 
@@ -118,6 +118,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/pkgconfig/globus-gfork.pc
 
 %changelog
+* Fri Apr 23 2021 Globus Toolkit <support@globus.org> - 4.10-1
+- Allow prerelease version tags
+
 * Mon Nov 25 2019 Globus Toolkit <support@globus.org> - 4.9-5
 - Packaging update to ensure priority of Globus packages
 

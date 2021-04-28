@@ -1,11 +1,12 @@
 dnl Process this file with autoconf to produce a configure script.
-AC_INIT([myproxy],[6.1.31])
+AC_INIT([myproxy],[6.1.32])
 AC_CONFIG_AUX_DIR([build-aux])
 AM_INIT_AUTOMAKE([foreign])
 LT_INIT([dlopen win32-dll])
 
 AC_CONFIG_MACRO_DIR([m4])
-PACKAGE_VERSION2=${PACKAGE_VERSION%.*}
+PACKAGE_VERSION_NO_TAG="${PACKAGE_VERSION%~*}"
+PACKAGE_VERSION2=${PACKAGE_VERSION_NO_TAG%.*}
 AC_SUBST([MAJOR_VERSION], [${PACKAGE_VERSION2%%.*}])
 AC_SUBST([MINOR_VERSION], [${PACKAGE_VERSION2##*.}])
 AC_SUBST([MICRO_VERSION], [${PACKAGE_VERSION##*.}])

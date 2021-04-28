@@ -1,8 +1,9 @@
 AC_PREREQ([2.60])
 
-AC_INIT([globus_xio_udt_driver],[1.31],[https://github.com/globus/globus-toolkit/issues])
-AC_SUBST([MAJOR_VERSION], [${PACKAGE_VERSION%%.*}])
-AC_SUBST([MINOR_VERSION], [${PACKAGE_VERSION##*.}])
+AC_INIT([globus_xio_udt_driver],[1.32],[https://github.com/globus/globus-toolkit/issues])
+PACKAGE_VERSION_NO_TAG="${PACKAGE_VERSION%~*}"
+AC_SUBST([MAJOR_VERSION], [${PACKAGE_VERSION_NO_TAG%%.*}])
+AC_SUBST([MINOR_VERSION], [${PACKAGE_VERSION_NO_TAG##*.}])
 AC_SUBST([AGE_VERSION], [1])
 AC_SUBST([PACKAGE_DEPS], ["globus-xio >= 3, globus-common >= 14"])
 

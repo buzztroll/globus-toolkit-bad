@@ -1,8 +1,9 @@
 AC_PREREQ([2.60])
 
-AC_INIT([globus_simple_ca],[4.26],[https://github.com/globus/globus-toolkit/issues])
-AC_SUBST([MAJOR_VERSION], [${PACKAGE_VERSION%%.*}])
-AC_SUBST([MINOR_VERSION], [${PACKAGE_VERSION##*.}])
+AC_INIT([globus_simple_ca],[4.27],[https://github.com/globus/globus-toolkit/issues])
+PACKAGE_VERSION_NO_TAG="${PACKAGE_VERSION%~*}"
+AC_SUBST([MAJOR_VERSION], [${PACKAGE_VERSION_NO_TAG%%.*}])
+AC_SUBST([MINOR_VERSION], [${PACKAGE_VERSION_NO_TAG##*.}])
 AC_SUBST([AGE_VERSION], [1])
 AC_SUBST([PACKAGE_DEPS], [""])
 
