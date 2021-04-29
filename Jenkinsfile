@@ -243,8 +243,6 @@ pipeline {
                 script {
                     def scmVars = checkout scm
                     env.GIT_URL = "${scmVars.GIT_URL}"
-                    // not really an epic, but used to test the build sys
-                    env.EPIC = "2729"
                     sh '''
                     git clean -fdx
                     mkdir -p m4
