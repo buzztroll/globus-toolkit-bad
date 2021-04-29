@@ -19,6 +19,7 @@ BuildRequires:	globus-io-devel >= 11
 BuildRequires:	globus-gssapi-gsi-devel >= 13
 BuildRequires:  globus-xio-devel >= 3
 BuildRequires:  globus-gssapi-error-devel >= 4
+BuildRequires:  openssl
 
 BuildRequires:  automake >= 1.11
 BuildRequires:  autoconf >= 2.60

@@ -8,6 +8,7 @@ check_PROGRAMS = \
 
 check_SCRIPTS = get_lingering_close.sh
 
+if ENABLE_TESTS
 check_DATA = \
         testcred.key \
         testcred.cert \
@@ -17,6 +18,7 @@ check_DATA = \
         testcred.signing_policy \
         testcred.srl \
         testcred.gridmap
+endif
 
 AM_CPPFLAGS = -I$(top_srcdir) $(PACKAGE_DEP_CFLAGS)
 test_ldadd = $(GSI_DRIVER_DLPREOPEN) libtest_common.la ../libglobus_ftp_control.la $(PACKAGE_DEP_LIBS) -lltdl
