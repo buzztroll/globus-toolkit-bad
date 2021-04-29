@@ -2,7 +2,7 @@ Name:		globus-callout
 %global soname 0
 %global _name %(tr - _ <<< %{name})
 Epoch:          1
-Version:	3.18
+Version:	3.18~rc1
 Release:	1%{?dist}
 Vendor:	Globus Support
 Summary:	Globus Toolkit - Globus Callout Library
@@ -116,7 +116,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man3/*
 
 %changelog
-* Fri Apr 23 2021 Globus Toolkit <support@globus.org> - 3.18-1
+* Thu Apr 29 2021 Globus Toolkit <support@globus.org> - 3.18~rc1-1
 - Allow prerelease version tags
 
 * Fri Mar 26 2021 Globus Toolkit <support@globus.org> - 3.16-1

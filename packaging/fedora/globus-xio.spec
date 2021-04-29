@@ -2,7 +2,7 @@ Name:		globus-xio
 
 %global _name %(tr - _ <<< %{name})
 Epoch:          1
-Version:	6.2
+Version:	6.2~rc1
 Release:	1%{?dist}
 Vendor:	        Globus Support
 Summary:	Globus Toolkit - Globus XIO Framework
@@ -124,7 +124,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/*/*
 
 %changelog
-* Fri Apr 23 2021 Globus Toolkit <support@globus.org> - 6.2-1
+* Thu Apr 29 2021 Globus Toolkit <support@globus.org> - 6.2~rc1-1
 - Allow prerelease version tags
 
 * Fri Mar 26 2021 Globus Toolkit <support@globus.org> - 6.1-1

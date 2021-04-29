@@ -7,7 +7,7 @@ Name:           myproxy
 %global nlibpkg libs
 %global _name %(tr - _ <<< %{name})
 Epoch:          1
-Version:	6.1.32
+Version:	6.1.32~rc1
 Release:	1%{?dist}
 Vendor: Globus Support
 Summary:        Manage X.509 Public Key Infrastructure (PKI) security credentials
@@ -498,7 +498,7 @@ fi
 %{_libdir}/libmyproxy_voms.so
 
 %changelog
-* Fri Apr 23 2021 Globus Toolkit <support@globus.org> - 6.1.32-1
+* Thu Apr 29 2021 Globus Toolkit <support@globus.org> - 6.1.32~rc1-1
 - Allow prerelease version tags
 
 * Mon Nov 25 2019 Globus Toolkit <support@globus.org> - 6.1.31-5

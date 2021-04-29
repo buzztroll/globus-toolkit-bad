@@ -1,6 +1,6 @@
 AC_PREREQ([2.60])
 
-AC_INIT([globus_gss_assist], [11.4],[https://github.com/globus/globus-toolkit/issues])
+AC_INIT([globus_gss_assist], [11.4~rc1],[https://github.com/globus/globus-toolkit/issues])
 AC_CONFIG_MACRO_DIR([m4])
 PACKAGE_VERSION_NO_TAG="${PACKAGE_VERSION%~*}"
 AC_SUBST([MAJOR_VERSION], [${PACKAGE_VERSION_NO_TAG%%.*}])

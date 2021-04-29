@@ -1,4 +1,4 @@
-globus-xio (1:6.2-1+gt6.@distro@) @distro@; urgency=low
+globus-xio (1:6.2~rc1-1+gt6.@distro@) @distro@; urgency=low
 
   * Allow prerelease version tags
 

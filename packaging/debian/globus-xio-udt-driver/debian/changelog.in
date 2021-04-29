@@ -1,4 +1,4 @@
-globus-xio-udt-driver (1:1.32-1+gt6.@distro@) @distro@; urgency=low
+globus-xio-udt-driver (1:1.32~rc1-1+gt6.@distro@) @distro@; urgency=low
 
   * Allow prerelease version tags
 

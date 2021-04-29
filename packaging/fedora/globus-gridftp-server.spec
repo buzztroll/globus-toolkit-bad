@@ -2,7 +2,7 @@ Name:		globus-gridftp-server
 %global soname 6
 %global _name %(tr - _ <<< %{name})
 Epoch:          1
-Version:	12.25
+Version:	12.25~rc1
 Release:	1%{?dist}
 Vendor:	Globus Support
 Summary:	Globus Toolkit - Globus GridFTP Server
@@ -170,7 +170,7 @@ fi
 %{_libdir}/pkgconfig/*.pc
 
 %changelog
-* Fri Apr 23 2021 Globus Toolkit <support@globus.org> - 12.25-1
+* Thu Apr 29 2021 Globus Toolkit <support@globus.org> - 12.25~rc1-1
 - Allow prerelease version tags
 
 * Thu Mar 19 2020 Globus Toolkit <support@globus.org> - 12.24-1

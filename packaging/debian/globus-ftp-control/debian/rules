@@ -10,7 +10,7 @@ include /usr/share/dpkg/default.mk
 
 name = globus-ftp-control
 _name = globus_ftp_control
-version = 8.8
+version = 8.8~rc1
 soname = 1
 
 _prefix = /usr

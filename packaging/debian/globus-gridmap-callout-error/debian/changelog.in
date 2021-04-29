@@ -1,4 +1,4 @@
-globus-gridmap-callout-error (1:2.7-1+gt6.@distro@) @distro@; urgency=low
+globus-gridmap-callout-error (1:2.7~rc1-1+gt6.@distro@) @distro@; urgency=low
 
   * Allow prerelease version tags
 

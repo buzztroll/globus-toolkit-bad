@@ -1,7 +1,7 @@
 Name:		globus-xioperf
 %global _name %(tr - _ <<< %{name})
 Epoch:          1
-Version:	4.6
+Version:	4.6~rc1
 Release:	1%{?dist}
 Vendor:	Globus Support
 Summary:	Globus Toolkit - XIO Performance Tool
@@ -62,7 +62,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_bindir}/%{name}
 
 %changelog
-* Fri Apr 23 2021 Globus Toolkit <support@globus.org> - 4.6-1
+* Thu Apr 29 2021 Globus Toolkit <support@globus.org> - 4.6~rc1-1
 - Allow prerelease version tags
 
 * Mon Nov 25 2019 Globus Toolkit <support@globus.org> - 4.5-4
