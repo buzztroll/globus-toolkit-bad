@@ -1,5 +1,5 @@
 AC_PREREQ([2.60])
-AC_INIT([globus_common], [17.8~rc1], [https://github.com/globus/globus-toolkit/issues])
+AC_INIT([globus_common], [17.8~rc2], [https://github.com/globus/globus-toolkit/issues])
 AC_CONFIG_MACRO_DIR([m4])
 PACKAGE_VERSION_NO_TAG="${PACKAGE_VERSION%~*}"
 AC_SUBST([MAJOR_VERSION], [${PACKAGE_VERSION_NO_TAG%%.*}])
@@ -153,6 +153,8 @@ if test "$use_symbol_labels" = yes; then
     GPT_EXTERNAL_LIBS=-lpthread
     AC_SUBST(GPT_EXTERNAL_LIBS)
 fi
+
+AM_CONDITIONAL(USES_LTO, [echo $CFLAGS | grep -q -- -flto])
 
 AC_PATH_PROGS([A2X], [a2x a2x.py])
 AM_CONDITIONAL(BUILD_MANPAGES, [test x"$A2X" != x])

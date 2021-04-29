@@ -31,7 +31,8 @@ override_dh_auto_configure:
 	   --sharedstatedir='$(_sharedstatedir)' \
 	   --sysconfdir='$(_sysconfdir)' \
 	   --with-perlmoduledir=$(perl_vendorlib) \
-	   --disable-static
+	   --disable-static \
+	   --with-backward-compatibility-hack
 
 %:
 	dh $@

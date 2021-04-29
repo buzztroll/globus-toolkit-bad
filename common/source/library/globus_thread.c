@@ -1041,6 +1041,9 @@ __asm__(".symver globus_thread_key_create_new,"
         "globus_thread_key_create@@GLOBUS_COMMON_14");
 
 #define globus_thread_key_create globus_thread_key_create_new
+#ifdef __GNUC__
+__attribute__ ((externally_visible))
+#endif
 int
 globus_thread_key_create_compat(
     pthread_key_t *                     key,
@@ -1080,7 +1083,9 @@ globus_thread_key_create_compat(
  *     the value of @a key is undefined and globus_thread_create_key() returns
  *     an implementation-specific non-zero error value.
  */
-extern
+#ifdef __GNUC__
+__attribute__ ((externally_visible))
+#endif
 int
 globus_thread_key_create(
     globus_thread_key_t *               key,
@@ -1166,6 +1171,9 @@ __asm__(".symver globus_thread_once_new,"
 
 #define globus_thread_once globus_thread_once_new
 
+#ifdef __GNUC__
+__attribute__ ((externally_visible))
+#endif
 int
 globus_thread_once_compat(
     pthread_once_t *                    once, 
@@ -1200,7 +1208,9 @@ globus_thread_once_compat(
  *     globus_thread_once() returns an implementation-specific non-zero error
  *     value.
  */
-extern
+#ifdef __GNUC__
+__attribute__ ((externally_visible))
+#endif
 int
 globus_thread_once(
     globus_thread_once_t *              once,
@@ -1235,6 +1245,9 @@ __asm__(".symver globus_thread_getspecific_new,"
         "globus_thread_getspecific@@GLOBUS_COMMON_14");
 
 #define globus_thread_getspecific globus_thread_getspecific_new
+#ifdef __GNUC__
+__attribute__ ((externally_visible))
+#endif
 void *
 globus_thread_getspecific_compat(
     pthread_key_t                       key)
@@ -1258,7 +1271,9 @@ globus_thread_getspecific_compat(
  *     The value passed to a previous call to globus_thread_setspecific() in
  *     the current thread for this key.
  */
-extern
+#ifdef __GNUC__
+__attribute__ ((externally_visible))
+#endif
 void *
 globus_thread_getspecific(
     globus_thread_key_t                 key)
@@ -1287,6 +1302,9 @@ __asm__(".symver globus_thread_setspecific_new,"
         "globus_thread_setspecific@@GLOBUS_COMMON_14");
 
 #define globus_thread_setspecific globus_thread_setspecific_new
+#ifdef __GNUC__
+__attribute__ ((externally_visible))
+#endif
 int
 globus_thread_setspecific_compat(
     pthread_key_t                       key,
@@ -1315,7 +1333,9 @@ globus_thread_setspecific_compat(
  *     implementation-specific non-zero error code and does not modify the
  *     key's value for this thread.
  */
-extern
+#ifdef __GNUC__
+__attribute__ ((externally_visible))
+#endif
 int
 globus_thread_setspecific(
     globus_thread_key_t                 key,

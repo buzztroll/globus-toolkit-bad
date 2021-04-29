@@ -5,7 +5,7 @@
 Name:		globus-common
 %global _name %(tr - _ <<< %{name})
 Epoch:          1
-Version:	17.8~rc1
+Version:	17.8~rc2
 Release:	1%{?dist}
 Vendor:		Globus Support
 Summary:	Globus Toolkit - Common Library
@@ -101,7 +101,8 @@ autoreconf -if
            --includedir=%{_includedir}/globus \
            --datadir=%{_datadir}/globus \
            --libexecdir=%{_datadir}/globus \
-           --with-perlmoduledir=%{perl_vendorlib}
+           --with-perlmoduledir=%{perl_vendorlib} \
+           --with-backward-compatibility-hack
 
 make %{?_smp_mflags}
 
@@ -158,7 +159,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_docdir}/%{name}-%{version}/html/*
 
 %changelog
-* Thu Apr 29 2021 Globus Toolkit <support@globus.org> - 17.8~rc1-1
+* Thu Apr 29 2021 Globus Toolkit <support@globus.org> - 17.8~rc2-1
 - Allow prerelease version tags
 
 * Fri Mar 26 2021 Globus Toolkit <support@globus.org> - 17.7-1
