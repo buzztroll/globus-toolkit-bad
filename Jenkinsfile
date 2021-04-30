@@ -11,7 +11,7 @@ def get_params(src_dir) {
         string(name: 'GIT_URL', value: env.GIT_URL ?: ""),
         string(name: 'TAG_NAME', value: env.TAG_NAME ?: ""),
         string(name: 'SOURCE_DIR', value: src_dir),
-        string(name: 'STABLE_TAG', value: '${PACKAGE_NAME}:v${PACKAGE_VERSION}')
+        string(name: 'STABLE_TAG', value: '${PACKAGE_NAME}-${PACKAGE_VERSION}')
     ]
 }
 
