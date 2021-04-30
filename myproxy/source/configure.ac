@@ -1,5 +1,5 @@
 dnl Process this file with autoconf to produce a configure script.
-AC_INIT([myproxy],[6.1.32~rc1])
+AC_INIT([myproxy],[6.1.32~rc2])
 AC_CONFIG_AUX_DIR([build-aux])
 AM_INIT_AUTOMAKE([foreign])
 LT_INIT([dlopen win32-dll])
@@ -9,7 +9,7 @@ PACKAGE_VERSION_NO_TAG="${PACKAGE_VERSION%~*}"
 PACKAGE_VERSION2=${PACKAGE_VERSION_NO_TAG%.*}
 AC_SUBST([MAJOR_VERSION], [${PACKAGE_VERSION2%%.*}])
 AC_SUBST([MINOR_VERSION], [${PACKAGE_VERSION2##*.}])
-AC_SUBST([MICRO_VERSION], [${PACKAGE_VERSION##*.}])
+AC_SUBST([MICRO_VERSION], [${PACKAGE_VERSION_NO_TAG##*.}])
 AC_SUBST([AGE_VERSION], [0])
 AC_SUBST([PACKAGE_DEPS], ["globus-gssapi-gsi >= 9, globus-gss-assist >= 8, globus-gsi-sysconfig >= 5, globus-gsi-cert-utils >= 8, globus-gsi-proxy-core >= 6, globus-gsi-credential >= 5, globus-gsi-callback >= 4, globus-common >= 14, globus-usage >= 3"])
 

@@ -7,7 +7,7 @@ Name:           myproxy
 %global nlibpkg libs
 %global _name %(tr - _ <<< %{name})
 Epoch:          1
-Version:	6.1.32~rc1
+Version:	6.1.32~rc2
 Release:	1%{?dist}
 Vendor: Globus Support
 Summary:        Manage X.509 Public Key Infrastructure (PKI) security credentials
