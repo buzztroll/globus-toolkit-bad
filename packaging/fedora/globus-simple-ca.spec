@@ -3,7 +3,7 @@
 Name:		globus-simple-ca
 %global _name %(tr - _ <<< %{name})
 Epoch:          1
-Version:	4.27~rc1
+Version:	4.27
 Release:	1%{?dist}
 Vendor:	Globus Support
 Summary:	Globus Toolkit - Simple CA
@@ -123,7 +123,7 @@ fi
 %{_mandir}/man1/*
 
 %changelog
-* Thu Apr 29 2021 Globus Toolkit <support@globus.org> - 4.27~rc1-1
+* Thu Apr 29 2021 Globus Toolkit <support@globus.org> - 4.27-1
 - Allow prerelease version tags
 
 * Tue Mar 30 2021 Globus Toolkit <support@globus.org> - 4.26-1

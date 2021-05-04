@@ -5,7 +5,7 @@
 Name:		globus-common
 %global _name %(tr - _ <<< %{name})
 Epoch:          1
-Version:	17.8~rc2
+Version:	17.8
 Release:	1%{?dist}
 Vendor:		Globus Support
 Summary:	Globus Toolkit - Common Library
@@ -159,7 +159,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_docdir}/%{name}-%{version}/html/*
 
 %changelog
-* Thu Apr 29 2021 Globus Toolkit <support@globus.org> - 17.8~rc2-1
+* Thu Apr 29 2021 Globus Toolkit <support@globus.org> - 17.8-1
 - Allow prerelease version tags
 
 * Fri Mar 26 2021 Globus Toolkit <support@globus.org> - 17.7-1

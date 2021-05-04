@@ -1,4 +1,4 @@
-globus-gsi-callback (1:5.15~rc1-1+gt6.@distro@) @distro@; urgency=low
+globus-gsi-callback (1:5.15-1+gt6.@distro@) @distro@; urgency=low
 
   * Allow prerelease version tags
 

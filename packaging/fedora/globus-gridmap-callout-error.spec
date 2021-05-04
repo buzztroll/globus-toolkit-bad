@@ -2,7 +2,7 @@ Name:		globus-gridmap-callout-error
 %global soname 0
 %global _name %(tr - _ <<< %{name})
 Epoch:          1
-Version:	2.7~rc1
+Version:	2.7
 Release:	1%{?dist}
 Vendor:	Globus Support
 Summary:	Globus Toolkit - Globus Gridmap Callout Errors
@@ -111,7 +111,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man3/*
 
 %changelog
-* Thu Apr 29 2021 Globus Toolkit <support@globus.org> - 2.7~rc1-1
+* Thu Apr 29 2021 Globus Toolkit <support@globus.org> - 2.7-1
 - Allow prerelease version tags
 
 * Fri Mar 26 2021 Globus Toolkit <support@globus.org> - 2.6-1

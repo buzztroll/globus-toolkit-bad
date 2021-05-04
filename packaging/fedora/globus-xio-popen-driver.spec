@@ -1,7 +1,7 @@
 Name:		globus-xio-popen-driver
 %global _name %(tr - _ <<< %{name})
 Epoch:          1
-Version:	3.8~rc1
+Version:	3.8
 Release:	1%{?dist}
 Vendor:	Globus Support
 Summary:	Globus Toolkit - Globus XIO Pipe Open Driver
@@ -89,7 +89,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/pkgconfig/*.pc
 
 %changelog
-* Thu Apr 29 2021 Globus Toolkit <support@globus.org> - 3.8~rc1-1
+* Thu Apr 29 2021 Globus Toolkit <support@globus.org> - 3.8-1
 - Allow prerelease version tags
 
 * Fri Jul 31 2020 Globus Toolkit <support@globus.org> - 3.7-1

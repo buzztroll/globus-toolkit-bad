@@ -1,4 +1,4 @@
-globus-gss-assist (1:11.4~rc1-1+gt6.@distro@) @distro@; urgency=low
+globus-gss-assist (1:11.4-1+gt6.@distro@) @distro@; urgency=low
 
   * Allow prerelease version tags
 

@@ -1,4 +1,4 @@
-globus-xio-gridftp-multicast (1:1.8~rc1-1+gt6.@distro@) @distro@; urgency=low
+globus-xio-gridftp-multicast (1:1.8-1+gt6.@distro@) @distro@; urgency=low
 
   * Allow prerelease version tags
 

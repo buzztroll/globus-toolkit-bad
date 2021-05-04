@@ -3,7 +3,7 @@ Name:		globus-ftp-client
 
 %global _name %(tr - _ <<< %{name})
 Epoch:          1
-Version:	8.39~rc1
+Version:	8.39
 Release:	1%{?dist}
 Vendor:	Globus Support
 Summary:	Globus Toolkit - GridFTP Client Library
@@ -142,7 +142,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man3/*
 
 %changelog
-* Thu Apr 29 2021 Globus Toolkit <support@globus.org> - 8.39~rc1-1
+* Thu Apr 29 2021 Globus Toolkit <support@globus.org> - 8.39-1
 - Allow prerelease version tags
 
 * Fri Mar 26 2021 Globus Toolkit <support@globus.org> - 8.38-1
