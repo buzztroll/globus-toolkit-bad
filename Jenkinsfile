@@ -228,6 +228,11 @@ pipeline {
             defaultValue: false,
             description: "Set to true to rebuild myproxy, otherwise only when changed"
         )
+        booleanParam(
+            name: "TOOLKIT_REPO",
+            defaultValue: false,
+            description: "Set to true to rebuild globus-toolkit-repo, otherwise only when changed"
+        )
     }
     options {
         buildDiscarder(logRotator(numToKeepStr: '5'))
@@ -939,6 +944,118 @@ pipeline {
                     job: 'ToolkitPackage',
                     parameters: get_params("myproxy/source")
                 )
+            }
+        }
+        stage ("Package Repos") {
+            when {
+                anyOf {
+                    equals expected: true, actual: params.TOOLKIT_REPO;
+                    equals expected: true, actual: params.ALL_PACKAGES;
+                    changeset "packaging/debian/globus-toolkit-repo/**/*";
+                    changeset "packaging/fedora/globus-toolkit-repo.spec";
+                }
+            }
+            steps {
+                script {
+                    node (label: "debian_package_builder") {
+                        checkout scm
+                        def stash_name = "${UUID.randomUUID()}"
+                        def props = null
+                        dirs (path: stash_name, clean: true) {
+                            withEnv(["STASH_NAME=${stash_name}"]) {
+                                sh '''
+                                    stash_dir="$(pwd)"
+                                    cd ../packaging/debian/globus-toolkit-repo
+                                    dpkg-source -b .
+                                    pkg="$(dpkg-parsechangelog -S Source)"
+                                    version="$(dpkg-parsechangelog  -S version)"
+                                    cp "../${pkg}_${version}.tar.xz" "${stash_dir}"
+                                    cp -R debian "${stash_dir}/debian"
+                                    cp "../../fedora/${pkg}.spec" "${stash_dir}"
+                                    cd "${stash_dir}"
+                                    cat <<-EOF > package.props
+                                        NAME=${pkg}
+                                        VERSION=${version}
+                                        TARBALL=${pkg}_${version}.tar.xz
+                                        STASH_NAME=${STASH_NAME}
+                                        EOF
+                                '''
+                            }
+                        }
+                        stash(name: stash_name, includes: "${stash_name}/**/*")
+                        props = readProperties(file: "${stash_name}/package.props")
+                        env.GLOBUS_TOOLKIT_REPO_PKG = props.NAME
+                        env.GLOBUS_TOOLKIT_REPO_VERSION = props.VERSION
+                        dir (stash_name) {
+                            deleteDir()
+                        }
+                        def (mock_targets, deb_targets) = enumerateBuildTargets()
+                        def rpm_exclude = mock_targets.findAll {
+                            it != "el-7"
+                        }
+                        def deb_exclude = deb_targets.findAll {
+                            it != "bionic"
+                        }
+                        echo "rpm_exclude=${rpm_exclude}, deb_exclude=${deb_exclude}";
+
+                        parallel "debian": {
+                            env.DEB_REPO_STASH = buildDebian(
+                                    props.STASH_NAME,
+                                    props.TARBALL,
+                                    false,
+                                    getClubhouseEpic(),
+                                    deb_exclude)
+                        }, "rpm": {
+                            env.RPM_REPO_STASH = buildMock(
+                                props.STASH_NAME,
+                                props.TARBALL,
+                                false,
+                                getClubhouseEpic(),
+                                rpm_exclude)
+                        }, "failFast": false
+                    }
+                    node (label: "master") {
+                        def stashname = "${UUID.randomUUID()}"
+                        dir("artifacts") {
+                            if (env.DEB_REPO_STASH) {
+                                unstash(name: env.DEB_REPO_STASH)
+                            }
+                            if (env.RPM_REPO_STASH) {
+                                unstash(name: env.RPM_REPO_STASH)
+                            }
+                            withEnv([
+                                "REPO_PKG=${env.GLOBUS_TOOLKIT_REPO_PKG}",
+                                "REPO_VERSION=${env.GLOBUS_TOOLKIT_REPO_VERSION}",
+                                ]) {
+                                sh '''
+                                    mkdir -p installers/repo/deb installers/repo/rpm
+                                    find deb -name '*_all.deb' \
+                                        -exec cp {} installers/repo/deb ";"
+                                    cd installers/repo/deb
+                                    ln -s ${REPO_PKG}_${REPO_VERSION}_all.deb \
+                                        ${REPO_PKG}_latest_all.deb
+                                    cd "$OLDPWD"
+
+                                    find rpm -name '*.noarch.rpm' \
+                                        -exec cp {} installers/repo/rpm/ ";"
+                                    cd installers/repo/rpm
+                                    ln -s ${REPO_PKG}-${REPO_VERSION}*.noarch.rpm \
+                                        ${REPO_PKG}-latest.noarch.rpm
+                                    cd "$OLDPWD"
+                                    rm -rf deb rpm
+                                    find .
+                                '''
+                            }
+                            stash(name: stashname, includes: "**/*")
+                            deleteDir()
+                        }
+                        publishResults(
+                            stashname,
+                            env.GLOBUS_TOOLKIT_REPO_PKG,
+                            env.GLOBUS_TOOLKIT_REPO_VERSION,
+                            false)
+                    }
+                }
             }
         }
     }
