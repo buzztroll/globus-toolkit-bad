@@ -53,6 +53,12 @@ if [ "$rflag" = 1 ]; then
         oses="$rpmoses"
     fi
     for repo in $oses ; do
+        if [ "$repo" = "el7" ]; then
+           in="globus-repo-el7.in"
+        else
+           in="globus-repo.in"
+        fi
+
         repo_enabled=1
         for stability in $stability_levels; do
             initial="$(echo $stability | cut -c1 | tr '[a-z]' '[A-Z]')"
@@ -85,7 +91,7 @@ if [ "$rflag" = 1 ]; then
                     -e "s!@REPO_BASE_SOURCE_URL@!$REPO_BASE_SOURCE_URL!g" \
                     -e "s!@REPO_TYPE@!$REPO_TYPE!g" \
                     -e "s!@REPO_ENABLED@!$repo_enabled!g" \
-                    < globus-repo.in > $lower_repo_name-$stability-$repo.repo
+                    < "$in" > $lower_repo_name-$stability-$repo.repo
                 repo_enabled=0
             done
         done
