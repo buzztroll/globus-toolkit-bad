@@ -1,5 +1,5 @@
 Name:           globus-toolkit-repo
-Version:        6.0.22~rc2
+Version:        6.0.22~rc3
 Release:        1
 Summary:        Globus Repository Configuration
 Group:          System Environment/Base
