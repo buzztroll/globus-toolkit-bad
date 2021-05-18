@@ -65,8 +65,8 @@ if [ "$rflag" = 1 ]; then
             rest="$(echo $stability | cut -c2-)"
             cap_stability="$initial$rest"
 
-            set -- "$gt6_repo_root" "$gcs5_repo_root"
-            for repo_name in Globus-Toolkit-6 Globus-Connect-Server-5; do
+            set -- "$gcs5_repo_root"
+            for repo_name in Globus-Connect-Server-5; do
                 repo_root="$1"
                 shift
                 lower_repo_name=$(echo $repo_name | tr '[A-Z]' '[a-z]')
@@ -105,8 +105,8 @@ else
     for release in $oses ; do
         repo_enabled=1
         for stability in $stability_levels; do
-            set -- "$gt6_repo_root" "$gcs5_repo_root"
-            for repo_name in globus-toolkit-6 globus-connect-server; do
+            set -- "$gcs5_repo_root"
+            for repo_name in globus-connect-server; do
                 repo_root="$1"
                 shift
                 if [ $repo_enabled = 1 ]; then

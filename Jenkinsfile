@@ -229,9 +229,9 @@ pipeline {
             description: "Set to true to rebuild myproxy, otherwise only when changed"
         )
         booleanParam(
-            name: "TOOLKIT_REPO",
+            name: "REPO",
             defaultValue: false,
-            description: "Set to true to rebuild globus-toolkit-repo, otherwise only when changed"
+            description: "Set to true to rebuild globus-repo, otherwise only when changed"
         )
     }
     options {
@@ -949,10 +949,10 @@ pipeline {
         stage ("Package Repos") {
             when {
                 anyOf {
-                    equals expected: true, actual: params.TOOLKIT_REPO;
+                    equals expected: true, actual: params.REPO;
                     equals expected: true, actual: params.ALL_PACKAGES;
-                    changeset "packaging/debian/globus-toolkit-repo/**/*";
-                    changeset "packaging/fedora/globus-toolkit-repo.spec";
+                    changeset "packaging/debian/globus-repo/**/*";
+                    changeset "packaging/fedora/globus-repo.spec";
                 }
             }
             steps {
@@ -965,7 +965,7 @@ pipeline {
                             withEnv(["STASH_NAME=${stash_name}"]) {
                                 sh '''
                                     stash_dir="$(pwd)"
-                                    cd ../packaging/debian/globus-toolkit-repo
+                                    cd ../packaging/debian/globus-repo
                                     dpkg-source -b .
                                     pkg="$(dpkg-parsechangelog -S Source)"
                                     version="$(dpkg-parsechangelog  -S version)"
@@ -984,8 +984,8 @@ pipeline {
                         }
                         stash(name: stash_name, includes: "${stash_name}/**/*")
                         props = readProperties(file: "${stash_name}/package.props")
-                        env.GLOBUS_TOOLKIT_REPO_PKG = props.NAME
-                        env.GLOBUS_TOOLKIT_REPO_VERSION = props.VERSION
+                        env.GLOBUS_REPO_PKG = props.NAME
+                        env.GLOBUS_REPO_VERSION = props.VERSION
                         dir (stash_name) {
                             deleteDir()
                         }
@@ -1024,8 +1024,8 @@ pipeline {
                                 unstash(name: env.RPM_REPO_STASH)
                             }
                             withEnv([
-                                "REPO_PKG=${env.GLOBUS_TOOLKIT_REPO_PKG}",
-                                "REPO_VERSION=${env.GLOBUS_TOOLKIT_REPO_VERSION}",
+                                "REPO_PKG=${env.GLOBUS_REPO_PKG}",
+                                "REPO_VERSION=${env.GLOBUS_REPO_VERSION}",
                                 ]) {
                                 sh '''
                                     mkdir -p installers/repo/deb installers/repo/rpm
@@ -1051,8 +1051,8 @@ pipeline {
                         }
                         publishResults(
                             stashname,
-                            env.GLOBUS_TOOLKIT_REPO_PKG,
-                            env.GLOBUS_TOOLKIT_REPO_VERSION,
+                            env.GLOBUS_REPO_PKG,
+                            env.GLOBUS_REPO_VERSION,
                             false)
                     }
                 }

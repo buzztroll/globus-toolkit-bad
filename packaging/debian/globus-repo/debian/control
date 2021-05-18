@@ -1,4 +1,4 @@
-Source: globus-toolkit-repo
+Source: globus-repo
 Section: net
 Priority: extra
 Maintainer: Globus Support <support@globus.org>
@@ -6,7 +6,7 @@ Build-Depends: debhelper (>= 9)
 Standards-Version: 3.7.3
 Homepage: http://www.globus.org/
 
-Package: globus-toolkit-repo
+Package: globus-repo
 Architecture: all
 Depends: apt-transport-https, ${shlibs:Depends}, ${misc:Depends}
 Description: Globus Binary Repository Package
