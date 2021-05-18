@@ -2,8 +2,8 @@
 
 include /usr/share/dpkg/default.mk
 
-name=globus-toolkit-repo
-datadir=/usr/share/globus-toolkit-repo
+name=globus-repo
+datadir=/usr/share/globus-repo
 sourceslistdir=$(datadir)/sources.list.d
 prefsdir=/etc/apt/preferences.d
 

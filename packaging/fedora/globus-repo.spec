@@ -1,5 +1,5 @@
 Name:           globus-repo
-Version:        6.0.22~rc4
+Version:        6.0.22~rc5
 Release:        1
 Summary:        Globus Repository Configuration
 Group:          System Environment/Base

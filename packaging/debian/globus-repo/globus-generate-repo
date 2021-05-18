@@ -1,13 +1,12 @@
 #! /bin/sh
 
-gt6_repo_root="https://downloads.globus.org/toolkit/gt6"
 gcs5_repo_root="https://downloads.globus.org/globus-connect-server"
 stability_levels="stable testing unstable"
 rpmoses="el7 el8 fedora"
 deboses="buster bionic focal groovy hirsute"
 #gpg --with-fingerprint gpgfile
 fingerprint="66A86341D3CDB1B26BE4D46F44AE7EC2FAF24365"
-gpgfile="/usr/share/globus-toolkit-repo/RPM-GPG-KEY-Globus.gpg"
+gpgfile="/usr/share/globus-repo/RPM-GPG-KEY-Globus.gpg"
 
 bin_el7="el/7/\$basearch/"
 src_el7="el/7/SRPMS/"
