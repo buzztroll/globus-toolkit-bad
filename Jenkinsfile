@@ -1049,6 +1049,7 @@ pipeline {
                             stash(name: stashname, includes: "**/*")
                             deleteDir()
                         }
+                        env.STABLE_TAG = '${PACKAGE_NAME}-${PACKAGE_VERSION}'
                         publishResults(
                             stashname,
                             env.GLOBUS_REPO_PKG,
