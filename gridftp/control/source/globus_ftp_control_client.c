@@ -297,6 +297,10 @@ globus_ftp_control_use_tls(
             &handle->cc_handle.io_attr,
             GLOBUS_IO_SECURE_AUTHENTICATION_MODE_ANONYMOUS,
             NULL);
+        if (rc != GLOBUS_SUCCESS)
+        {
+            goto error;
+        }
     }
     else
     {
@@ -304,29 +308,40 @@ globus_ftp_control_use_tls(
             &handle->cc_handle.io_attr,
             GLOBUS_IO_SECURE_AUTHENTICATION_MODE_MUTUAL,
             auth_info->credential_handle);
+        if (rc != GLOBUS_SUCCESS)
+        {
+            goto error;
+        }
     }
+
     if (auth_info->auth_gssapi_subject != NULL)
     {
         globus_io_secure_authorization_data_t   data = NULL;
 
-        rc = globus_io_secure_authorization_data_initialize(
-            &data);
-
-        if (rc == GLOBUS_SUCCESS)
+        rc = globus_io_secure_authorization_data_initialize(&data);
+        if (rc != GLOBUS_SUCCESS)
         {
-            rc = globus_io_secure_authorization_data_set_identity(
-                &data,
-                auth_info->auth_gssapi_subject);
+            goto error;
+        }
+
+        rc = globus_io_secure_authorization_data_set_identity(
+            &data,
+            auth_info->auth_gssapi_subject);
+        if (rc != GLOBUS_SUCCESS)
+        {
+            globus_io_secure_authorization_data_destroy(&data);
+            goto error;
         }
         
-        if (rc == GLOBUS_SUCCESS)
-        {
-            rc = globus_io_attr_set_secure_authorization_mode(
-                &handle->cc_handle.io_attr,
-                GLOBUS_IO_SECURE_AUTHORIZATION_MODE_IDENTITY,
-                &data);
-        }
+        rc = globus_io_attr_set_secure_authorization_mode(
+            &handle->cc_handle.io_attr,
+            GLOBUS_IO_SECURE_AUTHORIZATION_MODE_IDENTITY,
+            &data);
         globus_io_secure_authorization_data_destroy(&data);
+        if (rc != GLOBUS_SUCCESS)
+        {
+            goto error;
+        }
     }
     else
     {
@@ -334,6 +349,10 @@ globus_ftp_control_use_tls(
             &handle->cc_handle.io_attr,
             GLOBUS_IO_SECURE_AUTHORIZATION_MODE_HOST,
             NULL);
+        if (rc != GLOBUS_SUCCESS)
+        {
+            goto error;
+        }
     }
 
     if (auth_info->req_flags & GSS_C_DELEG_FLAG)
@@ -345,55 +364,72 @@ globus_ftp_control_use_tls(
                 & GSS_C_GLOBUS_LIMITED_DELEG_PROXY_FLAG) != 0)
                 ? GLOBUS_IO_SECURE_DELEGATION_MODE_LIMITED_PROXY
                 : GLOBUS_IO_SECURE_DELEGATION_MODE_FULL_PROXY);
+        if (rc != GLOBUS_SUCCESS)
+        {
+            goto error;
+        }
     }
     else
     {
         rc = globus_io_attr_set_secure_delegation_mode(
             &handle->cc_handle.io_attr,
             GLOBUS_IO_SECURE_DELEGATION_MODE_NONE);
-    }
-    
-    if (rc == GLOBUS_SUCCESS)
-    {
-        rc = globus_io_attr_set_secure_channel_mode(
-            &handle->cc_handle.io_attr,
-            GLOBUS_IO_SECURE_CHANNEL_MODE_SSL_WRAP);
-    }
-    if (rc == GLOBUS_SUCCESS)
-    {
-        rc = globus_io_attr_set_secure_protection_mode(
-            &handle->cc_handle.io_attr,
-            GLOBUS_IO_SECURE_PROTECTION_MODE_PRIVATE);
+        if (rc != GLOBUS_SUCCESS)
+        {
+            goto error;
+        }
     }
 
-    if (rc == GLOBUS_SUCCESS)
+    rc = globus_io_attr_set_secure_channel_mode(
+        &handle->cc_handle.io_attr,
+        GLOBUS_IO_SECURE_CHANNEL_MODE_SSL_WRAP);
+    if (rc != GLOBUS_SUCCESS)
     {
-        rc = globus_io_attr_get_xio_attr(
-            &handle->cc_handle.io_attr,
-            &attr);
+        goto error;
+    }
+    rc = globus_io_attr_set_secure_protection_mode(
+        &handle->cc_handle.io_attr,
+        GLOBUS_IO_SECURE_PROTECTION_MODE_PRIVATE);
+    if (rc != GLOBUS_SUCCESS)
+    {
+        goto error;
     }
 
-    if (rc == GLOBUS_SUCCESS)
+    rc = globus_io_attr_get_xio_attr(
+        &handle->cc_handle.io_attr,
+        &attr);
+    if (rc != GLOBUS_SUCCESS)
     {
-        rc = globus_xio_attr_cntl(
-            attr,
-            globus_io_compat_get_gsi_driver(),
-            GLOBUS_XIO_GSI_SET_APPLICATION_PROTOCOLS,
-            (char *[])
-            {
-                "ftp",
-                NULL,
-            });
+        goto error;
     }
-    if (rc == GLOBUS_SUCCESS &&
-        auth_info->req_flags & GSS_C_GLOBUS_ALLOW_MISSING_SIGNING_POLICY)
+    rc = globus_xio_attr_cntl(
+        attr,
+        globus_io_compat_get_gsi_driver(),
+        GLOBUS_XIO_GSI_SET_APPLICATION_PROTOCOLS,
+        (char *[])
+        {
+            "ftp",
+            NULL,
+        });
+    if (rc != GLOBUS_SUCCESS)
+    {
+        goto error;
+    }
+
+    if (auth_info->req_flags & GSS_C_GLOBUS_ALLOW_MISSING_SIGNING_POLICY)
     {
         rc = globus_xio_attr_cntl(
             attr,
             globus_io_compat_get_gsi_driver(),
             GLOBUS_XIO_GSI_SET_ALLOW_MISSING_SIGNING_POLICY,
             GLOBUS_TRUE);
+        if (rc != GLOBUS_SUCCESS)
+        {
+            goto error;
+        }
     }
+
+error:
     return rc;
 }
 /* globus_ftp_control_use_tls() */
