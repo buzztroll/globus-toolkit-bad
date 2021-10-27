@@ -1,5 +1,5 @@
 Name:           globus-repo
-Version:        6.0.22
+Version:        6.0.23
 Release:        1
 Summary:        Globus Repository Configuration
 Group:          System Environment/Base
@@ -10,6 +10,7 @@ BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch:      noarch
 Provides:       globus-connect-server-repo
 Obsoletes:      globus-repo
+Requires:	system-release
 
 %description
 This package installs the Globus yum repository configuration and GPG key for
@@ -26,7 +27,7 @@ rm -rf $RPM_BUILD_ROOT
 
 # gpg
 install -Dpm 644 RPM-GPG-KEY-Globus \
-  $RPM_BUILD_ROOT%{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-Globus 
+  $RPM_BUILD_ROOT%{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-Globus
 
 install -dm 755 $RPM_BUILD_ROOT%{_datadir}/globus/repo
 for repo in *.repo; do
@@ -37,31 +38,24 @@ done
 rm -rf $RPM_BUILD_ROOT
 
 %posttrans
-# Can't do this here, as it deadlocks on SUSE
-# ignore errors: will fail rpm lock on newer distros, but yum/dnf on those
-# versions will automatically prompt to import on first use 
-if [ ! -f /etc/SuSE-release ]; then
-    rpm --import %{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-Globus 2>/dev/null 
-fi
+rpm --import %{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-Globus 2>/dev/null
 
-if [ -f /etc/redhat-release ]; then
-    osname=$(rpm -qf /etc/redhat-release --queryformat '%%{Name}')
-    osver=$(rpm -qf /etc/redhat-release --queryformat '%%{Version}')
-elif [ -f /etc/SuSE-release ]; then
-    osname=$(rpm -qf /etc/SuSE-release --queryformat '%%{Name}')
-    osver=$(rpm -qf /etc/SuSE-release --queryformat '%%{Version}')
-else
-    osname=unknown
-    osver=unknown
-fi
-case ${osname}:${osver} in
-    centos*:7* | sl*:7* | redhat*:7* | springdale*:7*)
+. /etc/os-release
+
+case $ID:$VERSION_ID:$ID_LIKE in
+    rhel:7*:* | amzn:2:* | centos:7*:* | ol:7*:* | scientific:7*:*)
         repo=el7
         ;;
-    centos*:8* | redhat*:8* | springdale*:8*)
+    rhel:8*:* | almalinux:8*:* | centos:8*:* | ol:8*:* | rocky:8*:*)
         repo=el8
         ;;
-    fedora*:*)
+    *:7*:*rhel* | *:7*:*centos* )
+        repo=el7
+        ;;
+    *:8*:*rhel* | *:8*:*centos* )
+        repo=el8
+        ;;
+    fedora:*:*)
         repo=fedora
         ;;
     *)
@@ -70,9 +64,7 @@ case ${osname}:${osver} in
         ;;
 esac
 
-if command -v zypper > /dev/null; then
-    cp %{_datadir}/globus/repo/*-${repo}.repo %{_sysconfdir}/zypp/repos.d
-elif command -v dnf > /dev/null; then
+if command -v dnf > /dev/null; then
     for repofile in %{_datadir}/globus/repo/*-${repo}.repo; do
         dnf config-manager --add-repo file://$repofile
     done
@@ -82,8 +74,6 @@ elif command -v yum-config-manager > /dev/null; then
     done
 elif [ -d %{_sysconfdir}/yum.repos.d ] ; then
     cp %{_datadir}/globus/repo/*-${repo}.repo %{_sysconfdir}/yum.repos.d
-elif [ -d %{_sysconfdir}/zypp/repos.d ] ; then
-    cp %{_datadir}/globus/repo/*-${repo}.repo %{_sysconfdir}/zypp/repos.d
 else
     echo "Copy the Globus Repository Definition from %{_datadir}/globus/repo/ to your system's repo configuration"
 fi
@@ -92,24 +82,23 @@ fi
 if [ "$1" != 0 ]; then
     exit 0
 fi
-if [ -f /etc/redhat-release ]; then
-    osname=$(rpm -qf /etc/redhat-release --queryformat '%%{Name}')
-    osver=$(rpm -qf /etc/redhat-release --queryformat '%%{Version}')
-elif [ -f /etc/SuSE-release ]; then
-    osname=$(rpm -qf /etc/SuSE-release --queryformat '%%{Name}')
-    osver=$(rpm -qf /etc/SuSE-release --queryformat '%%{Version}')
-else
-    osname=unknown
-    osver=unknown
-fi
-case ${osname}:${osver} in
-    centos*:7* | sl*:7* | redhat*:7* | springdale*:7*)
+
+. /etc/os-release
+
+case $ID:$VERSION_ID:$ID_LIKE in
+    rhel:7*:* | amzn:2:* | centos:7*:* | ol:7*:* | scientific:7*:*)
         repo=el7
         ;;
-    centos*:8* | redhat*:8* | springdale*:8*)
+    rhel:8*:* | almalinux:8*:* | centos:8*:* | ol:8*:* | rocky:8*:*)
         repo=el8
         ;;
-    fedora*:*)
+    *:7*:rhel | *:7*:centos )
+        repo=el7
+        ;;
+    *:8*:rhel | *:8*:centos )
+        repo=el8
+        ;;
+    fedora:*:*)
         repo=fedora
         ;;
     *)
@@ -118,11 +107,7 @@ case ${osname}:${osver} in
         ;;
 esac
 
-if command -v zypper > /dev/null; then
-    for repofile in %{_datadir}/globus/repo/*-${repo}.repo; do
-        rm -f %{_sysconfdir}/zypp/repos.d/$(basename $repofile)
-    done
-elif [ -d %{_sysconfdir}/yum.repos.d ]; then
+if [ -d %{_sysconfdir}/yum.repos.d ]; then
     for repofile in %{_datadir}/globus/repo/*-${repo}.repo; do
         rm -f %{_sysconfdir}/yum.repos.d/$(basename $repofile)
     done
@@ -136,6 +121,11 @@ fi
 %{_datadir}/globus/repo/*
 
 %changelog
+* Wed Oct 27 2021 Globus Toolkit <support@globus.org> - 6.0.23-1
+- (deb) add bullseye and impish
+- (deb) remove groovy
+- Refactor version detection in repo install scripts
+
 * Fri Apr 23 2021 Globus Toolkit <support@globus.org> - 6.0.22-1
 - (deb) add groovy and hirsute
 - (deb) remove jessie, stretch, xenial, cosmic, disco, eoan

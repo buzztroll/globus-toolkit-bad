@@ -1,4 +1,12 @@
-globus-repo (6.0.22) unstable; urgency=low
+globus-repo (6.0.23) unstable; urgency=low
+
+  * (deb) add bullseye and impish
+  * (deb) remove groovy
+  * Refactor version detection in repo install scripts
+
+ -- Globus Toolkit <support@globus.org>  Wed, 27 Oct 2021 12:11:21 -0400
+
+globus-toolkit-repo (6.0.22) unstable; urgency=low
 
   * (deb) add groovy and hirsute
   * (deb) remove jessie, stretch, xenial, cosmic, disco, eoan
