@@ -1,10 +1,9 @@
 Name: globus-gridmap-eppn-callout
 Maintainer: Globus Support <support@globus.org>
-Upstream-Authors: The Globus Alliance - http://www.globus.org/
 
 Files: *
-Copyright: Copyright 1999-2010 University of Chicago
-License: Apache-2.0
+Copyright: © University of Chicago, Argonne National Laboratory
+License: Globus Connect Community Source Code License Agreement Version 1.0
 
 Files: debian/*
 Copyright: © 2008-2010, Mattias Ellert <mattias.ellert@fysast.uu.se>

@@ -3,7 +3,7 @@ Version:        6.0.22
 Release:        1
 Summary:        Globus Repository Configuration
 Group:          System Environment/Base
-License:        ASL 2.0
+License:	Globus Connect Community Source Code License Agreement
 URL:           https://www.globus.org/
 Source0:        globus-repo_%{version}.tar.xz
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)

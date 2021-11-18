@@ -1,7 +1,5 @@
 Name: myproxy
 Maintainer: Globus Support <support@globus.org>
-Source: http://sourceforge.net/projects/cilogon/files/myproxy/myproxy-6.0rc3.tar.gz/download
-Upstream-Authors: MyProxy Team http://myproxy.ncsa.uiuc.edu/
 
 Files: *
 Copyright: Copyright 2000-2012 The Board of Trustees of the University of Illinois

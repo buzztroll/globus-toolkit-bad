@@ -1,13 +1,9 @@
 Name: globus-gsi-callback
 Maintainer: Globus Support <support@globus.org>
-Source: https://downloads.globus.org/toolkit/gt6/packages/globus_gsi_callback-5.13.tar.gz
-
-
-Upstream-Authors: The Globus Alliance - http://www.globus.org/
 
 Files: *
-Copyright: Copyright 1999-2010 University of Chicago
-License: Apache-2.0
+Copyright: © University of Chicago, Argonne National Laboratory
+License: Globus Connect Community Source Code License Agreement Version 1.0
 
 Files: library/oldgaa/oldgaa_gl_internal_err.[ch]
 Copyright: Copyright 1999-2005 University of Chicago
