@@ -33,7 +33,10 @@ override_dh_auto_install:
 	mkdir -p debian/tmp/etc
 	cp myproxy-server.config debian/tmp/etc/myproxy-server.config
 
+override_dh_builddeb:
+	dh_builddeb -- -Zxz
+
 %:
 	dh $@
 
-.PHONY: override_dh_auto_configure override_dh_auto_install
+.PHONY: override_dh_auto_configure override_dh_auto_install override_dh_builddeb

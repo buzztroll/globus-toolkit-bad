@@ -1,7 +1,7 @@
 Name:		globus-xio-udt-driver
 %global _name %(tr - _ <<< %{name})
 Epoch:          1
-Version:	1.32
+Version:	1.34~a1
 Release:	1%{?dist}
 Vendor:	Globus Support
 Summary:	Globus Toolkit - Globus XIO UDT Driver
@@ -118,6 +118,12 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/pkgconfig/%{name}.pc
 
 %changelog
+* Thu Nov 18 2021 Globus Toolkit <support@globus.org> - 1.34~a1-1
+- Prerelease build
+
+* Fri Nov 12 2021 Globus Toolkit <support@globus.org> - 1.33-1
+- Compatibility with libnice 0.1.18
+
 * Thu Apr 29 2021 Globus Toolkit <support@globus.org> - 1.32-1
 - Allow prerelease version tags
 

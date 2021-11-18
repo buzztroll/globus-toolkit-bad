@@ -8,7 +8,7 @@ include /usr/share/dpkg/default.mk
 export GLOBUS_HOSTNAME=localhost
 
 name = globus-xio
-version = 6.2~rc1
+version = 6.3~a1~rc1
 _prefix = /usr
 _includedir = $(_prefix)/include
 _datadir = $(_prefix)/share
@@ -26,4 +26,7 @@ override_dh_auto_configure:
 %:
 	dh $@
 
-.PHONY: override_dh_auto_configure
+override_dh_builddeb:
+	dh_builddeb -- -Zxz
+
+.PHONY: override_dh_auto_configure override_dh_builddeb

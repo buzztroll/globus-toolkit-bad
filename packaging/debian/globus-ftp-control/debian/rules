@@ -10,7 +10,7 @@ include /usr/share/dpkg/default.mk
 
 name = globus-ftp-control
 _name = globus_ftp_control
-version = 8.8~rc1
+version = 8.9~a1~rc1
 soname = 1
 
 _prefix = /usr
@@ -30,4 +30,7 @@ override_dh_auto_configure:
 %:
 	dh $@
 
-.PHONY: override_dh_auto_configure
+override_dh_builddeb:
+	dh_builddeb -- -Zxz
+
+.PHONY: override_dh_auto_configure override_dh_builddeb

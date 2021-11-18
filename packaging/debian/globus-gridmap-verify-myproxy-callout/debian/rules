@@ -30,4 +30,7 @@ override_dh_auto_install:
 %:
 	dh $@
 
-.PHONY: override_dh_auto_configure override_dh_auto_install
+override_dh_builddeb:
+	dh_builddeb -- -Zxz
+
+.PHONY: override_dh_auto_configure override_dh_auto_install override_dh_builddeb

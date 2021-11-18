@@ -2,7 +2,7 @@ Name:		globus-gridmap-callout
 %global soname 0
 %global _name %(tr - _ <<< %{name})
 Epoch:          1
-Version:	1.3
+Version:	1.4~a1
 Release:	1%{?dist}
 Vendor:	Globus Support
 Summary:	Globus Toolkit - Globus Gridmap Callout
@@ -93,6 +93,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man3/*
 
 %changelog
+* Thu Nov 18 2021 Globus Toolkit <support@globus.org> - 1.4~a1-1
+- Prerelease build
+
 * Thu Apr 29 2021 Globus Toolkit <support@globus.org> - 1.3-1
 - Allow prerelease version tags
 

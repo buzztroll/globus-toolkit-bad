@@ -2,7 +2,7 @@ Name:		globus-gsi-cert-utils
 %global soname 0
 %global _name %(tr - _ <<< %{name})
 Epoch:          1
-Version:	9.18
+Version:	9.19~a1
 Release:	1%{?dist}
 Vendor:	Globus Support
 Summary:	Globus Toolkit - Globus GSI Cert Utils Library
@@ -145,6 +145,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man3/*
 
 %changelog
+* Thu Nov 18 2021 Globus Toolkit <support@globus.org> - 9.19~a1-1
+- Prerelease build
+
 * Thu Apr 29 2021 Globus Toolkit <support@globus.org> - 9.18-1
 - Allow prerelease version tags
 

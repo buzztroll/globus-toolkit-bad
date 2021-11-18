@@ -274,6 +274,7 @@ sub update_debian($$)
 
     if ($verbose) {print "Acting on files in $topdir/debian/$pkgname/debian\n";}
 
+    $changed |= $bumprelease;
     $changed |= update_rules($pkgmeta);
     $changed |= update_control($pkgmeta, $allpkgmeta);
     $changed |= update_copyright($pkgmeta, $allpkgmeta);

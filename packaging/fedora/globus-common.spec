@@ -3,9 +3,9 @@
 %{!?perl_vendorlib: %global perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)}
 
 Name:		globus-common
-%global _name %(tr - _ <<< %{name})
+%global _name %(echo %{name} | tr - _)
 Epoch:          1
-Version:	17.8
+Version:	17.9~a1
 Release:	1%{?dist}
 Vendor:		Globus Support
 Summary:	Globus Toolkit - Common Library
@@ -159,6 +159,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_docdir}/%{name}-%{version}/html/*
 
 %changelog
+* Thu Nov 18 2021 Globus Toolkit <support@globus.org> - 17.9~a1-1
+- Prerelease build
+
 * Thu Apr 29 2021 Globus Toolkit <support@globus.org> - 17.8-1
 - Allow prerelease version tags
 

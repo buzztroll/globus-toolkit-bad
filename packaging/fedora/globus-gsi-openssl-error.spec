@@ -1,7 +1,7 @@
 Name:		globus-gsi-openssl-error
 %global _name %(tr - _ <<< %{name})
 Epoch:          1
-Version:	3.10
+Version:	3.11~a1
 Release:	1%{?dist}
 Vendor:	Globus Support
 Summary:	Globus Toolkit - Globus OpenSSL Error Handling
@@ -116,6 +116,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_docdir}/%{name}-%{version}/html/*
 
 %changelog
+* Thu Nov 18 2021 Globus Toolkit <support@globus.org> - 3.11~a1-1
+- Prerelease build
+
 * Thu Apr 29 2021 Globus Toolkit <support@globus.org> - 3.10-1
 - Allow prerelease version tags
 
