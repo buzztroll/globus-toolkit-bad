@@ -9331,17 +9331,32 @@ globus_l_ftp_eb_accept_callback(
          *     connection was closed resulting in a cancel callback
          *        call the user callback with an error
          *     accept failed
-         *        tear down the stripe and call the user callback
-         *        with an error.
+         *        if we have other active connections on this stripe, we'll
+         *        ignore this failed attempt.  this could be a port scan or
+         *        other invalid connection attempt.  if this connection attempt
+         *        was from a valid sender, they'll tear down the connection
+         *        from that end.
+         *        if no other connections, tear down the stripe and call
+         *        the user callback with an error.
          */
         if(result != GLOBUS_SUCCESS)
         {
             error = globus_error_get(result);
             type = globus_object_get_type(error);
 
-            if(!globus_object_type_match(
-                type,
-                GLOBUS_IO_ERROR_TYPE_IO_CANCELLED))
+            if (globus_object_type_match(type,
+                    GLOBUS_IO_ERROR_TYPE_IO_CANCELLED))
+            {
+                /* cancel call may have cleaned up the pending connection */
+            }
+            else if (stripe->connection_count > 0 && !callback)
+            {
+                /* ignore failure and clean up refs for this connection */
+                stripe->total_connection_count--;
+                transfer_handle->ref--;
+                globus_free(data_conn);
+            }
+            else
             {
                 globus_l_ftp_control_stripes_destroy(dc_handle, error);
             }
