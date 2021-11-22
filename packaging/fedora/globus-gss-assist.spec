@@ -2,13 +2,13 @@ Name:		globus-gss-assist
 %global soname 3
 %global _name %(tr - _ <<< %{name})
 Epoch:          1
-Version:	11.5~a1
+Version:	11.5~rc1
 Release:	1%{?dist}
 Vendor:	Globus Support
 Summary:	Globus Toolkit - GSSAPI Assist library
 
 Group:		System Environment/Libraries
-License:	Globus Connect Community Source Code License Agreement
+License:	ASL 2.0
 URL:           https://www.globus.org/
 Source:        https://downloads.globus.org/toolkit/gt6/packages/%{_name}-%{version}.tar.gz
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
@@ -154,7 +154,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man3/*
 
 %changelog
-* Thu Nov 18 2021 Globus Toolkit <support@globus.org> - 11.5~a1-1
+* Thu Nov 18 2021 Globus Toolkit <support@globus.org> - 11.5~rc1-1
 - Prerelease build
 
 * Thu Apr 29 2021 Globus Toolkit <support@globus.org> - 11.4-1

@@ -1,4 +1,4 @@
-globus-gridftp-server (1:12.26~a1-1+gt6.@distro@) @distro@; urgency=low
+globus-gridftp-server (1:12.26~rc1-1+gt6.@distro@) @distro@; urgency=low
 
   * Prerelease build
 

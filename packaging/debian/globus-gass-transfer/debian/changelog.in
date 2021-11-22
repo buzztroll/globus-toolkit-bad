@@ -1,4 +1,4 @@
-globus-gass-transfer (1:8.13~a1-1+gt6.@distro@) @distro@; urgency=low
+globus-gass-transfer (1:8.13~rc1-1+gt6.@distro@) @distro@; urgency=low
 
   * Prerelease build
 

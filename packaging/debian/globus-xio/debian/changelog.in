@@ -1,4 +1,4 @@
-globus-xio (1:6.3~a1-1+gt6.@distro@) @distro@; urgency=low
+globus-xio (1:6.3~rc1-1+gt6.@distro@) @distro@; urgency=low
 
   * Prerelease build
 

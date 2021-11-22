@@ -1,4 +1,4 @@
-globus-gridmap-verify-myproxy-callout (1:2.12~a1-1+gt6.@distro@) @distro@; urgency=low
+globus-gridmap-verify-myproxy-callout (1:2.12~rc1-1+gt6.@distro@) @distro@; urgency=low
 
   * Prerelease build
 

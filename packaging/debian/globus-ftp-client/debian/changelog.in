@@ -1,4 +1,4 @@
-globus-ftp-client (1:8.40~a1-1+gt6.@distro@) @distro@; urgency=low
+globus-ftp-client (1:8.40~rc1-1+gt6.@distro@) @distro@; urgency=low
 
   * Prerelease build
 

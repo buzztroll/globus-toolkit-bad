@@ -1,4 +1,4 @@
-globus-xio-gridftp-driver (1:2.21~a1-1+gt6.@distro@) @distro@; urgency=low
+globus-xio-gridftp-driver (1:2.21~rc1-1+gt6.@distro@) @distro@; urgency=low
 
   * Prerelease build
 

@@ -1,4 +1,4 @@
-globus-xio-gsi-driver (1:4.4~a1-1+gt6.@distro@) @distro@; urgency=low
+globus-xio-gsi-driver (1:4.4~rc1-1+gt6.@distro@) @distro@; urgency=low
 
   * Prerelease build
 

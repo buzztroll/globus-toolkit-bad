@@ -1,4 +1,4 @@
-globus-xioperf (1:4.7~a1-1+gt6.@distro@) @distro@; urgency=low
+globus-xioperf (1:4.7~rc1-1+gt6.@distro@) @distro@; urgency=low
 
   * Prerelease build
 

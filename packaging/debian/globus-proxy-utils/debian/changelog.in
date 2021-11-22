@@ -1,4 +1,4 @@
-globus-proxy-utils (1:6.22~a1-1+gt6.@distro@) @distro@; urgency=low
+globus-proxy-utils (1:6.22~rc1-1+gt6.@distro@) @distro@; urgency=low
 
   * Prerelease build
 

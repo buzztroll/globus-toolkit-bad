@@ -1,13 +1,13 @@
 Name:		globus-gsi-openssl-error
 %global _name %(tr - _ <<< %{name})
 Epoch:          1
-Version:	3.11~a1
+Version:	3.11~rc1
 Release:	1%{?dist}
 Vendor:	Globus Support
 Summary:	Globus Toolkit - Globus OpenSSL Error Handling
 
 Group:		System Environment/Libraries
-License:	Globus Connect Community Source Code License Agreement
+License:	ASL 2.0
 URL:           https://www.globus.org/
 Source:        https://downloads.globus.org/toolkit/gt6/packages/%{_name}-%{version}.tar.gz
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
@@ -116,7 +116,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_docdir}/%{name}-%{version}/html/*
 
 %changelog
-* Thu Nov 18 2021 Globus Toolkit <support@globus.org> - 3.11~a1-1
+* Thu Nov 18 2021 Globus Toolkit <support@globus.org> - 3.11~rc1-1
 - Prerelease build
 
 * Thu Apr 29 2021 Globus Toolkit <support@globus.org> - 3.10-1

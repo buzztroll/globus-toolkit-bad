@@ -1,4 +1,4 @@
-globus-net-manager (1:0.22~a1-1+gt6.@distro@) @distro@; urgency=low
+globus-net-manager (1:0.22~rc1-1+gt6.@distro@) @distro@; urgency=low
 
   * Prerelease build
 

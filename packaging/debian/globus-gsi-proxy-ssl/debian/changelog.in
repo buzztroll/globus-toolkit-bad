@@ -1,4 +1,4 @@
-globus-gsi-proxy-ssl (1:5.13~a1-1+gt6.@distro@) @distro@; urgency=low
+globus-gsi-proxy-ssl (1:5.13~rc1-1+gt6.@distro@) @distro@; urgency=low
 
   * Prerelease build
 

@@ -1,13 +1,13 @@
 Name:		globus-xio-udt-driver
 %global _name %(tr - _ <<< %{name})
 Epoch:          1
-Version:	1.34~a1
+Version:	1.34~rc1
 Release:	1%{?dist}
 Vendor:	Globus Support
 Summary:	Globus Toolkit - Globus XIO UDT Driver
 
 Group:		System Environment/Libraries
-License:	Globus Connect Community Source Code License Agreement
+License:	ASL 2.0
 URL:           https://www.globus.org/
 Source:        https://downloads.globus.org/toolkit/gt6/packages/%{_name}-%{version}.tar.gz
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
@@ -118,7 +118,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/pkgconfig/%{name}.pc
 
 %changelog
-* Thu Nov 18 2021 Globus Toolkit <support@globus.org> - 1.34~a1-1
+* Thu Nov 18 2021 Globus Toolkit <support@globus.org> - 1.34~rc1-1
 - Prerelease build
 
 * Fri Nov 12 2021 Globus Toolkit <support@globus.org> - 1.33-1

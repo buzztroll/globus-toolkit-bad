@@ -1,4 +1,4 @@
-globus-gridmap-eppn-callout (1:1.16~a1-1+gt6.@distro@) @distro@; urgency=low
+globus-gridmap-eppn-callout (1:1.16~rc1-1+gt6.@distro@) @distro@; urgency=low
 
   * Prerelease build
 

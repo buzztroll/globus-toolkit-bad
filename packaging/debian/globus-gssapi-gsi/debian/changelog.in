@@ -1,4 +1,4 @@
-globus-gssapi-gsi (1:13.16~a1-1+gt6.@distro@) @distro@; urgency=low
+globus-gssapi-gsi (1:13.16~rc1-1+gt6.@distro@) @distro@; urgency=low
 
   * Prerelease build
 

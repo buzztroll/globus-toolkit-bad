@@ -1,6 +1,6 @@
 AC_PREREQ([2.60])
 
-AC_INIT([globus_xio_pipe_driver], [3.12~a1],[https://github.com/globus/globus-toolkit/issues])
+AC_INIT([globus_xio_pipe_driver], [3.12~rc1],[https://github.com/globus/globus-toolkit/issues])
 PACKAGE_VERSION_NO_TAG="${PACKAGE_VERSION%~*}"
 AC_SUBST([MAJOR_VERSION], [${PACKAGE_VERSION_NO_TAG%%.*}])
 AC_SUBST([MINOR_VERSION], [${PACKAGE_VERSION_NO_TAG##*.}])

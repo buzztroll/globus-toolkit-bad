@@ -1,4 +1,4 @@
-globus-gsi-cert-utils (1:9.19~a1-1+gt6.@distro@) @distro@; urgency=low
+globus-gsi-cert-utils (1:9.19~rc1-1+gt6.@distro@) @distro@; urgency=low
 
   * Prerelease build
 

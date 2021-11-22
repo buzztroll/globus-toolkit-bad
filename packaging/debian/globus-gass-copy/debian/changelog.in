@@ -1,4 +1,4 @@
-globus-gass-copy (1:9.32~a1-1+gt6.@distro@) @distro@; urgency=low
+globus-gass-copy (1:9.32~rc1-1+gt6.@distro@) @distro@; urgency=low
 
   * Prerelease build
 

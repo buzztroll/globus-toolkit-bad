@@ -1,4 +1,4 @@
-myproxy (1:6.1.33~a1-1+gt6.@distro@) @distro@; urgency=low
+myproxy (1:6.1.33~rc1-1+gt6.@distro@) @distro@; urgency=low
 
   * Prerelease build
 
