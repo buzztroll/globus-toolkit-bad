@@ -2,7 +2,7 @@ Name:		globus-ftp-control
 %global soname 1
 %global _name %(tr - _ <<< %{name})
 Epoch:          1
-Version:	8.9~rc1
+Version:	8.9~rc2
 Release:	1%{?dist}
 Vendor:	Globus Support
 Summary:	Globus Toolkit - GridFTP Control Library
@@ -123,8 +123,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man3/*
 
 %changelog
-* Thu Nov 18 2021 Globus Toolkit <support@globus.org> - 8.9~rc1-1
+* Thu Nov 18 2021 Globus Toolkit <support@globus.org> - 8.9~rc2-1
 - Prerelease build
+- ignore invalid connections once the data channel is established
 
 * Thu Apr 29 2021 Globus Toolkit <support@globus.org> - 8.8-1
 - Allow prerelease version tags

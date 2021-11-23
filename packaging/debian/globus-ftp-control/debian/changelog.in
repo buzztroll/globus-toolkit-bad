@@ -1,6 +1,7 @@
-globus-ftp-control (1:8.9~rc1-1+gt6.@distro@) @distro@; urgency=low
+globus-ftp-control (1:8.9~rc2-1+gt6.@distro@) @distro@; urgency=low
 
   * Prerelease build
+  * ignore invalid connections once the data channel is established
 
  -- Globus Toolkit <support@globus.org>  Thu, 18 Nov 2021 16:01:11 -0500
 

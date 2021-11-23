@@ -9,9 +9,6 @@ include /usr/share/dpkg/default.mk
 #export DEB_BUILD_MAINT_OPTIONS = hardening=+all
 
 name = globus-ftp-control
-_name = globus_ftp_control
-version = 8.9~a1~rc1
-soname = 1
 
 _prefix = /usr
 _includedir = $(_prefix)/include
