@@ -8,7 +8,6 @@ include /usr/share/dpkg/default.mk
 export GLOBUS_HOSTNAME=localhost
 
 name = globus-xio
-version = 6.3~a1~rc1
 _prefix = /usr
 _includedir = $(_prefix)/include
 _datadir = $(_prefix)/share

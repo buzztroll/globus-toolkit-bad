@@ -9,9 +9,6 @@ include /usr/share/dpkg/default.mk
 #export DEB_BUILD_MAINT_OPTIONS = hardening=+all
 
 name = globus-xioperf
-_name = globus_xioperf
-version = 4.7~a1~rc1
-
 
 _prefix = /usr
 _includedir = $(_prefix)/include
