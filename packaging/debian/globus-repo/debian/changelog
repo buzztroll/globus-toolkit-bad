@@ -1,4 +1,4 @@
-globus-repo (6.0.23) unstable; urgency=low
+globus-repo (6.0.23~rc1) unstable; urgency=low
 
   * (deb) add bullseye and impish
   * (deb) remove groovy
