@@ -1,2 +1,1 @@
 @ENABLED@deb [signed-by=@KEY@] @REPOSITORY_ROOT@/@STABILITY@/deb @RELEASE@ contrib
-# deb-src [signed-by=@KEY@] @REPOSITORY_ROOT@/@STABILITY@/deb @RELEASE@ contrib
