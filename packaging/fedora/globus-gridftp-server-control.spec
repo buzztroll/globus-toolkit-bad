@@ -2,7 +2,7 @@ Name:		globus-gridftp-server-control
 %global soname 0
 %global _name %(tr - _ <<< %{name})
 Epoch:          1
-Version:	7.3~rc1
+Version:	7.3
 Release:	1%{?dist}
 Vendor:	Globus Support
 Summary:	Globus Toolkit - Globus GridFTP Server Library
@@ -99,8 +99,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/pkgconfig/%{name}.pc
 
 %changelog
-* Thu Nov 18 2021 Globus Toolkit <support@globus.org> - 7.3~rc1-1
-- Prerelease build
+* Wed Dec 01 2021 Globus Toolkit <support@globus.org> - 7.3-1
+- Rebuild for new OSes
+- Update license text
 
 * Thu Apr 29 2021 Globus Toolkit <support@globus.org> - 7.2-1
 - Allow prerelease version tags

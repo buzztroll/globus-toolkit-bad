@@ -2,7 +2,7 @@ Name:		globus-xio-gridftp-multicast
 
 %global _name %(tr - _ <<< %{name})
 Epoch:          1
-Version:	1.9~rc1
+Version:	1.9
 Release:	1%{?dist}
 Vendor:	Globus Support
 Summary:	Globus Toolkit - Globus XIO GridFTP Multicast Driver
@@ -91,8 +91,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/pkgconfig/*.pc
 
 %changelog
-* Thu Nov 18 2021 Globus Toolkit <support@globus.org> - 1.9~rc1-1
-- Prerelease build
+* Wed Dec 01 2021 Globus Toolkit <support@globus.org> - 1.9-1
+- Rebuild for new OSes
+- Update license text
 
 * Thu Apr 29 2021 Globus Toolkit <support@globus.org> - 1.8-1
 - Allow prerelease version tags
