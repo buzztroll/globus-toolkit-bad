@@ -107,6 +107,9 @@ typedef struct
     char *                              sbj;
     char *                              username;
     char *                              pw;
+
+    globus_list_t *                     slow_dirlist_paths;
+    int                                 slow_dirlist_count;
 } gfs_l_file_session_t;
 
 typedef struct
@@ -175,7 +178,31 @@ globus_l_gfs_file_cksm(
     globus_off_t                        length,
     globus_l_gfs_file_cksm_cb_t         internal_cb,
     void *                              internal_cb_arg);
-    
+
+
+static
+int
+globus_l_gfs_need_slow_dirlist(
+    gfs_l_file_session_t *              session,
+    char *                              dir,
+    int                                 count)
+{
+    if (session->slow_dirlist_paths &&
+        globus_list_search_pred(
+            session->slow_dirlist_paths, globus_hashtable_string_keyeq, dir))
+    {
+        return 1;
+    }
+
+    if (session->slow_dirlist_count > 0 && count > session->slow_dirlist_count)
+    {
+        return 1;
+    }
+
+    return 0;
+}
+
+
 static
 globus_result_t
 globus_l_gfs_file_make_stack(
@@ -1057,11 +1084,8 @@ done_fake:
             goto error_open;
         }
 
-        slow_listing_thresh = globus_gfs_config_get_int("slow_dirlist");
-        if(slow_listing_thresh > 0 && total_stat_count > slow_listing_thresh)
-        {
-            slow_listings = GLOBUS_TRUE;
-        }
+        slow_listings = globus_l_gfs_need_slow_dirlist(
+            user_arg, stat_info->pathname, total_stat_count);
 
         stat_array = (globus_gfs_stat_t *) globus_malloc(
             sizeof(globus_gfs_stat_t) * 
@@ -3465,6 +3489,7 @@ globus_l_gfs_file_init(
     globus_gfs_session_info_t *         session_info)
 {
     gfs_l_file_session_t *              session_h;
+    char *                              conf_str;
     GlobusGFSName(globus_l_gfs_file_send);
     GlobusGFSFileDebugEnter();
 
@@ -3477,7 +3502,24 @@ globus_l_gfs_file_init(
 
     globus_gridftp_server_set_checksum_support(op, GFS_L_FILE_CKSM_SUPPORT);
 
-    /* just make it so we can get the cred. */
+    session_h->slow_dirlist_count = globus_gfs_config_get_int("slow_dirlist");
+    if (conf_str = globus_gfs_config_get_string("slow_dirlist_paths"))
+    {
+        globus_list_t *                 list;
+        char *                          path;
+
+        session_h->slow_dirlist_paths =
+            globus_list_from_string(conf_str, ',', NULL);
+
+        for(list = session_h->slow_dirlist_paths;
+            !globus_list_empty(list);
+            list = globus_list_rest(list))
+        {
+            path = (char *) globus_list_first(list);
+            globus_url_string_hex_decode(path);
+        }
+    }
+
     globus_gridftp_server_finished_session_start(
         op,
         GLOBUS_SUCCESS,
@@ -3509,6 +3551,11 @@ globus_l_gfs_file_destroy(
         if(session_h->pw != NULL)
         {
             globus_free(session_h->pw);
+        }
+        if(session_h->slow_dirlist_paths != NULL)
+        {
+            globus_list_destroy_all(
+                session_h->slow_dirlist_paths, globus_libc_free);
         }
         globus_free(session_h);
     }

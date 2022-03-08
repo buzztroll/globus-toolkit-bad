@@ -501,6 +501,8 @@ static const globus_l_gfs_config_option_t option_list[] =
     NULL, NULL, NULL,GLOBUS_FALSE, NULL}, /* exit cleanly on bad signals (no core dump) */
  {"slow_dirlist", "slow_dirlist", NULL, NULL, NULL, GLOBUS_L_GFS_CONFIG_INT, 0, NULL,
     NULL, NULL, NULL,GLOBUS_FALSE, NULL}, /* fake stat responses on dirs with more than this many entries */
+ {"slow_dirlist_paths", "slow_dirlist_paths", NULL, NULL, NULL, GLOBUS_L_GFS_CONFIG_STRING, 0, NULL,
+    NULL, NULL, NULL,GLOBUS_FALSE, NULL}, /* fake stat responses on these specific dirs */
  {"checksum_throttle", "checksum_throttle", NULL, NULL, NULL, GLOBUS_L_GFS_CONFIG_INT, 0, NULL,
     NULL, NULL, NULL,GLOBUS_FALSE, NULL}, /* delay checksum reads by this many microseconds per blocksize'd read, 
     * effectively setting a floor on the checksum rate to size/blocksize*delay per size */
