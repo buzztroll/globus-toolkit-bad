@@ -558,11 +558,7 @@ globus_l_gfs_default_brain_init(
             NULL);
         if(result != GLOBUS_SUCCESS)
         {
-            globus_gfs_log_result(
-                GLOBUS_GFS_LOG_DUMP, 
-                "GFork functionality not enabled.",
-                result);
-
+            GlobusGFSDebugInfo("GFork functionality not enabled.");
             globus_l_gfs_gfork_ready = GLOBUS_TRUE;
 
             if(globus_l_gfs_gfork_ready_cb != NULL)
