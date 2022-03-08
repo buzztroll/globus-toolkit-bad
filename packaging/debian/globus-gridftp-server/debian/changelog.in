@@ -1,3 +1,9 @@
+globus-gridftp-server (1:12.27~rc1-1+gt6.@distro@) @distro@; urgency=low
+
+  * Add configuration to enable basic listings on specific paths
+
+ -- Globus Toolkit <support@globus.org>  Fri, 04 Mar 2022 18:25:31 -0600
+
 globus-gridftp-server (1:12.26-1+gt6.@distro@) @distro@; urgency=low
 
   * Rebuild for new OSes
