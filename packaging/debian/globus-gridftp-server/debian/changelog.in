@@ -1,4 +1,4 @@
-globus-gridftp-server (1:12.27~rc1-1+gt6.@distro@) @distro@; urgency=low
+globus-gridftp-server (1:12.27-1+gt6.@distro@) @distro@; urgency=low
 
   * Add configuration to enable basic listings on specific paths
 
