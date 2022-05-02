@@ -2344,7 +2344,11 @@ globus_ftp_control_data_query_channels(
 
     globus_mutex_lock(&dc_handle->mutex);
     {
-        if(stripe_ndx >= transfer_handle->stripe_count)
+        if(transfer_handle == GLOBUS_NULL)
+        {
+            *num_channels = 0;
+        }
+        else if(stripe_ndx >= transfer_handle->stripe_count)
         {
             res = globus_error_put(globus_error_construct_string(
                       GLOBUS_FTP_CONTROL_MODULE,
