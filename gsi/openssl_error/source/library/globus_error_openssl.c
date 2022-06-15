@@ -877,7 +877,10 @@ globus_error_match_openssl_error(
         
     
     if(library == ERR_GET_LIB(instance_data->error_code) &&
+/* OpenSSL 3.0 removed ERR_GET_FUNC. The LIB+REASON combination appears to be unique, so error matching will still work */
+#if OPENSSL_VERSION_NUMBER < 0x30000000L
        function == ERR_GET_FUNC(instance_data->error_code) &&
+#endif
        reason == ERR_GET_REASON(instance_data->error_code))
     {
         return GLOBUS_TRUE;

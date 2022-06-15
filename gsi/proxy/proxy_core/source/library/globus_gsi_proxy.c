@@ -115,15 +115,6 @@ globus_l_gsi_proxy_activate(void)
 
     GLOBUS_I_GSI_PROXY_DEBUG_ENTER;
 
-    if(globus_i_gsi_proxy_debug_level > 7)
-    {
-#ifdef V_CRYPTO_MDEBUG_ALL
-        CRYPTO_malloc_debug_init();
-        CRYPTO_dbg_set_options(V_CRYPTO_MDEBUG_ALL);
-#endif
-        CRYPTO_mem_ctrl(CRYPTO_MEM_CHECK_ON);
-    }
-
     result = globus_module_activate(GLOBUS_OPENSSL_MODULE);
     if(result != GLOBUS_SUCCESS)
     {
@@ -575,7 +566,7 @@ globus_gsi_proxy_create_req(
     if (!X509_REQ_sign(handle->req, handle->proxy_key,
             handle->attrs->signing_algorithm
             ? handle->attrs->signing_algorithm
-            : EVP_sha1()))
+            : EVP_sha256()))
     {
         GLOBUS_GSI_PROXY_OPENSSL_ERROR_RESULT(
             result,

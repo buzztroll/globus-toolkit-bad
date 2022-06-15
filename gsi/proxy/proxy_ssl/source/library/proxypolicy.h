@@ -87,8 +87,12 @@ DECLARE_ASN1_FUNCTIONS(PROXYPOLICY)
 ASN1_METHOD * PROXYPOLICY_asn1_meth();
 #endif
 
+#ifdef DECLARE_ASN1_DUP_FUNCTION
+DECLARE_ASN1_DUP_FUNCTION(PROXYPOLICY)
+#else
 PROXYPOLICY * PROXYPOLICY_dup(
     PROXYPOLICY *                       policy);
+#endif
 
 int PROXYPOLICY_cmp(
     const PROXYPOLICY *                 a,
