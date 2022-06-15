@@ -1,3 +1,9 @@
+globus-repo (6.0.24~rc1) unstable; urgency=low
+
+  * (deb) add jammy
+
+ -- Globus Toolkit <support@globus.org>  Wed, 15 Jun 2022 11:21:03 -0500
+
 globus-repo (6.0.23) unstable; urgency=low
 
   * (deb) add bullseye and impish
