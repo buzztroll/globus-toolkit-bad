@@ -51,9 +51,6 @@ int main()
     
     /* acquire the credential */
 
-    CRYPTO_mem_ctrl(CRYPTO_MEM_CHECK_ENABLE);
-    CRYPTO_mem_ctrl(CRYPTO_MEM_CHECK_ON);
-
     maj_stat = gss_acquire_cred(&min_stat,
                                 NULL,
                                 GSS_C_INDEFINITE,
