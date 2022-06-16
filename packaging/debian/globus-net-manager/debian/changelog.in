@@ -1,4 +1,4 @@
-globus-net-manager (1:0.22-1+gt6.@distro@) @distro@; urgency=low
+globus-net-manager (1:0.22-2+gt6.@distro@) @distro@; urgency=low
 
   * Rebuild for new OSes
   * Update license text
