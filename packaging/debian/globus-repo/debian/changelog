@@ -1,6 +1,7 @@
 globus-repo (6.0.24~rc1) unstable; urgency=low
 
   * (deb) add jammy
+  * (deb) remove hirsute
 
  -- Globus Toolkit <support@globus.org>  Wed, 15 Jun 2022 11:21:03 -0500
 

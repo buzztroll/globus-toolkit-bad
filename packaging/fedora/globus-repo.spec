@@ -123,6 +123,7 @@ fi
 %changelog
 * Wed Jun 15 2022 Globus Toolkit <support@globus.org> - 6.0.24~rc1-1
 - (deb) add jammy
+- (deb) remove hirsute
 
 * Wed Oct 27 2021 Globus Toolkit <support@globus.org> - 6.0.23-1
 - (deb) add bullseye and impish
