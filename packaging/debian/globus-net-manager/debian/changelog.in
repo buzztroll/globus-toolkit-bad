@@ -1,4 +1,10 @@
-globus-net-manager (1:0.22-2+gt6.@distro@) @distro@; urgency=low
+globus-net-manager (1:0.23~rc1-1+gt6.@distro@) @distro@; urgency=low
+
+  * update to support new distros
+
+ -- Globus Toolkit <support@globus.org>  Tue, 21 Jun 2022 11:01:57 -0500
+
+globus-net-manager (1:0.22-1+gt6.@distro@) @distro@; urgency=low
 
   * Rebuild for new OSes
   * Update license text

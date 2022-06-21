@@ -1,6 +1,6 @@
 AC_PREREQ([2.60])
 
-AC_INIT([globus_gsi_proxy_core],[8.12~a1],[https://github.com/globus/globus-toolkit/issues])
+AC_INIT([globus_gsi_proxy_core],[8.12~rc1],[https://github.com/globus/globus-toolkit/issues])
 AC_CONFIG_MACRO_DIR([m4])
 PACKAGE_VERSION_NO_TAG="${PACKAGE_VERSION%~*}"
 AC_SUBST([MAJOR_VERSION], [${PACKAGE_VERSION_NO_TAG%%.*}])
