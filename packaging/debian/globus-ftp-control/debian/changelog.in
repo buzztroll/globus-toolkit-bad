@@ -1,4 +1,4 @@
-globus-ftp-control (1:8.10~rc1-1+gt6.@distro@) @distro@; urgency=low
+globus-ftp-control (1:8.10-1+gt6.@distro@) @distro@; urgency=low
 
   * prevent crash when querying a failed connection
 

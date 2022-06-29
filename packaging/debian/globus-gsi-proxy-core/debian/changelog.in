@@ -1,4 +1,4 @@
-globus-gsi-proxy-core (1:8.12~rc1-1+gt6.@distro@) @distro@; urgency=low
+globus-gsi-proxy-core (1:8.12-1+gt6.@distro@) @distro@; urgency=low
 
   * OpenSSL 3.0 build fixes
 

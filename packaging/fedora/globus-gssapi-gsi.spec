@@ -2,7 +2,7 @@ Name:		globus-gssapi-gsi
 %global soname 4
 %global _name %(tr - _ <<< %{name})
 Epoch:          1
-Version:	13.17~rc1
+Version:	13.17
 Release:	1%{?dist}
 Vendor:	Globus Support
 Summary:	Globus Toolkit - GSSAPI library
@@ -131,7 +131,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man3/*
 
 %changelog
-* Wed Jun 15 2022 Globus Toolkit <support@globus.org> - 13.17~rc1-1
+* Wed Jun 15 2022 Globus Toolkit <support@globus.org> - 13.17-1
 - openssl 3.0 build fixes
 
 * Wed Dec 01 2021 Globus Toolkit <support@globus.org> - 13.16-1

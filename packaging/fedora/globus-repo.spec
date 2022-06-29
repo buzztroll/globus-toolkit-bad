@@ -1,5 +1,5 @@
 Name:           globus-repo
-Version:        6.0.24~rc1
+Version:        6.0.24
 Release:        1
 Summary:        Globus Repository Configuration
 Group:          System Environment/Base
@@ -121,7 +121,7 @@ fi
 %{_datadir}/globus/repo/*
 
 %changelog
-* Wed Jun 15 2022 Globus Toolkit <support@globus.org> - 6.0.24~rc1-1
+* Wed Jun 15 2022 Globus Toolkit <support@globus.org> - 6.0.24-1
 - (deb) add jammy
 - (deb) remove hirsute
 
