@@ -480,6 +480,10 @@ globus_l_gsi_gssapi_activate(void)
     {
         globus_i_gsi_gssapi_cipher_list = tmp_string;
     }
+    else
+    {
+        globus_i_gsi_gssapi_cipher_list = GLOBUS_DEFAULT_CIPHERS;
+    }
 
     tmp_string = globus_module_getenv("GLOBUS_GSSAPI_SERVER_CIPHER_ORDER");
     if (tmp_string != NULL)

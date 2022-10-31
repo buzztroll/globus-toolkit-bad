@@ -613,13 +613,13 @@ globus_i_gsi_gss_create_and_fill_context(
 #endif
 
     /*
-     * If initiate and caller did not set the GSS_C_CONF_FLAG
-     * then add the NULL ciphers to beginning.
+     * If caller did not set GSS_C_CONF_FLAG then add the NULL ciphers
+     * to beginning.
+     * NOTE: it will not be possible to use NULL ciphers with TLSv1.3
      */
     if (!(context->req_flags & GSS_C_CONF_FLAG))
     {
-        if(!SSL_set_cipher_list(context->gss_ssl,
-                                "eNULL:ALL:!COMPLEMENTOFDEFAULT"))
+        if(!SSL_set_cipher_list(context->gss_ssl, GLOBUS_NULL_CIPHERS))
         {
             GLOBUS_GSI_GSSAPI_OPENSSL_ERROR_RESULT(
                 minor_status,

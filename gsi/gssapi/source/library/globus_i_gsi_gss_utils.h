@@ -12,6 +12,12 @@
 #include "gssapi.h"
 #include "gssapi_openssl.h"
 
+/* default cipher string if CIPHERS is not defined in config or env */
+#define GLOBUS_DEFAULT_CIPHERS "HIGH:!aNULL"
+
+/* unencrypted cipher string, used when GSS_C_CONF_FLAG is not in req flag */
+#define GLOBUS_NULL_CIPHERS "eNULL:"GLOBUS_DEFAULT_CIPHERS
+
 /* ERROR MACROS */
 
 #define GLOBUS_GSI_GSSAPI_ERROR_RESULT(_MIN_RESULT_, _MIN_, \
