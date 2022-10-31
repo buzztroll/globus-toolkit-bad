@@ -339,8 +339,7 @@ globus_l_gsi_gssapi_activate(void)
             goto strdup_default_data_fail;
         }
     }
-    /* Don't allow an environment override */
-    globus_libc_unsetenv("GLOBUS_GSSAPI_VHOST_CRED_OWNER");
+
     rc = globus_l_gsi_gssapi_parse_config(gsi_conf_data);
     if (rc != GLOBUS_SUCCESS)
     {
