@@ -2,7 +2,7 @@
 
 import groovy.transform.Field
 
-@Library('gcs-build-scripts') _
+@Library('gcs-build-scripts@18cf8802a8cecb541a1a11d7f4acf757bac85684') _
 
 @Field
 def ALL_TAGS = null
@@ -253,7 +253,7 @@ def buildit() {
         "globus_repo": "packaging/debian/globus-repo"
     ]
 
-    build(job: 'ToolkitPackage', parameters: get_params(stage_dirs[STAGE_NAME]))
+    build(job: 'ToolkitPackage-fall2022', parameters: get_params(stage_dirs[STAGE_NAME]))
 }
 
 def not_before_restart() {
