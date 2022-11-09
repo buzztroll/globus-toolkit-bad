@@ -1,4 +1,5 @@
 #include "gssapi_test_utils.h"
+#include <openssl/opensslv.h>
 #include <stdbool.h>
 
 static gss_OID_desc tls_version_oid_desc =
@@ -193,6 +194,13 @@ main(int argc, char *argv[])
             "GLOBUS_GSSAPI_MIN_TLS_PROTOCOL", test_cases[i].min_protocol, 1);
         globus_libc_setenv(
             "GLOBUS_GSSAPI_MAX_TLS_PROTOCOL", test_cases[i].max_protocol, 1);
+        if (i < 2 && OPENSSL_VERSION_MAJOR > 1)
+        {
+            printf("ok %zu # SKIP %s no longer supported in OpenSSL 3\n",
+                   i+1,
+                   test_cases[i].name);
+            continue;
+        }
 
         globus_module_activate(GLOBUS_GSI_GSSAPI_MODULE);
         ok = tls_test(test_cases[i].expected);
