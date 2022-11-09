@@ -217,7 +217,7 @@ def buildit() {
         "globus_openssl_module": "gsi/openssl_module/source",
         "globus_gsi_cert_utils": "gsi/cert_utils/source",
         "globus_gsi_sysconfig": "gsi/sysconfig/source",
-        "globus_callout": "callout/source/**/*",
+        "globus_callout": "callout/source/",
         "globus_gsi_callback": "gsi/callback/source",
         "globus_gsi_credential": "gsi/credential/source",
         "globus_gsi_proxy_core": "gsi/proxy/proxy_core/source",
