@@ -1,7 +1,7 @@
 Name:		globus-proxy-utils
 %global _name %(tr - _ <<< %{name})
 Epoch:          1
-Version:	6.22
+Version:	6.23
 Release:	1%{?dist}
 Vendor:	Globus Support
 Summary:	Globus Toolkit - Globus GSI Proxy Utility Programs
@@ -82,6 +82,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/*
 
 %changelog
+* Wed Nov 09 2022 Globus Toolkit <support@globus.org> - 6.23-1
+- Update test fixtures to use sha256
+
 * Wed Dec 01 2021 Globus Toolkit <support@globus.org> - 6.22-1
 - Rebuild for new OSes
 - Update license text

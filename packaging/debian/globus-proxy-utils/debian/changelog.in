@@ -1,3 +1,9 @@
+globus-proxy-utils (1:6.23-1+gt6.@distro@) @distro@; urgency=low
+
+  * Update test fixtures to use sha256
+
+ -- Globus Toolkit <support@globus.org>  Wed, 09 Nov 2022 13:32:08 -0500
+
 globus-proxy-utils (1:6.22-1+gt6.@distro@) @distro@; urgency=low
 
   * Rebuild for new OSes

@@ -1,3 +1,9 @@
+globus-gss-assist (1:11.6-1+gt6.@distro@) @distro@; urgency=low
+
+  * Update test fixtures to use sha256
+
+ -- Globus Toolkit <support@globus.org>  Wed, 09 Nov 2022 13:31:48 -0500
+
 globus-gss-assist (1:11.5-1+gt6.@distro@) @distro@; urgency=low
 
   * Rebuild for new OSes
