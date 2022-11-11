@@ -253,7 +253,7 @@ def buildit() {
         "globus_repo": "packaging/debian/globus-repo"
     ]
 
-    build(job: 'ToolkitPackage-fall2022', parameters: get_params(stage_dirs[STAGE_NAME]))
+    build(job: 'ToolkitPackage', parameters: get_params(stage_dirs[STAGE_NAME]))
 }
 
 def not_before_restart() {
