@@ -8,7 +8,7 @@ globus-gssapi-gsi (1:13.18-1+gt6.@distro@) @distro@; urgency=low
 
   * update available ciphers for unencrypted connections
 
- -- Globus Toolkit <support@globus.org>  Wed, 09 Nov 2022 13:31:53 -0500
+ -- Globus Toolkit <support@globus.org>  Wed, 02 Nov 2022 10:54:58 -0500
 
 globus-gssapi-gsi (1:13.17-1+gt6.@distro@) @distro@; urgency=low
 

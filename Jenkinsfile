@@ -2,7 +2,7 @@
 
 import groovy.transform.Field
 
-@Library('gcs-build-scripts@fall-2022') _
+@Library('gcs-build-scripts') _
 
 @Field
 def ALL_TAGS = null

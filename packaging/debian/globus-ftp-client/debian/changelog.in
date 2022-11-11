@@ -1,8 +1,8 @@
-globus-ftp-client (1:8.41-1+gt6.@distro@) @distro@; urgency=low
+globus-ftp-client (1:8.41~rc1-1+gt6.@distro@) @distro@; urgency=low
 
   * Update test fixtures to use sha256
 
- -- Globus Toolkit <support@globus.org>  Wed, 09 Nov 2022 13:28:30 -0500
+ -- Globus Toolkit <support@globus.org>  Fri, 11 Nov 2022 09:26:47 -0500
 
 globus-ftp-client (1:8.40-1+gt6.@distro@) @distro@; urgency=low
 

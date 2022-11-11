@@ -121,7 +121,7 @@ fi
 %{_datadir}/globus/repo/*
 
 %changelog
-* Wed Nov 9 2022 Globus Toolkit <support@globus.org> - 6.0.25-1
+* Fri Nov 11 2022 Globus Toolkit <support@globus.org> - 6.0.25-1
 - (rpm) add el9
 - (deb) remove impish
 - (deb) add kinetic

@@ -2,7 +2,7 @@ Name:		globus-authz
 %global soname 0
 %global _name %(tr - _ <<< %{name})
 Epoch:          1
-Version:	3.20
+Version:	3.20~rc1
 Release:	1%{?dist}
 Vendor:	Globus Support
 Summary:	Globus Toolkit - Globus authz library
@@ -117,7 +117,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/*/*
 
 %changelog
-* Wed Nov 09 2022 Globus Toolkit <support@globus.org> - 3.20-1
+* Fri Nov 11 2022 Globus Toolkit <support@globus.org> - 3.20~rc1-1
 - Update test fixtures to use sha256
 
 * Wed Dec 01 2021 Globus Toolkit <support@globus.org> - 3.19-1

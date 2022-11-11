@@ -2,7 +2,7 @@ Name:		globus-io
 %global soname 3
 %global _name %(tr - _ <<< %{name})
 Epoch:          1
-Version:	11.14
+Version:	11.14~rc1
 Release:	1%{?dist}
 Vendor:	Globus Support
 Summary:	Globus Toolkit - uniform I/O interface
@@ -106,7 +106,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/pkgconfig/%{name}.pc
 
 %changelog
-* Wed Nov 09 2022 Globus Toolkit <support@globus.org> - 11.14-1
+* Fri Nov 11 2022 Globus Toolkit <support@globus.org> - 11.14~rc1-1
 - Update test fixtures to use sha256
 
 * Wed Dec 01 2021 Globus Toolkit <support@globus.org> - 11.13-1
