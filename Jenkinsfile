@@ -7,6 +7,7 @@ import groovy.transform.Field
 @Field
 def ALL_TAGS = null
 
+@Field
 def get_params(src_dir) {
     def tag
     def change_branch = env.CHANGE_BRANCH ?: ""
@@ -36,7 +37,7 @@ def get_params(src_dir) {
         string(name: 'STABLE_TAG', value: '${PACKAGE_NAME}-${PACKAGE_VERSION}')
     ]
 
-    if (STAGE_NAME == "globus_xio_udt_driver") {
+    if (package_name == "globus_xio_udt_driver") {
         params = params + [string(name: "EXCLUDE", value: "el-9")]
     }
 
