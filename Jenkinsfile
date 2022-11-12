@@ -25,7 +25,7 @@ def get_params(src_dir) {
         tag = env.TAG_NAME ?: ""
     }
 
-    return [
+    params = [
         string(name: 'CHANGE_BRANCH', value: change_branch),
         string(name: 'CHANGE_ID', value: change_id),
         string(name: 'BRANCH_NAME', value: branch_name),
@@ -35,6 +35,12 @@ def get_params(src_dir) {
         string(name: 'SOURCE_DIR', value: src_dir),
         string(name: 'STABLE_TAG', value: '${PACKAGE_NAME}-${PACKAGE_VERSION}')
     ]
+
+    if (STAGE_NAME == "globus_xio_udt_driver") {
+        params = params + [string(name: "EXCLUDE", value: "el-9")]
+    }
+
+    return params
 }
 
 def load_tags() {

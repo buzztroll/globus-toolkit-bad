@@ -3,7 +3,7 @@ Name:		globus-gridftp-server
 %global _name %(tr - _ <<< %{name})
 Epoch:          1
 Version:	12.28~rc1
-Release:	1%{?dist}
+Release:	2%{?dist}
 Vendor:	Globus Support
 Summary:	Globus Toolkit - Globus GridFTP Server
 
@@ -14,7 +14,9 @@ Source:        https://downloads.globus.org/toolkit/gt6/packages/%{_name}-%{vers
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Requires:	globus-xio-gsi-driver%{?_isa} >= 2
+%if %{?rhel}%{!?rhel:0} != 9
 Requires:       globus-xio-udt-driver%{?_isa} >= 1
+%endif
 
 BuildRequires:	globus-gridftp-server-control-devel >= 5
 BuildRequires:	globus-usage-devel >= 3
