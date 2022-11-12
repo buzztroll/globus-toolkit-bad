@@ -7,7 +7,6 @@ import groovy.transform.Field
 @Field
 def ALL_TAGS = null
 
-@Field
 def get_params(src_dir) {
     def tag
     def change_branch = env.CHANGE_BRANCH ?: ""
