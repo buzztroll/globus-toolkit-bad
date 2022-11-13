@@ -1,7 +1,7 @@
 Source: globus-net-manager
 Priority: optional
 Maintainer: Globus Support <support@globus.org>
-Build-Depends: debhelper (>= 9), dh-exec, autotools-dev, pkg-config, libglobus-common-dev (>= 15.27), libglobus-xio-dev (>= 5), python-dev, libltdl-dev
+Build-Depends: debhelper (>= 9), dh-exec, autotools-dev, pkg-config, libglobus-common-dev (>= 15.27), libglobus-xio-dev (>= 5), python-dev | python3-dev, libltdl-dev
 Standards-Version: 3.9.0
 Section: net
 Homepage: http://www.globus.org/
