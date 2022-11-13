@@ -25,7 +25,7 @@ def get_params(src_dir) {
         tag = env.TAG_NAME ?: ""
     }
 
-    params = [
+    def params = [
         string(name: 'CHANGE_BRANCH', value: change_branch),
         string(name: 'CHANGE_ID', value: change_id),
         string(name: 'BRANCH_NAME', value: branch_name),
