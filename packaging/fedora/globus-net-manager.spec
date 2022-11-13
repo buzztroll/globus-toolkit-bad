@@ -2,7 +2,7 @@ Name:		globus-net-manager
 %global soname 0
 %global _name %(tr - _ <<< %{name})
 Epoch:          1
-Version:	0.23
+Version:	0.24~rc1
 Release:	1%{?dist}
 Vendor:	Globus Support
 Summary:	Globus Toolkit - Net Manager Library
@@ -13,17 +13,21 @@ URL:           https://www.globus.org/
 Source:        https://downloads.globus.org/toolkit/gt6/packages/%{_name}-%{version}.tar.gz
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
+BuildRequires:	gcc
 BuildRequires:	globus-common-devel >= 15.27
 BuildRequires:	globus-xio-devel >= 5
 BuildRequires:  automake >= 1.11
 BuildRequires:  autoconf >= 2.60
 BuildRequires:  libtool >= 2.2
 BuildRequires:  pkgconfig
-%if %{?rhel}%{!?rhel:0} >= 8 || %{?fedora}%{!?fedora:0} >= 31
-BuildRequires:  python2-devel
+BuildRequires:	perl-interpreter
+BuildRequires:	perl(strict)
+%if %{?fedora}%{!?fedora:0} >= 30 || %{?rhel}%{!?rhel:0} >= 8
+BuildRequires:	python3-devel
 %else
-BuildRequires:  python-devel
+BuildRequires:	python-devel
 %endif
+Requires:	globus-common%{?_isa} >= 15.27
 
 %package devel
 Summary:	Globus Toolkit - Net Manager Library Development Files
@@ -36,8 +40,7 @@ Requires:	globus-xio-devel%{?_isa} >= 5
 Summary:	Globus Toolkit - Net Manager Library XIO Driver
 Group:		System Environment/Libraries
 Requires:	%{name}%{?_isa} = %{epoch}:%{version}-%{release}
-Requires:	globus-common-devel%{?_isa} >= 15.27
-Requires:	globus-xio-devel%{?_isa} >= 5
+Requires:	globus-xio%{?_isa} >= 5
 Provides:       globus-net-manager-xio-driver
 
 %package doc
@@ -89,6 +92,12 @@ Net Manager Library Documentation Files
 # Remove files that should be replaced during bootstrap
 rm -rf autom4te.cache
 
+%if %{?fedora}%{!?fedora:0} >= 30 || %{?rhel}%{!?rhel:0} >= 8
+export PYTHON_CONFIG=%{__python3}-config
+%else
+export PYTHON_CONFIG=%{__python2}-config
+%endif
+
 autoreconf -if
 
 %configure \
@@ -108,14 +117,14 @@ make install DESTDIR=$RPM_BUILD_ROOT
 find $RPM_BUILD_ROOT%{_libdir} -name 'lib*.la' -exec rm -v '{}' \;
 
 %check
-make %{?_smp_mflags} check
+GLOBUS_HOSTNAME=localhost make %{?_smp_mflags} check
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post %{?nmainpkg} -p /sbin/ldconfig
+%post -p /sbin/ldconfig
 
-%postun %{?nmainpkg} -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %files
 %defattr(-,root,root,-)
@@ -141,6 +150,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man3/*
 
 %changelog
+* Sun Nov 13 2022 Globus Toolkit <support@globus.org> - 0.24~rc1-1
+- Support for new OS releases/py3
+
 * Tue Jun 21 2022 Globus Toolkit <support@globus.org> - 0.23-1
 - update to support new distros
 

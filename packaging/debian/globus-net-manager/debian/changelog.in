@@ -1,3 +1,9 @@
+globus-net-manager (1:0.24~rc1-1+gt6.@distro@) @distro@; urgency=low
+
+  * Support for new OS releases/py3
+
+ -- Globus Toolkit <support@globus.org>  Sun, 13 Nov 2022 04:06:49 -0500
+
 globus-net-manager (1:0.23-1+gt6.@distro@) @distro@; urgency=low
 
   * update to support new distros

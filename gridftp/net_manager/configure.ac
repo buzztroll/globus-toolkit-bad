@@ -1,6 +1,6 @@
 AC_PREREQ([2.60])
 
-AC_INIT([globus_net_manager],[0.23],[https://github.com/globus/globus-toolkit/issues])
+AC_INIT([globus_net_manager],[0.24~rc1],[https://github.com/globus/globus-toolkit/issues])
 AC_CONFIG_MACRO_DIR([m4])
 PACKAGE_VERSION_NO_TAG="${PACKAGE_VERSION%~*}"
 AC_SUBST([MAJOR_VERSION], [${PACKAGE_VERSION_NO_TAG%%.*}])
@@ -26,18 +26,20 @@ AC_ARG_ENABLE([python],
     AS_HELP_STRING([--enable-python],[Enable Python Module]),
 [
 if test "$enableval" = yes; then
-    AC_PATH_PROGS([PYTHON_CONFIG], [python-config python2-config])
+    AC_PATH_PROGS([PYTHON_CONFIG], [python-config python2.6-config])
     if test x"$PYTHON_CONFIG" != x; then
         PYTHON_CPPFLAGS="$CPPFLAGS $($PYTHON_CONFIG --includes)"
-        PYTHON_LDFLAGS="$LDFLAGS $($PYTHON_CONFIG --ldflags)"
-        PYTHON_LIBS="$LIBS $($PYTHON_CONFIG --libs)"
+        if $PYTHON_CONFIG --embed >/dev/null 2>&1; then
+            PYTHON_LIBS="$LIBS $($PYTHON_CONFIG --libs --embed)"
+        else
+            PYTHON_LIBS="$LIBS $($PYTHON_CONFIG --libs)"
+        fi
     else
         AC_MSG_ERROR([Cannot find usable python-config])
     fi
 fi
 ])
 AC_SUBST(PYTHON_CPPFLAGS)
-AC_SUBST(PYTHON_LDFLAGS)
 AC_SUBST(PYTHON_LIBS)
 
 AC_ARG_VAR([LIBLTDL],[libltdl library path])
