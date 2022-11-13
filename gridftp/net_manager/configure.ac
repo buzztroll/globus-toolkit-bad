@@ -26,7 +26,7 @@ AC_ARG_ENABLE([python],
     AS_HELP_STRING([--enable-python],[Enable Python Module]),
 [
 if test "$enableval" = yes; then
-    AC_PATH_PROGS([PYTHON_CONFIG], [python-config python2.6-config])
+    AC_PATH_PROGS([PYTHON_CONFIG], [python-config python3-config python2.6-config])
     if test x"$PYTHON_CONFIG" != x; then
         PYTHON_CPPFLAGS="$CPPFLAGS $($PYTHON_CONFIG --includes)"
         if $PYTHON_CONFIG --embed >/dev/null 2>&1; then
