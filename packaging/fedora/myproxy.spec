@@ -8,7 +8,7 @@ Name:           myproxy
 %global _name %(tr - _ <<< %{name})
 Epoch:          1
 Version:	6.1.33
-Release:	1%{?dist}
+Release:	2%{?dist}
 Vendor: Globus Support
 Summary:        Manage X.509 Public Key Infrastructure (PKI) security credentials
 
@@ -45,7 +45,7 @@ BuildRequires:  automake >= 1.11
 BuildRequires:  autoconf >= 2.60
 BuildRequires:  libtool >= 2.2
 BuildRequires:  pkgconfig
-%if %{?fedora}%{!?fedora:0} >= 28
+%if %{?fedora}%{!?fedora:0} >= 28 || %{?rhel}%{!?rhel:0} == 9
 BuildRequires:  krb5-devel
 %endif
 
@@ -498,6 +498,9 @@ fi
 %{_libdir}/libmyproxy_voms.so
 
 %changelog
+* Mon Nov 14 2022 Globus Toolkit <support@globus.org> - 6.1.33-2
+- Update build for el9
+
 * Wed Dec 01 2021 Globus Toolkit <support@globus.org> - 6.1.33-1
 - Rebuild for new OSes
 - Update license text
