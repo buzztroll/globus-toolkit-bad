@@ -1,6 +1,6 @@
 Name:           globus-repo
 Version:        6.0.25
-Release:        1
+Release:        2
 Summary:        Globus Repository Configuration
 Group:          System Environment/Base
 License:        ASL 2.0
@@ -49,11 +49,17 @@ case $ID:$VERSION_ID:$ID_LIKE in
     rhel:8*:* | almalinux:8*:* | centos:8*:* | ol:8*:* | rocky:8*:*)
         repo=el8
         ;;
+    rhel:9*:* | almalinux:9*:* | centos:9*:* | ol:9*:* | rocky:9*:*)
+        repo=el9
+        ;;
     *:7*:*rhel* | *:7*:*centos* )
         repo=el7
         ;;
     *:8*:*rhel* | *:8*:*centos* )
         repo=el8
+        ;;
+    *:9*:*rhel* | *:9*:*centos* )
+        repo=el9
         ;;
     fedora:*:*)
         repo=fedora
@@ -92,11 +98,17 @@ case $ID:$VERSION_ID:$ID_LIKE in
     rhel:8*:* | almalinux:8*:* | centos:8*:* | ol:8*:* | rocky:8*:*)
         repo=el8
         ;;
+    rhel:9*:* | almalinux:9*:* | centos:9*:* | ol:9*:* | rocky:9*:*)
+        repo=el9
+        ;;
     *:7*:rhel | *:7*:centos )
         repo=el7
         ;;
     *:8*:rhel | *:8*:centos )
         repo=el8
+        ;;
+    *:9*:rhel | *:9*:centos )
+        repo=el9
         ;;
     fedora:*:*)
         repo=fedora
@@ -121,7 +133,7 @@ fi
 %{_datadir}/globus/repo/*
 
 %changelog
-* Fri Nov 11 2022 Globus Toolkit <support@globus.org> - 6.0.25-1
+* Fri Nov 11 2022 Globus Toolkit <support@globus.org> - 6.0.25-2
 - (rpm) add el9
 - (deb) remove impish
 - (deb) add kinetic
