@@ -1,10 +1,10 @@
-globus-repo (6.0.25) unstable; urgency=low
+globus-repo (6.0.26) unstable; urgency=low
 
   * (rpm) add el9
   * (deb) remove impish
   * (deb) add kinetic
 
- -- Globus Toolkit <support@globus.org>  Wed, 9 Nov 2022 16:01:20 -0500
+ -- Globus Toolkit <support@globus.org>  Mon, 28 Nov 2022 09:51:44 -0500
 
 globus-repo (6.0.24) unstable; urgency=low
 

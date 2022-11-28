@@ -1,6 +1,6 @@
 Name:           globus-repo
-Version:        6.0.25
-Release:        2
+Version:        6.0.26
+Release:        1
 Summary:        Globus Repository Configuration
 Group:          System Environment/Base
 License:        ASL 2.0
@@ -133,7 +133,7 @@ fi
 %{_datadir}/globus/repo/*
 
 %changelog
-* Fri Nov 11 2022 Globus Toolkit <support@globus.org> - 6.0.25-2
+* Mon Nov 28 2022 Globus Toolkit <support@globus.org> - 6.0.26-1
 - (rpm) add el9
 - (deb) remove impish
 - (deb) add kinetic

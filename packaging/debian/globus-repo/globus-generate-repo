@@ -12,6 +12,8 @@ bin_el7="el/7/\$basearch/"
 src_el7="el/7/SRPMS/"
 bin_el8="el/8/\$basearch/"
 src_el8="el/8/SRPMS/"
+bin_el9="el/9/\$basearch/"
+src_el9="el/9/SRPMS/"
 bin_fedora="fedora/\$releasever/\$basearch/"
 src_fedora="fedora/\$releasever/SRPMS/"
 
