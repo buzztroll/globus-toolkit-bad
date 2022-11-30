@@ -1,4 +1,4 @@
-globus-authz (1:3.20~rc1-1+gt6.@distro@) @distro@; urgency=low
+globus-authz (1:3.20-1+gt6.@distro@) @distro@; urgency=low
 
   * Update test fixtures to use sha256
 

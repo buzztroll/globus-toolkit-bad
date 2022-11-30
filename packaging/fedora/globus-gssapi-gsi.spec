@@ -2,7 +2,7 @@ Name:		globus-gssapi-gsi
 %global soname 4
 %global _name %(tr - _ <<< %{name})
 Epoch:          1
-Version:	13.19~rc1
+Version:	13.19
 Release:	1%{?dist}
 Vendor:	Globus Support
 Summary:	Globus Toolkit - GSSAPI library
@@ -131,7 +131,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man3/*
 
 %changelog
-* Fri Nov 11 2022 Globus Toolkit <support@globus.org> - 13.19~rc1-1
+* Fri Nov 11 2022 Globus Toolkit <support@globus.org> - 13.19-1
 - Update test fixtures to use sha256
 
 * Wed Nov 02 2022 Globus Toolkit <support@globus.org> - 13.18-1

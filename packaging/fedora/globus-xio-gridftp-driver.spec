@@ -1,7 +1,7 @@
 Name:		globus-xio-gridftp-driver
 %global _name %(tr - _ <<< %{name})
 Epoch:          1
-Version:	2.22~rc1
+Version:	2.22
 Release:	1%{?dist}
 Vendor:	Globus Support
 Summary:	Globus Toolkit - Globus XIO GridFTP Driver
@@ -127,7 +127,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man3/*
 
 %changelog
-* Fri Nov 11 2022 Globus Toolkit <support@globus.org> - 2.22~rc1-1
+* Fri Nov 11 2022 Globus Toolkit <support@globus.org> - 2.22-1
 - Update test fixtures to use sha256
 
 * Wed Dec 01 2021 Globus Toolkit <support@globus.org> - 2.21-1

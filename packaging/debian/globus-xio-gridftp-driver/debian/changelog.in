@@ -1,4 +1,4 @@
-globus-xio-gridftp-driver (1:2.22~rc1-1+gt6.@distro@) @distro@; urgency=low
+globus-xio-gridftp-driver (1:2.22-1+gt6.@distro@) @distro@; urgency=low
 
   * Update test fixtures to use sha256
 
