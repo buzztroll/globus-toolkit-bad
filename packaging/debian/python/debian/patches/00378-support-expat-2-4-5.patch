@@ -1,0 +1,35 @@
+Fix expat test originally https://git.centos.org/rpms/python38/raw/5d803b4920a9a2bcb8d5b71592297f6d21e4e13f/f/SOURCES/00378-support-expat-2-4-5.patch but fuzzed
+--- a/Lib/test/test_minidom.py
++++ b/Lib/test/test_minidom.py
+@@ -1149,14 +1149,11 @@
+ 
+         # Verify that character decoding errors raise exceptions instead
+         # of crashing
+-        if pyexpat.version_info >= (2, 4, 5):
+-            self.assertRaises(ExpatError, parseString,
+-                    b'<fran\xe7ais></fran\xe7ais>')
+-            self.assertRaises(ExpatError, parseString,
+-                    b'<franais>Comment \xe7a va ? Tr\xe8s bien ?</franais>')
+-        else:
+-            self.assertRaises(UnicodeDecodeError, parseString,
+-                b'<fran\xe7ais>Comment \xe7a va ? Tr\xe8s bien ?</fran\xe7ais>')
++
++        self.assertRaises(ExpatError, parseString,
++                b'<fran\xe7ais></fran\xe7ais>')
++        self.assertRaises(ExpatError, parseString,
++                b'<franais>Comment \xe7a va ? Tr\xe8s bien ?</franais>')
+ 
+         doc.unlink()
+ 
+@@ -1617,10 +1614,7 @@
+         self.confirm(doc2.namespaceURI == xml.dom.EMPTY_NAMESPACE)
+ 
+     def testExceptionOnSpacesInXMLNSValue(self):
+-        if pyexpat.version_info >= (2, 4, 5):
+-            context = self.assertRaisesRegex(ExpatError, 'syntax error')
+-        else:
+-            context = self.assertRaisesRegex(ValueError, 'Unsupported syntax')
++        context = self.assertRaisesRegex(ExpatError, 'syntax error')
+ 
+         with context:
+             parseString('<element xmlns:abc="http:abc.com/de f g/hi/j k"><abc:foo /></element>')

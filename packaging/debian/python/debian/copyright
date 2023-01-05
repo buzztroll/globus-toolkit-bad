@@ -1,0 +1,14 @@
+Name: globus-python
+Maintainer: Globus Support <support@globus.org>
+Source: https://www.python.org/ftp/python/3.9.16/Python-3.9.16.tgz
+
+Files: *
+Copyright: Copyright © 2001-2022 Python Software Foundation. All rights reserved.
+  Copyright © 2000 BeOpen.com. All rights reserved.
+  Copyright © 1995-2000 Corporation for National Research Initiatives. All rights reserved.
+  Copyright © 1991-1995 Stichting Mathematisch Centrum. All rights reserved.
+License: Python
+
+Files: debian/*
+Copyright: © 2022 University of Chicago
+License: Apache-2.0

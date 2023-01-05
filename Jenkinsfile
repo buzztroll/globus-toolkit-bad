@@ -193,6 +193,7 @@ def ordered_stage_names = [
     "globus_proxy_utils",
     "globus_xioperf",
     "myproxy",
+    "python",
     "globus_repo"
 ]
 
@@ -256,6 +257,7 @@ def buildit() {
         "globus_proxy_utils": "gsi/proxy/proxy_utils/source",
         "globus_xioperf": "xio/xioperf/source",
         "myproxy": "myproxy/source",
+        "python": "packaging/debian/python",
         "globus_repo": "packaging/debian/globus-repo"
     ]
 
@@ -453,6 +455,10 @@ pipeline {
         )
         booleanParam(
             name: "MYPROXY",
+            defaultValue: false
+        )
+        booleanParam(
+            name: "PYTHON",
             defaultValue: false
         )
         booleanParam(
@@ -1177,6 +1183,22 @@ pipeline {
                         changeset "myproxy/source/**/*";
                         changeset "packaging/debian/myproxy/**/*";
                         changeset "packaging/fedora/myproxy.spec";
+                    }
+                    expression { return not_before_restart() }
+                }
+            }
+            steps {
+                buildit()
+            }
+        }
+        stage ("python") {
+            when {
+                allOf {
+                    anyOf {
+                        equals expected: true, actual: params.PYTHON;
+                        equals expected: true, actual: params.ALL_PACKAGES;
+                        changeset "packaging/debian/python/**/*";
+                        changeset "packaging/fedora/python.spec";
                     }
                     expression { return not_before_restart() }
                 }
