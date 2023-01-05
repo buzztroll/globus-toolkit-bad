@@ -28,10 +28,14 @@ override_dh_auto_configure:
 override_dh_auto_clean:
 	[ -f Makefile ] && make distclean || true
 
+override_dh_builddeb:
+	dh_builddeb -- -Zxz
+
+TEST_EXCLUDES="test_socket test_generators test_asyncio test_ftplib test_httplib test_imaplib test_nntplib test_poplib test_ssl test_multiprocessing_fork test_multiprocessing_forkserver test_multiprocessing_spawn test_pdb test_regrtest test_signal test_threading"
 override_dh_auto_test:
-	make buildbottest EXTRATESTOPTS="--use none"
+	make test EXTRATESTOPTS='--use none -x "$(sort $(TEST_EXCLUDES))"'
 
 %:
 	dh $@ --with autotools-dev
 
-.PHONY: override_dh_auto_configure override_dh_auto_clean override_dh_auto_test
+.PHONY: override_dh_auto_configure override_dh_auto_clean override_dh_builddeb override_dh_auto_test

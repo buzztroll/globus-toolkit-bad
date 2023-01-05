@@ -52,6 +52,9 @@ BuildRequires: net-tools
 # Turn off the brp-python-bytecompile automagic
 %global _python_bytecompile_extra 0
 %global _python_root /opt/globus-python
+# Turn off the brp-mangle-shbangs script. It tries to set everything to use system
+# python and fails for ambiguous #! /usr/bin/env python lines
+%global __os_install_post %(echo '%{__os_install_post}' | sed -e 's!/usr/lib[^[:space:]]*/brp-mangle-shebangs[[:space:]].*$!!g')
 
 %description
 Python %{version} installed into %_python_root
