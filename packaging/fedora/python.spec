@@ -6,7 +6,7 @@ Group:          System Environment/Libraries
 License:        Python
 URL:            https://www.python.org/downloads/release/python-3916/
 Source0:        https://www.python.org/ftp/python/3.9.16/Python-3.9.16.tgz
-Patch00378:     https://src.fedoraproject.org/rpms/python2.7/raw/rawhide/f/00378-support-expat-2-4-5.patch
+# Patch00378:     https://src.fedoraproject.org/rpms/python2.7/raw/rawhide/f/00378-support-expat-2-4-5.patch
 
 # Don't bother with debuginfo package
 %global         debug_package           %{nil}
@@ -58,7 +58,7 @@ Python %{version} installed into %_python_root
 
 %prep
 %setup -q -n Python-%{version}
-%patch00378 -p1
+#%patch00378 -p1
 
 %build
 
@@ -83,7 +83,8 @@ rm -rf $PRM_BUILD_ROOT
 sed -i -e "/#! \/usr\/local\/bin\/python/d" $RPM_BUILD_ROOT%{_python_root}/lib/python3.9/cgi.py
 
 %check
-make %{?_smp_mflags} test
+# Disable networking for tests in the mock chroots
+make %{?_smp_mflags} buildbottest EXTRATESTOPTS="--use none"
 
 %clean
 rm -rf $PRM_BUILD_ROOT

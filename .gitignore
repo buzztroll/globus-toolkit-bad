@@ -13,6 +13,7 @@ config.log
 config.status
 config.sub
 configure
+configure~
 depcomp
 dirt.sh
 globus_gatekeeper_config.h.in~

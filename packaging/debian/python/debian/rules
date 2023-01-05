@@ -27,7 +27,11 @@ override_dh_auto_configure:
 
 override_dh_auto_clean:
 	[ -f Makefile ] && make distclean || true
+
+override_dh_auto_test:
+	make buildbottest EXTRATESTOPTS="--use none"
+
 %:
 	dh $@ --with autotools-dev
 
-.PHONY: override_dh_auto_configure override_dh_auto_clean
+.PHONY: override_dh_auto_configure override_dh_auto_clean override_dh_auto_test

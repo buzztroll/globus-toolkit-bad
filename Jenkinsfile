@@ -257,7 +257,6 @@ def buildit() {
         "globus_proxy_utils": "gsi/proxy/proxy_utils/source",
         "globus_xioperf": "xio/xioperf/source",
         "myproxy": "myproxy/source",
-        "python": "packaging/debian/python",
         "globus_repo": "packaging/debian/globus-repo"
     ]
 
@@ -1204,7 +1203,7 @@ pipeline {
                 }
             }
             steps {
-                buildit()
+                pythonPipeline()
             }
         }
         stage ("globus_repo") {
