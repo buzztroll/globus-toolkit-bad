@@ -1203,6 +1203,7 @@ pipeline {
                 }
             }
             steps {
+                env.STABLE_TAG = '${PACKAGE_NAME}-${PACKAGE_VERSION}'
                 pythonPipeline()
             }
         }
