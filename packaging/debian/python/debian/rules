@@ -12,7 +12,7 @@ name = globus-python
 _prefix = /opt/globus-python
 
 override_dh_auto_configure:
-	./configure -- \
+	./configure \
 		--prefix=$(_prefix) \
 		--enable-ipv6 \
 		--with-computed-gotos=yes \
