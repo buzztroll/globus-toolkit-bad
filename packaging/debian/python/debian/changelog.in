@@ -1,5 +1,5 @@
-globus-python (3.9.16-1+gcs5.@distro@) @distro@; urgency=low
+globus-python (3.9.16-2+gcs5.@distro@) @distro@; urgency=low
 
   * Initial packaging of python 3.9 for GCS
 
- -- Globus Toolkit <support@globus.org>  Wed, 14 Jan 2023 16:51:02 -0500
+ -- Globus Toolkit <support@globus.org>  Wed, 25 Jan 2023 16:51:02 -0500
