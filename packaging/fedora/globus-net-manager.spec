@@ -20,9 +20,11 @@ BuildRequires:  automake >= 1.11
 BuildRequires:  autoconf >= 2.60
 BuildRequires:  libtool >= 2.2
 BuildRequires:  pkgconfig
+%if %{?suse_version}0 == 0
 BuildRequires:	perl-interpreter
+%endif
 BuildRequires:	perl(strict)
-%if %{?fedora}%{!?fedora:0} >= 30 || %{?rhel}%{!?rhel:0} >= 8
+%if %{?fedora}%{!?fedora:0} >= 30 || %{?rhel}%{!?rhel:0} >= 8 || %{?suse_version}%{!?suse_version:0} > 0
 BuildRequires:	python3-devel
 %else
 BuildRequires:	python-devel
@@ -92,7 +94,7 @@ Net Manager Library Documentation Files
 # Remove files that should be replaced during bootstrap
 rm -rf autom4te.cache
 
-%if %{?fedora}%{!?fedora:0} >= 30 || %{?rhel}%{!?rhel:0} >= 8
+%if %{?fedora}%{!?fedora:0} >= 30 || %{?rhel}%{!?rhel:0} >= 8 || %{?suse_version}%{!?suse_version:0} >= 0
 export PYTHON_CONFIG=%{__python3}-config
 %else
 export PYTHON_CONFIG=%{__python2}-config

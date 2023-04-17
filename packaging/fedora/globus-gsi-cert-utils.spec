@@ -19,7 +19,11 @@ BuildRequires:	globus-common-devel >= 14
 BuildRequires:	globus-openssl-module-devel >= 3
 BuildRequires:	globus-gsi-openssl-error-devel >= 2
 BuildRequires:  openssl
+%if 0%{?suse_version} == 0
 BuildRequires:  openssl-devel
+%else
+BuildRequires:  libopenssl-1_1-devel
+%endif
 BuildRequires:	automake >= 1.11
 BuildRequires:	autoconf >= 2.60
 BuildRequires:	libtool >= 2.2
@@ -41,7 +45,11 @@ Requires:	globus-common-devel%{?_isa} >= 14
 Requires:	globus-openssl-module-devel%{?_isa} >= 3
 Requires:	globus-gsi-openssl-error-devel%{?_isa} >= 2
 Requires:  openssl
+%if 0%{?suse_version} == 0
 Requires:  openssl-devel
+%else
+Requires:  libopenssl-1_1-devel
+%endif
 
 %package doc
 Summary:	Globus Toolkit - Globus GSI Cert Utils Library Documentation Files

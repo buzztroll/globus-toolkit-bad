@@ -28,7 +28,11 @@ BuildRequires:  pkgconfig
 BuildRequires:  perl-Test-Simple
 
 BuildRequires:  openssl
+%if 0%{?suse_version} == 0
 BuildRequires:  openssl-devel
+%else
+BuildRequires:  libopenssl-1_1-devel
+%endif
 
 BuildRequires: libtool-ltdl-devel
 

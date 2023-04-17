@@ -116,10 +116,14 @@ mv $RPM_BUILD_ROOT%{_sysconfdir}/gridftp.gfork.default $RPM_BUILD_ROOT%{_sysconf
 # Remove libtool archives (.la files)
 find $RPM_BUILD_ROOT%{_libdir} -name 'lib*.la' -exec rm -v '{}' \;
 
+%if 0%{?suse_version} == 0
 # Move from /etc/init.d to /etc/rc.d/init.d to avoid errors installing
 # chkconfig on fedora 30
 mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}/rc.d
 mv $RPM_BUILD_ROOT%{_sysconfdir}/init.d $RPM_BUILD_ROOT%{_sysconfdir}/rc.d/
+%else
+rm -rf $RPM_BUILD_ROOT%{_sysconfdir}/init.d
+%endif
 
 %check
 make %{_smp_mflags} check
@@ -131,10 +135,12 @@ rm -rf $RPM_BUILD_ROOT
 %postun %{?nmainpkg} -p /sbin/ldconfig
 
 %post progs
+%if 0%{?suse_version} == 0
 if [ $1 -eq 1 ]; then
     /sbin/chkconfig --add globus-gridftp-server
     /sbin/chkconfig --add globus-gridftp-sshftp
 fi
+%endif
 
 %preun progs
 if [ $1 -eq 0 ]; then
@@ -161,7 +167,9 @@ fi
 %config(noreplace) %{_sysconfdir}/gridftp.conf
 %config(noreplace) %{_sysconfdir}/gridftp.gfork
 %config(noreplace) %{_sysconfdir}/xinetd.d/gridftp
+%if 0%{?suse_version} == 0
 %{_sysconfdir}/rc.d/init.d/*
+%endif
 %{_sbindir}/*
 %{_mandir}/man8/*
 

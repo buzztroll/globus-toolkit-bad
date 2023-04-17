@@ -1,0 +1,20 @@
+--- Python-3.9.16/Lib/test/test_minidom.py	2022-12-06 17:59:46.000000000 +0000
++++ Python-3.9.16/Lib/test/test_minidom.py	2023-04-14 13:51:46.717122120 +0000
+@@ -1149,7 +1149,7 @@
+ 
+         # Verify that character decoding errors raise exceptions instead
+         # of crashing
+-        if pyexpat.version_info >= (2, 4, 5):
++        if pyexpat.version_info >= (2, 4, 4):
+             self.assertRaises(ExpatError, parseString,
+                     b'<fran\xe7ais></fran\xe7ais>')
+             self.assertRaises(ExpatError, parseString,
+@@ -1617,7 +1617,7 @@
+         self.confirm(doc2.namespaceURI == xml.dom.EMPTY_NAMESPACE)
+ 
+     def testExceptionOnSpacesInXMLNSValue(self):
+-        if pyexpat.version_info >= (2, 4, 5):
++        if pyexpat.version_info >= (2, 4, 4):
+             context = self.assertRaisesRegex(ExpatError, 'syntax error')
+         else:
+             context = self.assertRaisesRegex(ValueError, 'Unsupported syntax')

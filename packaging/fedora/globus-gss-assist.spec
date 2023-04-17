@@ -25,7 +25,9 @@ BuildRequires:  autoconf >= 2.60
 BuildRequires:  libtool >= 2.2
 BuildRequires:  pkgconfig
 
+%if 0%{?suse_version} == 0
 BuildRequires:  perl-generators
+%endif
 
 BuildRequires:  perl(English)
 BuildRequires:  perl(Fcntl)

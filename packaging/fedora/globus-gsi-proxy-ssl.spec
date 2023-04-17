@@ -15,7 +15,11 @@ Source:        https://downloads.globus.org/toolkit/gt6/packages/%{_name}-%{vers
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:  openssl
+%if 0%{?suse_version} == 0
 BuildRequires:  openssl-devel
+%else
+BuildRequires:  libopenssl-1_1-devel
+%endif
 
 BuildRequires:	automake >= 1.11
 BuildRequires:	autoconf >= 2.60
@@ -27,8 +31,13 @@ BuildRequires:  perl-Test-Simple
 Summary:	Globus Toolkit - Globus GSI Proxy SSL Library Development Files
 Group:		Development/Libraries
 Requires:	%{name}%{?_isa} = %{epoch}:%{version}-%{release}
+
 Requires:  openssl
+%if 0%{?suse_version} == 0
 Requires:  openssl-devel
+%else
+Requires:  libopenssl-1_1-devel
+%endif
 
 %package doc
 Summary:	Globus Toolkit - Globus GSI Proxy SSL Library Documentation Files

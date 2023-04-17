@@ -14,8 +14,12 @@ BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:	gcc-c++
 
+%if 0%{?suse_version} == 0
 BuildRequires:	udt
 BuildRequires:	udt-devel
+%else
+BuildRequires:	libudt-devel
+%endif
 
 BuildRequires:	globus-xio-devel >= 3
 BuildRequires:	globus-common-devel >= 14

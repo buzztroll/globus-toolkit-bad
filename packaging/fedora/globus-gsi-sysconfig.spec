@@ -22,7 +22,11 @@ BuildRequires:	libtool >= 2.2
 BuildRequires:  pkgconfig
 
 BuildRequires:  openssl
+%if 0%{?suse_version} == 0
 BuildRequires:  openssl-devel
+%else
+BuildRequires:  libopenssl-1_1-devel
+%endif
 
 %package devel
 Summary:	Globus Toolkit - Globus GSI System Config Library Development Files
@@ -32,7 +36,11 @@ Requires:	globus-common-devel%{?_isa} >= 15
 Requires:	globus-openssl-module-devel%{?_isa} >= 3
 Requires:	globus-gsi-openssl-error-devel%{?_isa} >= 2
 Requires:  openssl
+%if 0%{?suse_version} == 0
 Requires:  openssl-devel
+%else
+Requires:  libopenssl-1_1-devel
+%endif
 
 %package doc
 Summary:	Globus Toolkit - Globus GSI System Config Library Documentation Files

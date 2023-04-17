@@ -14,7 +14,11 @@ Source:        https://downloads.globus.org/toolkit/gt6/packages/%{_name}-%{vers
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:  openssl
+%if 0%{?suse_version} == 0
 BuildRequires:  openssl-devel
+%else
+BuildRequires:  libopenssl-1_1-devel
+%endif
 
 BuildRequires:	globus-gsi-proxy-ssl-devel >= 4
 BuildRequires:	globus-gsi-credential-devel >= 5
@@ -40,7 +44,11 @@ Requires:	globus-gsi-cert-utils-devel%{?_isa} >= 8
 Requires:	globus-common-devel%{?_isa} >= 14
 Requires:	globus-gsi-sysconfig-devel%{?_isa} >= 5
 Requires:  openssl
+%if 0%{?suse_version} == 0
 Requires:  openssl-devel
+%else
+Requires:  libopenssl-1_1-devel
+%endif
 
 %package doc
 Summary:	Globus Toolkit - Globus GSI Proxy Core Library Documentation Files

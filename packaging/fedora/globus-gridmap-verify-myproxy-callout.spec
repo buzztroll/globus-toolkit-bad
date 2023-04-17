@@ -13,7 +13,11 @@ Source:        https://downloads.globus.org/toolkit/gt6/packages/%{_name}-%{vers
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:  openssl
+%if 0%{?suse_version} == 0
 BuildRequires:  openssl-devel
+%else
+BuildRequires:  libopenssl-1_1-devel
+%endif
 
 BuildRequires:	globus-gsi-sysconfig-devel >= 5
 BuildRequires:	globus-gss-assist-devel >= 8

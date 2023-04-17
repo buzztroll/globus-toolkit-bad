@@ -12,7 +12,11 @@ URL:           https://www.globus.org/
 Source:        https://downloads.globus.org/toolkit/gt6/packages/%{_name}-%{version}.tar.gz
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
+%if 0%{?suse_version} == 0
 Requires:  openssl%{?_isa}
+%else
+Requires:  openssl
+%endif
 
 BuildRequires:	globus-gsi-credential-devel >= 5
 BuildRequires:	globus-gsi-callback-devel >= 4
@@ -35,7 +39,11 @@ BuildRequires:  perl(IO::Handle)
 BuildRequires:  perl(Test::More)
 
 BuildRequires:  openssl
+%if 0%{?suse_version} == 0
 BuildRequires:  openssl-devel
+%else
+BuildRequires:  libopenssl-1_1-devel
+%endif
 
 %description
 The Globus Toolkit is an open source software toolkit used for building Grid

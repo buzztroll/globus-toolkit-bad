@@ -10,42 +10,57 @@ Source0:        https://www.python.org/ftp/python/3.9.16/Python-3.9.16.tgz
 # 9.1 bumps version so this won't be needed
 %if %{?rhel}%{!?rhel:0} == 9
 Patch00378:     https://src.fedoraproject.org/rpms/python2.7/raw/rawhide/f/00378-support-expat-2-4-5.patch
+%if %{?suse_version}%{!?suse_version:0} != 0
+Patch0:         python-suse15.4-expat.patch
 %endif
 
 # Don't bother with debuginfo package
 %global         debug_package           %{nil}
 
 BuildRoot:      %{_tmppath}/python-%{version}-%{release}-build
-BuildRequires:  openssl-devel, jansson-devel, check-devel, doxygen
+%if 0%{?suse_version} == 0
+BuildRequires:  jansson-devel
+%else
+BuildRequires:  libjansson-devel
+%endif
+BuildRequires:  check-devel
+BuildRequires:  doxygen
+%if 0%{?suse_version} == 0
+BuildRequires:  openssl-devel
+%else
+BuildRequires:  libopenssl-1_1-devel
+%endif
 BuildRequires: autoconf
-BuildRequires: bluez-libs-devel
 BuildRequires: bzip2
+%if 0%{?suse_version} == 0
 BuildRequires: bzip2-devel
+%else
+BuildRequires: libbz2-devel
+%endif
+%if 0%{?suse_version} == 0
 BuildRequires: expat-devel
+%else
+BuildRequires: libexpat-devel
+%endif
 BuildRequires: findutils
 BuildRequires: gcc-c++
 BuildRequires: gdbm-devel
 BuildRequires: glibc-devel
 BuildRequires: gmp-devel
-BuildRequires: libappstream-glib
 BuildRequires: libffi-devel
 BuildRequires: libtirpc-devel
-BuildRequires: libGL-devel
 BuildRequires: libuuid-devel
-BuildRequires: libX11-devel
 BuildRequires: ncurses-devel
 
-BuildRequires: openssl-devel
 BuildRequires: pkgconfig
 BuildRequires: readline-devel
+%if 0%{?suse_version} == 0
 BuildRequires: redhat-rpm-config
+%endif
 BuildRequires: sqlite-devel
 BuildRequires: gdb
 
 BuildRequires: tar
-BuildRequires: tcl-devel
-BuildRequires: tix-devel
-BuildRequires: tk-devel
 BuildRequires: xz-devel
 BuildRequires: zlib-devel
 BuildRequires: net-tools
@@ -65,13 +80,19 @@ Python %{version} installed into %_python_root
 
 %prep
 %setup -q -n Python-%{version}
+<<<<<<< HEAD
 %if %{?rhel}%{!?rhel:0} == 9
 %patch00378 -p1
+=======
+%if %{?suse_version}%{!?suse_version:0} != 0
+%patch0 -p1
+>>>>>>> f253706839 (Patch specs to work with SuSE 15.4)
 %endif
 
 %build
 
 ./configure --prefix=%_python_root \
+  --libdir=%_python_root/lib \
   --enable-ipv6 \
   --with-computed-gotos=yes \
   --with-dbmliborder=gdbm:ndbm:bdb \

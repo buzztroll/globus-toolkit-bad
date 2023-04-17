@@ -14,7 +14,12 @@ BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:	globus-common-devel >= 14
 BuildRequires:  openssl
+
+%if 0%{?suse_version} == 0
 BuildRequires:  openssl-devel
+%else
+BuildRequires:  libopenssl-1_1-devel
+%endif
 BuildRequires:	automake >= 1.11
 BuildRequires:	autoconf >= 2.60
 BuildRequires:	libtool >= 2.2
@@ -28,7 +33,12 @@ Group:		Development/Libraries
 Requires:	%{name}%{?_isa} = %{epoch}:%{version}-%{release}
 Requires:	globus-common-devel%{?_isa} >= 14
 Requires:  openssl
+
+%if 0%{?suse_version} == 0
 Requires:  openssl-devel
+%else
+Requires:  libopenssl-1_1-devel
+%endif
 
 %package doc
 Summary:	Globus Toolkit - Globus OpenSSL Error Handling Documentation Files

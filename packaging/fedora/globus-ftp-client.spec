@@ -26,7 +26,12 @@ BuildRequires:	globus-gridftp-server-devel >= 0
 BuildRequires:	globus-xio-pipe-driver-devel >= 0
 
 BuildRequires:  openssl
+
+%if 0%{?suse_version} == 0
 BuildRequires:  openssl-devel
+%else
+BuildRequires:  libopenssl-1_1-devel
+%endif
 
 BuildRequires:  automake >= 1.11
 BuildRequires:  autoconf >= 2.60

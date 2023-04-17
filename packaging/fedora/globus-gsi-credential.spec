@@ -17,7 +17,11 @@ BuildRequires:	globus-gsi-callback-devel >= 4
 BuildRequires:	globus-openssl-module-devel >= 3
 BuildRequires:	globus-gsi-openssl-error-devel >= 2
 BuildRequires:  openssl
+%if 0%{?suse_version} == 0
 BuildRequires:  openssl-devel
+%else
+BuildRequires:  libopenssl-1_1-devel
+%endif
 BuildRequires:	globus-gsi-cert-utils-devel >= 8
 BuildRequires:	globus-common-devel >= 14
 BuildRequires:	globus-gsi-sysconfig-devel >= 5
@@ -34,7 +38,11 @@ Requires:	globus-gsi-callback-devel%{?_isa} >= 4
 Requires:	globus-openssl-module-devel%{?_isa} >= 3
 Requires:	globus-gsi-openssl-error-devel%{?_isa} >= 2
 Requires:  openssl
+%if 0%{?suse_version} == 0
 Requires:  openssl-devel
+%else
+Requires:  libopenssl-1_1-devel
+%endif
 Requires:	globus-gsi-cert-utils-devel%{?_isa} >= 8
 Requires:	globus-common-devel%{?_isa} >= 14
 Requires:	globus-gsi-sysconfig-devel%{?_isa} >= 5
