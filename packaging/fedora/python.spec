@@ -80,13 +80,13 @@ Python %{version} installed into %_python_root
 
 %prep
 %setup -q -n Python-%{version}
-<<<<<<< HEAD
+
 %if %{?rhel}%{!?rhel:0} == 9
 %patch00378 -p1
-=======
+%endif
+
 %if %{?suse_version}%{!?suse_version:0} != 0
 %patch0 -p1
->>>>>>> f253706839 (Patch specs to work with SuSE 15.4)
 %endif
 
 %build
