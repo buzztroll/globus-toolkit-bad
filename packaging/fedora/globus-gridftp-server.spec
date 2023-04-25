@@ -2,8 +2,8 @@ Name:		globus-gridftp-server
 %global soname 6
 %global _name %(tr - _ <<< %{name})
 Epoch:          1
-Version:	12.28
-Release:	2%{?dist}
+Version:	12.29
+Release:	1%{?dist}
 Vendor:	Globus Support
 Summary:	Globus Toolkit - Globus GridFTP Server
 
@@ -172,6 +172,9 @@ fi
 %{_libdir}/pkgconfig/*.pc
 
 %changelog
+* Tue Apr 25 2023 Globus Toolkit <support@globus.org> - 12.29-1
+- Fix test crash
+
 * Fri Nov 11 2022 Globus Toolkit <support@globus.org> - 12.28-1
 - Update test fixtures to use sha256
 
