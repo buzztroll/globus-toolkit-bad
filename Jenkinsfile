@@ -1213,11 +1213,13 @@ pipeline {
                 }
             }
             steps {
-                def _params = [];
-                if (params.exclude) {
-                    _params.exclude = params.exclude
+                script {
+                    def _params = [:];
+                    if (params.exclude) {
+                        _params.exclude = params.exclude
+                    }
+                    pythonPipeline(params)
                 }
-                pythonPipeline(params)
             }
         }
         stage ("globus_repo") {
