@@ -25,7 +25,7 @@ def get_params(src_dir) {
         tag = env.TAG_NAME ?: ""
     }
 
-    def params = [
+    def _params = [
         string(name: 'CHANGE_BRANCH', value: change_branch),
         string(name: 'CHANGE_ID', value: change_id),
         string(name: 'BRANCH_NAME', value: branch_name),
@@ -37,10 +37,12 @@ def get_params(src_dir) {
     ]
 
     if (package_name == "globus_xio_udt_driver") {
-        params = params + [string(name: "EXCLUDE", value: "el-9")]
+        _params = _params + [string(name: "EXCLUDE", value: "el-9")]
+    } else if (params.exclude) {
+        _params = _params + [string(name: "EXCLUDE", value: params.exclude)]
     }
 
-    return params
+    return _params
 }
 
 def load_tags() {
@@ -463,6 +465,14 @@ pipeline {
         booleanParam(
             name: "REPO",
             defaultValue: false
+        )
+        string(
+            name: 'EXCLUDE',
+            defaultValue: '',
+            description: '''
+                This is a string is a list of mock names or deb codenames to
+                exclude when building this package.
+        '''
         )
         choice(
             name: "RESTART_POINT",
@@ -1203,7 +1213,11 @@ pipeline {
                 }
             }
             steps {
-                pythonPipeline()
+                def _params = [];
+                if (params.exclude) {
+                    _params.exclude = params.exclude
+                }
+                pythonPipeline(params)
             }
         }
         stage ("globus_repo") {
