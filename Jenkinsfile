@@ -1215,8 +1215,8 @@ pipeline {
             steps {
                 script {
                     def _params = [:];
-                    if (params.exclude) {
-                        _params.exclude = params.exclude
+                    if (params.EXCLUDE) {
+                        _params.exclude = params.EXCLUDE
                     }
                     pythonPipeline(_params)
                 }
