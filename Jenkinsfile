@@ -1218,7 +1218,7 @@ pipeline {
                     if (params.exclude) {
                         _params.exclude = params.exclude
                     }
-                    pythonPipeline(params)
+                    pythonPipeline(_params)
                 }
             }
         }
