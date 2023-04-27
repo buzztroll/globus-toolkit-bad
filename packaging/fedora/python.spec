@@ -1,12 +1,16 @@
 Name:           globus-python
 Version:        3.9.16
-Release:        1%{?dist}
+Release:        4%{?dist}
 Summary:        Python 3.9.16
 Group:          System Environment/Libraries
 License:        Python
 URL:            https://www.python.org/downloads/release/python-3916/
 Source0:        https://www.python.org/ftp/python/3.9.16/Python-3.9.16.tgz
-# Patch00378:     https://src.fedoraproject.org/rpms/python2.7/raw/rawhide/f/00378-support-expat-2-4-5.patch
+# el 9.0 expat has fixes for some issues that tests have versioned workarounds for
+# 9.1 bumps version so this won't be needed
+%if %{?rhel}%{!?rhel:0} == 9
+Patch00378:     https://src.fedoraproject.org/rpms/python2.7/raw/rawhide/f/00378-support-expat-2-4-5.patch
+%endif
 
 # Don't bother with debuginfo package
 %global         debug_package           %{nil}
@@ -61,7 +65,9 @@ Python %{version} installed into %_python_root
 
 %prep
 %setup -q -n Python-%{version}
-#%patch00378 -p1
+%if %{?rhel}%{!?rhel:0} == 9
+%patch00378 -p1
+%endif
 
 %build
 
