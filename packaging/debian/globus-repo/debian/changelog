@@ -1,3 +1,11 @@
+globus-repo (6.0.28) unstable; urgency=low
+
+  * (deb) remove bionic
+  * (deb) remove buster
+  * (deb) add bookworm
+
+ -- Globus Toolkit <support@globus.org>  Fri, 5 May 2023 11:38:46 -0400
+
 globus-repo (6.0.27) unstable; urgency=low
 
   * (deb) add lunar

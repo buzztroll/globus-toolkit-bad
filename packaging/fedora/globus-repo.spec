@@ -1,5 +1,5 @@
 Name:           globus-repo
-Version:        6.0.27
+Version:        6.0.28
 Release:        1
 Summary:        Globus Repository Configuration
 Group:          System Environment/Base
@@ -133,6 +133,11 @@ fi
 %{_datadir}/globus/repo/*
 
 %changelog
+* Fri May 5 2023 Globus Toolkit <support@globus.org> - 6.0.28-1
+- (deb) remove bionic
+- (deb) remove buster
+- (deb) add bookworm
+
 * Mon Apr 24 2023 Globus Toolkit <support@globus.org> - 6.0.27-1
 - (deb) add lunar
 
