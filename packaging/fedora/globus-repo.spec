@@ -1,6 +1,6 @@
 Name:           globus-repo
 Version:        6.0.28
-Release:        2
+Release:        3
 Summary:        Globus Repository Configuration
 Group:          System Environment/Base
 License:        ASL 2.0
