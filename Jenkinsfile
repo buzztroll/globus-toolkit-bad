@@ -86,7 +86,7 @@ def create_repo_package() {
         it != "el-7"
     }
     def deb_exclude = deb_targets.findAll {
-        it != "bionic"
+        it != "focal"
     }
     echo "rpm_exclude=${rpm_exclude}, deb_exclude=${deb_exclude}";
 
