@@ -1,11 +1,11 @@
 Name:           globus-repo
 Version:        6.0.28
-Release:        3
+Release:        4
 Summary:        Globus Repository Configuration
 Group:          System Environment/Base
 License:        ASL 2.0
 URL:           https://www.globus.org/
-Source0:        globus-repo_%{version}.tar.xz
+Source0:        globus-repo_%{version}-%{release}.tar.xz
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch:      noarch
 Provides:       globus-connect-server-repo
