@@ -10,6 +10,7 @@ Source0:        https://www.python.org/ftp/python/3.9.16/Python-3.9.16.tgz
 # 9.1 bumps version so this won't be needed
 %if %{?rhel}%{!?rhel:0} == 9
 Patch00378:     https://src.fedoraproject.org/rpms/python2.7/raw/rawhide/f/00378-support-expat-2-4-5.patch
+%endif
 %if %{?suse_version}%{!?suse_version:0} != 0
 Patch0:         python-suse15.4-expat.patch
 %endif
