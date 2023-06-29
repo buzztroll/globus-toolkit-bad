@@ -1,6 +1,6 @@
 Name:           globus-repo
-Version:        6.0.28
-Release:        4
+Version:        6.0.29
+Release:        1
 Summary:        Globus Repository Configuration
 Group:          System Environment/Base
 License:        ASL 2.0
@@ -133,6 +133,9 @@ fi
 %{_datadir}/globus/repo/*
 
 %changelog
+* Thu Jun 29 2023 Globus Toolkit <support@globus.org> - 6.0.29-1
+- (rpm) Add SUSE
+
 * Fri May 5 2023 Globus Toolkit <support@globus.org> - 6.0.28-1
 - (deb) remove bionic
 - (deb) remove buster
