@@ -25,10 +25,6 @@ BuildRequires:  autoconf >= 2.60
 BuildRequires:  libtool >= 2.2
 BuildRequires:  pkgconfig
 
-%if 0%{?rhel} >= 7 || 0%{?fedora} >= 36
-BuildRequires:  perl-generators
-%endif
-
 BuildRequires:  perl(English)
 BuildRequires:  perl(Fcntl)
 BuildRequires:  perl(File::Copy)
