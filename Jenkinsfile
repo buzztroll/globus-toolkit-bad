@@ -36,8 +36,8 @@ def get_params(src_dir) {
         string(name: 'STABLE_TAG', value: '${PACKAGE_NAME}-${PACKAGE_VERSION}')
     ]
 
-    if (package_name == "globus_xio_udt_driver") {
-        _params = _params + [string(name: "EXCLUDE", value: "el-9")]
+    if (package_name == "myproxy") {
+        _params = _params + [string(name: "EXCLUDE", value: "suse-15.4 suse-15.5")]
     } else if (params.exclude) {
         _params = _params + [string(name: "EXCLUDE", value: params.exclude)]
     }
