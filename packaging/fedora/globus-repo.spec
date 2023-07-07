@@ -85,8 +85,8 @@ elif command -v yum-config-manager > /dev/null; then
     done
 elif [ -d %{_sysconfdir}/yum.repos.d ] ; then
     cp %{_datadir}/globus/repo/*-${repo}.repo %{_sysconfdir}/yum.repos.d
-elif [ -d %{_sysconfdir}/zypp.repos.d ] ; then
-    cp %{_datadir}/globus/repo/*-${repo}.repo %{_sysconfdir}/zypp.repos.d
+elif [ -d %{_sysconfdir}/zypp/repos.d ] ; then
+    cp %{_datadir}/globus/repo/*-${repo}.repo %{_sysconfdir}/zypp/repos.d
 else
     echo "Copy the Globus Repository Definition from %{_datadir}/globus/repo/ to your system's repo configuration"
 fi
@@ -133,9 +133,9 @@ if [ -d %{_sysconfdir}/yum.repos.d ]; then
     for repofile in %{_datadir}/globus/repo/*-${repo}.repo; do
         rm -f %{_sysconfdir}/yum.repos.d/$(basename $repofile)
     done
-elif [ -d %{_sysconfdir}/zypp.repos.d ]; then
+elif [ -d %{_sysconfdir}/zypp/repos.d ]; then
     for repofile in %{_datadir}/globus/repo/*-${repo}.repo; do
-        rm -f %{_sysconfdir}/zypp.repos.d/$(basename $repofile)
+        rm -f %{_sysconfdir}/zypp/repos.d/$(basename $repofile)
     done
 else
     echo "Remove the Globus Repository defintion from your system configuration"
