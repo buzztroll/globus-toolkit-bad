@@ -10,7 +10,7 @@ BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch:      noarch
 Provides:       globus-connect-server-repo
 Obsoletes:      globus-repo
-Requires:	system-release
+# Requires:	system-release
 
 %description
 This package installs the Globus yum repository configuration and GPG key for
