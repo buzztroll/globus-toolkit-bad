@@ -38,8 +38,6 @@ done
 rm -rf $RPM_BUILD_ROOT
 
 %posttrans
-rpm --import %{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-Globus 2>/dev/null
-
 . /etc/os-release
 
 case $ID:$VERSION_ID:$ID_LIKE in
@@ -64,11 +62,18 @@ case $ID:$VERSION_ID:$ID_LIKE in
     fedora:*:*)
         repo=fedora
         ;;
+    *suse* )
+        repo=suse
+        ;;
     *)
 	echo "Unsupported repo" 1>&2
 	exit 1
         ;;
 esac
+
+if [ "${repo}" != suse ]; then
+    rpm --import %{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-Globus 2>/dev/null
+fi
 
 if command -v dnf > /dev/null; then
     for repofile in %{_datadir}/globus/repo/*-${repo}.repo; do
@@ -80,6 +85,8 @@ elif command -v yum-config-manager > /dev/null; then
     done
 elif [ -d %{_sysconfdir}/yum.repos.d ] ; then
     cp %{_datadir}/globus/repo/*-${repo}.repo %{_sysconfdir}/yum.repos.d
+elif [ -d %{_sysconfdir}/zypp.repos.d ] ; then
+    cp %{_datadir}/globus/repo/*-${repo}.repo %{_sysconfdir}/zypp.repos.d
 else
     echo "Copy the Globus Repository Definition from %{_datadir}/globus/repo/ to your system's repo configuration"
 fi
@@ -110,6 +117,9 @@ case $ID:$VERSION_ID:$ID_LIKE in
     *:9*:rhel | *:9*:centos )
         repo=el9
         ;;
+    *suse* )
+        repo=suse
+        ;;
     fedora:*:*)
         repo=fedora
         ;;
@@ -122,6 +132,10 @@ esac
 if [ -d %{_sysconfdir}/yum.repos.d ]; then
     for repofile in %{_datadir}/globus/repo/*-${repo}.repo; do
         rm -f %{_sysconfdir}/yum.repos.d/$(basename $repofile)
+    done
+elif [ -d %{_sysconfdir}/zypp.repos.d ]; then
+    for repofile in %{_datadir}/globus/repo/*-${repo}.repo; do
+        rm -f %{_sysconfdir}/zypp.repos.d/$(basename $repofile)
     done
 else
     echo "Remove the Globus Repository defintion from your system configuration"
