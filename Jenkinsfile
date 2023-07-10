@@ -126,7 +126,6 @@ def publish_repo_packages() {
             "REPO_VERSION=${env.GLOBUS_REPO_VERSION}",
             ]) {
             sh '''
-                find .
                 mkdir -p installers/repo/deb installers/repo/rpm installers/keys
                 find deb -name '*_all.deb' \
                     -exec cp {} installers/repo/deb ";"
@@ -134,7 +133,7 @@ def publish_repo_packages() {
                 ln -s ${REPO_PKG}_${REPO_VERSION}_all.deb \
                     ${REPO_PKG}_latest_all.deb
                 cd "$OLDPWD"
-                mv RPM-GPG-KEY-Globus installers/keys/GPG-KEY-Globus 
+                mv */RPM-GPG-KEY-Globus installers/keys/GPG-KEY-Globus 
                 find rpm -name '*.noarch.rpm' \
                     -exec cp {} installers/repo/rpm/ ";"
                 cd installers/repo/rpm
