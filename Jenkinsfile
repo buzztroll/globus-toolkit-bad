@@ -126,6 +126,7 @@ def publish_repo_packages() {
             "REPO_VERSION=${env.GLOBUS_REPO_VERSION}",
             ]) {
             sh '''
+                find .
                 mkdir -p installers/repo/deb installers/repo/rpm installers/keys
                 find deb -name '*_all.deb' \
                     -exec cp {} installers/repo/deb ";"
