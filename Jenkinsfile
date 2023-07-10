@@ -63,6 +63,7 @@ def create_repo_package() {
                 version="$(dpkg-parsechangelog  -S version)"
                 cp "../${pkg}_${version}.tar.xz" "${stash_dir}"
                 cp -R debian "${stash_dir}/debian"
+                cp RPM-GPG-KEY-Globus "${stash_dir}"
                 cp "../../fedora/${pkg}.spec" "${stash_dir}"
                 cd "${stash_dir}"
                 cat <<-EOF > package.props
@@ -70,11 +71,12 @@ def create_repo_package() {
                     VERSION=${version}
                     TARBALL=${pkg}_${version}.tar.xz
                     STASH_NAME=${STASH_NAME}
-                    EOF
+		EOF
             '''
         }
     }
     stash(name: stash_name, includes: "${stash_name}/**/*")
+    stash(name: "repo-pkg-key", includes: "${stash_name}/RPM-GPG-KEY-Globus")
     props = readProperties(file: "${stash_name}/package.props")
     env.GLOBUS_REPO_PKG = props.NAME
     env.GLOBUS_REPO_VERSION = props.VERSION
@@ -117,19 +119,21 @@ def publish_repo_packages() {
         if (env.RPM_REPO_STASH) {
             unstash(name: env.RPM_REPO_STASH)
         }
+        unstash(name: "repo-pkg-key")
+
         withEnv([
             "REPO_PKG=${env.GLOBUS_REPO_PKG}",
             "REPO_VERSION=${env.GLOBUS_REPO_VERSION}",
             ]) {
             sh '''
-                mkdir -p installers/repo/deb installers/repo/rpm
+                mkdir -p installers/repo/deb installers/repo/rpm installers/keys
                 find deb -name '*_all.deb' \
                     -exec cp {} installers/repo/deb ";"
                 cd installers/repo/deb
                 ln -s ${REPO_PKG}_${REPO_VERSION}_all.deb \
                     ${REPO_PKG}_latest_all.deb
                 cd "$OLDPWD"
-
+                mv RPM-GPG-KEY-Globus installers/keys/GPG-KEY-Globus 
                 find rpm -name '*.noarch.rpm' \
                     -exec cp {} installers/repo/rpm/ ";"
                 cd installers/repo/rpm
