@@ -112,6 +112,8 @@ def create_repo_package() {
 def publish_repo_packages() {
     def stashname = "${UUID.randomUUID()}"
 
+    sh "rm -rf artifacts"
+
     dir("artifacts") {
         if (env.DEB_REPO_STASH) {
             unstash(name: env.DEB_REPO_STASH)
