@@ -1,11 +1,11 @@
 Name:           globus-python
-Version:        3.9.16
-Release:        4%{?dist}
-Summary:        Python 3.9.16
+Version:        3.9.17
+Release:        1%{?dist}
+Summary:        Python 3.9.17
 Group:          System Environment/Libraries
 License:        Python
-URL:            https://www.python.org/downloads/release/python-3916/
-Source0:        https://www.python.org/ftp/python/3.9.16/Python-3.9.16.tgz
+URL:            https://www.python.org/downloads/release/python-3917/
+Source0:        https://www.python.org/ftp/python/3.9.17/Python-3.9.17.tgz
 # el 9.0 expat has fixes for some issues that tests have versioned workarounds for
 # 9.1 bumps version so this won't be needed
 %if %{?rhel}%{!?rhel:0} == 9
@@ -126,5 +126,7 @@ rm -rf $PRM_BUILD_ROOT
 %_python_root/*
 
 %changelog
+* Tue Jul 25 2023 Globus Toolkit<support@globus.org> - 3.9.17-1
+- Upgrade to python 3.9.17
 * Wed Jan 4 2023 Globus Toolkit<support@globus.org> - 3.9.16-1
 - Initial package of python 3.9 for GCS

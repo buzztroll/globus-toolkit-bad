@@ -1,6 +1,6 @@
 Name: globus-python
 Maintainer: Globus Support <support@globus.org>
-Source: https://www.python.org/ftp/python/3.9.16/Python-3.9.16.tgz
+Source: https://www.python.org/ftp/python/3.9.17/Python-3.9.17.tgz
 
 Files: *
 Copyright: Copyright © 2001-2022 Python Software Foundation. All rights reserved.
