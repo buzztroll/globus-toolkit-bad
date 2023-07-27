@@ -1,7 +1,7 @@
 Source: globus-python
 Priority: optional
 Maintainer: Globus Support <support@globus.org>
-Build-Depends: debhelper (>= 9), autotools-dev, libssl-dev, libbz2-dev, libexpat1-dev, gcc, g++, libgdbm-dev, libgmp3-dev, libffi-dev, libncurses5-dev, pkg-config, libreadline-dev, libsqlite3-dev, zlib1g-dev, liblzma-dev, uuid-dev
+Build-Depends: debhelper (>= 9), autotools-dev, libssl-dev, libbz2-dev, libexpat1-dev, gcc, g++, libgdbm-dev, libgmp3-dev, libffi-dev, libncurses5-dev, pkg-config, libreadline-dev, libsqlite3-dev, zlib1g-dev, liblzma-dev, uuid-dev, tzdata
 Standards-Version: 3.9.2
 Section: net
 Homepage: http://toolkit.globus.org/
