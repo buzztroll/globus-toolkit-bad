@@ -2,7 +2,7 @@ Name:		globus-gridmap-eppn-callout
 %global _name %(tr - _ <<< %{name})
 Epoch:          1
 Version:	1.16
-Release:	1%{?dist}
+Release:	2%{?dist}
 Vendor:	Globus Support
 Summary:	Globus Toolkit - Globus gridmap eppn callout
 
@@ -82,6 +82,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libglobus*
 
 %changelog
+* Fri Aug 04 2023 Globus Toolkit <support@globus.org> - 1.16-2
+- Update packaging to work with SUSE
+
 * Wed Dec 01 2021 Globus Toolkit <support@globus.org> - 1.16-1
 - Rebuild for new OSes
 - Update license text

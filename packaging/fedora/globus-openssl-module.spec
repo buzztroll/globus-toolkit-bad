@@ -2,7 +2,7 @@ Name:		globus-openssl-module
 %global _name %(tr - _ <<< %{name})
 Epoch:          1
 Version:	4.11
-Release:	1%{?dist}
+Release:	2%{?dist}
 Vendor:	Globus Support
 Summary:	Globus Toolkit - Globus OpenSSL Module Wrapper
 
@@ -126,6 +126,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man3/*
 
 %changelog
+* Fri Aug 04 2023 Globus Toolkit <support@globus.org> - 4.11-2
+- Update packaging to work with SUSE
+
 * Wed Dec 01 2021 Globus Toolkit <support@globus.org> - 4.11-1
 - Rebuild for new OSes
 - Update license text

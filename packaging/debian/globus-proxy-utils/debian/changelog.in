@@ -1,3 +1,9 @@
+globus-proxy-utils (1:6.23-2+gt6.@distro@) @distro@; urgency=low
+
+  * Update packaging to work with SUSE
+
+ -- Globus Toolkit <support@globus.org>  Fri, 04 Aug 2023 10:15:07 -0400
+
 globus-proxy-utils (1:6.23-1+gt6.@distro@) @distro@; urgency=low
 
   * Update test fixtures to use sha256

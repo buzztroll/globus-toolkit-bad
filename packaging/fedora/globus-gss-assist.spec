@@ -3,7 +3,7 @@ Name:		globus-gss-assist
 %global _name %(tr - _ <<< %{name})
 Epoch:          1
 Version:	11.6
-Release:	1%{?dist}
+Release:	2%{?dist}
 Vendor:	Globus Support
 Summary:	Globus Toolkit - GSSAPI Assist library
 
@@ -152,6 +152,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man3/*
 
 %changelog
+* Fri Aug 04 2023 Globus Toolkit <support@globus.org> - 11.6-2
+- Update packaging to work with SUSE
+
 * Fri Nov 11 2022 Globus Toolkit <support@globus.org> - 11.6-1
 - Update test fixtures to use sha256
 

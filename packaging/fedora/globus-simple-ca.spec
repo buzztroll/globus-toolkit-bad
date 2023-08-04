@@ -4,7 +4,7 @@ Name:		globus-simple-ca
 %global _name %(tr - _ <<< %{name})
 Epoch:          1
 Version:	4.28
-Release:	1%{?dist}
+Release:	2%{?dist}
 Vendor:	Globus Support
 Summary:	Globus Toolkit - Simple CA
 
@@ -127,6 +127,9 @@ fi
 %{_mandir}/man1/*
 
 %changelog
+* Fri Aug 04 2023 Globus Toolkit <support@globus.org> - 4.28-2
+- Update packaging to work with SUSE
+
 * Wed Dec 01 2021 Globus Toolkit <support@globus.org> - 4.28-1
 - Rebuild for new OSes
 - Update license text

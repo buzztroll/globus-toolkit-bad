@@ -3,7 +3,7 @@ Name:		globus-gsi-credential
 %global _name %(tr - _ <<< %{name})
 Epoch:          1
 Version:	7.17
-Release:	1%{?dist}
+Release:	2%{?dist}
 Vendor:	Globus Support
 Summary:	Globus Toolkit - Globus GSI Credential Library
 
@@ -130,6 +130,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man3/*
 
 %changelog
+* Fri Aug 04 2023 Globus Toolkit <support@globus.org> - 7.17-2
+- Update packaging to work with SUSE
+
 * Wed Dec 01 2021 Globus Toolkit <support@globus.org> - 7.17-1
 - Rebuild for new OSes
 - Update license text

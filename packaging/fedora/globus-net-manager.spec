@@ -3,7 +3,7 @@ Name:		globus-net-manager
 %global _name %(tr - _ <<< %{name})
 Epoch:          1
 Version:	0.24
-Release:	1%{?dist}
+Release:	2%{?dist}
 Vendor:	Globus Support
 Summary:	Globus Toolkit - Net Manager Library
 
@@ -152,6 +152,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man3/*
 
 %changelog
+* Fri Aug 04 2023 Globus Toolkit <support@globus.org> - 0.24-2
+- Update packaging to work with SUSE
+
 * Sun Nov 13 2022 Globus Toolkit <support@globus.org> - 0.24-1
 - Support for new OS releases/py3
 

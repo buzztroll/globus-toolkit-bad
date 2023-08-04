@@ -1,3 +1,9 @@
+globus-gss-assist (1:11.6-2+gt6.@distro@) @distro@; urgency=low
+
+  * Update packaging to work with SUSE
+
+ -- Globus Toolkit <support@globus.org>  Fri, 04 Aug 2023 10:15:05 -0400
+
 globus-gss-assist (1:11.6-1+gt6.@distro@) @distro@; urgency=low
 
   * Update test fixtures to use sha256

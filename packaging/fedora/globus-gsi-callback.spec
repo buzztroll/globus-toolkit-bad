@@ -3,7 +3,7 @@ Name:		globus-gsi-callback
 %global _name %(tr - _ <<< %{name})
 Epoch:          1
 Version:	5.16
-Release:	1%{?dist}
+Release:	2%{?dist}
 Vendor:	Globus Support
 Summary:	Globus Toolkit - Globus GSI Callback Library
 
@@ -122,6 +122,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man3/*
 
 %changelog
+* Fri Aug 04 2023 Globus Toolkit <support@globus.org> - 5.16-2
+- Update packaging to work with SUSE
+
 * Wed Dec 01 2021 Globus Toolkit <support@globus.org> - 5.16-1
 - Rebuild for new OSes
 - Update license text

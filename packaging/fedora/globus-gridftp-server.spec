@@ -3,7 +3,7 @@ Name:		globus-gridftp-server
 %global _name %(tr - _ <<< %{name})
 Epoch:          1
 Version:	12.29
-Release:	1%{?dist}
+Release:	2%{?dist}
 Vendor:	Globus Support
 Summary:	Globus Toolkit - Globus GridFTP Server
 
@@ -180,6 +180,9 @@ fi
 %{_libdir}/pkgconfig/*.pc
 
 %changelog
+* Fri Aug 04 2023 Globus Toolkit <support@globus.org> - 12.29-2
+- Update packaging to work with SUSE
+
 * Tue Apr 25 2023 Globus Toolkit <support@globus.org> - 12.29-1
 - Fix test crash
 

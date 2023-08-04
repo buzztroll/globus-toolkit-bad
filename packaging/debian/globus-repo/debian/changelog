@@ -1,4 +1,4 @@
-globus-repo (6.0.29-1) unstable; urgency=low
+globus-repo (6.0.29~rc1-1) unstable; urgency=low
 
   * (rpm) Add SUSE
 

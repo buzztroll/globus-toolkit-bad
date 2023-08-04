@@ -1,3 +1,9 @@
+globus-net-manager (1:0.24-2+gt6.@distro@) @distro@; urgency=low
+
+  * Update packaging to work with SUSE
+
+ -- Globus Toolkit <support@globus.org>  Fri, 04 Aug 2023 10:15:06 -0400
+
 globus-net-manager (1:0.24-1+gt6.@distro@) @distro@; urgency=low
 
   * Support for new OS releases/py3

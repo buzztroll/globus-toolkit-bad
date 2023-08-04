@@ -3,7 +3,7 @@ Name:		globus-gsi-sysconfig
 %global _name %(tr - _ <<< %{name})
 Epoch:          1
 Version:	8.5
-Release:	1%{?dist}
+Release:	2%{?dist}
 Vendor:	Globus Support
 Summary:	Globus Toolkit - Globus GSI System Config Library
 
@@ -128,6 +128,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man3/*
 
 %changelog
+* Fri Aug 04 2023 Globus Toolkit <support@globus.org> - 8.5-2
+- Update packaging to work with SUSE
+
 * Wed Dec 01 2021 Globus Toolkit <support@globus.org> - 8.5-1
 - Rebuild for new OSes
 - Update license text
