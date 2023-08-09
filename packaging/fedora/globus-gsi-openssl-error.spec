@@ -154,7 +154,7 @@ rm -rf $RPM_BUILD_ROOT
 * Fri Sep 09 2016 Globus Toolkit <support@globus.org> - 3.7-1
 - Update for el.5 openssl101e
 
-* Tue Aug 25 2016 Globus Toolkit <support@globus.org> - 3.6-5
+* Thu Aug 25 2016 Globus Toolkit <support@globus.org> - 3.6-5
 - Updates for SLES 12 packaging
 
 * Tue Aug 16 2016 Globus Toolkit <support@globus.org> - 3.6-1
