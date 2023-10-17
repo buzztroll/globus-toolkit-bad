@@ -1720,6 +1720,11 @@ globus_l_gsc_close_cb(
     GlobusGridFTPServerDebugInternalEnter();
 
     server_handle = (globus_i_gsc_server_handle_t *) user_arg;
+    if (server_handle->cached_res == GLOBUS_SUCCESS)
+    {
+        /* The intial error will have the best information */
+        server_handle->cached_res = result;
+    }
     server_handle->cached_res = result;
 
     globus_l_gsc_user_close_kickout(user_arg);
